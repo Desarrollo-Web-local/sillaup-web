@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-mulish), sans-serif;
+}
+
+.material-symbols-outlined {
+  font-family: "Material Symbols Outlined";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+  -webkit-font-feature-settings: "liga";
+  -webkit-font-smoothing: antialiased;
+}
+
+.material-symbols-outlined.fill-icon {
+  font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+
+/* Franja de valores (inicio) */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee {
+  display: flex;
+  width: 200%;
+  animation: marquee 25s linear infinite;
+}
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Carrusel de productos (inicio) */
+.product-carousel {
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+.product-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+/* Imagen del hero (inicio) */
+@keyframes hero-kenburns {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+.animate-kenburns {
+  animation: hero-kenburns 14s ease-in-out infinite alternate;
+}
+
+/* Sombras usadas en testimonios */
+.custom-shadow-lvl1 { box-shadow: 0 4px 20px -2px rgba(13, 20, 26, 0.05); }
+.custom-shadow-lvl2 { box-shadow: 0 12px 32px -4px rgba(13, 20, 26, 0.08); }
+.custom-shadow-lvl3 { box-shadow: 0 16px 40px -6px rgba(13, 20, 26, 0.16); }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-kenburns,
+  .animate-marquee {
+    animation: none;
+  }
+}
