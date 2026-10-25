@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { getProduct, productHref, products } from "@/lib/products";
 import { site } from "@/lib/site";
+import ImageLightbox from "@/components/ImageLightbox";
 import ShowroomMap from "@/components/ShowroomMap";
 
 const filled = { fontVariationSettings: "\"FILL\" 1" };
@@ -39,6 +40,7 @@ export default function ProductDetail({ slug }: { slug: string }) {
 
   const [active, setActive] = useState(0);
   const [fading, setFading] = useState(false);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
 
   function showImage(index: number) {
     if (index === active) return;
@@ -70,15 +72,12 @@ export default function ProductDetail({ slug }: { slug: string }) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           {/* Galería de Fotos */}
           <div className="lg:col-span-7 flex flex-col gap-4">
-            <div className="relative bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden p-6 flex items-center justify-center min-h-[460px] shadow-sm group">
-              <div className="absolute top-4 left-4 z-10 bg-secondary text-on-secondary px-3.5 py-1.5 rounded-full text-label-sm font-label-sm flex items-center gap-1.5 shadow-sm">
-                <span className="material-symbols-outlined text-[16px]" style={filled}>
-                  camera_alt
-                </span>
-              </div>
-              <div className="absolute top-4 right-4 z-10 bg-surface-container-lowest border border-outline-variant text-on-surface px-3 py-1.5 rounded-full text-label-sm font-label-sm flex items-center gap-1.5 shadow-sm">
-                <span className="w-2.5 h-2.5 rounded-full bg-error inline-block"></span>
-              </div>
+            <button
+              aria-label={`Ampliar imagen de ${name}`}
+              className="relative bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden p-6 flex items-center justify-center min-h-[460px] shadow-sm group cursor-zoom-in focus:outline-none focus-visible:ring-4 focus-visible:ring-primary/30"
+              onClick={() => setLightboxOpen(true)}
+              type="button"
+            >
               <img
                 alt={`${name} SillaUp`}
                 className="w-full max-h-[420px] object-contain transition-transform duration-300 group-hover:scale-105"
@@ -86,7 +85,11 @@ export default function ProductDetail({ slug }: { slug: string }) {
                 src={product.gallery[active].src}
                 style={{ opacity: fading ? 0.4 : 1, transition: "opacity 120ms" }}
               />
-            </div>
+              <span className="absolute bottom-4 right-4 bg-surface-container-lowest/95 border border-outline-variant text-on-surface px-3 py-1.5 rounded-full text-label-sm font-label-sm flex items-center gap-1.5 shadow-sm opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity">
+                <span className="material-symbols-outlined text-[18px]">zoom_in</span>
+                Ampliar
+              </span>
+            </button>
             <div className="grid grid-cols-4 gap-3">
               {product.gallery.map((image, index) => (
                 <button
@@ -542,6 +545,16 @@ export default function ProductDetail({ slug }: { slug: string }) {
           ))}
         </div>
       </section>
+
+      {lightboxOpen && (
+        <ImageLightbox
+          images={product.gallery}
+          index={active}
+          label={name}
+          onClose={() => setLightboxOpen(false)}
+          onIndexChange={setActive}
+        />
+      )}
     </main>
   );
 }
