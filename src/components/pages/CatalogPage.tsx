@@ -93,175 +93,7 @@ export default function CatalogPage() {
       {/* 5. Products Grid (The 5 Official SillaUp Products) */}
       <section className="max-w-7xl mx-auto px-6 md:px-12 pb-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="products-grid">
-          {/* PRODUCTO 1: Elevador de inodoro */}
-          <article className="product-card group bg-surface-container-lowest rounded-[24px] border border-brand-border p-6 shadow-level-1 hover:shadow-level-2 transition-all duration-300 flex flex-col justify-between" data-category="bano electricos">
-            <div>
-              {/* Image Container with Badges */}
-              <div className="relative w-full h-60 bg-surface-container-low rounded-2xl overflow-hidden mb-5 border border-outline-variant/30 flex items-center justify-center p-4">
-                <div className="absolute top-3 right-3 z-10 bg-brand-night text-white font-label-sm text-xs font-extrabold px-3 py-1.5 rounded-full shadow-md">
-                  $390.000
-                </div>
-                <div className="absolute top-3 left-3 z-10 bg-brand-teal/90 text-white font-label-sm text-[10px] uppercase font-bold px-2.5 py-1 rounded-full flex items-center gap-1 shadow-sm">
-                  <span className="material-symbols-outlined text-[12px]">
-                    verified
-                  </span>
-                  Fabricación Chilena
-                </div>
-                <img alt="" className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300" data-alt="Modern medical white steel toilet lifter device designed for senior and assisted hygiene care, placed in a contemporary spotless bathroom with gentle natural daylight. Clean sanitary atmosphere with ergonomic armrests, electric piston mechanism, and sturdy Chilean engineering." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLS1R2uL0WK8P9va3sDBrxTvvG8oiP3wUagyQuT3rtnj199l6fqc5ILsX2EzQLaQfynPw6L1xOia7OyalFyU9GZFcOwmLHHXXdUAqcqiHRaRhXzpdtAFoERyr4ruqikkqKV-sv-4tilHZSQYp-Y-iIu2b4-oOBhkaGa-dRLa9hDJW3buVuYPYD0CS2uUEeCz71yt5gw6WyrlyrHQ5VedKyBXGv0ggAgOQlMTWmG1zMYtMeU2hi4nA" />
-              </div>
-              {/* Category Tag */}
-              <div className="flex items-center gap-2 mb-2">
-                <span className="bg-surface-container-high text-brand-teal rounded-full px-3 py-1 text-xs font-label-sm font-bold">
-                  Baño · Eléctrico
-                </span>
-              </div>
-              {/* Title & 1-line Value Proposition */}
-              <h2 className="text-headline-sm font-headline-sm text-brand-night font-bold">
-                Elevador de inodoro
-              </h2>
-              <p className="text-body-sm font-body-sm text-on-surface-variant mt-2 mb-6 leading-relaxed">
-                Asistencia eléctrica para sentarse y ponerse de pie del inodoro con total seguridad y autonomía.
-              </p>
-            </div>
-            {/* Clean Actions */}
-            <div className="flex flex-col gap-2.5 pt-4 border-t border-brand-border/60">
-              <Link className="w-full text-center bg-brand-blue text-white font-label-md py-3 rounded-full hover:bg-primary transition-colors duration-150 font-bold active:scale-95 shadow-sm flex items-center justify-center gap-2" href="/contacto">
-                <span>
-                  Ver producto
-                </span>
-                <span className="material-symbols-outlined text-base">
-                  arrow_forward
-                </span>
-              </Link>
-            </div>
-          </article>
-          {/* PRODUCTO 2: Grúa manual */}
-          <article className="product-card group bg-surface-container-lowest rounded-[24px] border border-brand-border p-6 shadow-level-1 hover:shadow-level-2 transition-all duration-300 flex flex-col justify-between" data-category="traslado manual">
-            <div>
-              {/* Image Container with Badges */}
-              <div className="relative w-full h-60 bg-surface-container-low rounded-2xl overflow-hidden mb-5 border border-outline-variant/30 flex items-center justify-center p-4">
-                <div className="absolute top-3 right-3 z-10 bg-brand-night text-white font-label-sm text-xs font-extrabold px-3 py-1.5 rounded-full shadow-md">
-                  $290.000
-                </div>
-                <div className="absolute top-3 left-3 z-10 bg-brand-teal/90 text-white font-label-sm text-[10px] uppercase font-bold px-2.5 py-1 rounded-full flex items-center gap-1 shadow-sm">
-                  <span className="material-symbols-outlined text-[12px]">
-                    verified
-                  </span>
-                  Fabricación Chilena
-                </div>
-                <img alt="" className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300" data-alt="Manual patient lift crane made of pristine white tubular steel with hydraulic lever and robust medical caster wheels. Clean studio setting with neutral lighting, demonstrating assistive mobility transfer hardware for home care." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQE1EGsuBgnCAwtx593rRSzTcVfIf-YHOrw3podrn6iE4W3gFg5t-S7MJhkGGF3N_44PgvPKf-BwyDlyB0EX_AYXuPkp5giwS8WrUrrtdWGKLH3QC5gqaUIop5I0L6v2FnNV6m5kdlE9COzT66P3Hzt6zkw-JEfXQ82M7ZeQ2U2M4ShON6_Zr_aAlakKbwiUOGlJFTHMRBspRgCFKCbgMNentcJ0TCNz_paQ4UVGJLKQMpIApysnw" />
-              </div>
-              {/* Category Tag */}
-              <div className="flex items-center gap-2 mb-2">
-                <span className="bg-surface-container-high text-brand-teal rounded-full px-3 py-1 text-xs font-label-sm font-bold">
-                  Traslado · Manual
-                </span>
-              </div>
-              {/* Title & 1-line Value Proposition */}
-              <h2 className="text-headline-sm font-headline-sm text-brand-night font-bold">
-                Grúa manual
-              </h2>
-              <p className="text-body-sm font-body-sm text-on-surface-variant mt-2 mb-6 leading-relaxed">
-                Traslados confortables sin esfuerzo físico del cuidador ni requerimiento de cables o energía.
-              </p>
-            </div>
-            {/* Clean Actions */}
-            <div className="flex flex-col gap-2.5 pt-4 border-t border-brand-border/60">
-              <Link className="w-full text-center bg-brand-blue text-white font-label-md py-3 rounded-full hover:bg-primary transition-colors duration-150 font-bold active:scale-95 shadow-sm flex items-center justify-center gap-2" href="/contacto">
-                <span>
-                  Ver producto
-                </span>
-                <span className="material-symbols-outlined text-base">
-                  arrow_forward
-                </span>
-              </Link>
-            </div>
-          </article>
-          {/* PRODUCTO 3: Elevador multiuso */}
-          <article className="product-card group bg-surface-container-lowest rounded-[24px] border border-brand-border p-6 shadow-level-1 hover:shadow-level-2 transition-all duration-300 flex flex-col justify-between" data-category="electricos">
-            <div>
-              {/* Image Container with Badges */}
-              <div className="relative w-full h-60 bg-surface-container-low rounded-2xl overflow-hidden mb-5 border border-outline-variant/30 flex items-center justify-center p-4">
-                <div className="absolute top-3 right-3 z-10 bg-brand-night text-white font-label-sm text-xs font-extrabold px-3 py-1.5 rounded-full shadow-md">
-                  $390.000
-                </div>
-                <div className="absolute top-3 left-3 z-10 bg-brand-teal/90 text-white font-label-sm text-[10px] uppercase font-bold px-2.5 py-1 rounded-full flex items-center gap-1 shadow-sm">
-                  <span className="material-symbols-outlined text-[12px]">
-                    verified
-                  </span>
-                  Fabricación Chilena
-                </div>
-                <img alt="" className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300" data-alt="Multipurpose electric sit-to-stand lifting mechanism integrated with cushioned support and white medical-grade frame. Designed for helping patients stand up easily from sofas, chairs and bed sides. Clean Chilean home environment with soft daylight." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnK0tAF5kF-QUMMMccvlp8wxZHIdMGZcniYun8riNy2qkB_Po4ToWcXE-d6nscNudZKANeijS_jZw0llLRe9Ma-c0gDwbY_A4UOwn8Oj2RrorJmKwP8ZAO5V_gYomcb_zE1i9IXcHCWF3Zzb_5uAfc7GOcxavr4pe2-SgpPLPPZOfz1ObCwcQTbSI8GJf9zH9btFziLBrg5Nle2AFXgS4zNE4wyhkBDnGXrUjaHQQ56HtRNySg95s" />
-              </div>
-              {/* Category Tag */}
-              <div className="flex items-center gap-2 mb-2">
-                <span className="bg-surface-container-high text-brand-teal rounded-full px-3 py-1 text-xs font-label-sm font-bold">
-                  Bipedestación y Elevación
-                </span>
-              </div>
-              {/* Title & 1-line Value Proposition */}
-              <h2 className="text-headline-sm font-headline-sm text-brand-night font-bold">
-                Elevador multiuso
-              </h2>
-              <p className="text-body-sm font-body-sm text-on-surface-variant mt-2 mb-6 leading-relaxed">
-                Levántate suavemente y sin esfuerzo desde cualquier sofá, silla o cama con apoyo progresivo.
-              </p>
-            </div>
-            {/* Clean Actions */}
-            <div className="flex flex-col gap-2.5 pt-4 border-t border-brand-border/60">
-              <Link className="w-full text-center bg-brand-blue text-white font-label-md py-3 rounded-full hover:bg-primary transition-colors duration-150 font-bold active:scale-95 shadow-sm flex items-center justify-center gap-2" href="/contacto">
-                <span>
-                  Ver producto
-                </span>
-                <span className="material-symbols-outlined text-base">
-                  arrow_forward
-                </span>
-              </Link>
-            </div>
-          </article>
-          {/* PRODUCTO 4: Elevador de cama */}
-          <article className="product-card group bg-surface-container-lowest rounded-[24px] border border-brand-border p-6 shadow-level-1 hover:shadow-level-2 transition-all duration-300 flex flex-col justify-between" data-category="cama electricos">
-            <div>
-              {/* Image Container with Badges */}
-              <div className="relative w-full h-60 bg-surface-container-low rounded-2xl overflow-hidden mb-5 border border-outline-variant/30 flex items-center justify-center p-4">
-                <div className="absolute top-3 right-3 z-10 bg-brand-night text-white font-label-sm text-xs font-extrabold px-3 py-1.5 rounded-full shadow-md">
-                  $390.000
-                </div>
-                <div className="absolute top-3 left-3 z-10 bg-brand-teal/90 text-white font-label-sm text-[10px] uppercase font-bold px-2.5 py-1 rounded-full flex items-center gap-1 shadow-sm">
-                  <span className="material-symbols-outlined text-[12px]">
-                    verified
-                  </span>
-                  Fabricación Chilena
-                </div>
-                <img alt="" className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300" data-alt="Electric adjustable bed backrest lifter mechanism made with clean white steel frame and padded mattress surface. Placed over a modern bedroom bed in a warm and dignified home healthcare environment with morning sunlight." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1xwEn0J2epefI5lcIi41M3fvYLi6xycur2aRCEQ2bHVJDS2f5Dn1RQRv5rSF-UAvpEUj9e95YMkEFt_uY-S0H0wwyjd3XDRZZZ04UgNlU6zVu5CoP1VFoUYJnB7u-F1hFsBy9CWM4cWfVPiA7303-SjT9OjYmyf1fB2JG2qZoNOYKSQF243eKVEBTbvQ9b1V7sRb3C89O0IUuV1V4UqGsVjqzpuc_bFKrwfW7R4AoAkqPO-5JDpQ" />
-              </div>
-              {/* Category Tag */}
-              <div className="flex items-center gap-2 mb-2">
-                <span className="bg-surface-container-high text-brand-teal rounded-full px-3 py-1 text-xs font-label-sm font-bold">
-                  Cuidado en Cama
-                </span>
-              </div>
-              {/* Title & 1-line Value Proposition */}
-              <h2 className="text-headline-sm font-headline-sm text-brand-night font-bold">
-                Elevador de cama
-              </h2>
-              <p className="text-body-sm font-body-sm text-on-surface-variant mt-2 mb-6 leading-relaxed">
-                Convierte tu cama en ajustable clínica con respaldo ergonómico de 0° a 75° a control remoto.
-              </p>
-            </div>
-            {/* Clean Actions */}
-            <div className="flex flex-col gap-2.5 pt-4 border-t border-brand-border/60">
-              <Link className="w-full text-center bg-brand-blue text-white font-label-md py-3 rounded-full hover:bg-primary transition-colors duration-150 font-bold active:scale-95 shadow-sm flex items-center justify-center gap-2" href="/contacto">
-                <span>
-                  Ver producto
-                </span>
-                <span className="material-symbols-outlined text-base">
-                  arrow_forward
-                </span>
-              </Link>
-            </div>
-          </article>
-          {/* PRODUCTO 5: Grúa eléctrica (Featured Product) */}
+          {/* PRODUCTO 1: Grúa eléctrica (Featured Product) */}
           <article className="product-card group bg-surface-container-lowest rounded-[24px] border-2 border-brand-blue/30 p-6 shadow-level-2 hover:shadow-level-3 transition-all duration-300 flex flex-col justify-between relative" data-category="traslado electricos">
             {/* Top seller badge */}
             <div className="absolute -top-3 left-6 bg-brand-blue text-white text-[11px] font-label-sm uppercase px-3 py-0.5 rounded-full tracking-wide shadow-sm flex items-center gap-1">
@@ -300,7 +132,15 @@ export default function CatalogPage() {
             </div>
             {/* Clean Actions */}
             <div className="flex flex-col gap-2.5 pt-4 border-t border-brand-border/60">
-              <a className="w-full text-center bg-brand-blue text-white font-label-md py-3 rounded-full hover:bg-primary transition-colors duration-150 font-bold active:scale-95 shadow-sm flex items-center justify-center gap-2" href="https://mpago.la/2Gquygz" rel="noopener noreferrer" target="_blank">
+              <Link className="w-full text-center bg-brand-blue text-white font-label-md py-3 rounded-full hover:bg-primary transition-colors duration-150 font-bold active:scale-95 shadow-sm flex items-center justify-center gap-2" href="/productos/grua-electrica">
+                <span>
+                  Ver producto
+                </span>
+                <span className="material-symbols-outlined text-base">
+                  arrow_forward
+                </span>
+              </Link>
+              <a className="w-full text-center border-2 border-brand-blue text-brand-blue bg-white font-label-md py-2.5 rounded-full hover:bg-brand-blue/5 transition-colors duration-150 font-bold active:scale-95 flex items-center justify-center gap-2" href="https://mpago.la/2Gquygz" rel="noopener noreferrer" target="_blank">
                 <span className="material-symbols-outlined text-sm">
                   credit_card
                 </span>
@@ -308,7 +148,174 @@ export default function CatalogPage() {
                   Comprar Ahora ($390.000)
                 </span>
               </a>
-              <div className="grid grid-cols-2 gap-2"></div>
+            </div>
+          </article>
+          {/* PRODUCTO 2: Elevador de inodoro */}
+          <article className="product-card group bg-surface-container-lowest rounded-[24px] border border-brand-border p-6 shadow-level-1 hover:shadow-level-2 transition-all duration-300 flex flex-col justify-between" data-category="bano electricos">
+            <div>
+              {/* Image Container with Badges */}
+              <div className="relative w-full h-60 bg-surface-container-low rounded-2xl overflow-hidden mb-5 border border-outline-variant/30 flex items-center justify-center p-4">
+                <div className="absolute top-3 right-3 z-10 bg-brand-night text-white font-label-sm text-xs font-extrabold px-3 py-1.5 rounded-full shadow-md">
+                  $390.000
+                </div>
+                <div className="absolute top-3 left-3 z-10 bg-brand-teal/90 text-white font-label-sm text-[10px] uppercase font-bold px-2.5 py-1 rounded-full flex items-center gap-1 shadow-sm">
+                  <span className="material-symbols-outlined text-[12px]">
+                    verified
+                  </span>
+                  Fabricación Chilena
+                </div>
+                <img alt="" className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300" data-alt="Modern medical white steel toilet lifter device designed for senior and assisted hygiene care, placed in a contemporary spotless bathroom with gentle natural daylight. Clean sanitary atmosphere with ergonomic armrests, electric piston mechanism, and sturdy Chilean engineering." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLS1R2uL0WK8P9va3sDBrxTvvG8oiP3wUagyQuT3rtnj199l6fqc5ILsX2EzQLaQfynPw6L1xOia7OyalFyU9GZFcOwmLHHXXdUAqcqiHRaRhXzpdtAFoERyr4ruqikkqKV-sv-4tilHZSQYp-Y-iIu2b4-oOBhkaGa-dRLa9hDJW3buVuYPYD0CS2uUEeCz71yt5gw6WyrlyrHQ5VedKyBXGv0ggAgOQlMTWmG1zMYtMeU2hi4nA" />
+              </div>
+              {/* Category Tag */}
+              <div className="flex items-center gap-2 mb-2">
+                <span className="bg-surface-container-high text-brand-teal rounded-full px-3 py-1 text-xs font-label-sm font-bold">
+                  Baño · Eléctrico
+                </span>
+              </div>
+              {/* Title & 1-line Value Proposition */}
+              <h2 className="text-headline-sm font-headline-sm text-brand-night font-bold">
+                Elevador de inodoro
+              </h2>
+              <p className="text-body-sm font-body-sm text-on-surface-variant mt-2 mb-6 leading-relaxed">
+                Asistencia eléctrica para sentarse y ponerse de pie del inodoro con total seguridad y autonomía.
+              </p>
+            </div>
+            {/* Clean Actions */}
+            <div className="flex flex-col gap-2.5 pt-4 border-t border-brand-border/60">
+              <Link className="w-full text-center bg-brand-blue text-white font-label-md py-3 rounded-full hover:bg-primary transition-colors duration-150 font-bold active:scale-95 shadow-sm flex items-center justify-center gap-2" href="/productos/elevador-de-inodoro">
+                <span>
+                  Ver producto
+                </span>
+                <span className="material-symbols-outlined text-base">
+                  arrow_forward
+                </span>
+              </Link>
+            </div>
+          </article>
+          {/* PRODUCTO 3: Grúa manual */}
+          <article className="product-card group bg-surface-container-lowest rounded-[24px] border border-brand-border p-6 shadow-level-1 hover:shadow-level-2 transition-all duration-300 flex flex-col justify-between" data-category="traslado manual">
+            <div>
+              {/* Image Container with Badges */}
+              <div className="relative w-full h-60 bg-surface-container-low rounded-2xl overflow-hidden mb-5 border border-outline-variant/30 flex items-center justify-center p-4">
+                <div className="absolute top-3 right-3 z-10 bg-brand-night text-white font-label-sm text-xs font-extrabold px-3 py-1.5 rounded-full shadow-md">
+                  $290.000
+                </div>
+                <div className="absolute top-3 left-3 z-10 bg-brand-teal/90 text-white font-label-sm text-[10px] uppercase font-bold px-2.5 py-1 rounded-full flex items-center gap-1 shadow-sm">
+                  <span className="material-symbols-outlined text-[12px]">
+                    verified
+                  </span>
+                  Fabricación Chilena
+                </div>
+                <img alt="" className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300" data-alt="Manual patient lift crane made of pristine white tubular steel with hydraulic lever and robust medical caster wheels. Clean studio setting with neutral lighting, demonstrating assistive mobility transfer hardware for home care." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQE1EGsuBgnCAwtx593rRSzTcVfIf-YHOrw3podrn6iE4W3gFg5t-S7MJhkGGF3N_44PgvPKf-BwyDlyB0EX_AYXuPkp5giwS8WrUrrtdWGKLH3QC5gqaUIop5I0L6v2FnNV6m5kdlE9COzT66P3Hzt6zkw-JEfXQ82M7ZeQ2U2M4ShON6_Zr_aAlakKbwiUOGlJFTHMRBspRgCFKCbgMNentcJ0TCNz_paQ4UVGJLKQMpIApysnw" />
+              </div>
+              {/* Category Tag */}
+              <div className="flex items-center gap-2 mb-2">
+                <span className="bg-surface-container-high text-brand-teal rounded-full px-3 py-1 text-xs font-label-sm font-bold">
+                  Traslado · Manual
+                </span>
+              </div>
+              {/* Title & 1-line Value Proposition */}
+              <h2 className="text-headline-sm font-headline-sm text-brand-night font-bold">
+                Grúa manual
+              </h2>
+              <p className="text-body-sm font-body-sm text-on-surface-variant mt-2 mb-6 leading-relaxed">
+                Traslados confortables sin esfuerzo físico del cuidador ni requerimiento de cables o energía.
+              </p>
+            </div>
+            {/* Clean Actions */}
+            <div className="flex flex-col gap-2.5 pt-4 border-t border-brand-border/60">
+              <Link className="w-full text-center bg-brand-blue text-white font-label-md py-3 rounded-full hover:bg-primary transition-colors duration-150 font-bold active:scale-95 shadow-sm flex items-center justify-center gap-2" href="/productos/grua-manual">
+                <span>
+                  Ver producto
+                </span>
+                <span className="material-symbols-outlined text-base">
+                  arrow_forward
+                </span>
+              </Link>
+            </div>
+          </article>
+          {/* PRODUCTO 4: Elevador multiuso */}
+          <article className="product-card group bg-surface-container-lowest rounded-[24px] border border-brand-border p-6 shadow-level-1 hover:shadow-level-2 transition-all duration-300 flex flex-col justify-between" data-category="electricos">
+            <div>
+              {/* Image Container with Badges */}
+              <div className="relative w-full h-60 bg-surface-container-low rounded-2xl overflow-hidden mb-5 border border-outline-variant/30 flex items-center justify-center p-4">
+                <div className="absolute top-3 right-3 z-10 bg-brand-night text-white font-label-sm text-xs font-extrabold px-3 py-1.5 rounded-full shadow-md">
+                  $390.000
+                </div>
+                <div className="absolute top-3 left-3 z-10 bg-brand-teal/90 text-white font-label-sm text-[10px] uppercase font-bold px-2.5 py-1 rounded-full flex items-center gap-1 shadow-sm">
+                  <span className="material-symbols-outlined text-[12px]">
+                    verified
+                  </span>
+                  Fabricación Chilena
+                </div>
+                <img alt="" className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300" data-alt="Multipurpose electric sit-to-stand lifting mechanism integrated with cushioned support and white medical-grade frame. Designed for helping patients stand up easily from sofas, chairs and bed sides. Clean Chilean home environment with soft daylight." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnK0tAF5kF-QUMMMccvlp8wxZHIdMGZcniYun8riNy2qkB_Po4ToWcXE-d6nscNudZKANeijS_jZw0llLRe9Ma-c0gDwbY_A4UOwn8Oj2RrorJmKwP8ZAO5V_gYomcb_zE1i9IXcHCWF3Zzb_5uAfc7GOcxavr4pe2-SgpPLPPZOfz1ObCwcQTbSI8GJf9zH9btFziLBrg5Nle2AFXgS4zNE4wyhkBDnGXrUjaHQQ56HtRNySg95s" />
+              </div>
+              {/* Category Tag */}
+              <div className="flex items-center gap-2 mb-2">
+                <span className="bg-surface-container-high text-brand-teal rounded-full px-3 py-1 text-xs font-label-sm font-bold">
+                  Bipedestación y Elevación
+                </span>
+              </div>
+              {/* Title & 1-line Value Proposition */}
+              <h2 className="text-headline-sm font-headline-sm text-brand-night font-bold">
+                Elevador multiuso
+              </h2>
+              <p className="text-body-sm font-body-sm text-on-surface-variant mt-2 mb-6 leading-relaxed">
+                Levántate suavemente y sin esfuerzo desde cualquier sofá, silla o cama con apoyo progresivo.
+              </p>
+            </div>
+            {/* Clean Actions */}
+            <div className="flex flex-col gap-2.5 pt-4 border-t border-brand-border/60">
+              <Link className="w-full text-center bg-brand-blue text-white font-label-md py-3 rounded-full hover:bg-primary transition-colors duration-150 font-bold active:scale-95 shadow-sm flex items-center justify-center gap-2" href="/productos/elevador-multiuso">
+                <span>
+                  Ver producto
+                </span>
+                <span className="material-symbols-outlined text-base">
+                  arrow_forward
+                </span>
+              </Link>
+            </div>
+          </article>
+          {/* PRODUCTO 5: Elevador de cama */}
+          <article className="product-card group bg-surface-container-lowest rounded-[24px] border border-brand-border p-6 shadow-level-1 hover:shadow-level-2 transition-all duration-300 flex flex-col justify-between" data-category="cama electricos">
+            <div>
+              {/* Image Container with Badges */}
+              <div className="relative w-full h-60 bg-surface-container-low rounded-2xl overflow-hidden mb-5 border border-outline-variant/30 flex items-center justify-center p-4">
+                <div className="absolute top-3 right-3 z-10 bg-brand-night text-white font-label-sm text-xs font-extrabold px-3 py-1.5 rounded-full shadow-md">
+                  $390.000
+                </div>
+                <div className="absolute top-3 left-3 z-10 bg-brand-teal/90 text-white font-label-sm text-[10px] uppercase font-bold px-2.5 py-1 rounded-full flex items-center gap-1 shadow-sm">
+                  <span className="material-symbols-outlined text-[12px]">
+                    verified
+                  </span>
+                  Fabricación Chilena
+                </div>
+                <img alt="" className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300" data-alt="Electric adjustable bed backrest lifter mechanism made with clean white steel frame and padded mattress surface. Placed over a modern bedroom bed in a warm and dignified home healthcare environment with morning sunlight." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1xwEn0J2epefI5lcIi41M3fvYLi6xycur2aRCEQ2bHVJDS2f5Dn1RQRv5rSF-UAvpEUj9e95YMkEFt_uY-S0H0wwyjd3XDRZZZ04UgNlU6zVu5CoP1VFoUYJnB7u-F1hFsBy9CWM4cWfVPiA7303-SjT9OjYmyf1fB2JG2qZoNOYKSQF243eKVEBTbvQ9b1V7sRb3C89O0IUuV1V4UqGsVjqzpuc_bFKrwfW7R4AoAkqPO-5JDpQ" />
+              </div>
+              {/* Category Tag */}
+              <div className="flex items-center gap-2 mb-2">
+                <span className="bg-surface-container-high text-brand-teal rounded-full px-3 py-1 text-xs font-label-sm font-bold">
+                  Cuidado en Cama
+                </span>
+              </div>
+              {/* Title & 1-line Value Proposition */}
+              <h2 className="text-headline-sm font-headline-sm text-brand-night font-bold">
+                Elevador de cama
+              </h2>
+              <p className="text-body-sm font-body-sm text-on-surface-variant mt-2 mb-6 leading-relaxed">
+                Convierte tu cama en ajustable clínica con respaldo ergonómico de 0° a 75° a control remoto.
+              </p>
+            </div>
+            {/* Clean Actions */}
+            <div className="flex flex-col gap-2.5 pt-4 border-t border-brand-border/60">
+              <Link className="w-full text-center bg-brand-blue text-white font-label-md py-3 rounded-full hover:bg-primary transition-colors duration-150 font-bold active:scale-95 shadow-sm flex items-center justify-center gap-2" href="/productos/elevador-de-cama">
+                <span>
+                  Ver producto
+                </span>
+                <span className="material-symbols-outlined text-base">
+                  arrow_forward
+                </span>
+              </Link>
             </div>
           </article>
         </div>
@@ -339,7 +346,7 @@ export default function CatalogPage() {
                     location_on
                   </span>
                   <span>
-                    Showroom y taller:
+                    Showroom y taller:{" "}
                     <strong>
                       Merced 562, Santiago
                     </strong>

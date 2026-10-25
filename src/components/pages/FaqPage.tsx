@@ -301,7 +301,7 @@ export default function FaqPage() {
               Nuestro equipo está siempre disponible para asesorarte y resolver cualquier duda que tengas, tanto por WhatsApp como de forma presencial en nuestro taller en Santiago.
             </p>
             <p className="text-body-md font-body-md leading-relaxed text-on-surface-variant mb-4">
-              Puedes comunicarte de inmediato a nuestra línea directa de atención prioritaria al
+              Puedes comunicarte de inmediato a nuestra línea directa de atención prioritaria al{" "}
               <strong className="text-on-surface">
                 +56 9 7221 5907
               </strong>

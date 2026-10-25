@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
-import GruaElectricaPage from "@/components/pages/GruaElectricaPage";
+import ProductDetail from "@/components/ProductDetail";
+import { getProduct } from "@/lib/products";
+
+const product = getProduct("grua-electrica");
 
 export const metadata: Metadata = {
-  title: "Grúa eléctrica",
-  description: "Grúa eléctrica SillaUp para traslados seguros de pacientes con control remoto, sin esfuerzo lumbar para el cuidador. Fabricación chilena.",
+  title: product.name,
+  description: product.metaDescription,
 };
 
 export default function Page() {
-  return <GruaElectricaPage />;
+  return <ProductDetail slug={product.slug} />;
 }

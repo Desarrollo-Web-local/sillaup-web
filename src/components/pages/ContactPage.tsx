@@ -195,7 +195,7 @@ export default function ContactPage() {
                   <span>
                     <strong>
                       Respuesta en menos de 2 horas hábiles
-                    </strong>
+                    </strong>{" "}
                     a través del canal de tu preferencia.
                   </span>
                 </li>
@@ -206,7 +206,7 @@ export default function ContactPage() {
                   <span>
                     <strong>
                       Cotizaciones oficiales detalladas
-                    </strong>
+                    </strong>{" "}
                     con opciones de pago y despacho nacional.
                   </span>
                 </li>
@@ -217,7 +217,7 @@ export default function ContactPage() {
                   <span>
                     <strong>
                       Asesoría técnica sin costo
-                    </strong>
+                    </strong>{" "}
                     por videollamada o visita en showroom en Santiago.
                   </span>
                 </li>

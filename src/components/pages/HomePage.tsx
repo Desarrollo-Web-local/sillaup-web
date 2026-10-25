@@ -12,7 +12,15 @@ export default function HomePage() {
   const [feedbackOpen, setFeedbackOpen] = useState(false);
   const contact = useFormAction(submitContact);
   const feedback = useFormAction(submitTestimonial);
+  const [atStart, setAtStart] = useState(true);
+  const [atEnd, setAtEnd] = useState(false);
   const scrollTrack = (left: number) => trackRef.current?.scrollBy({ left, behavior: "smooth" });
+  const updateArrows = () => {
+    const track = trackRef.current;
+    if (!track) return;
+    setAtStart(track.scrollLeft <= 4);
+    setAtEnd(track.scrollLeft + track.clientWidth >= track.scrollWidth - 4);
+  };
 
   return (
     <>
@@ -183,150 +191,21 @@ export default function HomePage() {
               Productos
             </h2>
           </div>
-          {/* Carousel Navigation Controls */}
-          <div className="flex items-center gap-3">
-            <button aria-label="Producto anterior" className="w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 active:scale-95 text-white flex items-center justify-center transition-all duration-150 border border-white/20" onClick={() => scrollTrack(-380)} type="button">
-              <span className="material-symbols-outlined">
-                arrow_back
-              </span>
-            </button>
-            <button aria-label="Producto siguiente" className="w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 active:scale-95 text-white flex items-center justify-center transition-all duration-150 border border-white/20" onClick={() => scrollTrack(380)} type="button">
-              <span className="material-symbols-outlined">
-                arrow_forward
-              </span>
-            </button>
-          </div>
         </div>
-        {/* Carousel Container (5 Exact Products) */}
-        <div className="product-carousel flex gap-6 overflow-x-auto pb-6 snap-x snap-mandatory focus:outline-none" ref={trackRef}>
-          {/* Producto 1: Elevador de inodoro */}
-          <article className="min-w-[300px] sm:min-w-[340px] md:min-w-[370px] bg-white text-on-surface rounded-3xl p-5 shadow-lg flex flex-col justify-between snap-start border border-[#DADADB] hover:shadow-2xl transition-all duration-200">
-            <div>
-              {/* Image Stage with Embedded Price Chip */}
-              <div className="relative w-full h-56 rounded-2xl bg-surface-container-low overflow-hidden mb-4">
-                <img alt="Elevador de inodoro SillaUp" className="w-full h-full object-cover" data-alt="Studio catalog product photography of a modern ergonomic toilet lifter assistive chair on a pure high-key white background. Steel white powder-coated structure with soft padded medical armrests and non-slip safety suction footings. Clear ambient lighting highlighting high-precision engineering and domestic warmth in soft blue and white tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxLwH6baDMQkdQ3RvRAUEjafYePfP7Gf2H-72wcfyTwOGod2IxvTegAgyLH1T20a8-FZBac5achCJTlYvGUQI0NtFr4SBEoxNP3ur6LSqkfKluHePWLFD3UOtDtYe92f_F0mjEac_Ys_xvp_DREJF9jSIxHzTVcWBlN14sn6yFCHxa5xFz3mltsJzsPQnQBYv9CmQuR06rx0LU3sSbETqCfaHy6E9XowMcyPaACxosmcKrONKshgI" />
-                {/* Price Chip Integration ($390.000) */}
-                <div className="absolute top-3 right-3 bg-[#0D141A] text-white text-label-sm font-label-sm px-3.5 py-1.5 rounded-full font-extrabold shadow-md">
-                  $390.000
-                </div>
-              </div>
-              {/* Tags */}
-              <div className="flex items-center gap-2 mb-3">
-                <span className="bg-[#F2F4F7] text-[#174A5A] text-[11px] font-bold px-2.5 py-1 rounded-full uppercase">
-                  Baño seguro
-                </span>
-                <span className="bg-[#F2F4F7] text-[#174A5A] text-[11px] font-bold px-2.5 py-1 rounded-full">
-                  SWL 110 kg
-                </span>
-              </div>
-              <h3 className="text-headline-sm font-headline-sm text-on-surface font-extrabold mb-2">
-                Elevador de inodoro
-              </h3>
-              <p className="text-body-sm font-body-sm text-on-surface-variant mb-6">
-                Siéntate y levántate del inodoro con mayor seguridad y autonomía sin exigir tus rodillas ni cadera.
-              </p>
-            </div>
-            <Link className="w-full inline-flex items-center justify-center rounded-full bg-primary-container text-white text-label-md font-label-md py-3.5 px-6 shadow-sm hover:bg-primary active:scale-95 transition-all duration-150 min-h-[48px]" href="/contacto">
-              Ver producto
-              <span className="material-symbols-outlined ml-2 text-base">
-                chevron_right
-              </span>
-            </Link>
-          </article>
-          {/* Producto 2: Grúa manual */}
-          <article className="min-w-[300px] sm:min-w-[340px] md:min-w-[370px] bg-white text-on-surface rounded-3xl p-5 shadow-lg flex flex-col justify-between snap-start border border-[#DADADB] hover:shadow-2xl transition-all duration-200">
-            <div>
-              <div className="relative w-full h-56 rounded-2xl bg-surface-container-low overflow-hidden mb-4">
-                <img alt="Grúa manual de traslado SillaUp" className="w-full h-full object-cover" data-alt="Clinical product photography of a heavy-duty manual hydraulic patient transfer hoist crane. Powder-coated white steel framework with high-grade dual-caster locking wheels and an ergonomic comfort sling harness. Shot against a crisp bright backdrop with subtle blue reflections, highlighting medical grade precision, durability and dignified care." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMFjiWKuRALQEYhmQgQxvWJfXscssKvHERbvsTtiKpdq0l0sZQE-BA7HcmsYA9hK0b544Ms-ZtlYB2n5n-Z-UUwzr7ovVokkYVV8IXNcJoI2a4HjQ-B6LM_HoU-U3uR6jpqDak5uljKy8QwUD_Eyz3laWZgXB7YmUgfhKL8cWXW1vodxsNdinNg76X6D_dW95MYuAlXLSU1bHqspcd66k2peRYNCciXDa3ROK_eAbCbwK4mh6MFZ0" />
-                <div className="absolute top-3 right-3 bg-[#0D141A] text-white text-label-sm font-label-sm px-3.5 py-1.5 rounded-full font-extrabold shadow-md">
-                  $290.000
-                </div>
-              </div>
-              <div className="flex items-center gap-2 mb-3">
-                <span className="bg-[#F2F4F7] text-[#174A5A] text-[11px] font-bold px-2.5 py-1 rounded-full uppercase">
-                  Hidráulica
-                </span>
-                <span className="bg-[#F2F4F7] text-[#174A5A] text-[11px] font-bold px-2.5 py-1 rounded-full">
-                  SWL 110 kg
-                </span>
-              </div>
-              <h3 className="text-headline-sm font-headline-sm text-on-surface font-extrabold mb-2">
-                Grúa manual
-              </h3>
-              <p className="text-body-sm font-body-sm text-on-surface-variant mb-6">
-                Traslados seguros y cómodos con menor esfuerzo del cuidador, protegiendo la columna vertebral.
-              </p>
-            </div>
-            <Link className="w-full inline-flex items-center justify-center rounded-full bg-primary-container text-white text-label-md font-label-md py-3.5 px-6 shadow-sm hover:bg-primary active:scale-95 transition-all duration-150 min-h-[48px]" href="/contacto">
-              Ver producto
-              <span className="material-symbols-outlined ml-2 text-base">
-                chevron_right
-              </span>
-            </Link>
-          </article>
-          {/* Producto 3: Elevador multiuso */}
-          <article className="min-w-[300px] sm:min-w-[340px] md:min-w-[370px] bg-white text-on-surface rounded-3xl p-5 shadow-lg flex flex-col justify-between snap-start border border-[#DADADB] hover:shadow-2xl transition-all duration-200">
-            <div>
-              <div className="relative w-full h-56 rounded-2xl bg-surface-container-low overflow-hidden mb-4">
-                <img alt="Elevador multiuso para sillón y sillas SillaUp" className="w-full h-full object-cover" data-alt="Crisp studio product shot of a versatile portable multi-use chair lifting mechanism designed for domestic armchairs and dining seats. Clean white structural frame with cushioned support handles and non-slip rubber base. Shot in a bright minimalist room setting with soft natural illumination and calm therapeutic aesthetics." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC83eXy5G2pvbM-gKmLB2qScL3pKJEN0rDHzd7ITH4tIwPBXCVQXo8wezCA37mgf8NEVIti4f7XetSfLnPb9Yt3qAVFMrNM3Rk12vR5ziZaGnbE2ZDtjIbjbhGICKEbhTX4fZNF2-nwRcffLlXMTRPid64BW4weWrMGkLLDhFNjZowUb018ToQ1WW7O9ZERFZR4wqnHko-0qG3YAR-to8RuEtcrPEfi8zA-Zc1DmvrNeCVp3BapzVg" />
-                <div className="absolute top-3 right-3 bg-[#0D141A] text-white text-label-sm font-label-sm px-3.5 py-1.5 rounded-full font-extrabold shadow-md">
-                  $390.000
-                </div>
-              </div>
-              <div className="flex items-center gap-2 mb-3">
-                <span className="bg-[#F2F4F7] text-[#174A5A] text-[11px] font-bold px-2.5 py-1 rounded-full uppercase">
-                  Multisuperficie
-                </span>
-                <span className="bg-[#F2F4F7] text-[#174A5A] text-[11px] font-bold px-2.5 py-1 rounded-full">
-                  SWL 110 kg
-                </span>
-              </div>
-              <h3 className="text-headline-sm font-headline-sm text-on-surface font-extrabold mb-2">
-                Elevador multiuso
-              </h3>
-              <p className="text-body-sm font-body-sm text-on-surface-variant mb-6">
-                Levántate con facilidad desde cualquier asiento o superficie sin requerir la fuerza de otra persona.
-              </p>
-            </div>
-            <Link className="w-full inline-flex items-center justify-center rounded-full bg-primary-container text-white text-label-md font-label-md py-3.5 px-6 shadow-sm hover:bg-primary active:scale-95 transition-all duration-150 min-h-[48px]" href="/contacto">
-              Ver producto
-              <span className="material-symbols-outlined ml-2 text-base">
-                chevron_right
-              </span>
-            </Link>
-          </article>
-          {/* Producto 4: Elevador de cama */}
-          <article className="min-w-[300px] sm:min-w-[340px] md:min-w-[370px] bg-white text-on-surface rounded-3xl p-5 shadow-lg flex flex-col justify-between snap-start border border-[#DADADB] hover:shadow-2xl transition-all duration-200">
-            <div>
-              <div className="relative w-full h-56 rounded-2xl bg-surface-container-low overflow-hidden mb-4">
-                <img alt="Elevador de cama ajustable SillaUp" className="w-full h-full object-cover" data-alt="High-end catalog photography of an adjustable backrest and bed lifter frame installed seamlessly on a residential mattress. Powder-coated steel structure with smooth angle adjustments and padded head support. Pristine white studio lighting with delicate blue undertones, portraying modern domestic elder care technology." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCogt2eYljZ3d-EHas-E0n-hMaARqzggVLCksVxd7RGxGZbNmwDBhe3d2K6qZ6eBD3DC99KtvmhE2hkBn9vefS2ZgTt_ReWm5uamzs-BOHeKYdzqiVt_D8O6vo2A8KJxMpbPY0vDWafwl9mn6nkJQMjnAZFASrYBE-3QnDolmGk8MEuwTZxglJY0j8iRqgtAfY1J0PDy0pmLsKATaGKxdWU2Rg_6F0UTSMkwQA_AQdufHXICiaqxVo" />
-                <div className="absolute top-3 right-3 bg-[#0D141A] text-white text-label-sm font-label-sm px-3.5 py-1.5 rounded-full font-extrabold shadow-md">
-                  $390.000
-                </div>
-              </div>
-              <div className="flex items-center gap-2 mb-3">
-                <span className="bg-[#F2F4F7] text-[#174A5A] text-[11px] font-bold px-2.5 py-1 rounded-full uppercase">
-                  Dormitorio
-                </span>
-                <span className="bg-[#F2F4F7] text-[#174A5A] text-[11px] font-bold px-2.5 py-1 rounded-full">
-                  Graduable
-                </span>
-              </div>
-              <h3 className="text-headline-sm font-headline-sm text-on-surface font-extrabold mb-2">
-                Elevador de cama
-              </h3>
-              <p className="text-body-sm font-body-sm text-on-surface-variant mb-6">
-                Convierte tu cama en una cama ajustable de forma sencilla para incorporarte, comer y descansar mejor.
-              </p>
-            </div>
-            <Link className="w-full inline-flex items-center justify-center rounded-full bg-primary-container text-white text-label-md font-label-md py-3.5 px-6 shadow-sm hover:bg-primary active:scale-95 transition-all duration-150 min-h-[48px]" href="/contacto">
-              Ver producto
-              <span className="material-symbols-outlined ml-2 text-base">
-                chevron_right
-              </span>
-            </Link>
-          </article>
-          {/* Producto 5: Grúa eléctrica */}
+        {/* Carousel Container (5 Exact Products) with side arrows */}
+        <div className="relative">
+          <button aria-label="Producto anterior" className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 z-10 w-12 h-12 rounded-full bg-white text-primary shadow-xl border border-white/60 hover:bg-surface-container-low active:scale-95 flex items-center justify-center transition-all duration-150 disabled:opacity-0 disabled:pointer-events-none" disabled={atStart} onClick={() => scrollTrack(-380)} type="button">
+            <span className="material-symbols-outlined">
+              arrow_back
+            </span>
+          </button>
+          <button aria-label="Producto siguiente" className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 z-10 w-12 h-12 rounded-full bg-white text-primary shadow-xl border border-white/60 hover:bg-surface-container-low active:scale-95 flex items-center justify-center transition-all duration-150 disabled:opacity-0 disabled:pointer-events-none" disabled={atEnd} onClick={() => scrollTrack(380)} type="button">
+            <span className="material-symbols-outlined">
+              arrow_forward
+            </span>
+          </button>
+        <div className="product-carousel flex gap-6 overflow-x-auto pb-6 snap-x snap-mandatory focus:outline-none" onScroll={updateArrows} ref={trackRef}>
+          {/* Producto 1: Grúa eléctrica */}
           <article className="min-w-[300px] sm:min-w-[340px] md:min-w-[370px] bg-white text-on-surface rounded-3xl p-5 shadow-lg flex flex-col justify-between snap-start border border-[#DADADB] hover:shadow-2xl transition-all duration-200">
             <div>
               <div className="relative w-full h-56 rounded-2xl bg-surface-container-low overflow-hidden mb-4">
@@ -357,6 +236,134 @@ export default function HomePage() {
               </span>
             </Link>
           </article>
+          {/* Producto 2: Elevador de inodoro */}
+          <article className="min-w-[300px] sm:min-w-[340px] md:min-w-[370px] bg-white text-on-surface rounded-3xl p-5 shadow-lg flex flex-col justify-between snap-start border border-[#DADADB] hover:shadow-2xl transition-all duration-200">
+            <div>
+              {/* Image Stage with Embedded Price Chip */}
+              <div className="relative w-full h-56 rounded-2xl bg-surface-container-low overflow-hidden mb-4">
+                <img alt="Elevador de inodoro SillaUp" className="w-full h-full object-cover" data-alt="Studio catalog product photography of a modern ergonomic toilet lifter assistive chair on a pure high-key white background. Steel white powder-coated structure with soft padded medical armrests and non-slip safety suction footings. Clear ambient lighting highlighting high-precision engineering and domestic warmth in soft blue and white tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxLwH6baDMQkdQ3RvRAUEjafYePfP7Gf2H-72wcfyTwOGod2IxvTegAgyLH1T20a8-FZBac5achCJTlYvGUQI0NtFr4SBEoxNP3ur6LSqkfKluHePWLFD3UOtDtYe92f_F0mjEac_Ys_xvp_DREJF9jSIxHzTVcWBlN14sn6yFCHxa5xFz3mltsJzsPQnQBYv9CmQuR06rx0LU3sSbETqCfaHy6E9XowMcyPaACxosmcKrONKshgI" />
+                {/* Price Chip Integration ($390.000) */}
+                <div className="absolute top-3 right-3 bg-[#0D141A] text-white text-label-sm font-label-sm px-3.5 py-1.5 rounded-full font-extrabold shadow-md">
+                  $390.000
+                </div>
+              </div>
+              {/* Tags */}
+              <div className="flex items-center gap-2 mb-3">
+                <span className="bg-[#F2F4F7] text-[#174A5A] text-[11px] font-bold px-2.5 py-1 rounded-full uppercase">
+                  Baño seguro
+                </span>
+                <span className="bg-[#F2F4F7] text-[#174A5A] text-[11px] font-bold px-2.5 py-1 rounded-full">
+                  SWL 110 kg
+                </span>
+              </div>
+              <h3 className="text-headline-sm font-headline-sm text-on-surface font-extrabold mb-2">
+                Elevador de inodoro
+              </h3>
+              <p className="text-body-sm font-body-sm text-on-surface-variant mb-6">
+                Siéntate y levántate del inodoro con mayor seguridad y autonomía sin exigir tus rodillas ni cadera.
+              </p>
+            </div>
+            <Link className="w-full inline-flex items-center justify-center rounded-full bg-primary-container text-white text-label-md font-label-md py-3.5 px-6 shadow-sm hover:bg-primary active:scale-95 transition-all duration-150 min-h-[48px]" href="/productos/elevador-de-inodoro">
+              Ver producto
+              <span className="material-symbols-outlined ml-2 text-base">
+                chevron_right
+              </span>
+            </Link>
+          </article>
+          {/* Producto 3: Grúa manual */}
+          <article className="min-w-[300px] sm:min-w-[340px] md:min-w-[370px] bg-white text-on-surface rounded-3xl p-5 shadow-lg flex flex-col justify-between snap-start border border-[#DADADB] hover:shadow-2xl transition-all duration-200">
+            <div>
+              <div className="relative w-full h-56 rounded-2xl bg-surface-container-low overflow-hidden mb-4">
+                <img alt="Grúa manual de traslado SillaUp" className="w-full h-full object-cover" data-alt="Clinical product photography of a heavy-duty manual hydraulic patient transfer hoist crane. Powder-coated white steel framework with high-grade dual-caster locking wheels and an ergonomic comfort sling harness. Shot against a crisp bright backdrop with subtle blue reflections, highlighting medical grade precision, durability and dignified care." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMFjiWKuRALQEYhmQgQxvWJfXscssKvHERbvsTtiKpdq0l0sZQE-BA7HcmsYA9hK0b544Ms-ZtlYB2n5n-Z-UUwzr7ovVokkYVV8IXNcJoI2a4HjQ-B6LM_HoU-U3uR6jpqDak5uljKy8QwUD_Eyz3laWZgXB7YmUgfhKL8cWXW1vodxsNdinNg76X6D_dW95MYuAlXLSU1bHqspcd66k2peRYNCciXDa3ROK_eAbCbwK4mh6MFZ0" />
+                <div className="absolute top-3 right-3 bg-[#0D141A] text-white text-label-sm font-label-sm px-3.5 py-1.5 rounded-full font-extrabold shadow-md">
+                  $290.000
+                </div>
+              </div>
+              <div className="flex items-center gap-2 mb-3">
+                <span className="bg-[#F2F4F7] text-[#174A5A] text-[11px] font-bold px-2.5 py-1 rounded-full uppercase">
+                  Hidráulica
+                </span>
+                <span className="bg-[#F2F4F7] text-[#174A5A] text-[11px] font-bold px-2.5 py-1 rounded-full">
+                  SWL 110 kg
+                </span>
+              </div>
+              <h3 className="text-headline-sm font-headline-sm text-on-surface font-extrabold mb-2">
+                Grúa manual
+              </h3>
+              <p className="text-body-sm font-body-sm text-on-surface-variant mb-6">
+                Traslados seguros y cómodos con menor esfuerzo del cuidador, protegiendo la columna vertebral.
+              </p>
+            </div>
+            <Link className="w-full inline-flex items-center justify-center rounded-full bg-primary-container text-white text-label-md font-label-md py-3.5 px-6 shadow-sm hover:bg-primary active:scale-95 transition-all duration-150 min-h-[48px]" href="/productos/grua-manual">
+              Ver producto
+              <span className="material-symbols-outlined ml-2 text-base">
+                chevron_right
+              </span>
+            </Link>
+          </article>
+          {/* Producto 4: Elevador multiuso */}
+          <article className="min-w-[300px] sm:min-w-[340px] md:min-w-[370px] bg-white text-on-surface rounded-3xl p-5 shadow-lg flex flex-col justify-between snap-start border border-[#DADADB] hover:shadow-2xl transition-all duration-200">
+            <div>
+              <div className="relative w-full h-56 rounded-2xl bg-surface-container-low overflow-hidden mb-4">
+                <img alt="Elevador multiuso para sillón y sillas SillaUp" className="w-full h-full object-cover" data-alt="Crisp studio product shot of a versatile portable multi-use chair lifting mechanism designed for domestic armchairs and dining seats. Clean white structural frame with cushioned support handles and non-slip rubber base. Shot in a bright minimalist room setting with soft natural illumination and calm therapeutic aesthetics." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC83eXy5G2pvbM-gKmLB2qScL3pKJEN0rDHzd7ITH4tIwPBXCVQXo8wezCA37mgf8NEVIti4f7XetSfLnPb9Yt3qAVFMrNM3Rk12vR5ziZaGnbE2ZDtjIbjbhGICKEbhTX4fZNF2-nwRcffLlXMTRPid64BW4weWrMGkLLDhFNjZowUb018ToQ1WW7O9ZERFZR4wqnHko-0qG3YAR-to8RuEtcrPEfi8zA-Zc1DmvrNeCVp3BapzVg" />
+                <div className="absolute top-3 right-3 bg-[#0D141A] text-white text-label-sm font-label-sm px-3.5 py-1.5 rounded-full font-extrabold shadow-md">
+                  $390.000
+                </div>
+              </div>
+              <div className="flex items-center gap-2 mb-3">
+                <span className="bg-[#F2F4F7] text-[#174A5A] text-[11px] font-bold px-2.5 py-1 rounded-full uppercase">
+                  Multisuperficie
+                </span>
+                <span className="bg-[#F2F4F7] text-[#174A5A] text-[11px] font-bold px-2.5 py-1 rounded-full">
+                  SWL 110 kg
+                </span>
+              </div>
+              <h3 className="text-headline-sm font-headline-sm text-on-surface font-extrabold mb-2">
+                Elevador multiuso
+              </h3>
+              <p className="text-body-sm font-body-sm text-on-surface-variant mb-6">
+                Levántate con facilidad desde cualquier asiento o superficie sin requerir la fuerza de otra persona.
+              </p>
+            </div>
+            <Link className="w-full inline-flex items-center justify-center rounded-full bg-primary-container text-white text-label-md font-label-md py-3.5 px-6 shadow-sm hover:bg-primary active:scale-95 transition-all duration-150 min-h-[48px]" href="/productos/elevador-multiuso">
+              Ver producto
+              <span className="material-symbols-outlined ml-2 text-base">
+                chevron_right
+              </span>
+            </Link>
+          </article>
+          {/* Producto 5: Elevador de cama */}
+          <article className="min-w-[300px] sm:min-w-[340px] md:min-w-[370px] bg-white text-on-surface rounded-3xl p-5 shadow-lg flex flex-col justify-between snap-start border border-[#DADADB] hover:shadow-2xl transition-all duration-200">
+            <div>
+              <div className="relative w-full h-56 rounded-2xl bg-surface-container-low overflow-hidden mb-4">
+                <img alt="Elevador de cama ajustable SillaUp" className="w-full h-full object-cover" data-alt="High-end catalog photography of an adjustable backrest and bed lifter frame installed seamlessly on a residential mattress. Powder-coated steel structure with smooth angle adjustments and padded head support. Pristine white studio lighting with delicate blue undertones, portraying modern domestic elder care technology." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCogt2eYljZ3d-EHas-E0n-hMaARqzggVLCksVxd7RGxGZbNmwDBhe3d2K6qZ6eBD3DC99KtvmhE2hkBn9vefS2ZgTt_ReWm5uamzs-BOHeKYdzqiVt_D8O6vo2A8KJxMpbPY0vDWafwl9mn6nkJQMjnAZFASrYBE-3QnDolmGk8MEuwTZxglJY0j8iRqgtAfY1J0PDy0pmLsKATaGKxdWU2Rg_6F0UTSMkwQA_AQdufHXICiaqxVo" />
+                <div className="absolute top-3 right-3 bg-[#0D141A] text-white text-label-sm font-label-sm px-3.5 py-1.5 rounded-full font-extrabold shadow-md">
+                  $390.000
+                </div>
+              </div>
+              <div className="flex items-center gap-2 mb-3">
+                <span className="bg-[#F2F4F7] text-[#174A5A] text-[11px] font-bold px-2.5 py-1 rounded-full uppercase">
+                  Dormitorio
+                </span>
+                <span className="bg-[#F2F4F7] text-[#174A5A] text-[11px] font-bold px-2.5 py-1 rounded-full">
+                  Graduable
+                </span>
+              </div>
+              <h3 className="text-headline-sm font-headline-sm text-on-surface font-extrabold mb-2">
+                Elevador de cama
+              </h3>
+              <p className="text-body-sm font-body-sm text-on-surface-variant mb-6">
+                Convierte tu cama en una cama ajustable de forma sencilla para incorporarte, comer y descansar mejor.
+              </p>
+            </div>
+            <Link className="w-full inline-flex items-center justify-center rounded-full bg-primary-container text-white text-label-md font-label-md py-3.5 px-6 shadow-sm hover:bg-primary active:scale-95 transition-all duration-150 min-h-[48px]" href="/productos/elevador-de-cama">
+              Ver producto
+              <span className="material-symbols-outlined ml-2 text-base">
+                chevron_right
+              </span>
+            </Link>
+          </article>
+        </div>
         </div>
       </div>
     </section>
@@ -515,7 +522,7 @@ export default function HomePage() {
               <span className="text-xs uppercase font-extrabold text-primary-container block mb-3">
                 Equipo recomendado:
               </span>
-              <Link className="w-full inline-flex items-center justify-between rounded-full bg-surface-container text-on-surface font-label-md text-label-md px-4 py-3 hover:bg-primary-container hover:text-white transition-colors duration-150 min-h-[48px]" href="/productos">
+              <Link className="w-full inline-flex items-center justify-between rounded-full bg-surface-container text-on-surface font-label-md text-label-md px-4 py-3 hover:bg-primary-container hover:text-white transition-colors duration-150 min-h-[48px]" href="/productos/elevador-de-inodoro">
                 <span>
                   Elevador de inodoro
                 </span>
@@ -544,7 +551,7 @@ export default function HomePage() {
               <span className="text-xs uppercase font-extrabold text-primary-container block mb-3">
                 Equipo recomendado:
               </span>
-              <Link className="w-full inline-flex items-center justify-between rounded-full bg-surface-container text-on-surface font-label-md text-label-md px-4 py-3 hover:bg-primary-container hover:text-white transition-colors duration-150 min-h-[48px]" href="/productos">
+              <Link className="w-full inline-flex items-center justify-between rounded-full bg-surface-container text-on-surface font-label-md text-label-md px-4 py-3 hover:bg-primary-container hover:text-white transition-colors duration-150 min-h-[48px]" href="/productos/elevador-de-cama">
                 <span>
                   Elevador de cama
                 </span>
@@ -573,7 +580,7 @@ export default function HomePage() {
               <span className="text-xs uppercase font-extrabold text-primary-container block mb-3">
                 Equipo recomendado:
               </span>
-              <Link className="w-full inline-flex items-center justify-between rounded-full bg-surface-container text-on-surface font-label-md text-label-md px-4 py-3 hover:bg-primary-container hover:text-white transition-colors duration-150 min-h-[48px]" href="/productos">
+              <Link className="w-full inline-flex items-center justify-between rounded-full bg-surface-container text-on-surface font-label-md text-label-md px-4 py-3 hover:bg-primary-container hover:text-white transition-colors duration-150 min-h-[48px]" href="/productos/elevador-multiuso">
                 <span>
                   Elevador multiuso
                 </span>
