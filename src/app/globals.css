@@ -75,3 +75,37 @@ body {
     animation: none;
   }
 }
+
+/* Aparición progresiva. Usa la propiedad `translate` (no `transform`)
+   para no interferir con los efectos hover basados en scale. */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    translate: 0 24px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Al cargar: el título principal y sus elementos hermanos entran escalonados */
+  :has(> h1) > * {
+    animation: fade-up 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+  }
+  :has(> h1) > :nth-child(2) { animation-delay: 0.12s; }
+  :has(> h1) > :nth-child(3) { animation-delay: 0.24s; }
+  :has(> h1) > :nth-child(4) { animation-delay: 0.36s; }
+  :has(> h1) > :nth-child(n + 5) { animation-delay: 0.48s; }
+
+  /* Al hacer scroll: ver RevealOnScroll.tsx */
+  [data-reveal]:not([data-visible]) {
+    opacity: 0;
+    translate: 0 24px;
+  }
+  [data-reveal][data-visible] {
+    animation: fade-up 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+    animation-delay: var(--reveal-delay, 0ms);
+  }
+}

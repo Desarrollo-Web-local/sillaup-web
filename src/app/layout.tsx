@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Mulish, Plus_Jakarta_Sans } from "next/font/google";
+import RevealOnScroll from "@/components/RevealOnScroll";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import TopBar from "@/components/TopBar";
@@ -45,6 +46,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         {children}
         <SiteFooter />
         <WhatsAppButton />
+        <RevealOnScroll />
       </body>
     </html>
   );

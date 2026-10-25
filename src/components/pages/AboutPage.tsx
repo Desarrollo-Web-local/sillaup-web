@@ -1,4 +1,5 @@
 import Link from "next/link";
+import ShowroomMap from "@/components/ShowroomMap";
 
 export default function AboutPage() {
   return (
@@ -372,7 +373,7 @@ export default function AboutPage() {
           <div className="lg:col-span-6">
             <div className="bg-surface-container-lowest rounded-3xl p-3 border border-outline-variant shadow-md">
               <div className="relative w-full h-80 rounded-2xl overflow-hidden bg-surface-container flex items-center justify-center">
-                <img alt="" className="w-full h-full object-cover" data-alt="A clean modern schematic satellite map representation of Santiago Centro, Chile, centered around Merced street near Bellas Artes and Santa Lucía parks. The map features minimal clean cartographic styling with a bright blue pin indicating the medical device workshop location and calm subtle street contours in light neutral tones." data-location="Santiago, Chile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFtFOEo1ixnrxukKA9bisK6LLSXrTYJ9nrSMHsLb_NJHmFek5WT8oIGdZ5H2SnEdZLN9wFUh6imJqasHrs_Z4J1DY9O40rtOGGAxMqc5_2ec6zEwwuUHi2aXloPIIhHPJHqIogeuhdn4xIXp-YkXNzsEEhzCiRO2MLn-SDr8xrVnjLHQ6RXrrRx7XOUWq-5bQTuzOh7ImaswtSrx3RW3lsSqeOTeLW7u1_nquMCUbhZHvwGF46k30" />
+                <ShowroomMap />
                 <div className="absolute bottom-4 left-4 right-4 bg-surface-container-lowest/95 backdrop-blur-md p-3.5 rounded-xl border border-outline-variant/60 shadow-sm flex items-center justify-between">
                   <div className="flex items-center space-x-2.5">
                     <span className="w-2.5 h-2.5 rounded-full bg-tertiary"></span>

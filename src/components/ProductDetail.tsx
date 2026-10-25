@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { getProduct, productHref, products } from "@/lib/products";
 import { site } from "@/lib/site";
+import ShowroomMap from "@/components/ShowroomMap";
 
 const filled = { fontVariationSettings: "\"FILL\" 1" };
 
@@ -430,12 +431,8 @@ export default function ProductDetail({ slug }: { slug: string }) {
           </div>
           <div className="lg:col-span-6 bg-surface-container-lowest border border-outline-variant rounded-2xl overflow-hidden shadow-sm p-3">
             <div className="relative w-full h-[360px] rounded-xl overflow-hidden bg-surface-container flex items-center justify-center">
-              <img
-                alt="Mapa de la ubicación del taller SillaUp en Merced 562, Santiago"
-                className="w-full h-full object-cover"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJeeu54MzYKHcnaO0hMn3RYhhiBQ9sLQoY4JZo9G2Bw6ei2OZcXPTGQRof--JdTptGrSdtT2RD4x1D8hGsrIlXYMSjokIqJRGfgVh375-Xo9N8FtZLu9KEEKzbMIrqa-lOhn_QGF9nW3AaNNF6s2-Y-DJHN2-jTxxOfanMUQnvqTlgPjNsgz9jMgh0VFLz24QcQi0Z_LvtBg01v4ey0HimVgSR3nYsRUR673-nWh_41RwNAMsz17w"
-              />
-              <div className="absolute bottom-4 left-4 bg-surface-container-lowest/95 backdrop-blur-sm p-4 rounded-xl border border-outline-variant shadow-md max-w-xs">
+              <ShowroomMap />
+              <div className="pointer-events-none absolute bottom-4 left-4 bg-surface-container-lowest/95 backdrop-blur-sm p-4 rounded-xl border border-outline-variant shadow-md max-w-xs">
                 <div className="flex items-center gap-2 mb-1">
                   <span className="w-3 h-3 rounded-full bg-primary animate-pulse"></span>
                   <span className="font-bold text-xs text-on-surface uppercase tracking-wide">Taller SillaUp</span>
@@ -522,7 +519,7 @@ export default function ProductDetail({ slug }: { slug: string }) {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {others.map((other) => (
-            <div key={other.slug} className="bg-surface-container-lowest border border-outline-variant rounded-xl p-5 shadow-sm hover:shadow-md transition-all flex flex-col justify-between group">
+            <div key={other.slug} className="relative bg-surface-container-lowest border border-outline-variant rounded-xl p-5 shadow-sm hover:shadow-md hover:scale-[1.03] transition-all duration-300 flex flex-col justify-between group">
               <div>
                 <div className="relative bg-surface-container-low rounded-lg p-4 mb-4 flex items-center justify-center h-48 overflow-hidden">
                   <span className="absolute top-2 right-2 bg-on-surface text-surface-container-lowest text-label-sm font-label-sm px-2.5 py-1 rounded-full">
@@ -536,7 +533,7 @@ export default function ProductDetail({ slug }: { slug: string }) {
               </div>
               <div className="pt-4 mt-4 border-t border-outline-variant flex items-center justify-between">
                 <span className="text-xs font-bold text-on-surface-variant">{other.card.meta}</span>
-                <Link className="text-primary font-bold text-xs hover:underline flex items-center" href={productHref(other.slug)}>
+                <Link className="text-primary font-bold text-xs hover:underline flex items-center after:absolute after:inset-0 after:content-['']" href={productHref(other.slug)}>
                   Ver detalle
                   <span className="material-symbols-outlined text-[14px]">chevron_right</span>
                 </Link>

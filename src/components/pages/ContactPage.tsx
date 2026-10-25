@@ -1,6 +1,7 @@
 "use client";
 
 import { submitContact } from "@/app/actions";
+import ShowroomMap from "@/components/ShowroomMap";
 import { useFormAction } from "@/components/useFormAction";
 
 export default function ContactPage() {
@@ -439,25 +440,7 @@ export default function ContactPage() {
               </span>
             </div>
             <div className="relative flex-grow w-full min-h-[340px] bg-[#E5E9EE]">
-              {/* Map Representative Image with data-location */}
-              <img alt="" className="w-full h-full object-cover" data-alt="A clean, medical-grade architectural street view and modern cartographic vector layout centered on Merced Street in historic downtown Santiago, Chile. The composition reveals elegant clean urban facades, green public park avenues near Santa Lucia hill, and a prominent soft blue medical marker pinpointing the assistive technology workshop and showroom." data-location="Santiago, Chile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNI0-YyprxI3Z4H9ylSdBQz_EW5JOTTQBObWL5m42iNXGrQr4ll6B1XAeZDxoWAqV0ICoFnEEaUJluQ1SejjFN_5ASocPRlrmFQjYhk-TwSoQmYvSTuSa7c95S5oBExgP3LBFJ4wC98yaKbj6P9GCKtNNLWLpDLlxp7-NSYymmYA_MaDIQyEVg4qqpAJ-RKW5rydCvZYSpfPlZuAbrg9RpJmO5IXLealPatMw7-ls-KynIfuj93v0" />
-              {/* Map Interactive Pin Overlay */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-surface-container-lowest/95 backdrop-blur-md p-4 rounded-lg shadow-lg border border-outline-variant max-w-xs text-center flex flex-col items-center">
-                <div className="w-10 h-10 rounded-full bg-primary-container text-on-primary flex items-center justify-center mb-2 shadow-sm animate-bounce">
-                  <span className="material-symbols-outlined text-[24px]">
-                    accessible
-                  </span>
-                </div>
-                <h5 className="text-label-md font-label-md text-on-surface">
-                  Taller Central SillaUp
-                </h5>
-                <p className="text-body-sm font-body-sm text-on-surface-variant">
-                  Merced 562, Santiago Centro
-                </p>
-                <span className="mt-2 text-label-sm font-label-sm text-tertiary font-bold bg-[#D1FADF] px-2 py-0.5 rounded-full">
-                  Abierto hoy hasta 18:00 hrs
-                </span>
-              </div>
+              <ShowroomMap />
               {/* Metro Access Tags Overlay */}
               <div className="absolute bottom-4 left-4 right-4 flex flex-wrap gap-2 pointer-events-none">
                 <div className="bg-surface-container-lowest/90 backdrop-blur-sm px-3 py-1 rounded-full text-label-sm font-label-sm border border-outline-variant flex items-center gap-1.5 shadow-sm text-on-surface">

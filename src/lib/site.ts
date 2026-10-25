@@ -5,7 +5,9 @@ export const site = {
   phoneHref: "tel:+56972215907",
   email: "sillaupventas@gmail.com",
   address: "Merced 562, Santiago, Chile",
-  mapsUrl: "https://maps.google.com/?q=Merced+562+Santiago+Chile",
+  mapsUrl: "https://maps.google.com/?q=Merced+562,+Santiago,+Chile",
+  /** Mapa interactivo de Google (sin API key) centrado en el showroom */
+  mapsEmbedUrl: "https://maps.google.com/maps?q=Merced%20562%2C%20Santiago%2C%20Chile&z=17&hl=es&output=embed",
   hours: "Lun a Vie 9:00 a 18:00 hrs",
   whatsappUrl:
     "https://wa.me/56972215907?text=Hola%20SillaUp,%20me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20sobre%20sus%20productos",

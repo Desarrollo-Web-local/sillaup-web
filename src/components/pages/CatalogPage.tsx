@@ -94,7 +94,7 @@ export default function CatalogPage() {
       <section className="max-w-7xl mx-auto px-6 md:px-12 pb-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="products-grid">
           {/* PRODUCTO 1: Grúa eléctrica (Featured Product) */}
-          <article className="product-card group bg-surface-container-lowest rounded-[24px] border-2 border-brand-blue/30 p-6 shadow-level-2 hover:shadow-level-3 transition-all duration-300 flex flex-col justify-between relative" data-category="traslado electricos">
+          <article className="product-card group bg-surface-container-lowest rounded-[24px] border-2 border-brand-blue/30 p-6 shadow-level-2 hover:shadow-level-3 hover:scale-[1.03] transition-all duration-300 flex flex-col justify-between relative" data-category="traslado electricos">
             {/* Top seller badge */}
             <div className="absolute -top-3 left-6 bg-brand-blue text-white text-[11px] font-label-sm uppercase px-3 py-0.5 rounded-full tracking-wide shadow-sm flex items-center gap-1">
               <span className="material-symbols-outlined text-xs">
@@ -132,7 +132,7 @@ export default function CatalogPage() {
             </div>
             {/* Clean Actions */}
             <div className="flex flex-col gap-2.5 pt-4 border-t border-brand-border/60">
-              <Link className="w-full text-center bg-brand-blue text-white font-label-md py-3 rounded-full hover:bg-primary transition-colors duration-150 font-bold active:scale-95 shadow-sm flex items-center justify-center gap-2" href="/productos/grua-electrica">
+              <Link className="w-full text-center bg-brand-blue text-white font-label-md py-3 rounded-full hover:bg-primary transition-colors duration-150 font-bold shadow-sm flex items-center justify-center gap-2 after:absolute after:inset-0 after:content-['']" href="/productos/grua-electrica">
                 <span>
                   Ver producto
                 </span>
@@ -140,7 +140,7 @@ export default function CatalogPage() {
                   arrow_forward
                 </span>
               </Link>
-              <a className="w-full text-center border-2 border-brand-blue text-brand-blue bg-white font-label-md py-2.5 rounded-full hover:bg-brand-blue/5 transition-colors duration-150 font-bold active:scale-95 flex items-center justify-center gap-2" href="https://mpago.la/2Gquygz" rel="noopener noreferrer" target="_blank">
+              <a className="relative z-10 w-full text-center border-2 border-brand-blue text-brand-blue bg-white font-label-md py-2.5 rounded-full hover:bg-brand-blue/5 transition-colors duration-150 font-bold active:scale-95 flex items-center justify-center gap-2" href="https://mpago.la/2Gquygz" rel="noopener noreferrer" target="_blank">
                 <span className="material-symbols-outlined text-sm">
                   credit_card
                 </span>
@@ -151,7 +151,7 @@ export default function CatalogPage() {
             </div>
           </article>
           {/* PRODUCTO 2: Elevador de inodoro */}
-          <article className="product-card group bg-surface-container-lowest rounded-[24px] border border-brand-border p-6 shadow-level-1 hover:shadow-level-2 transition-all duration-300 flex flex-col justify-between" data-category="bano electricos">
+          <article className="product-card group bg-surface-container-lowest rounded-[24px] border border-brand-border p-6 shadow-level-1 hover:shadow-level-2 hover:scale-[1.03] transition-all duration-300 flex flex-col justify-between relative" data-category="bano electricos">
             <div>
               {/* Image Container with Badges */}
               <div className="relative w-full h-60 bg-surface-container-low rounded-2xl overflow-hidden mb-5 border border-outline-variant/30 flex items-center justify-center p-4">
@@ -182,7 +182,7 @@ export default function CatalogPage() {
             </div>
             {/* Clean Actions */}
             <div className="flex flex-col gap-2.5 pt-4 border-t border-brand-border/60">
-              <Link className="w-full text-center bg-brand-blue text-white font-label-md py-3 rounded-full hover:bg-primary transition-colors duration-150 font-bold active:scale-95 shadow-sm flex items-center justify-center gap-2" href="/productos/elevador-de-inodoro">
+              <Link className="w-full text-center bg-brand-blue text-white font-label-md py-3 rounded-full hover:bg-primary transition-colors duration-150 font-bold shadow-sm flex items-center justify-center gap-2 after:absolute after:inset-0 after:content-['']" href="/productos/elevador-de-inodoro">
                 <span>
                   Ver producto
                 </span>
@@ -193,7 +193,7 @@ export default function CatalogPage() {
             </div>
           </article>
           {/* PRODUCTO 3: Grúa manual */}
-          <article className="product-card group bg-surface-container-lowest rounded-[24px] border border-brand-border p-6 shadow-level-1 hover:shadow-level-2 transition-all duration-300 flex flex-col justify-between" data-category="traslado manual">
+          <article className="product-card group bg-surface-container-lowest rounded-[24px] border border-brand-border p-6 shadow-level-1 hover:shadow-level-2 hover:scale-[1.03] transition-all duration-300 flex flex-col justify-between relative" data-category="traslado manual">
             <div>
               {/* Image Container with Badges */}
               <div className="relative w-full h-60 bg-surface-container-low rounded-2xl overflow-hidden mb-5 border border-outline-variant/30 flex items-center justify-center p-4">
@@ -224,7 +224,7 @@ export default function CatalogPage() {
             </div>
             {/* Clean Actions */}
             <div className="flex flex-col gap-2.5 pt-4 border-t border-brand-border/60">
-              <Link className="w-full text-center bg-brand-blue text-white font-label-md py-3 rounded-full hover:bg-primary transition-colors duration-150 font-bold active:scale-95 shadow-sm flex items-center justify-center gap-2" href="/productos/grua-manual">
+              <Link className="w-full text-center bg-brand-blue text-white font-label-md py-3 rounded-full hover:bg-primary transition-colors duration-150 font-bold shadow-sm flex items-center justify-center gap-2 after:absolute after:inset-0 after:content-['']" href="/productos/grua-manual">
                 <span>
                   Ver producto
                 </span>
@@ -235,7 +235,7 @@ export default function CatalogPage() {
             </div>
           </article>
           {/* PRODUCTO 4: Elevador multiuso */}
-          <article className="product-card group bg-surface-container-lowest rounded-[24px] border border-brand-border p-6 shadow-level-1 hover:shadow-level-2 transition-all duration-300 flex flex-col justify-between" data-category="electricos">
+          <article className="product-card group bg-surface-container-lowest rounded-[24px] border border-brand-border p-6 shadow-level-1 hover:shadow-level-2 hover:scale-[1.03] transition-all duration-300 flex flex-col justify-between relative" data-category="electricos">
             <div>
               {/* Image Container with Badges */}
               <div className="relative w-full h-60 bg-surface-container-low rounded-2xl overflow-hidden mb-5 border border-outline-variant/30 flex items-center justify-center p-4">
@@ -266,7 +266,7 @@ export default function CatalogPage() {
             </div>
             {/* Clean Actions */}
             <div className="flex flex-col gap-2.5 pt-4 border-t border-brand-border/60">
-              <Link className="w-full text-center bg-brand-blue text-white font-label-md py-3 rounded-full hover:bg-primary transition-colors duration-150 font-bold active:scale-95 shadow-sm flex items-center justify-center gap-2" href="/productos/elevador-multiuso">
+              <Link className="w-full text-center bg-brand-blue text-white font-label-md py-3 rounded-full hover:bg-primary transition-colors duration-150 font-bold shadow-sm flex items-center justify-center gap-2 after:absolute after:inset-0 after:content-['']" href="/productos/elevador-multiuso">
                 <span>
                   Ver producto
                 </span>
@@ -277,7 +277,7 @@ export default function CatalogPage() {
             </div>
           </article>
           {/* PRODUCTO 5: Elevador de cama */}
-          <article className="product-card group bg-surface-container-lowest rounded-[24px] border border-brand-border p-6 shadow-level-1 hover:shadow-level-2 transition-all duration-300 flex flex-col justify-between" data-category="cama electricos">
+          <article className="product-card group bg-surface-container-lowest rounded-[24px] border border-brand-border p-6 shadow-level-1 hover:shadow-level-2 hover:scale-[1.03] transition-all duration-300 flex flex-col justify-between relative" data-category="cama electricos">
             <div>
               {/* Image Container with Badges */}
               <div className="relative w-full h-60 bg-surface-container-low rounded-2xl overflow-hidden mb-5 border border-outline-variant/30 flex items-center justify-center p-4">
@@ -308,7 +308,7 @@ export default function CatalogPage() {
             </div>
             {/* Clean Actions */}
             <div className="flex flex-col gap-2.5 pt-4 border-t border-brand-border/60">
-              <Link className="w-full text-center bg-brand-blue text-white font-label-md py-3 rounded-full hover:bg-primary transition-colors duration-150 font-bold active:scale-95 shadow-sm flex items-center justify-center gap-2" href="/productos/elevador-de-cama">
+              <Link className="w-full text-center bg-brand-blue text-white font-label-md py-3 rounded-full hover:bg-primary transition-colors duration-150 font-bold shadow-sm flex items-center justify-center gap-2 after:absolute after:inset-0 after:content-['']" href="/productos/elevador-de-cama">
                 <span>
                   Ver producto
                 </span>

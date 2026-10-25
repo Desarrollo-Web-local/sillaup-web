@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { submitContact, submitTestimonial } from "@/app/actions";
 import Counter from "@/components/Counter";
 import StarRating from "@/components/StarRating";
@@ -21,6 +21,21 @@ export default function HomePage() {
     setAtStart(track.scrollLeft <= 4);
     setAtEnd(track.scrollLeft + track.clientWidth >= track.scrollWidth - 4);
   };
+
+  // The track bleeds to the screen edges; its padding keeps the first card aligned with the
+  // content. Snapping must use the same inset, but a % in scroll-padding resolves against a
+  // different width, so mirror the computed padding instead.
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    const syncSnapInset = () => {
+      track.style.scrollPaddingInline = getComputedStyle(track).paddingLeft;
+      track.scrollLeft = 0;
+    };
+    syncSnapInset();
+    window.addEventListener("resize", syncSnapInset);
+    return () => window.removeEventListener("resize", syncSnapInset);
+  }, []);
 
   return (
     <>
@@ -94,15 +109,6 @@ export default function HomePage() {
           </div>
         </div>
       </div>
-      {/* Indicador animado de scroll hacia abajo */}
-      <Link aria-label="Deslizar hacia productos" className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center text-white/80 hover:text-white transition-colors duration-150 group cursor-pointer" href="/productos">
-        <span className="text-[11px] font-bold uppercase tracking-widest mb-1 opacity-80 group-hover:opacity-100">
-          Explorar
-        </span>
-        <div className="w-8 h-12 rounded-full border-2 border-white/60 flex items-start justify-center p-1.5 shadow-sm group-hover:border-white transition-colors">
-          <span className="w-1.5 h-2.5 bg-white rounded-full animate-bounce mt-1"></span>
-        </div>
-      </Link>
     </section>
     {/* 4. MARQUESINA INFINITA DE VALORES (Ticker animado en loop continuo) */}
     <section aria-label="Valores corporativos" className="bg-surface-container-highest border-y border-outline-variant py-4 overflow-hidden select-none">
@@ -176,7 +182,7 @@ export default function HomePage() {
       </div>
     </section>
     {/* 5. SECCIÓN PRODUCTOS DESTACADOS (Fondo verde azulado profundo #174A5A, texto de títulos blanco) */}
-    <section className="bg-brand-teal text-white py-20 px-6 md:px-12 relative" id="productos">
+    <section className="bg-brand-teal text-white py-20 px-6 md:px-12 relative overflow-x-clip" id="productos">
       <div className="max-w-7xl mx-auto">
         {/* Section Header with carousel controllers */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
@@ -204,9 +210,9 @@ export default function HomePage() {
               arrow_forward
             </span>
           </button>
-        <div className="product-carousel flex gap-6 overflow-x-auto pb-6 snap-x snap-mandatory focus:outline-none" onScroll={updateArrows} ref={trackRef}>
+        <div className="product-carousel flex gap-6 overflow-x-auto pt-4 pb-8 snap-x snap-mandatory focus:outline-none" onScroll={updateArrows} ref={trackRef} style={{ marginInline: "calc(50% - 50vw)", paddingInline: "calc(50vw - 50%)" }}>
           {/* Producto 1: Grúa eléctrica */}
-          <article className="min-w-[300px] sm:min-w-[340px] md:min-w-[370px] bg-white text-on-surface rounded-3xl p-5 shadow-lg flex flex-col justify-between snap-start border border-[#DADADB] hover:shadow-2xl transition-all duration-200">
+          <article className="relative min-w-[300px] sm:min-w-[340px] md:min-w-[370px] bg-white text-on-surface rounded-3xl p-5 shadow-lg flex flex-col justify-between snap-start border border-[#DADADB] hover:shadow-2xl hover:scale-[1.03] transition-all duration-300">
             <div>
               <div className="relative w-full h-56 rounded-2xl bg-surface-container-low overflow-hidden mb-4">
                 <img alt="Grúa eléctrica de elevación asistida SillaUp" className="w-full h-full object-cover" data-alt="Professional medical equipment photography of an advanced battery-powered electric patient lifting crane. Sleek white frame with remote control wand, emergency stop module, dual battery pack, and reinforced patient sling. Set in a luminous, sterile yet welcoming contemporary rehabilitation suite with light oak flooring and soft ambient highlights." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDS7k-zTobK5wOL5LeI2e3SpVf3aruEp6gSmS6AMCf5Lbtp9s2uRJ5UwE2-MK0HwfmzLgNPKFJVE_jJIVYDqWWwmMARXgB5QhIVIk3PV6UzqD8RCf3x_9dN3LUAC0mzl35lWBho4WnFDewSunONysdxKC6OkApqIKlQHL00g4S_VXxGFzqxQb1yUg-oCH3BtGLzOPYpy9dBNWZ6Gpt-H_m5qNwaWtCYzZ-MQ7_k5ly6TWotXgJvrBQ" />
@@ -229,7 +235,7 @@ export default function HomePage() {
                 Traslada con seguridad mediante elevación eléctrica asistida con pulsar un solo botón en el mando remoto.
               </p>
             </div>
-            <Link className="w-full inline-flex items-center justify-center rounded-full bg-primary-container text-white text-label-md font-label-md py-3.5 px-6 shadow-sm hover:bg-primary active:scale-95 transition-all duration-150 min-h-[48px]" href="/productos/grua-electrica">
+            <Link className="w-full inline-flex items-center justify-center rounded-full bg-primary-container text-white text-label-md font-label-md py-3.5 px-6 shadow-sm hover:bg-primary transition-all duration-150 min-h-[48px] after:absolute after:inset-0 after:content-['']" href="/productos/grua-electrica">
               Ver producto
               <span className="material-symbols-outlined ml-2 text-base">
                 chevron_right
@@ -237,7 +243,7 @@ export default function HomePage() {
             </Link>
           </article>
           {/* Producto 2: Elevador de inodoro */}
-          <article className="min-w-[300px] sm:min-w-[340px] md:min-w-[370px] bg-white text-on-surface rounded-3xl p-5 shadow-lg flex flex-col justify-between snap-start border border-[#DADADB] hover:shadow-2xl transition-all duration-200">
+          <article className="relative min-w-[300px] sm:min-w-[340px] md:min-w-[370px] bg-white text-on-surface rounded-3xl p-5 shadow-lg flex flex-col justify-between snap-start border border-[#DADADB] hover:shadow-2xl hover:scale-[1.03] transition-all duration-300">
             <div>
               {/* Image Stage with Embedded Price Chip */}
               <div className="relative w-full h-56 rounded-2xl bg-surface-container-low overflow-hidden mb-4">
@@ -263,7 +269,7 @@ export default function HomePage() {
                 Siéntate y levántate del inodoro con mayor seguridad y autonomía sin exigir tus rodillas ni cadera.
               </p>
             </div>
-            <Link className="w-full inline-flex items-center justify-center rounded-full bg-primary-container text-white text-label-md font-label-md py-3.5 px-6 shadow-sm hover:bg-primary active:scale-95 transition-all duration-150 min-h-[48px]" href="/productos/elevador-de-inodoro">
+            <Link className="w-full inline-flex items-center justify-center rounded-full bg-primary-container text-white text-label-md font-label-md py-3.5 px-6 shadow-sm hover:bg-primary transition-all duration-150 min-h-[48px] after:absolute after:inset-0 after:content-['']" href="/productos/elevador-de-inodoro">
               Ver producto
               <span className="material-symbols-outlined ml-2 text-base">
                 chevron_right
@@ -271,7 +277,7 @@ export default function HomePage() {
             </Link>
           </article>
           {/* Producto 3: Grúa manual */}
-          <article className="min-w-[300px] sm:min-w-[340px] md:min-w-[370px] bg-white text-on-surface rounded-3xl p-5 shadow-lg flex flex-col justify-between snap-start border border-[#DADADB] hover:shadow-2xl transition-all duration-200">
+          <article className="relative min-w-[300px] sm:min-w-[340px] md:min-w-[370px] bg-white text-on-surface rounded-3xl p-5 shadow-lg flex flex-col justify-between snap-start border border-[#DADADB] hover:shadow-2xl hover:scale-[1.03] transition-all duration-300">
             <div>
               <div className="relative w-full h-56 rounded-2xl bg-surface-container-low overflow-hidden mb-4">
                 <img alt="Grúa manual de traslado SillaUp" className="w-full h-full object-cover" data-alt="Clinical product photography of a heavy-duty manual hydraulic patient transfer hoist crane. Powder-coated white steel framework with high-grade dual-caster locking wheels and an ergonomic comfort sling harness. Shot against a crisp bright backdrop with subtle blue reflections, highlighting medical grade precision, durability and dignified care." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMFjiWKuRALQEYhmQgQxvWJfXscssKvHERbvsTtiKpdq0l0sZQE-BA7HcmsYA9hK0b544Ms-ZtlYB2n5n-Z-UUwzr7ovVokkYVV8IXNcJoI2a4HjQ-B6LM_HoU-U3uR6jpqDak5uljKy8QwUD_Eyz3laWZgXB7YmUgfhKL8cWXW1vodxsNdinNg76X6D_dW95MYuAlXLSU1bHqspcd66k2peRYNCciXDa3ROK_eAbCbwK4mh6MFZ0" />
@@ -294,7 +300,7 @@ export default function HomePage() {
                 Traslados seguros y cómodos con menor esfuerzo del cuidador, protegiendo la columna vertebral.
               </p>
             </div>
-            <Link className="w-full inline-flex items-center justify-center rounded-full bg-primary-container text-white text-label-md font-label-md py-3.5 px-6 shadow-sm hover:bg-primary active:scale-95 transition-all duration-150 min-h-[48px]" href="/productos/grua-manual">
+            <Link className="w-full inline-flex items-center justify-center rounded-full bg-primary-container text-white text-label-md font-label-md py-3.5 px-6 shadow-sm hover:bg-primary transition-all duration-150 min-h-[48px] after:absolute after:inset-0 after:content-['']" href="/productos/grua-manual">
               Ver producto
               <span className="material-symbols-outlined ml-2 text-base">
                 chevron_right
@@ -302,7 +308,7 @@ export default function HomePage() {
             </Link>
           </article>
           {/* Producto 4: Elevador multiuso */}
-          <article className="min-w-[300px] sm:min-w-[340px] md:min-w-[370px] bg-white text-on-surface rounded-3xl p-5 shadow-lg flex flex-col justify-between snap-start border border-[#DADADB] hover:shadow-2xl transition-all duration-200">
+          <article className="relative min-w-[300px] sm:min-w-[340px] md:min-w-[370px] bg-white text-on-surface rounded-3xl p-5 shadow-lg flex flex-col justify-between snap-start border border-[#DADADB] hover:shadow-2xl hover:scale-[1.03] transition-all duration-300">
             <div>
               <div className="relative w-full h-56 rounded-2xl bg-surface-container-low overflow-hidden mb-4">
                 <img alt="Elevador multiuso para sillón y sillas SillaUp" className="w-full h-full object-cover" data-alt="Crisp studio product shot of a versatile portable multi-use chair lifting mechanism designed for domestic armchairs and dining seats. Clean white structural frame with cushioned support handles and non-slip rubber base. Shot in a bright minimalist room setting with soft natural illumination and calm therapeutic aesthetics." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC83eXy5G2pvbM-gKmLB2qScL3pKJEN0rDHzd7ITH4tIwPBXCVQXo8wezCA37mgf8NEVIti4f7XetSfLnPb9Yt3qAVFMrNM3Rk12vR5ziZaGnbE2ZDtjIbjbhGICKEbhTX4fZNF2-nwRcffLlXMTRPid64BW4weWrMGkLLDhFNjZowUb018ToQ1WW7O9ZERFZR4wqnHko-0qG3YAR-to8RuEtcrPEfi8zA-Zc1DmvrNeCVp3BapzVg" />
@@ -325,7 +331,7 @@ export default function HomePage() {
                 Levántate con facilidad desde cualquier asiento o superficie sin requerir la fuerza de otra persona.
               </p>
             </div>
-            <Link className="w-full inline-flex items-center justify-center rounded-full bg-primary-container text-white text-label-md font-label-md py-3.5 px-6 shadow-sm hover:bg-primary active:scale-95 transition-all duration-150 min-h-[48px]" href="/productos/elevador-multiuso">
+            <Link className="w-full inline-flex items-center justify-center rounded-full bg-primary-container text-white text-label-md font-label-md py-3.5 px-6 shadow-sm hover:bg-primary transition-all duration-150 min-h-[48px] after:absolute after:inset-0 after:content-['']" href="/productos/elevador-multiuso">
               Ver producto
               <span className="material-symbols-outlined ml-2 text-base">
                 chevron_right
@@ -333,7 +339,7 @@ export default function HomePage() {
             </Link>
           </article>
           {/* Producto 5: Elevador de cama */}
-          <article className="min-w-[300px] sm:min-w-[340px] md:min-w-[370px] bg-white text-on-surface rounded-3xl p-5 shadow-lg flex flex-col justify-between snap-start border border-[#DADADB] hover:shadow-2xl transition-all duration-200">
+          <article className="relative min-w-[300px] sm:min-w-[340px] md:min-w-[370px] bg-white text-on-surface rounded-3xl p-5 shadow-lg flex flex-col justify-between snap-start border border-[#DADADB] hover:shadow-2xl hover:scale-[1.03] transition-all duration-300">
             <div>
               <div className="relative w-full h-56 rounded-2xl bg-surface-container-low overflow-hidden mb-4">
                 <img alt="Elevador de cama ajustable SillaUp" className="w-full h-full object-cover" data-alt="High-end catalog photography of an adjustable backrest and bed lifter frame installed seamlessly on a residential mattress. Powder-coated steel structure with smooth angle adjustments and padded head support. Pristine white studio lighting with delicate blue undertones, portraying modern domestic elder care technology." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCogt2eYljZ3d-EHas-E0n-hMaARqzggVLCksVxd7RGxGZbNmwDBhe3d2K6qZ6eBD3DC99KtvmhE2hkBn9vefS2ZgTt_ReWm5uamzs-BOHeKYdzqiVt_D8O6vo2A8KJxMpbPY0vDWafwl9mn6nkJQMjnAZFASrYBE-3QnDolmGk8MEuwTZxglJY0j8iRqgtAfY1J0PDy0pmLsKATaGKxdWU2Rg_6F0UTSMkwQA_AQdufHXICiaqxVo" />
@@ -356,7 +362,7 @@ export default function HomePage() {
                 Convierte tu cama en una cama ajustable de forma sencilla para incorporarte, comer y descansar mejor.
               </p>
             </div>
-            <Link className="w-full inline-flex items-center justify-center rounded-full bg-primary-container text-white text-label-md font-label-md py-3.5 px-6 shadow-sm hover:bg-primary active:scale-95 transition-all duration-150 min-h-[48px]" href="/productos/elevador-de-cama">
+            <Link className="w-full inline-flex items-center justify-center rounded-full bg-primary-container text-white text-label-md font-label-md py-3.5 px-6 shadow-sm hover:bg-primary transition-all duration-150 min-h-[48px] after:absolute after:inset-0 after:content-['']" href="/productos/elevador-de-cama">
               Ver producto
               <span className="material-symbols-outlined ml-2 text-base">
                 chevron_right
