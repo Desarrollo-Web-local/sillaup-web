@@ -1,8 +1,10 @@
 "use client";
 
 import { useRef, useState } from "react";
+import { useText } from "@/components/SiteData";
 
 export default function FaqPage() {
+  const t = useText();
   const accordionRef = useRef<HTMLDivElement>(null);
   const searchRef = useRef<HTMLInputElement>(null);
   const [openIndex, setOpenIndex] = useState<number | null>(0);
@@ -44,14 +46,14 @@ export default function FaqPage() {
               verified
             </span>
             <span>
-              Soporte Técnico y Fabricación Chilena • Atención Telefónica Inmediata
+              {t("faq.hero.eyebrow")}
             </span>
           </div>
           <h1 className="text-headline-lg-mobile md:text-headline-lg font-headline-lg text-on-surface mb-5 text-balance">
-            Preguntas Frecuentes
+            {t("faq.hero.title")}
           </h1>
           <p className="text-body-md md:text-body-lg font-body-lg text-on-surface-variant mb-10 max-w-2xl mx-auto text-pretty">
-            Resolvemos todas tus dudas sobre el funcionamiento, seguridad, instalación y garantía de nuestros dispositivos de movilidad asistida.
+            {t("faq.hero.description")}
           </p>
           {/* Search Bar with Live Filter Input */}
           <div className="relative max-w-2xl mx-auto">
@@ -96,7 +98,7 @@ export default function FaqPage() {
           info
         </span>
         <p className="text-body-sm font-body-sm text-on-surface-variant">
-          Haz clic sobre cualquiera de las preguntas para desplegar la respuesta completa detallada. Letra amplia y contraste optimizado para cuidadores y usuarios familiares.
+          Haz clic sobre cualquiera de las preguntas para desplegar la respuesta completa detallada. Letra amplia y contraste optimizado para cuidadores y usuarios familiares
         </p>
       </div>
       {/* Accordion Container */}
@@ -111,7 +113,7 @@ export default function FaqPage() {
                 </span>
               </div>
               <h2 className="text-headline-sm font-headline-sm text-on-surface font-bold text-base md:text-lg">
-                ¿Es seguro usarlo?
+                {t("faq.q1.question")}
               </h2>
             </div>
             <span className="faq-icon material-symbols-outlined text-primary text-2xl transition-transform duration-300" style={{ transform: openIndex === 0 ? "rotate(180deg)" : "rotate(0deg)" }}>
@@ -120,10 +122,10 @@ export default function FaqPage() {
           </button>
           <div className="faq-answer px-6 pb-6 pt-1 text-on-surface-variant border-t border-surface-container-high" hidden={openIndex !== 0}>
             <p className="text-body-lg font-body-lg font-medium text-on-surface mb-3">
-              Sí, nuestros dispositivos cumplen con altos estándares de seguridad para protegerte.
+              {t("faq.q1.lead")}
             </p>
             <p className="text-body-md font-body-md leading-relaxed text-on-surface-variant mb-4">
-              Cada equipo SillaUp está fabricado con acero estructural de grado médico y componentes probados bajo rigurosos protocolos de carga física. Cuentan con sistemas de bloqueo en las ruedas, arneses de cuatro puntos con costuras reforzadas, y un centro de gravedad calibrado para eliminar todo riesgo de vuelco tanto en transferencias de cama a silla como en cuartos de baño.
+              {t("faq.q1.body")}
             </p>
             <div className="flex flex-wrap gap-2 pt-2">
               <span className="px-3 py-1 bg-[#F2F4F7] text-[#174A5A] rounded-full text-xs font-bold">
@@ -148,7 +150,7 @@ export default function FaqPage() {
                 </span>
               </div>
               <h2 className="text-headline-sm font-headline-sm text-on-surface font-bold text-base md:text-lg">
-                ¿Cómo se instala?
+                {t("faq.q2.question")}
               </h2>
             </div>
             <span className="faq-icon material-symbols-outlined text-primary text-2xl transition-transform duration-300" style={{ transform: openIndex === 1 ? "rotate(180deg)" : "rotate(0deg)" }}>
@@ -157,17 +159,17 @@ export default function FaqPage() {
           </button>
           <div className="faq-answer px-6 pb-6 pt-1 text-on-surface-variant border-t border-surface-container-high" hidden={openIndex !== 1}>
             <p className="text-body-lg font-body-lg font-medium text-on-surface mb-3">
-              La instalación es sencilla y rápida, no requiere herramientas especiales ni modificaciones.
+              {t("faq.q2.lead")}
             </p>
             <p className="text-body-md font-body-md leading-relaxed text-on-surface-variant mb-4">
-              Nuestros dispositivos están concebidos con un sistema modular pensado para su uso inmediato en el hogar. No necesitas realizar obras, perforar muros ni contratar técnicos de montaje: las piezas encajan de forma intuitiva mediante pernos de seguridad manuales de alta fijación. Además, incluimos una guía ilustrada paso a paso y videos explicativos en video para mayor tranquilidad del cuidador.
+              {t("faq.q2.body")}
             </p>
             <div className="p-3 bg-surface-container rounded-xl flex items-center gap-3">
               <span className="material-symbols-outlined text-[#174A5A]">
                 videocam
               </span>
               <span className="text-body-sm text-on-surface">
-                ¿Prefieres asistencia en video? Solicita nuestra videollamada guiada gratuita tras recibir tu equipo.
+                ¿Prefieres asistencia en video? Solicita nuestra videollamada guiada gratuita tras recibir tu equipo
               </span>
             </div>
           </div>
@@ -182,7 +184,7 @@ export default function FaqPage() {
                 </span>
               </div>
               <h2 className="text-headline-sm font-headline-sm text-on-surface font-bold text-base md:text-lg">
-                ¿Necesita electricidad para funcionar?
+                {t("faq.q3.question")}
               </h2>
             </div>
             <span className="faq-icon material-symbols-outlined text-primary text-2xl transition-transform duration-300" style={{ transform: openIndex === 2 ? "rotate(180deg)" : "rotate(0deg)" }}>
@@ -191,10 +193,10 @@ export default function FaqPage() {
           </button>
           <div className="faq-answer px-6 pb-6 pt-1 text-on-surface-variant border-t border-surface-container-high" hidden={openIndex !== 2}>
             <p className="text-body-lg font-body-lg font-medium text-on-surface mb-3">
-              Depende del equipo. La Grúa manual funciona sin electricidad, con una palanca ergonómica. El Elevador de inodoro, el Elevador multiuso, el Elevador de cama y la Grúa eléctrica funcionan con electricidad y se controlan con un control de fácil uso.
+              {t("faq.q3.lead")}
             </p>
             <p className="text-body-md font-body-md leading-relaxed text-on-surface-variant mb-4">
-              Los modelos eléctricos incorporan baterías recargables de larga duración con protección contra bajas de voltaje y botón de parada de emergencia integrado. Una sola carga provee entre 40 a 60 ciclos completos de elevación, asegurando continuidad operativa incluso en caso de cortes imprevistos en el suministro eléctrico domiciliario.
+              {t("faq.q3.body")}
             </p>
             <div className="grid sm:grid-cols-2 gap-3 pt-2 text-sm">
               <div className="p-3 bg-surface-container-low rounded-xl border border-surface-container-high">
@@ -202,7 +204,7 @@ export default function FaqPage() {
                   Modelos 100% Mecánicos:
                 </strong>
                 <span className="text-on-surface-variant">
-                  Grúa manual con palanca hidráulica suave asistida por fluido.
+                  Grúa manual con palanca hidráulica suave asistida por fluido
                 </span>
               </div>
               <div className="p-3 bg-surface-container-low rounded-xl border border-surface-container-high">
@@ -210,7 +212,7 @@ export default function FaqPage() {
                   Modelos Eléctricos con Control:
                 </strong>
                 <span className="text-on-surface-variant">
-                  Elevador de inodoro, multiuso, cama y grúa eléctrica con botonera ergonómica.
+                  Elevador de inodoro, multiuso, cama y grúa eléctrica con botonera ergonómica
                 </span>
               </div>
             </div>
@@ -226,7 +228,7 @@ export default function FaqPage() {
                 </span>
               </div>
               <h2 className="text-headline-sm font-headline-sm text-on-surface font-bold text-base md:text-lg">
-                ¿Qué garantía ofrecen?
+                {t("faq.q4.question")}
               </h2>
             </div>
             <span className="faq-icon material-symbols-outlined text-primary text-2xl transition-transform duration-300" style={{ transform: openIndex === 3 ? "rotate(180deg)" : "rotate(0deg)" }}>
@@ -235,17 +237,17 @@ export default function FaqPage() {
           </button>
           <div className="faq-answer px-6 pb-6 pt-1 text-on-surface-variant border-t border-surface-container-high" hidden={openIndex !== 3}>
             <p className="text-body-lg font-body-lg font-medium text-on-surface mb-3">
-              Ofrecemos garantía de un año para asegurar tu tranquilidad y respaldo directo de fábrica en Chile.
+              {t("faq.q4.lead")}
             </p>
             <p className="text-body-md font-body-md leading-relaxed text-on-surface-variant mb-4">
-              Al ser diseñadores y fabricantes nacionales, no dependes de tiempos de importación ni distribuidores intermediarios. Contamos con stock permanente de repuestos genuinos (motores, mandos, baterías, pistones y arneses) y servicio técnico especializado directo en nuestro taller en el centro de Santiago. Cubrimos defectos de fabricación y soporte preventivo.
+              {t("faq.q4.body")}
             </p>
             <div className="flex items-center gap-2 text-xs font-bold text-[#174A5A] bg-[#F2F4F7] p-2.5 rounded-lg">
               <span className="material-symbols-outlined text-base">
                 location_on
               </span>
               <span>
-                Taller oficial y despacho de refacciones: Merced 562, Santiago Centro.
+                Taller oficial y despacho de refacciones: Merced 562, Santiago Centro
               </span>
             </div>
           </div>
@@ -260,7 +262,7 @@ export default function FaqPage() {
                 </span>
               </div>
               <h2 className="text-headline-sm font-headline-sm text-on-surface font-bold text-base md:text-lg">
-                ¿Puedo usarlo solo?
+                {t("faq.q5.question")}
               </h2>
             </div>
             <span className="faq-icon material-symbols-outlined text-primary text-2xl transition-transform duration-300" style={{ transform: openIndex === 4 ? "rotate(180deg)" : "rotate(0deg)" }}>
@@ -269,13 +271,13 @@ export default function FaqPage() {
           </button>
           <div className="faq-answer px-6 pb-6 pt-1 text-on-surface-variant border-t border-surface-container-high" hidden={openIndex !== 4}>
             <p className="text-body-lg font-body-lg font-medium text-on-surface mb-3">
-              Sí, están diseñados para que la persona pueda usarlos con autonomía y seguridad en las actividades diarias.
+              {t("faq.q5.lead")}
             </p>
             <p className="text-body-md font-body-md leading-relaxed text-on-surface-variant mb-4">
-              Equipos como el Elevador de inodoro y el Elevador de cama disponen de mandos accesibles con botones de textura diferenciada que permiten ser accionados con una sola mano y sin aplicar fuerza muscular. Para transferencias más complejas con grúa en pacientes con movilidad severamente reducida, el diseño ergonómico reduce el esfuerzo del cuidador hasta en un 90%, previniendo lesiones lumbares.
+              {t("faq.q5.body")}
             </p>
             <div className="border-l-4 border-primary pl-4 py-1 text-body-sm text-on-surface-variant italic">
-              &quot;Diseñado para devolver la dignidad en la rutina diaria y proteger la salud física de la familia.&quot;
+              &quot;Diseñado para devolver la dignidad en la rutina diaria y proteger la salud física de la familia&quot;
             </div>
           </div>
         </article>
@@ -289,7 +291,7 @@ export default function FaqPage() {
                 </span>
               </div>
               <h2 className="text-headline-sm font-headline-sm text-on-surface font-bold text-base md:text-lg">
-                ¿Qué hago si necesito ayuda o soporte?
+                {t("faq.q6.question")}
               </h2>
             </div>
             <span className="faq-icon material-symbols-outlined text-primary text-2xl transition-transform duration-300" style={{ transform: openIndex === 5 ? "rotate(180deg)" : "rotate(0deg)" }}>
@@ -298,14 +300,14 @@ export default function FaqPage() {
           </button>
           <div className="faq-answer px-6 pb-6 pt-1 text-on-surface-variant border-t border-surface-container-high" hidden={openIndex !== 5}>
             <p className="text-body-lg font-body-lg font-medium text-on-surface mb-3">
-              Nuestro equipo está siempre disponible para asesorarte y resolver cualquier duda que tengas, tanto por WhatsApp como de forma presencial en nuestro taller en Santiago.
+              {t("faq.q6.lead")}
             </p>
             <p className="text-body-md font-body-md leading-relaxed text-on-surface-variant mb-4">
               Puedes comunicarte de inmediato a nuestra línea directa de atención prioritaria al{" "}
               <strong className="text-on-surface">
                 +56 9 7221 5907
               </strong>
-              , enviarnos un mensaje con fotos o videos para orientarte en tiempo real, o coordinar una visita a nuestro centro en Merced 562, Santiago para revisar tu equipo o probar las alternativas disponibles antes de decidir.
+              , enviarnos un mensaje con fotos o videos para orientarte en tiempo real, o coordinar una visita a nuestro centro en Merced 562, Santiago para revisar tu equipo o probar las alternativas disponibles antes de decidir
             </p>
             <div className="flex flex-wrap gap-3">
               <a className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#20ba59] text-white px-4 py-2 rounded-full font-label-md text-xs transition-colors" href="https://wa.me/56972215907?text=Hola%20SillaUp,%20necesito%20ayuda%20con%20un%20dispositivo" rel="noopener noreferrer" target="_blank">
@@ -333,7 +335,7 @@ export default function FaqPage() {
           No encontramos preguntas con esa búsqueda
         </h3>
         <p className="text-body-sm font-body-sm text-on-surface-variant max-w-md mx-auto mb-6">
-          No te preocupes. Nuestros kinesiólogos y asesores técnicos pueden responder tu consulta específica por teléfono o WhatsApp de inmediato.
+          No te preocupes. Nuestros kinesiólogos y asesores técnicos pueden responder tu consulta específica por teléfono o WhatsApp de inmediato
         </p>
         <a className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#20ba59] text-white px-6 py-3 rounded-full font-label-md text-sm shadow-md transition-all" href="https://wa.me/56972215907" rel="noopener noreferrer" target="_blank">
           <span className="material-symbols-outlined">
@@ -360,10 +362,10 @@ export default function FaqPage() {
               </span>
             </div>
             <h2 className="text-headline-lg-mobile md:text-headline-md font-headline-md text-white mb-4">
-              ¿Aún tienes dudas?
+              {t("faq.cta.title")}
             </h2>
             <p className="text-body-md text-white/90 leading-relaxed mb-6">
-              Entendemos que cada situación de cuidado y movilidad en el hogar es única. Nuestro equipo técnico en Santiago te asesora de forma gratuita para elegir la solución adecuada para tu familiar o paciente.
+              {t("faq.cta.description")}
             </p>
             <div className="flex items-center gap-3 text-xs text-white/80">
               <span className="flex items-center gap-1">
@@ -415,7 +417,7 @@ export default function FaqPage() {
             {/* Visita a taller */}
             <div className="text-center text-xs text-white/70 pt-1">
               <span>
-                ¿Deseas probar un equipo? Visítanos en Merced 562, Santiago Centro previa coordinación.
+                ¿Deseas probar un equipo? Visítanos en Merced 562, Santiago Centro previa coordinación
               </span>
             </div>
           </div>
@@ -429,7 +431,7 @@ export default function FaqPage() {
           Por qué confiar en SillaUp
         </h3>
         <p className="text-body-sm font-body-sm text-on-surface-variant">
-          Fabricamos en Chile dispositivos con ingeniería biomédica y certificación de carga.
+          Fabricamos en Chile dispositivos con ingeniería biomédica y certificación de carga
         </p>
       </div>
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -444,7 +446,7 @@ export default function FaqPage() {
             Garantía Real de 1 Año
           </h4>
           <p className="text-body-sm text-on-surface-variant">
-            Respaldo formal de fábrica en Chile. Asistencia técnica presencial y repuestos disponibles sin esperas de aduana.
+            Respaldo formal de fábrica en Chile. Asistencia técnica presencial y repuestos disponibles sin esperas de aduana
           </p>
         </div>
         {/* Card 2 */}
@@ -458,7 +460,7 @@ export default function FaqPage() {
             Fabricación Nacional
           </h4>
           <p className="text-body-sm text-on-surface-variant">
-            Estructuras de acero de alta resistencia fabricadas en Santiago, diseñadas especialmente para marcos de puertas y baños chilenos.
+            Estructuras de acero de alta resistencia fabricadas en Santiago, diseñadas especialmente para marcos de puertas y baños chilenos
           </p>
         </div>
         {/* Card 3 */}
@@ -472,7 +474,7 @@ export default function FaqPage() {
             Cuidado del Cuidador
           </h4>
           <p className="text-body-sm text-on-surface-variant">
-            Reducción inmediata de la sobrecarga lumbar en un 90% para familiares y terapeutas que realizan transferencias diarias.
+            Reducción inmediata de la sobrecarga lumbar en un 90% para familiares y terapeutas que realizan transferencias diarias
           </p>
         </div>
       </div>

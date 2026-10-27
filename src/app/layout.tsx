@@ -1,10 +1,5 @@
 import type { Metadata } from "next";
 import { Mulish, Plus_Jakarta_Sans } from "next/font/google";
-import RevealOnScroll from "@/components/RevealOnScroll";
-import SiteFooter from "@/components/SiteFooter";
-import SiteHeader from "@/components/SiteHeader";
-import TopBar from "@/components/TopBar";
-import WhatsAppButton from "@/components/WhatsAppButton";
 import "./globals.css";
 
 const mulish = Mulish({
@@ -41,12 +36,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         />
       </head>
       <body className="bg-background text-on-surface antialiased min-h-screen flex flex-col selection:bg-primary-container selection:text-white">
-        <TopBar />
-        <SiteHeader />
         {children}
-        <SiteFooter />
-        <WhatsAppButton />
-        <RevealOnScroll />
       </body>
     </html>
   );

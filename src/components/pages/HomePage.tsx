@@ -4,10 +4,15 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { submitContact, submitTestimonial } from "@/app/actions";
 import Counter from "@/components/Counter";
+import { CardPrice, OfferBadge } from "@/components/Price";
+import { useProducts, useText } from "@/components/SiteData";
 import StarRating from "@/components/StarRating";
 import { useFormAction } from "@/components/useFormAction";
+import { productHref } from "@/lib/products";
 
 export default function HomePage() {
+  const t = useText();
+  const products = useProducts();
   const trackRef = useRef<HTMLDivElement>(null);
   const [feedbackOpen, setFeedbackOpen] = useState(false);
   const contact = useFormAction(submitContact);
@@ -43,7 +48,7 @@ export default function HomePage() {
     <section className="relative overflow-hidden w-full min-h-[90vh] flex items-center justify-center" id="inicio">
       {/* Imagen de fondo a sangre completa con animación sutil Ken Burns */}
       <div className="absolute inset-0 overflow-hidden select-none">
-        <img alt="Cuidado, cariño y asistencia para personas con movilidad reducida" className="w-full h-full object-cover object-center animate-kenburns" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIrYP9qTRRetDYa6PA8GrSj2Jzcjqgv0kelogfm0WcKB15xO_zaN9HqXctnl0C81Xg2cdYCb20q76_oQPk4X3o3kFpWju9m0DoEl_knK8bsHaehGOGF3kRUNLNkiRq0rslPCE-ORAaHwFN5rYidW9KPDP8ANtCP6sAWw0UeNvEej5E7e7vTCLdlZkyWtN10txl_SY0uTxno2854bB4sW3OcFmg515O46aXkk05V7PdWrmiulwp-WI" />
+        <img alt="Cuidado, cariño y asistencia para personas con movilidad reducida" className="w-full h-full object-cover object-center animate-kenburns" src={t("home.hero.image")} />
       </div>
       {/* Capa de degradado superpuesto para garantizar alto contraste de lectura */}
       <div className="absolute inset-0 bg-gradient-to-r from-[#0D141A]/95 via-[#0D141A]/75 to-[#174A5A]/40 z-0"></div>
@@ -54,16 +59,16 @@ export default function HomePage() {
           <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md text-white border border-white/20 px-4 py-2 rounded-full shadow-sm">
             <span className="inline-block w-2.5 h-2.5 rounded-full bg-brand-whatsapp animate-pulse"></span>
             <span className="text-xs md:text-sm font-extrabold tracking-wider uppercase">
-              Fabricación chilena directa de fábrica
+              {t("home.hero.badge")}
             </span>
           </div>
           {/* Título principal de gran escala */}
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight drop-shadow-sm">
-            Dispositivos para personas con movilidad reducida
+            {t("home.hero.title")}
           </h1>
           {/* Subtítulo complementario */}
           <p className="text-base md:text-xl text-white/90 font-normal leading-relaxed max-w-2xl">
-            Ingeniería ergonómica nacional creada para devolver la independencia a adultos mayores y aliviar la carga física de cuidadores y familias en todo Chile.
+            {t("home.hero.subtitle")}
           </p>
           {/* Botones de Acción */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4">
@@ -191,10 +196,10 @@ export default function HomePage() {
               <span className="material-symbols-outlined text-sm">
                 precision_manufacturing
               </span>
-              Soluciones Especializadas
+              {t("home.products.eyebrow")}
             </div>
             <h2 className="text-headline-lg-mobile md:text-headline-lg font-headline-lg text-white font-extrabold tracking-tight">
-              Productos
+              {t("home.products.title")}
             </h2>
           </div>
         </div>
@@ -211,164 +216,41 @@ export default function HomePage() {
             </span>
           </button>
         <div className="product-carousel flex gap-6 overflow-x-auto pt-4 pb-8 snap-x snap-mandatory focus:outline-none" onScroll={updateArrows} ref={trackRef} style={{ marginInline: "calc(50% - 50vw)", paddingInline: "calc(50vw - 50%)" }}>
-          {/* Producto 1: Grúa eléctrica */}
-          <article className="relative min-w-[300px] sm:min-w-[340px] md:min-w-[370px] bg-white text-on-surface rounded-3xl p-5 shadow-lg flex flex-col justify-between snap-start border border-[#DADADB] hover:shadow-2xl hover:scale-[1.03] transition-all duration-300">
-            <div>
-              <div className="relative w-full h-56 rounded-2xl bg-surface-container-low overflow-hidden mb-4">
-                <img alt="Grúa eléctrica de elevación asistida SillaUp" className="w-full h-full object-cover" data-alt="Professional medical equipment photography of an advanced battery-powered electric patient lifting crane. Sleek white frame with remote control wand, emergency stop module, dual battery pack, and reinforced patient sling. Set in a luminous, sterile yet welcoming contemporary rehabilitation suite with light oak flooring and soft ambient highlights." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDS7k-zTobK5wOL5LeI2e3SpVf3aruEp6gSmS6AMCf5Lbtp9s2uRJ5UwE2-MK0HwfmzLgNPKFJVE_jJIVYDqWWwmMARXgB5QhIVIk3PV6UzqD8RCf3x_9dN3LUAC0mzl35lWBho4WnFDewSunONysdxKC6OkApqIKlQHL00g4S_VXxGFzqxQb1yUg-oCH3BtGLzOPYpy9dBNWZ6Gpt-H_m5qNwaWtCYzZ-MQ7_k5ly6TWotXgJvrBQ" />
-                <div className="absolute top-3 right-3 bg-[#0D141A] text-white text-label-sm font-label-sm px-3.5 py-1.5 rounded-full font-extrabold shadow-md">
-                  $390.000
-                </div>
-              </div>
-              <div className="flex items-center gap-2 mb-3">
-                <span className="bg-[#F2F4F7] text-[#174A5A] text-[11px] font-bold px-2.5 py-1 rounded-full uppercase">
-                  Eléctrica 24V
-                </span>
-                <span className="bg-[#F2F4F7] text-[#174A5A] text-[11px] font-bold px-2.5 py-1 rounded-full">
-                  SWL 110 kg
-                </span>
-              </div>
-              <h3 className="text-headline-sm font-headline-sm text-on-surface font-extrabold mb-2">
-                Grúa eléctrica
-              </h3>
-              <p className="text-body-sm font-body-sm text-on-surface-variant mb-6">
-                Traslada con seguridad mediante elevación eléctrica asistida con pulsar un solo botón en el mando remoto.
-              </p>
-            </div>
-            <Link className="w-full inline-flex items-center justify-center rounded-full bg-primary-container text-white text-label-md font-label-md py-3.5 px-6 shadow-sm hover:bg-primary transition-all duration-150 min-h-[48px] after:absolute after:inset-0 after:content-['']" href="/productos/grua-electrica">
-              Ver producto
-              <span className="material-symbols-outlined ml-2 text-base">
-                chevron_right
-              </span>
-            </Link>
-          </article>
-          {/* Producto 2: Elevador de inodoro */}
-          <article className="relative min-w-[300px] sm:min-w-[340px] md:min-w-[370px] bg-white text-on-surface rounded-3xl p-5 shadow-lg flex flex-col justify-between snap-start border border-[#DADADB] hover:shadow-2xl hover:scale-[1.03] transition-all duration-300">
+          {products.map((product) => (
+          <article key={product.slug} className="relative min-w-[300px] sm:min-w-[340px] md:min-w-[370px] bg-white text-on-surface rounded-3xl p-5 shadow-lg flex flex-col justify-between snap-start border border-[#DADADB] hover:shadow-2xl hover:scale-[1.03] transition-all duration-300">
             <div>
               {/* Image Stage with Embedded Price Chip */}
               <div className="relative w-full h-56 rounded-2xl bg-surface-container-low overflow-hidden mb-4">
-                <img alt="Elevador de inodoro SillaUp" className="w-full h-full object-cover" data-alt="Studio catalog product photography of a modern ergonomic toilet lifter assistive chair on a pure high-key white background. Steel white powder-coated structure with soft padded medical armrests and non-slip safety suction footings. Clear ambient lighting highlighting high-precision engineering and domestic warmth in soft blue and white tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxLwH6baDMQkdQ3RvRAUEjafYePfP7Gf2H-72wcfyTwOGod2IxvTegAgyLH1T20a8-FZBac5achCJTlYvGUQI0NtFr4SBEoxNP3ur6LSqkfKluHePWLFD3UOtDtYe92f_F0mjEac_Ys_xvp_DREJF9jSIxHzTVcWBlN14sn6yFCHxa5xFz3mltsJzsPQnQBYv9CmQuR06rx0LU3sSbETqCfaHy6E9XowMcyPaACxosmcKrONKshgI" />
-                {/* Price Chip Integration ($390.000) */}
+                <img alt={`${product.name} SillaUp`} className="w-full h-full object-cover" data-alt={product.homeImage.alt} src={product.homeImage.src} />
                 <div className="absolute top-3 right-3 bg-[#0D141A] text-white text-label-sm font-label-sm px-3.5 py-1.5 rounded-full font-extrabold shadow-md">
-                  $390.000
+                  <CardPrice product={product} />
                 </div>
+                <OfferBadge className="absolute top-3 left-3" product={product} />
               </div>
               {/* Tags */}
               <div className="flex items-center gap-2 mb-3">
                 <span className="bg-[#F2F4F7] text-[#174A5A] text-[11px] font-bold px-2.5 py-1 rounded-full uppercase">
-                  Baño seguro
+                  {product.homeTags[0]}
                 </span>
                 <span className="bg-[#F2F4F7] text-[#174A5A] text-[11px] font-bold px-2.5 py-1 rounded-full">
-                  SWL 110 kg
+                  {product.homeTags[1]}
                 </span>
               </div>
               <h3 className="text-headline-sm font-headline-sm text-on-surface font-extrabold mb-2">
-                Elevador de inodoro
+                {product.name}
               </h3>
               <p className="text-body-sm font-body-sm text-on-surface-variant mb-6">
-                Siéntate y levántate del inodoro con mayor seguridad y autonomía sin exigir tus rodillas ni cadera.
+                {product.homeSummary}
               </p>
             </div>
-            <Link className="w-full inline-flex items-center justify-center rounded-full bg-primary-container text-white text-label-md font-label-md py-3.5 px-6 shadow-sm hover:bg-primary transition-all duration-150 min-h-[48px] after:absolute after:inset-0 after:content-['']" href="/productos/elevador-de-inodoro">
+            <Link className="w-full inline-flex items-center justify-center rounded-full bg-primary-container text-white text-label-md font-label-md py-3.5 px-6 shadow-sm hover:bg-primary transition-all duration-150 min-h-[48px] after:absolute after:inset-0 after:content-['']" href={productHref(product.slug)}>
               Ver producto
               <span className="material-symbols-outlined ml-2 text-base">
                 chevron_right
               </span>
             </Link>
           </article>
-          {/* Producto 3: Grúa manual */}
-          <article className="relative min-w-[300px] sm:min-w-[340px] md:min-w-[370px] bg-white text-on-surface rounded-3xl p-5 shadow-lg flex flex-col justify-between snap-start border border-[#DADADB] hover:shadow-2xl hover:scale-[1.03] transition-all duration-300">
-            <div>
-              <div className="relative w-full h-56 rounded-2xl bg-surface-container-low overflow-hidden mb-4">
-                <img alt="Grúa manual de traslado SillaUp" className="w-full h-full object-cover" data-alt="Clinical product photography of a heavy-duty manual hydraulic patient transfer hoist crane. Powder-coated white steel framework with high-grade dual-caster locking wheels and an ergonomic comfort sling harness. Shot against a crisp bright backdrop with subtle blue reflections, highlighting medical grade precision, durability and dignified care." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMFjiWKuRALQEYhmQgQxvWJfXscssKvHERbvsTtiKpdq0l0sZQE-BA7HcmsYA9hK0b544Ms-ZtlYB2n5n-Z-UUwzr7ovVokkYVV8IXNcJoI2a4HjQ-B6LM_HoU-U3uR6jpqDak5uljKy8QwUD_Eyz3laWZgXB7YmUgfhKL8cWXW1vodxsNdinNg76X6D_dW95MYuAlXLSU1bHqspcd66k2peRYNCciXDa3ROK_eAbCbwK4mh6MFZ0" />
-                <div className="absolute top-3 right-3 bg-[#0D141A] text-white text-label-sm font-label-sm px-3.5 py-1.5 rounded-full font-extrabold shadow-md">
-                  $290.000
-                </div>
-              </div>
-              <div className="flex items-center gap-2 mb-3">
-                <span className="bg-[#F2F4F7] text-[#174A5A] text-[11px] font-bold px-2.5 py-1 rounded-full uppercase">
-                  Hidráulica
-                </span>
-                <span className="bg-[#F2F4F7] text-[#174A5A] text-[11px] font-bold px-2.5 py-1 rounded-full">
-                  SWL 110 kg
-                </span>
-              </div>
-              <h3 className="text-headline-sm font-headline-sm text-on-surface font-extrabold mb-2">
-                Grúa manual
-              </h3>
-              <p className="text-body-sm font-body-sm text-on-surface-variant mb-6">
-                Traslados seguros y cómodos con menor esfuerzo del cuidador, protegiendo la columna vertebral.
-              </p>
-            </div>
-            <Link className="w-full inline-flex items-center justify-center rounded-full bg-primary-container text-white text-label-md font-label-md py-3.5 px-6 shadow-sm hover:bg-primary transition-all duration-150 min-h-[48px] after:absolute after:inset-0 after:content-['']" href="/productos/grua-manual">
-              Ver producto
-              <span className="material-symbols-outlined ml-2 text-base">
-                chevron_right
-              </span>
-            </Link>
-          </article>
-          {/* Producto 4: Elevador multiuso */}
-          <article className="relative min-w-[300px] sm:min-w-[340px] md:min-w-[370px] bg-white text-on-surface rounded-3xl p-5 shadow-lg flex flex-col justify-between snap-start border border-[#DADADB] hover:shadow-2xl hover:scale-[1.03] transition-all duration-300">
-            <div>
-              <div className="relative w-full h-56 rounded-2xl bg-surface-container-low overflow-hidden mb-4">
-                <img alt="Elevador multiuso para sillón y sillas SillaUp" className="w-full h-full object-cover" data-alt="Crisp studio product shot of a versatile portable multi-use chair lifting mechanism designed for domestic armchairs and dining seats. Clean white structural frame with cushioned support handles and non-slip rubber base. Shot in a bright minimalist room setting with soft natural illumination and calm therapeutic aesthetics." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC83eXy5G2pvbM-gKmLB2qScL3pKJEN0rDHzd7ITH4tIwPBXCVQXo8wezCA37mgf8NEVIti4f7XetSfLnPb9Yt3qAVFMrNM3Rk12vR5ziZaGnbE2ZDtjIbjbhGICKEbhTX4fZNF2-nwRcffLlXMTRPid64BW4weWrMGkLLDhFNjZowUb018ToQ1WW7O9ZERFZR4wqnHko-0qG3YAR-to8RuEtcrPEfi8zA-Zc1DmvrNeCVp3BapzVg" />
-                <div className="absolute top-3 right-3 bg-[#0D141A] text-white text-label-sm font-label-sm px-3.5 py-1.5 rounded-full font-extrabold shadow-md">
-                  $390.000
-                </div>
-              </div>
-              <div className="flex items-center gap-2 mb-3">
-                <span className="bg-[#F2F4F7] text-[#174A5A] text-[11px] font-bold px-2.5 py-1 rounded-full uppercase">
-                  Multisuperficie
-                </span>
-                <span className="bg-[#F2F4F7] text-[#174A5A] text-[11px] font-bold px-2.5 py-1 rounded-full">
-                  SWL 110 kg
-                </span>
-              </div>
-              <h3 className="text-headline-sm font-headline-sm text-on-surface font-extrabold mb-2">
-                Elevador multiuso
-              </h3>
-              <p className="text-body-sm font-body-sm text-on-surface-variant mb-6">
-                Levántate con facilidad desde cualquier asiento o superficie sin requerir la fuerza de otra persona.
-              </p>
-            </div>
-            <Link className="w-full inline-flex items-center justify-center rounded-full bg-primary-container text-white text-label-md font-label-md py-3.5 px-6 shadow-sm hover:bg-primary transition-all duration-150 min-h-[48px] after:absolute after:inset-0 after:content-['']" href="/productos/elevador-multiuso">
-              Ver producto
-              <span className="material-symbols-outlined ml-2 text-base">
-                chevron_right
-              </span>
-            </Link>
-          </article>
-          {/* Producto 5: Elevador de cama */}
-          <article className="relative min-w-[300px] sm:min-w-[340px] md:min-w-[370px] bg-white text-on-surface rounded-3xl p-5 shadow-lg flex flex-col justify-between snap-start border border-[#DADADB] hover:shadow-2xl hover:scale-[1.03] transition-all duration-300">
-            <div>
-              <div className="relative w-full h-56 rounded-2xl bg-surface-container-low overflow-hidden mb-4">
-                <img alt="Elevador de cama ajustable SillaUp" className="w-full h-full object-cover" data-alt="High-end catalog photography of an adjustable backrest and bed lifter frame installed seamlessly on a residential mattress. Powder-coated steel structure with smooth angle adjustments and padded head support. Pristine white studio lighting with delicate blue undertones, portraying modern domestic elder care technology." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCogt2eYljZ3d-EHas-E0n-hMaARqzggVLCksVxd7RGxGZbNmwDBhe3d2K6qZ6eBD3DC99KtvmhE2hkBn9vefS2ZgTt_ReWm5uamzs-BOHeKYdzqiVt_D8O6vo2A8KJxMpbPY0vDWafwl9mn6nkJQMjnAZFASrYBE-3QnDolmGk8MEuwTZxglJY0j8iRqgtAfY1J0PDy0pmLsKATaGKxdWU2Rg_6F0UTSMkwQA_AQdufHXICiaqxVo" />
-                <div className="absolute top-3 right-3 bg-[#0D141A] text-white text-label-sm font-label-sm px-3.5 py-1.5 rounded-full font-extrabold shadow-md">
-                  $390.000
-                </div>
-              </div>
-              <div className="flex items-center gap-2 mb-3">
-                <span className="bg-[#F2F4F7] text-[#174A5A] text-[11px] font-bold px-2.5 py-1 rounded-full uppercase">
-                  Dormitorio
-                </span>
-                <span className="bg-[#F2F4F7] text-[#174A5A] text-[11px] font-bold px-2.5 py-1 rounded-full">
-                  Graduable
-                </span>
-              </div>
-              <h3 className="text-headline-sm font-headline-sm text-on-surface font-extrabold mb-2">
-                Elevador de cama
-              </h3>
-              <p className="text-body-sm font-body-sm text-on-surface-variant mb-6">
-                Convierte tu cama en una cama ajustable de forma sencilla para incorporarte, comer y descansar mejor.
-              </p>
-            </div>
-            <Link className="w-full inline-flex items-center justify-center rounded-full bg-primary-container text-white text-label-md font-label-md py-3.5 px-6 shadow-sm hover:bg-primary transition-all duration-150 min-h-[48px] after:absolute after:inset-0 after:content-['']" href="/productos/elevador-de-cama">
-              Ver producto
-              <span className="material-symbols-outlined ml-2 text-base">
-                chevron_right
-              </span>
-            </Link>
-          </article>
+          ))}
         </div>
         </div>
       </div>
@@ -380,14 +262,14 @@ export default function HomePage() {
           {/* Left Image Composition (Human touch, warmth, dignity) */}
           <div className="lg:col-span-5 relative order-2 lg:order-1">
             <div className="relative rounded-3xl overflow-hidden border border-outline-variant shadow-xl">
-              <img alt="Cuidado familiar y autonomía con SillaUp" className="w-full h-[460px] object-cover" data-alt="A touching and respectful close-up portrait of a family member gently holding the hands of an elderly relative in a brightly illuminated Chilean living room. The warm sunlight streams through large windows, illuminating genuine smiles, physical comfort, and human dignity. Muted warm wood and light blue accents dominate the scene, evoking authentic care, safety, and emotional relief." src="https://lh3.googleusercontent.com/aida-public/AB6AXuClSjsj93KlCXIL6tW2vtulQCFwSK13LERVaOaF9lU2i3KblL_b5I27xoOhEDoclve_DJL09dDT105OUp7V-Y2dznNj598xhll4pHfDL_DQkUo1v7aeJF1t7x6OnLv8QogDpJcwQTYriySRKDZGacWrsLu5VnO_9YC7W4KwL84vcIbmpco8exPm0FuQBXzWLsoLoH_O55PMphpftviZJuRj5Sq-RGrjd1pY_a9XRvmExUdpcVOiPKg" />
+              <img alt="Cuidado familiar y autonomía con SillaUp" className="w-full h-[460px] object-cover" data-alt="A touching and respectful close-up portrait of a family member gently holding the hands of an elderly relative in a brightly illuminated Chilean living room. The warm sunlight streams through large windows, illuminating genuine smiles, physical comfort, and human dignity. Muted warm wood and light blue accents dominate the scene, evoking authentic care, safety, and emotional relief." src={t("home.about.image")} />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
               <div className="absolute bottom-6 left-6 right-6 text-white">
                 <p className="text-label-md font-label-md uppercase tracking-wider font-bold">
-                  Compromiso Chileno
+                  {t("home.about.imageTitle")}
                 </p>
                 <p className="text-body-sm font-body-sm text-white/90">
-                  Diseñado y ensamblado en Santiago para hogares de todo el país.
+                  {t("home.about.imageText")}
                 </p>
               </div>
             </div>
@@ -398,17 +280,17 @@ export default function HomePage() {
               <span className="material-symbols-outlined text-sm">
                 groups
               </span>
-              Propósito y Dignidad
+              {t("home.about.eyebrow")}
             </div>
             <h2 className="text-headline-lg-mobile md:text-headline-lg font-headline-lg text-on-surface font-extrabold tracking-tight">
-              Quiénes Somos
+              {t("home.about.title")}
             </h2>
             {/* Exact verbatim statement required by prompt */}
             <p className="text-headline-sm md:text-headline-md font-headline-md text-brand-teal font-bold leading-snug">
-              “Somos SillaUp, desarrollamos soluciones accesibles que ayudan a personas con movilidad reducida a recuperar su independencia, mejorando su seguridad y calidad de vida en actividades cotidianas.”
+              “{t("home.about.quote")}”
             </p>
             <p className="text-body-md font-body-md text-on-surface-variant leading-relaxed">
-              Nacimos al constatar que las soluciones importadas son inaccesibles y complejas de reparar. En SillaUp creamos ingeniería local en acero de alta resistencia, con repuestos garantizados y atención empática para cada familia.
+              {t("home.about.body")}
             </p>
             <div className="pt-2">
               <Link className="inline-flex items-center justify-center rounded-full bg-[#0D141A] text-white text-label-md font-label-md px-8 py-4 shadow-sm hover:bg-black active:scale-95 transition-all duration-150 min-h-[48px]" href="/nosotros">
@@ -498,13 +380,13 @@ export default function HomePage() {
             <span className="material-symbols-outlined text-sm">
               help_center
             </span>
-            Guía Rápida para Cuidadores
+            {t("home.guide.eyebrow")}
           </div>
           <h2 className="text-headline-lg-mobile md:text-headline-lg font-headline-lg text-on-surface font-extrabold tracking-tight">
-            Cómo elegir tu equipo
+            {t("home.guide.title")}
           </h2>
           <p className="text-body-md font-body-md text-on-surface-variant mt-3">
-            Identifica la necesidad específica de tu ser querido para encontrar la solución que mejor se adapta a tu espacio y rutina diaria.
+            {t("home.guide.description")}
           </p>
         </div>
         {/* 4 Cards Grid Layout */}
@@ -518,10 +400,10 @@ export default function HomePage() {
                 </span>
               </div>
               <h3 className="text-headline-sm font-headline-sm text-on-surface font-extrabold mb-2">
-                Baño
+                {t("home.guide.bath.title")}
               </h3>
               <p className="text-body-sm font-body-sm text-on-surface-variant mb-6 leading-relaxed">
-                Dificultad para agacharse o reincorporarse del inodoro sin perder el equilibrio o forzar a quien te asiste.
+                {t("home.guide.bath.text")}
               </p>
             </div>
             <div className="pt-4 border-t border-outline-variant">
@@ -547,10 +429,10 @@ export default function HomePage() {
                 </span>
               </div>
               <h3 className="text-headline-sm font-headline-sm text-on-surface font-extrabold mb-2">
-                Cama
+                {t("home.guide.bed.title")}
               </h3>
               <p className="text-body-sm font-body-sm text-on-surface-variant mb-6 leading-relaxed">
-                Complicaciones para sentarse erguido en el colchón al despertar, comer o tomar medicamentos.
+                {t("home.guide.bed.text")}
               </p>
             </div>
             <div className="pt-4 border-t border-outline-variant">
@@ -576,10 +458,10 @@ export default function HomePage() {
                 </span>
               </div>
               <h3 className="text-headline-sm font-headline-sm text-on-surface font-extrabold mb-2 leading-tight">
-                Levantarme de un sillón o silla
+                {t("home.guide.chair.title")}
               </h3>
               <p className="text-body-sm font-body-sm text-on-surface-variant mb-6 leading-relaxed">
-                Falta de fuerza muscular en las piernas al pararse desde el living, comedor o silla de trabajo.
+                {t("home.guide.chair.text")}
               </p>
             </div>
             <div className="pt-4 border-t border-outline-variant">
@@ -605,10 +487,10 @@ export default function HomePage() {
                 </span>
               </div>
               <h3 className="text-headline-sm font-headline-sm text-on-surface font-extrabold mb-2">
-                Traslados
+                {t("home.guide.transfer.title")}
               </h3>
               <p className="text-body-sm font-body-sm text-on-surface-variant mb-6 leading-relaxed">
-                Mover a una persona dependiente desde la cama hacia la silla de ruedas o baño sin lesionar la espalda del cuidador.
+                {t("home.guide.transfer.text")}
               </p>
             </div>
             <div className="pt-4 border-t border-outline-variant">
@@ -637,13 +519,13 @@ export default function HomePage() {
               <span className="material-symbols-outlined text-sm">
                 rate_review
               </span>
-              Experiencias Reales
+              {t("home.testimonials.eyebrow")}
             </div>
             <h2 className="text-headline-lg-mobile md:text-headline-lg font-headline-lg text-on-surface font-extrabold tracking-tight">
-              Opiniones de quienes ya confían en SillaUp
+              {t("home.testimonials.title")}
             </h2>
             <p className="text-body-md font-body-md text-on-surface-variant mt-2 max-w-xl">
-              Historias de familias y cuidadores en Chile que recuperaron tranquilidad, bienestar y ergonomía en su día a día.
+              {t("home.testimonials.description")}
             </p>
           </div>
           {/* Botón "Dejar mi opinión" */}
@@ -677,7 +559,7 @@ export default function HomePage() {
                 </span>
               </div>
               <p className="text-body-md font-body-md text-on-surface italic mb-6">
-                &quot;El Elevador de inodoro le devolvió la dignidad y la autonomía a mi padre de 82 años. Ya no requiere pedir auxilio cada vez que necesita ir al baño y la estructura es sumamente firme.&quot;
+                &quot;El Elevador de inodoro le devolvió la dignidad y la autonomía a mi padre de 82 años. Ya no requiere pedir auxilio cada vez que necesita ir al baño y la estructura es sumamente firme&quot;
               </p>
             </div>
             <div className="flex items-center gap-3 pt-4 border-t border-outline-variant">
@@ -715,7 +597,7 @@ export default function HomePage() {
                 </span>
               </div>
               <p className="text-body-md font-body-md text-on-surface italic mb-6">
-                &quot;Como enfermera cuidadora, la Grúa manual salvó mi columna. Es suave para la paciente, cabe perfectamente por las puertas del departamento y el servicio técnico en Santiago respondió de inmediato.&quot;
+                &quot;Como enfermera cuidadora, la Grúa manual salvó mi columna. Es suave para la paciente, cabe perfectamente por las puertas del departamento y el servicio técnico en Santiago respondió de inmediato&quot;
               </p>
             </div>
             <div className="flex items-center gap-3 pt-4 border-t border-outline-variant">
@@ -744,7 +626,7 @@ export default function HomePage() {
                 Sé el primero en compartir tu experiencia
               </h3>
               <p className="text-body-sm font-body-sm text-on-surface-variant max-w-xs mx-auto mb-4">
-                ¿Ya utilizas un equipo SillaUp en tu hogar? Tu testimonio ayuda a orientar a otras familias en su decisión.
+                ¿Ya utilizas un equipo SillaUp en tu hogar? Tu testimonio ayuda a orientar a otras familias en su decisión
               </p>
             </div>
             <button onClick={() => setFeedbackOpen(true)} type="button" className="w-full inline-flex items-center justify-center rounded-full bg-[#0D141A] text-white text-label-md font-label-md py-3.5 px-6 hover:bg-black active:scale-95 transition-all duration-150 min-h-[48px]">
@@ -765,14 +647,14 @@ export default function HomePage() {
                 <span className="material-symbols-outlined text-sm">
                   support_agent
                 </span>
-                Asesoría Personalizada
+                {t("home.contact.eyebrow")}
               </div>
               <h2 className="text-headline-lg-mobile md:text-headline-lg font-headline-lg text-on-surface font-extrabold tracking-tight">
-                Contáctanos
+                {t("home.contact.title")}
               </h2>
               {/* Exact verbatim text required by prompt */}
               <p className="text-body-md font-body-md text-on-surface-variant mt-4 leading-relaxed">
-                Si tienes dudas o quieres adquirir alguno de nuestros productos, puedes contactarnos por teléfono, correo electrónico o completar el formulario y nos comunicaremos contigo a la brevedad.
+                {t("home.contact.description")}
               </p>
             </div>
             {/* Canales Directos */}
@@ -843,10 +725,10 @@ export default function HomePage() {
           <div className="lg:col-span-7">
             <div className="bg-white rounded-3xl p-8 md:p-10 border border-outline-variant shadow-lg">
               <h3 className="text-headline-md font-headline-md text-on-surface font-extrabold mb-2">
-                Envíanos un mensaje
+                {t("home.contact.formTitle")}
               </h3>
               <p className="text-body-sm font-body-sm text-on-surface-variant mb-8">
-                Completa los campos y un especialista en movilidad asistida te asesorará sin compromiso.
+                {t("home.contact.formDescription")}
               </p>
               <form className="space-y-6" onSubmit={contact.onSubmit}>
                 <input name="source" type="hidden" value="inicio" />
@@ -900,7 +782,7 @@ export default function HomePage() {
                     check_circle
                   </span>
                   <p className="text-body-sm font-body-sm font-bold">
-                    ¡Mensaje enviado con éxito! Nos comunicaremos contigo en menos de 24 horas hábiles.
+                    ¡Mensaje enviado con éxito! Nos comunicaremos contigo en menos de 24 horas hábiles
                   </p>
                 </div>
                 )}
@@ -923,12 +805,12 @@ export default function HomePage() {
           Compartir mi experiencia
         </h3>
         <p className="text-body-sm font-body-sm text-on-surface-variant mb-6">
-          Tu valoración ayuda a familias y cuidadores a tomar decisiones informadas con seguridad.
+          Tu valoración ayuda a familias y cuidadores a tomar decisiones informadas con seguridad
         </p>
         {feedback.status === "success" ? (
         <div className="p-4 rounded-2xl bg-tertiary-container/10 border border-tertiary-container/30 text-tertiary flex items-center gap-3" role="status">
           <span className="material-symbols-outlined text-2xl shrink-0">check_circle</span>
-          <p className="text-body-sm font-body-sm font-bold">¡Muchas gracias! Tu opinión será revisada y publicada.</p>
+          <p className="text-body-sm font-body-sm font-bold">¡Muchas gracias! Tu opinión será revisada y publicada</p>
         </div>
         ) : (
         <form className="space-y-4" onSubmit={feedback.onSubmit}>

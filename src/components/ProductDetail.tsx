@@ -2,7 +2,9 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { getProduct, productHref, products } from "@/lib/products";
+import { formatPrice, productHref, salePrice } from "@/lib/products";
+import { CardPrice, OfferBadge } from "@/components/Price";
+import { useProduct, useProducts } from "@/components/SiteData";
 import { site } from "@/lib/site";
 import ImageLightbox from "@/components/ImageLightbox";
 import ShowroomMap from "@/components/ShowroomMap";
@@ -34,9 +36,9 @@ function Stars({ size }: { size: "sm" | "lg" }) {
 }
 
 export default function ProductDetail({ slug }: { slug: string }) {
-  const product = getProduct(slug);
+  const product = useProduct(slug);
   const { article, name, titleName } = product;
-  const others = products.filter((p) => p.slug !== slug);
+  const others = useProducts().filter((p) => p.slug !== slug);
 
   const [active, setActive] = useState(0);
   const [fading, setFading] = useState(false);
@@ -81,8 +83,8 @@ export default function ProductDetail({ slug }: { slug: string }) {
               <img
                 alt={`${name} SillaUp`}
                 className="w-full max-h-[420px] object-contain transition-transform duration-300 group-hover:scale-105"
-                data-alt={product.gallery[active].alt}
-                src={product.gallery[active].src}
+                data-alt={(product.gallery[active] ?? product.gallery[0]).alt}
+                src={(product.gallery[active] ?? product.gallery[0]).src}
                 style={{ opacity: fading ? 0.4 : 1, transition: "opacity 120ms" }}
               />
               <span className="absolute bottom-4 right-4 bg-surface-container-lowest/95 border border-outline-variant text-on-surface px-3 py-1.5 rounded-full text-label-sm font-label-sm flex items-center gap-1.5 shadow-sm opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity">
@@ -129,9 +131,16 @@ export default function ProductDetail({ slug }: { slug: string }) {
               {/* Bloque de Precio */}
               <div className="bg-surface-container-low rounded-lg p-4 mb-6 border border-outline-variant flex items-baseline justify-between">
                 <div>
-                  <span className="text-xs uppercase tracking-wide text-on-surface-variant font-bold block">Precio de lanzamiento</span>
+                  {product.offer ? (
+                    <span className="text-xs uppercase tracking-wide text-error font-extrabold flex flex-wrap items-center gap-x-2 mb-1">
+                      {product.offer.label} -{product.offer.discountPercent}%
+                      <s className="text-on-surface-variant font-bold normal-case tracking-normal">{formatPrice(product.price)}</s>
+                    </span>
+                  ) : (
+                    <span className="text-xs uppercase tracking-wide text-on-surface-variant font-bold block">Precio de lanzamiento</span>
+                  )}
                   <span className="text-display-lg-mobile md:text-display-lg font-display-lg text-on-surface tracking-tight leading-none">
-                    {product.price}
+                    {formatPrice(salePrice(product))}
                   </span>
                   <span className="text-body-sm text-on-surface-variant ml-1 font-semibold">CLP</span>
                 </div>
@@ -213,7 +222,7 @@ export default function ProductDetail({ slug }: { slug: string }) {
               </p>
               <p className="text-body-md font-body-md text-on-surface-variant leading-relaxed mb-4">{product.detail.body}</p>
               <div className="p-4 bg-surface-container rounded-lg border-l-4 border-primary text-body-sm text-on-surface flex items-center justify-between">
-                <span>¿Necesitas una prueba presencial antes de comprar? Puedes visitar nuestro showroom en Santiago.</span>
+                <span>¿Necesitas una prueba presencial antes de comprar? Puedes visitar nuestro showroom en Santiago</span>
                 <a className="text-primary font-bold hover:underline shrink-0 ml-4" href="#contacto-taller">
                   Agendar visita
                 </a>
@@ -256,7 +265,7 @@ export default function ProductDetail({ slug }: { slug: string }) {
           </h2>
           <p className="text-body-md font-body-md text-on-surface-variant mb-8 max-w-2xl mx-auto">
             {product.video?.description ??
-              `Pronto publicaremos el video demostrativo ${article === "la" ? "de la" : "del"} ${name}. Mientras tanto, podemos mostrártelo por videollamada o en nuestro showroom.`}
+              `Pronto publicaremos el video demostrativo ${article === "la" ? "de la" : "del"} ${name}. Mientras tanto, podemos mostrártelo por videollamada o en nuestro showroom`}
           </p>
           <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl border-2 border-outline-variant bg-inverse-surface">
             {product.video ? (
@@ -287,7 +296,7 @@ export default function ProductDetail({ slug }: { slug: string }) {
           {product.video && (
             <p className="text-xs text-on-surface-variant mt-4 flex items-center justify-center gap-1">
               <span className="material-symbols-outlined text-[16px] text-primary">play_circle</span>
-              Video oficial grabado en taller y ambientes reales de transferencia SillaUp.
+              Video oficial grabado en taller y ambientes reales de transferencia SillaUp
             </p>
           )}
         </div>
@@ -380,7 +389,7 @@ export default function ProductDetail({ slug }: { slug: string }) {
               <span className="text-secondary font-label-sm text-label-sm uppercase tracking-wider block mb-1">Propósito &amp; Compromiso Humano</span>
               <h3 className="text-headline-md font-headline-md text-on-surface mb-3">¿Por qué elegir SillaUp?</h3>
               <p className="text-body-lg font-body-lg text-on-surface-variant leading-relaxed">
-                &quot;Desarrollamos soluciones que mejoran la calidad de vida de las personas y facilitan el trabajo de quienes las cuidan: una forma más segura, cómoda y eficiente de hacer transferencias, con menos esfuerzo físico y más tranquilidad en cada movimiento.&quot;
+                &quot;Desarrollamos soluciones que mejoran la calidad de vida de las personas y facilitan el trabajo de quienes las cuidan: una forma más segura, cómoda y eficiente de hacer transferencias, con menos esfuerzo físico y más tranquilidad en cada movimiento&quot;
               </p>
             </div>
           </div>
@@ -394,7 +403,7 @@ export default function ProductDetail({ slug }: { slug: string }) {
             <span className="text-secondary font-label-sm text-label-sm uppercase tracking-wider block mb-2">Visita Nuestro Showroom</span>
             <h2 className="text-headline-md font-headline-md text-on-surface mb-4">Dónde nos ubicamos y Asesoría Técnica personalizada</h2>
             <p className="text-body-md font-body-md text-on-surface-variant mb-6">
-              Te invitamos a probar {article} {name.toLowerCase()} en persona, resolver dudas con nuestros diseñadores industriales y recibir asesoría especializada antes de decidir tu compra.
+              Te invitamos a probar {article} {name.toLowerCase()} en persona, resolver dudas con nuestros diseñadores industriales y recibir asesoría especializada antes de decidir tu compra
             </p>
             <div className="space-y-4">
               {[
@@ -501,7 +510,7 @@ export default function ProductDetail({ slug }: { slug: string }) {
               <span className="material-symbols-outlined text-[40px] text-outline mb-3">rate_review</span>
               <h3 className="text-headline-sm font-headline-sm text-on-surface mb-2">Sé el primero en compartir tu experiencia</h3>
               <p className="text-body-sm font-body-sm text-on-surface-variant max-w-md mx-auto">
-                ¿Ya utilizas {article} {name.toLowerCase()} en tu hogar? Tu testimonio ayuda a orientar a otras familias en su decisión.
+                ¿Ya utilizas {article} {name.toLowerCase()} en tu hogar? Tu testimonio ayuda a orientar a otras familias en su decisión
               </p>
             </div>
           )}
@@ -526,8 +535,9 @@ export default function ProductDetail({ slug }: { slug: string }) {
               <div>
                 <div className="relative bg-surface-container-low rounded-lg p-4 mb-4 flex items-center justify-center h-48 overflow-hidden">
                   <span className="absolute top-2 right-2 bg-on-surface text-surface-container-lowest text-label-sm font-label-sm px-2.5 py-1 rounded-full">
-                    {other.price}
+                    <CardPrice product={other} />
                   </span>
+                  <OfferBadge className="absolute top-2 left-2" product={other} />
                   <img alt="" className="max-h-36 object-contain group-hover:scale-105 transition-transform" data-alt={other.image.alt} src={other.image.src} />
                 </div>
                 <span className="text-xs text-secondary font-bold uppercase tracking-wider">{other.card.category}</span>

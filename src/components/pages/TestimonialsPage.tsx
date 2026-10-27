@@ -3,8 +3,10 @@
 import { submitTestimonial } from "@/app/actions";
 import StarRating from "@/components/StarRating";
 import { useFormAction } from "@/components/useFormAction";
+import { useText } from "@/components/SiteData";
 
 export default function TestimonialsPage() {
+  const t = useText();
   const feedback = useFormAction(submitTestimonial);
 
   return (
@@ -18,13 +20,13 @@ export default function TestimonialsPage() {
             <span className="material-symbols-outlined text-sm fill-icon" data-icon="verified" style={{ fontVariationSettings: "'FILL' 1" }}>
               verified
             </span>
-            Opiniones de Familias y Cuidadores
+            {t("testimonials.hero.eyebrow")}
           </div>
           <h1 className="text-headline-lg font-headline-lg text-on-surface tracking-tight mb-3">
-            Testimonios y Opiniones
+            {t("testimonials.hero.title")}
           </h1>
           <p className="text-body-lg font-body-lg text-on-surface-variant max-w-2xl mx-auto mb-6">
-            Conoce las experiencias reales de quienes ya utilizan nuestros equipos de movilidad asistida en todo Chile.
+            {t("testimonials.hero.description")}
           </p>
           <div className="inline-flex flex-wrap items-center justify-center gap-4 bg-surface-container-low px-6 py-3.5 rounded-2xl border border-outline-variant">
             <div className="flex items-center gap-2">
@@ -77,7 +79,7 @@ export default function TestimonialsPage() {
                   Agregar una opinión y puntuar
                 </h2>
                 <p className="text-body-sm text-on-surface-variant">
-                  Comparte tu experiencia para ayudar a otros cuidadores y pacientes.
+                  Comparte tu experiencia para ayudar a otros cuidadores y pacientes
                 </p>
               </div>
             </div>
@@ -139,7 +141,7 @@ export default function TestimonialsPage() {
                   <span className="material-symbols-outlined text-sm text-tertiary" data-icon="lock">
                     lock
                   </span>
-                  Tu testimonio será publicado respetando tu privacidad.
+                  Tu testimonio será publicado respetando tu privacidad
                 </p>
                 <button type="submit" disabled={feedback.sending} className="inline-flex items-center justify-center gap-2 bg-primary-container hover:bg-primary text-white font-bold text-sm px-6 py-2.5 rounded-full transition-all shadow-sm active:scale-95 disabled:opacity-60">
                   <span className="material-symbols-outlined text-base" data-icon="send">
@@ -160,7 +162,7 @@ export default function TestimonialsPage() {
               <span className="material-symbols-outlined text-lg" data-icon="check_circle">
                 check_circle
               </span>
-              ¡Gracias! Tu opinión ha sido recibida con éxito y estará visible tras una breve revisión.
+              ¡Gracias! Tu opinión ha sido recibida con éxito y estará visible tras una breve revisión
             </div>
             )}
           </div>
@@ -215,7 +217,7 @@ export default function TestimonialsPage() {
                 Compra verificada: Grúa manual
               </div>
               <p className="text-body-md text-on-surface leading-relaxed">
-                &quot;Mi madre tiene movilidad reducida por un ACV y levantarla entre dos personas nos causaba mucho dolor de espalda. Con la Grúa manual de SillaUp, una sola persona la transfiere suavemente y sin esfuerzo de la cama a la silla de ruedas. La calidad y firmeza se notan de inmediato.&quot;
+                &quot;Mi madre tiene movilidad reducida por un ACV y levantarla entre dos personas nos causaba mucho dolor de espalda. Con la Grúa manual de SillaUp, una sola persona la transfiere suavemente y sin esfuerzo de la cama a la silla de ruedas. La calidad y firmeza se notan de inmediato&quot;
               </p>
               <span className="text-[11px] text-on-surface-variant block mt-3">
                 Publicado hace 3 días
@@ -262,7 +264,7 @@ export default function TestimonialsPage() {
                 Compra verificada: Elevador de inodoro
               </div>
               <p className="text-body-md text-on-surface leading-relaxed">
-                &quot;Como profesional recomiendo ampliamente el Elevador de inodoro. Le devuelve total intimidad al paciente en el baño y otorga una estabilidad sobresaliente gracias a sus apoyabrazos abatibles. El despacho a regiones fue rápido y el armado muy sencillo.&quot;
+                &quot;Como profesional recomiendo ampliamente el Elevador de inodoro. Le devuelve total intimidad al paciente en el baño y otorga una estabilidad sobresaliente gracias a sus apoyabrazos abatibles. El despacho a regiones fue rápido y el armado muy sencillo&quot;
               </p>
               <span className="text-[11px] text-on-surface-variant block mt-3">
                 Publicado hace 1 semana
@@ -309,7 +311,7 @@ export default function TestimonialsPage() {
                 Compra verificada: Grúa eléctrica
               </div>
               <p className="text-body-md text-on-surface leading-relaxed">
-                &quot;Excelente atención y orientación telefónica para elegir el arnés adecuado para mi papá. La grúa eléctrica funciona de manera impecable y silenciosa. Da mucha tranquilidad contar con servicio técnico directo en Chile.&quot;
+                &quot;Excelente atención y orientación telefónica para elegir el arnés adecuado para mi papá. La grúa eléctrica funciona de manera impecable y silenciosa. Da mucha tranquilidad contar con servicio técnico directo en Chile&quot;
               </p>
               <span className="text-[11px] text-on-surface-variant block mt-3">
                 Publicado hace 2 semanas
@@ -356,7 +358,7 @@ export default function TestimonialsPage() {
                 Compra verificada: Elevador multiuso
               </div>
               <p className="text-body-md text-on-surface leading-relaxed">
-                &quot;El elevador multiuso cabe sin problemas por puertas y pasillos de 70 cm. Para los turnos nocturnos ha sido un descanso enorme, fácil de desinfectar y con materiales muy resistentes.&quot;
+                &quot;El elevador multiuso cabe sin problemas por puertas y pasillos de 70 cm. Para los turnos nocturnos ha sido un descanso enorme, fácil de desinfectar y con materiales muy resistentes&quot;
               </p>
               <span className="text-[11px] text-on-surface-variant block mt-3">
                 Publicado hace 3 semanas
@@ -366,10 +368,10 @@ export default function TestimonialsPage() {
           {/* CONSULTA O ASESORÍA DIRECTA */}
           <div className="bg-surface-container rounded-2xl p-6 md:p-8 text-center border border-outline-variant/60">
             <h3 className="text-headline-sm font-bold text-on-surface mb-2">
-              ¿Tienes dudas sobre qué equipo necesitas?
+              {t("testimonials.cta.title")}
             </h3>
             <p className="text-body-md text-on-surface-variant max-w-xl mx-auto mb-6">
-              Nuestro equipo kinesiológico evalúa sin costo la condición de tu paciente y las medidas de tu hogar.
+              {t("testimonials.cta.description")}
             </p>
             <a href="https://wa.me/56972215907" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#1ebc59] text-white px-7 py-3 rounded-full font-bold text-sm shadow-md transition-all active:scale-95">
               <span className="material-symbols-outlined text-xl" data-icon="chat">

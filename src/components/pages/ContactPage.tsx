@@ -3,8 +3,10 @@
 import { submitContact } from "@/app/actions";
 import ShowroomMap from "@/components/ShowroomMap";
 import { useFormAction } from "@/components/useFormAction";
+import { useText } from "@/components/SiteData";
 
 export default function ContactPage() {
+  const t = useText();
   const contact = useFormAction(submitContact);
 
   return (
@@ -13,7 +15,7 @@ export default function ContactPage() {
       {/* 2. HERO DE CONTACTO */}
       <section className="relative overflow-hidden py-20 md:py-28 border-b border-outline-variant flex items-center justify-center">
         <div className="absolute inset-0 z-0">
-          <img className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6d0PHJgk2xF-BNuBp7Z7vGiYgA7ZyXB6dIIWCsRoi-JehpkaYUVNyn8IsILIDB3vy5adzw-DxOapJOH8WivtgkkHxy4TD4_IaLtEXv1j8Y0YQWtWWdnOXCsHuQhibe1s3-EFbt-6t-9JdLUNajbx8OoYU1JZV5507NbQ1j7NFtSxokMbkdPt89ge6qRpH9XpuHmiDDpJ9l8u-lYbfvUAFU1INgOJqaOJ_ZEHBKz9hiZpN08NpImE" alt="Showroom y taller de movilidad asistida SillaUp" />
+          <img className="w-full h-full object-cover" src={t("contact.hero.image")} alt="Showroom y taller de movilidad asistida SillaUp" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0d141a]/90 via-[#151c23]/80 to-[#174a5a]/70"></div>
         </div>
         <div className="relative z-10 max-w-4xl mx-auto px-6 md:px-12 text-center text-white space-y-6">
@@ -22,15 +24,15 @@ export default function ContactPage() {
               support_agent
             </span>
             <span>
-              Atención directa y asesoría
+              {t("contact.hero.eyebrow")}
             </span>
           </div>
           <div className="space-y-4">
             <h1 className="text-headline-lg-mobile md:text-headline-lg font-headline-lg text-white font-extrabold tracking-tight leading-tight">
-              Contáctanos
+              {t("contact.hero.title")}
             </h1>
             <p className="text-body-lg font-body-lg text-white/90 max-w-2xl mx-auto leading-relaxed">
-              Estamos aquí para orientarte y resolver cualquier duda sobre nuestros equipos de movilidad asistida.
+              {t("contact.hero.description")}
             </p>
           </div>
           <div className="flex flex-wrap items-center justify-center gap-2.5 pt-2">
@@ -59,10 +61,10 @@ export default function ContactPage() {
       <section className="py-12 md:py-16 max-w-7xl mx-auto px-6 md:px-12">
         <div className="text-center max-w-2xl mx-auto mb-10">
           <h2 className="text-headline-sm md:text-headline-md font-headline-md text-on-surface mb-2">
-            Canales de Atención Inmediata
+            {t("contact.channels.title")}
           </h2>
           <p className="text-body-md font-body-md text-on-surface-variant">
-            Selecciona el medio de contacto que te sea más cómodo para recibir orientación experta sobre nuestros modelos y transferencias.
+            {t("contact.channels.description")}
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -84,7 +86,7 @@ export default function ContactPage() {
                 WhatsApp
               </h3>
               <p className="text-body-sm font-body-sm text-on-surface-variant mb-4">
-                Resuelve dudas técnicas al instante, solicita videos funcionales y cotiza con nuestros especialistas.
+                Resuelve dudas técnicas al instante, solicita videos funcionales y cotiza con nuestros especialistas
               </p>
               <p className="text-label-lg font-label-lg text-on-surface mb-6 font-bold">
                 +56 9 7221 5907
@@ -117,7 +119,7 @@ export default function ContactPage() {
                 Llamada directa
               </h3>
               <p className="text-body-sm font-body-sm text-on-surface-variant mb-4">
-                Atención técnica y comercial inmediata. Habla directamente con ingenieros y asesores de movilidad.
+                Atención técnica y comercial inmediata. Habla directamente con ingenieros y asesores de movilidad
               </p>
               <p className="text-label-lg font-label-lg text-on-surface mb-6 font-bold">
                 +56 9 7221 5907
@@ -150,7 +152,7 @@ export default function ContactPage() {
                 Correo electrónico
               </h3>
               <p className="text-body-sm font-body-sm text-on-surface-variant mb-4">
-                Atención a consultas, cotizaciones formales para clínicas, residencias de adultos mayores o particulares.
+                Atención a consultas, cotizaciones formales para clínicas, residencias de adultos mayores o particulares
               </p>
               <p className="text-label-lg font-label-lg text-on-surface mb-6 font-bold break-all">
                 sillaupventas@gmail.com
@@ -172,13 +174,13 @@ export default function ContactPage() {
           <div className="lg:col-span-5 space-y-6">
             <div className="space-y-3">
               <span className="text-label-sm font-label-sm text-primary uppercase tracking-wider">
-                Formulario de Asistencia
+                {t("contact.form.eyebrow")}
               </span>
               <h2 className="text-headline-md font-headline-md text-on-surface">
-                Escríbenos y un especialista evaluará tus requerimientos
+                {t("contact.form.title")}
               </h2>
               <p className="text-body-md font-body-md text-on-surface-variant">
-                Cada usuario y cuidador tiene necesidades ergonómicas únicas. Ya sea para transferencias de cama a silla, acceso vehicular o traslados de baño, te ayudamos a elegir la configuración óptima.
+                {t("contact.form.description")}
               </p>
             </div>
             <div className="bg-surface-container-lowest p-6 rounded-lg border border-outline-variant space-y-4 shadow-sm">
@@ -197,7 +199,7 @@ export default function ContactPage() {
                     <strong>
                       Respuesta en menos de 2 horas hábiles
                     </strong>{" "}
-                    a través del canal de tu preferencia.
+                    a través del canal de tu preferencia
                   </span>
                 </li>
                 <li className="flex items-start gap-2.5">
@@ -208,7 +210,7 @@ export default function ContactPage() {
                     <strong>
                       Cotizaciones oficiales detalladas
                     </strong>{" "}
-                    con opciones de pago y despacho nacional.
+                    con opciones de pago y despacho nacional
                   </span>
                 </li>
                 <li className="flex items-start gap-2.5">
@@ -219,7 +221,7 @@ export default function ContactPage() {
                     <strong>
                       Asesoría técnica sin costo
                     </strong>{" "}
-                    por videollamada o visita en showroom en Santiago.
+                    por videollamada o visita en showroom en Santiago
                   </span>
                 </li>
               </ul>
@@ -300,7 +302,7 @@ export default function ContactPage() {
                 <span className="material-symbols-outlined text-[16px] text-tertiary">
                   lock
                 </span>
-                Tus datos están protegidos y solo se utilizarán para gestionar tu solicitud.
+                Tus datos están protegidos y solo se utilizarán para gestionar tu solicitud
               </p>
               {/* Submit Button (Píldora Azul Verbatim [Enviar mensaje]) */}
               <div className="pt-2">
@@ -330,7 +332,7 @@ export default function ContactPage() {
                     ¡Mensaje enviado con éxito!
                   </p>
                   <p className="text-body-sm font-body-sm">
-                    Nos pondremos en contacto contigo dentro de las próximas horas hábiles.
+                    Nos pondremos en contacto contigo dentro de las próximas horas hábiles
                   </p>
                 </div>
               </div>
@@ -349,14 +351,14 @@ export default function ContactPage() {
                 <span className="material-symbols-outlined text-[16px]">
                   location_on
                 </span>
-                Taller & Showroom Central
+                {t("contact.location.eyebrow")}
               </div>
               <h2 className="text-headline-md font-headline-md text-on-surface mb-3">
-                Nuestra ubicación
+                {t("contact.location.title")}
               </h2>
               {/* Verbatim text from prompt */}
               <p className="text-body-md font-body-md text-on-surface-variant mb-6">
-                Nos encontramos en el corazón de la ciudad, siempre listos para atenderte con productos que cambian vidas.
+                {t("contact.location.description")}
               </p>
               <div className="space-y-4 border-t border-outline-variant pt-6">
                 {/* Address */}
@@ -390,10 +392,10 @@ export default function ContactPage() {
                       Horario de atención
                     </h4>
                     <p className="text-body-sm font-body-sm text-on-surface-variant font-bold">
-                      Lunes a Viernes de 9:00 a 18:00 hrs.
+                      Lunes a Viernes de 9:00 a 18:00 hrs
                     </p>
                     <p className="text-body-sm font-body-sm text-on-surface-variant">
-                      Sábados con previa coordinación técnica.
+                      Sábados con previa coordinación técnica
                     </p>
                   </div>
                 </div>
@@ -409,7 +411,7 @@ export default function ContactPage() {
                       Soporte y Pruebas
                     </h4>
                     <p className="text-body-sm font-body-sm text-on-surface-variant">
-                      Zona acondicionada para pruebas prácticas de transferencia con pacientes y cuidadores.
+                      Zona acondicionada para pruebas prácticas de transferencia con pacientes y cuidadores
                     </p>
                   </div>
                 </div>

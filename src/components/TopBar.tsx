@@ -1,6 +1,6 @@
 import { site } from "@/lib/site";
 
-export default function TopBar() {
+export default function TopBar({ promo }: { promo: string }) {
   return (
     <aside className="bg-brand-teal text-white text-xs md:text-sm py-2 px-4 transition-colors duration-150">
       <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2 font-medium">
@@ -9,7 +9,7 @@ export default function TopBar() {
             <span className="material-symbols-outlined text-sm">auto_awesome</span>
           </span>
           <span className="tracking-wide font-extrabold uppercase text-[11px] md:text-xs">
-            DESCUENTOS ESPECIALES POR TIEMPO LIMITADO
+            {promo}
           </span>
           <span className="hidden md:inline text-secondary-fixed text-xs font-semibold">| Envíos y soporte a todo Chile</span>
         </div>

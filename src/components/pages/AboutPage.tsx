@@ -1,7 +1,11 @@
+"use client";
+
 import Link from "next/link";
 import ShowroomMap from "@/components/ShowroomMap";
+import { useText } from "@/components/SiteData";
 
 export default function AboutPage() {
+  const t = useText();
   return (
     <>
     {/* Hero Section */}
@@ -15,14 +19,14 @@ export default function AboutPage() {
                 verified
               </span>
               <span>
-                FABRICACIÓN CHILENA & INGENIERÍA BIOMÉDICA
+                {t("about.hero.eyebrow")}
               </span>
             </div>
             <h1 className="text-headline-lg-mobile md:text-display-lg font-headline-lg-mobile md:font-display-lg text-on-surface tracking-tight">
-              Acerca de nosotros
+              {t("about.hero.title")}
             </h1>
             <p className="text-body-lg text-on-surface-variant font-body-lg max-w-2xl leading-relaxed">
-              Nacimos con un propósito claro: transformar el cuidado y la transferencia de personas en Chile mediante ingeniería ergonómica de precisión, empatía genuina y compromiso inquebrantable. Diseñamos para devolver la autonomía a los pacientes y resguardar la salud postural y física de quienes los asisten a diario.
+              {t("about.hero.description")}
             </p>
             <div className="pt-2 flex flex-wrap gap-4 items-center">
               <div className="flex items-center space-x-3 bg-surface-container-lowest p-3 pr-5 rounded-2xl border border-outline-variant/60 shadow-sm">
@@ -61,7 +65,7 @@ export default function AboutPage() {
           <div className="lg:col-span-5 relative">
             <div className="relative rounded-3xl overflow-hidden border border-outline-variant shadow-md bg-surface-container-lowest p-2">
               <div className="relative rounded-2xl overflow-hidden aspect-[4/3] bg-surface-container">
-                <img alt="" className="w-full h-full object-cover" data-alt="A warm and uplifting photograph of a Chilean occupational therapist and family caregiver gently supporting an elderly patient in a bright sunlit modern Santiago living room. The room has warm wooden elements, soft natural indoor plants, and clinical-grade assistive mobility hardware with clean matte blue accents. The lighting is natural, soft, and respectful, emphasizing safety, dignity, and human connection." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdzEKBf_tx-dMa7jNMoUMSyUMdkYhjECk0vQMRHnqO3QD9R3OWygTXTQC5AyXqv_7lGp_GQBhkLykvQ0qj8RklGGyrBMiA5Y0Dvz2bq4Pe_x8_viXBqe_IY3sEtbl2JRYueFPMvMby1-bwdylCMPv97wG0LZcWNBTBxWVI0uYXhTy7rlwgePSPOt5OjDdjOxtBZYcD0SfAKIrxDvWwKRV-GbHQu0vc3oGJCRjlsxprf2OC1ogD1kE" />
+                <img alt="" className="w-full h-full object-cover" data-alt="A warm and uplifting photograph of a Chilean occupational therapist and family caregiver gently supporting an elderly patient in a bright sunlit modern Santiago living room. The room has warm wooden elements, soft natural indoor plants, and clinical-grade assistive mobility hardware with clean matte blue accents. The lighting is natural, soft, and respectful, emphasizing safety, dignity, and human connection." src={t("about.hero.image")} />
               </div>
               <div className="p-4 bg-surface-container-lowest rounded-xl mt-2 flex items-center justify-between">
                 <div className="flex items-center space-x-3">
@@ -84,13 +88,13 @@ export default function AboutPage() {
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="text-center max-w-2xl mx-auto mb-14 space-y-3">
           <span className="text-xs font-label-sm uppercase tracking-widest text-primary font-bold">
-            Nuestra Guía Estratégica
+            {t("about.strategy.eyebrow")}
           </span>
           <h2 className="text-headline-md md:text-headline-lg font-headline-md md:font-headline-lg text-on-surface">
-            Impulsando el estándar de cuidado en Chile
+            {t("about.strategy.title")}
           </h2>
           <p className="text-body-md text-on-surface-variant">
-            Tecnología creada desde la realidad local, pensando en la ergonomía de hogares y centros asistenciales.
+            {t("about.strategy.description")}
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
@@ -111,7 +115,7 @@ export default function AboutPage() {
                   Nuestra Visión
                 </h3>
                 <p className="text-body-md text-on-surface-variant leading-relaxed">
-                  &quot;Ser un referente en innovación para la movilidad asistida, ofreciendo soluciones accesibles que transformen la calidad de vida de las personas y se conviertan en la primera opción para hogares, instituciones de salud y centros de rehabilitación en Chile y Latinoamérica.&quot;
+                  &quot;{t("about.strategy.vision")}&quot;
                 </p>
               </div>
             </div>
@@ -141,7 +145,7 @@ export default function AboutPage() {
                   Nuestra Misión
                 </h3>
                 <p className="text-body-md text-on-surface-variant leading-relaxed">
-                  &quot;Desarrollar soluciones innovadoras, accesibles y de alta calidad que mejoren la movilidad, seguridad e independencia de las personas con movilidad reducida, facilitando las actividades cotidianas y reduciendo la carga física de quienes las cuidan.&quot;
+                  &quot;{t("about.strategy.mission")}&quot;
                 </p>
               </div>
             </div>
@@ -167,13 +171,13 @@ export default function AboutPage() {
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="max-w-2xl mb-14 space-y-3">
           <span className="text-xs font-label-sm uppercase tracking-widest text-[#174A5A] font-bold">
-            Respaldo Técnico & Calidad
+            {t("about.pillars.eyebrow")}
           </span>
           <h2 className="text-headline-md md:text-headline-lg font-headline-md md:font-headline-lg text-on-surface">
-            Nuestros Pilares de Fabricación Chilena
+            {t("about.pillars.title")}
           </h2>
           <p className="text-body-md text-on-surface-variant">
-            Combinamos tecnología metalmecánica de alta resistencia con acompañamiento técnico continuo para brindar tranquilidad absoluta.
+            {t("about.pillars.description")}
           </p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -188,7 +192,7 @@ export default function AboutPage() {
               Taller en Santiago
             </h4>
             <p className="text-body-sm font-body-sm text-on-surface-variant">
-              Fabricación nacional en nuestra maestranza ubicada en Merced 562, Santiago Centro. Control estricto de cada soldadura y ensamble.
+              Fabricación nacional en nuestra maestranza ubicada en Merced 562, Santiago Centro. Control estricto de cada soldadura y ensamble
             </p>
           </div>
           {/* Pilar 2 */}
@@ -202,7 +206,7 @@ export default function AboutPage() {
               Acero Estructural Certificado
             </h4>
             <p className="text-body-sm font-body-sm text-on-surface-variant">
-              Chasis robustos construidos con perfiles de acero de alta resistencia y pintura electroestática lavable para uso clínico y domiciliario.
+              Chasis robustos construidos con perfiles de acero de alta resistencia y pintura electroestática lavable para uso clínico y domiciliario
             </p>
           </div>
           {/* Pilar 3 */}
@@ -216,7 +220,7 @@ export default function AboutPage() {
               Soporte Inmediato
             </h4>
             <p className="text-body-sm font-body-sm text-on-surface-variant">
-              Repuestos en stock y mantención preventiva sin depender de prolongadas demoras aduaneras o de importaciones extranjeras.
+              Repuestos en stock y mantención preventiva sin depender de prolongadas demoras aduaneras o de importaciones extranjeras
             </p>
           </div>
           {/* Pilar 4 */}
@@ -230,7 +234,7 @@ export default function AboutPage() {
               Kinesiología Preventiva
             </h4>
             <p className="text-body-sm font-body-sm text-on-surface-variant">
-              Diseño guiado por la prevención de lesiones lumbares en cuidadores y la dignidad en cada proceso de transferencia física.
+              Diseño guiado por la prevención de lesiones lumbares en cuidadores y la dignidad en cada proceso de transferencia física
             </p>
           </div>
         </div>
@@ -246,14 +250,14 @@ export default function AboutPage() {
                 local_hospital
               </span>
               <span>
-                CONVENIOS & VOLUMEN
+                {t("about.institutions.eyebrow")}
               </span>
             </div>
             <h2 className="text-headline-md md:text-headline-lg font-headline-md md:font-headline-lg tracking-tight">
-              Soluciones a medida para Instituciones de Salud y Residencias
+              {t("about.institutions.title")}
             </h2>
             <p className="text-body-lg text-surface-container-lowest/90 font-body-lg max-w-2xl leading-relaxed">
-              Equipamos clínicas, hospitales, residencias de adultos mayores y centros de rehabilitación física en todo el territorio chileno. Ofrecemos adaptaciones ergonómicas especiales, capacitación de personal clínico y planes de mantención periódica para flotas asistenciales.
+              {t("about.institutions.description")}
             </p>
             <div className="flex flex-wrap gap-4 pt-4">
               {/* WhatsApp Institucional */}
@@ -286,7 +290,7 @@ export default function AboutPage() {
                   check_circle
                 </span>
                 <span>
-                  Facturación inmediata y orden de compra centralizada.
+                  Facturación inmediata y orden de compra centralizada
                 </span>
               </li>
               <li className="flex items-start space-x-2">
@@ -294,7 +298,7 @@ export default function AboutPage() {
                   check_circle
                 </span>
                 <span>
-                  Capacitación in situ para equipos de enfermería y TENS.
+                  Capacitación in situ para equipos de enfermería y TENS
                 </span>
               </li>
               <li className="flex items-start space-x-2">
@@ -302,7 +306,7 @@ export default function AboutPage() {
                   check_circle
                 </span>
                 <span>
-                  Inspección de seguridad y certificado de carga operativa.
+                  Inspección de seguridad y certificado de carga operativa
                 </span>
               </li>
             </ul>
@@ -321,14 +325,14 @@ export default function AboutPage() {
                 pin_drop
               </span>
               <span>
-                SHOWROOM & PUNTO DE RETIRO
+                {t("about.showroom.eyebrow")}
               </span>
             </div>
             <h2 className="text-headline-md md:text-headline-lg font-headline-md md:font-headline-lg text-on-surface">
-              Dónde estamos y Showroom en Santiago
+              {t("about.showroom.title")}
             </h2>
             <p className="text-body-md text-on-surface-variant">
-              Le invitamos a conocer directamente nuestras grúas de transferencia y sillas de bipedestación. Podrá probar la ergonomía, evaluar los mecanismos de seguridad y conversar con nuestro equipo de ingenieros y especialistas.
+              {t("about.showroom.description")}
             </p>
             <div className="space-y-4 pt-2">
               <div className="flex items-start space-x-4 p-4 rounded-2xl bg-surface-container-lowest border border-outline-variant/60 shadow-xs">

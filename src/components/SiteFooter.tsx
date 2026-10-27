@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { navLinks, site } from "@/lib/site";
 
-export default function SiteFooter() {
+export default function SiteFooter({ about }: { about: string }) {
   return (
     <footer className="bg-surface-container border-t border-outline-variant mt-auto">
       <div className="w-full py-12 px-6 md:px-12 max-w-7xl mx-auto">
@@ -15,7 +15,7 @@ export default function SiteFooter() {
               <span className="text-headline-sm font-headline-sm font-extrabold text-on-surface tracking-tight">SillaUp</span>
             </div>
             <p className="text-body-sm font-body-sm text-on-surface-variant max-w-sm">
-              Fabricación chilena de dispositivos de movilidad asistida y traslados seguros. Ingeniería ergonómica al servicio de familias y cuidadores.
+              {about}
             </p>
             <div className="inline-flex items-center gap-2 bg-brand-teal text-white px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">
               <span className="material-symbols-outlined text-sm">handshake</span>
@@ -74,8 +74,8 @@ export default function SiteFooter() {
         </div>
 
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-body-sm font-body-sm text-on-surface-variant gap-4">
-          <p className="text-center sm:text-left">© 2026 SillaUp. Todos los derechos reservados.</p>
-          <p className="text-xs text-outline">Merced 562, Santiago · Fabricación Chilena de Dispositivos de Movilidad Asistida.</p>
+          <p className="text-center sm:text-left">© 2026 SillaUp. Todos los derechos reservados</p>
+          <p className="text-xs text-outline">Merced 562, Santiago · Fabricación Chilena de Dispositivos de Movilidad Asistida</p>
         </div>
       </div>
     </footer>
