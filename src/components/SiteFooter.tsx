@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { navLinks, site } from "@/lib/site";
 
@@ -8,12 +9,7 @@ export default function SiteFooter({ about }: { about: string }) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-outline-variant">
           {/* Marca */}
           <div className="lg:col-span-4 space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-primary-container flex items-center justify-center text-white">
-                <span className="material-symbols-outlined text-xl">accessible_forward</span>
-              </div>
-              <span className="text-headline-sm font-headline-sm font-extrabold text-on-surface tracking-tight">SillaUp</span>
-            </div>
+            <Image alt="SillaUp" className="h-10 w-auto" height={746} sizes="115px" src="/logo.png" width={2109} />
             <p className="text-body-sm font-body-sm text-on-surface-variant max-w-sm">
               {about}
             </p>

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -25,13 +26,15 @@ export default function SiteHeader() {
     >
       <div className="flex justify-between items-center w-full px-6 md:px-12 max-w-7xl mx-auto h-20">
         <Link className="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-primary rounded-lg p-1" href="/">
-          <div className="w-10 h-10 rounded-xl bg-primary-container flex items-center justify-center text-white shadow-md shadow-primary/20 group-hover:scale-105 transition-transform duration-150">
-            <span className="material-symbols-outlined text-2xl font-bold">accessible_forward</span>
-          </div>
-          <div className="flex flex-col">
-            <span className="text-headline-sm font-headline-sm font-extrabold text-on-surface tracking-tight">SillaUp</span>
-            <span className="text-[10px] uppercase tracking-widest text-secondary font-bold -mt-1">Movilidad Asistida</span>
-          </div>
+          <Image
+            alt="SillaUp · Movilidad Asistida"
+            className="h-11 w-auto group-hover:scale-105 transition-transform duration-150"
+            height={746}
+            preload
+            sizes="125px"
+            src="/logo.png"
+            width={2109}
+          />
         </Link>
 
         <nav aria-label="Navegación principal" className="hidden lg:flex items-center gap-8">

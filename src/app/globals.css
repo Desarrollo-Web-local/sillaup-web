@@ -64,6 +64,17 @@ body {
   animation: hero-kenburns 14s ease-in-out infinite alternate;
 }
 
+/* Flotación suave (imagen de "Quiénes somos" en el inicio). Usa transform, que no comparte
+   con la aparición por scroll (translate) */
+@keyframes float {
+  0%, 100% { transform: translateY(0); box-shadow: 0 20px 40px -12px rgba(13, 20, 26, 0.18); }
+  50% { transform: translateY(-14px); box-shadow: 0 32px 48px -16px rgba(13, 20, 26, 0.14); }
+}
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+  will-change: transform;
+}
+
 /* Sombras usadas en testimonios */
 .custom-shadow-lvl1 { box-shadow: 0 4px 20px -2px rgba(13, 20, 26, 0.05); }
 .custom-shadow-lvl2 { box-shadow: 0 12px 32px -4px rgba(13, 20, 26, 0.08); }
@@ -71,7 +82,8 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .animate-kenburns,
-  .animate-marquee {
+  .animate-marquee,
+  .animate-float {
     animation: none;
   }
 }

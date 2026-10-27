@@ -261,7 +261,7 @@ export default function HomePage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Left Image Composition (Human touch, warmth, dignity) */}
           <div className="lg:col-span-5 relative order-2 lg:order-1">
-            <div className="relative rounded-3xl overflow-hidden border border-outline-variant shadow-xl">
+            <div className="relative rounded-3xl overflow-hidden border border-outline-variant shadow-xl animate-float">
               <img alt="Cuidado familiar y autonomía con SillaUp" className="w-full h-[460px] object-cover" data-alt="A touching and respectful close-up portrait of a family member gently holding the hands of an elderly relative in a brightly illuminated Chilean living room. The warm sunlight streams through large windows, illuminating genuine smiles, physical comfort, and human dignity. Muted warm wood and light blue accents dominate the scene, evoking authentic care, safety, and emotional relief." src={t("home.about.image")} />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
               <div className="absolute bottom-6 left-6 right-6 text-white">
