@@ -12,9 +12,6 @@ export const contentDefaults = {
   "home.hero.subtitle": "Ingeniería ergonómica nacional creada para devolver la independencia a adultos mayores y aliviar la carga física de cuidadores y familias en todo Chile",
   "home.products.eyebrow": "Soluciones Especializadas",
   "home.products.title": "Productos",
-  "home.about.image": "https://lh3.googleusercontent.com/aida-public/AB6AXuClSjsj93KlCXIL6tW2vtulQCFwSK13LERVaOaF9lU2i3KblL_b5I27xoOhEDoclve_DJL09dDT105OUp7V-Y2dznNj598xhll4pHfDL_DQkUo1v7aeJF1t7x6OnLv8QogDpJcwQTYriySRKDZGacWrsLu5VnO_9YC7W4KwL84vcIbmpco8exPm0FuQBXzWLsoLoH_O55PMphpftviZJuRj5Sq-RGrjd1pY_a9XRvmExUdpcVOiPKg",
-  "home.about.imageTitle": "Compromiso Chileno",
-  "home.about.imageText": "Diseñado y ensamblado en Santiago para hogares de todo el país",
   "home.about.eyebrow": "Propósito y Dignidad",
   "home.about.title": "Quiénes Somos",
   "home.about.quote": "Somos SillaUp, desarrollamos soluciones accesibles que ayudan a personas con movilidad reducida a recuperar su independencia, mejorando su seguridad y calidad de vida en actividades cotidianas",
@@ -193,21 +190,6 @@ export const contentPages: ContentPage[] = [
       {
         "label": "Quiénes somos",
         "fields": [
-          {
-            "key": "home.about.image",
-            "label": "Imagen",
-            "kind": "image"
-          },
-          {
-            "key": "home.about.imageTitle",
-            "label": "Título sobre la imagen",
-            "kind": "text"
-          },
-          {
-            "key": "home.about.imageText",
-            "label": "Texto sobre la imagen",
-            "kind": "text"
-          },
           {
             "key": "home.about.eyebrow",
             "label": "Etiqueta",

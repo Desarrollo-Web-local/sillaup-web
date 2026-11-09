@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { submitContact, submitTestimonial } from "@/app/actions";
@@ -220,8 +221,9 @@ export default function HomePage() {
           <article key={product.slug} className="relative min-w-[300px] sm:min-w-[340px] md:min-w-[370px] bg-white text-on-surface rounded-3xl p-5 shadow-lg flex flex-col justify-between snap-start border border-[#DADADB] hover:shadow-2xl hover:scale-[1.03] transition-all duration-300">
             <div>
               {/* Image Stage with Embedded Price Chip */}
-              <div className="relative w-full h-56 rounded-2xl bg-surface-container-low overflow-hidden mb-4">
-                <img alt={`${product.name} SillaUp`} className="w-full h-full object-cover" data-alt={coverImage(product).alt} src={coverImage(product).src} />
+              {/* Vertical (3:4) stage: product photos are portrait; object-contain never crops or distorts them */}
+              <div className="relative w-full aspect-[3/4] rounded-2xl bg-surface-container-low overflow-hidden mb-4">
+                <img alt={`${product.name} SillaUp`} className="w-full h-full object-contain" data-alt={coverImage(product).alt} src={coverImage(product).src} />
                 <div className="absolute top-3 right-3 bg-[#0D141A] text-white text-label-sm font-label-sm px-3.5 py-1.5 rounded-full font-extrabold shadow-md">
                   <CardPrice product={product} />
                 </div>
@@ -259,19 +261,10 @@ export default function HomePage() {
     <section className="py-20 md:py-28 bg-surface-container-lowest" id="nosotros">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          {/* Left Image Composition (Human touch, warmth, dignity) */}
+          {/* Left: full SillaUp logo with a continuous soft float */}
           <div className="lg:col-span-5 relative order-2 lg:order-1">
-            <div className="relative rounded-3xl overflow-hidden border border-outline-variant shadow-xl animate-float">
-              <img alt="Cuidado familiar y autonomía con SillaUp" className="w-full h-[460px] object-cover" data-alt="A touching and respectful close-up portrait of a family member gently holding the hands of an elderly relative in a brightly illuminated Chilean living room. The warm sunlight streams through large windows, illuminating genuine smiles, physical comfort, and human dignity. Muted warm wood and light blue accents dominate the scene, evoking authentic care, safety, and emotional relief." src={t("home.about.image")} />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
-              <div className="absolute bottom-6 left-6 right-6 text-white">
-                <p className="text-label-md font-label-md uppercase tracking-wider font-bold">
-                  {t("home.about.imageTitle")}
-                </p>
-                <p className="text-body-sm font-body-sm text-white/90">
-                  {t("home.about.imageText")}
-                </p>
-              </div>
+            <div className="relative rounded-3xl border border-outline-variant bg-white shadow-xl animate-float flex items-center justify-center px-8 py-16 md:px-12 md:py-24">
+              <Image alt="SillaUp" className="w-full max-w-md h-auto" height={746} sizes="(min-width: 1024px) 400px, 80vw" src="/logo.png" width={2109} />
             </div>
           </div>
           {/* Right Content Column */}
@@ -337,24 +330,21 @@ export default function HomePage() {
               de garantía técnica
             </p>
           </div>
-          {/* Cifra 3: Hasta 110 kg */}
+          {/* Cifra 3: Más de 50 ventas realizadas */}
           <div className="bg-white p-6 md:p-8 rounded-3xl border border-outline-variant shadow-sm text-center flex flex-col justify-center items-center">
             <span className="material-symbols-outlined text-secondary text-3xl mb-2">
-              weight
+              shopping_bag
             </span>
             <div className="flex items-baseline justify-center">
               <span className="text-headline-sm font-bold text-on-surface-variant mr-1">
-                Hasta
+                Más de
               </span>
               <span className="text-display-lg-mobile md:text-display-lg font-extrabold text-on-surface tracking-tight">
-              <Counter to={110} />
+              <Counter to={50} />
             </span>
-              <span className="text-headline-md font-bold text-on-surface ml-1">
-                kg
-              </span>
             </div>
             <p className="text-label-md font-label-md text-on-surface-variant mt-1 font-bold">
-              de capacidad de carga
+              ventas realizadas
             </p>
           </div>
           {/* Cifra 4: Fabricación chilena (sin contador) */}
