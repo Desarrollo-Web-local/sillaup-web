@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { CardPrice, OfferBadge } from "@/components/Price";
 import { useProducts, useText } from "@/components/SiteData";
-import { formatPrice, productHref, salePrice } from "@/lib/products";
+import { coverImage, formatPrice, productHref, salePrice } from "@/lib/products";
 
 export default function CatalogPage() {
   const t = useText();
@@ -126,7 +126,7 @@ export default function CatalogPage() {
                   Fabricación Chilena
                 </div>
                 )}
-                <img alt="" className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300" data-alt={product.image.alt} src={product.image.src} />
+                <img alt="" className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300" data-alt={coverImage(product).alt} src={coverImage(product).src} />
               </div>
               {/* Category Tag */}
               <div className="flex items-center gap-2 mb-2">

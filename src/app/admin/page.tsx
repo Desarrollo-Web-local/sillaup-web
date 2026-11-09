@@ -52,8 +52,6 @@ async function Dashboard() {
       offer_ends_at: row?.offer_ends_at ?? "",
       in_stock: row?.in_stock ?? p.inStock,
       mercado_pago_url: row?.mercado_pago_url ?? p.mercadoPagoUrl ?? "",
-      image_url: row?.image_url ?? p.image.src,
-      home_image_url: row?.home_image_url ?? p.homeImage.src,
       gallery: row?.gallery?.length ? row.gallery : p.gallery.map((image) => image.src),
     };
   });

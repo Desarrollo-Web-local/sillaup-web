@@ -22,8 +22,7 @@ export type ProductForm = {
   offer_ends_at: string;
   in_stock: boolean;
   mercado_pago_url: string;
-  image_url: string;
-  home_image_url: string;
+  /** Fotos del producto; la primera es la portada */
   gallery: string[];
 };
 
@@ -295,44 +294,77 @@ function ImageInput({ id, name, value, onChange, folder }: { id: string; name: s
   );
 }
 
-function GalleryInput({ initial }: { initial: string[] }) {
+/**
+ * The product's single set of photos. The first one is the cover ("Foto de portada"), used in
+ * the catalog, the home carousel and as the first photo of the product page; marking another
+ * photo as cover moves it to the front.
+ */
+function PhotosInput({ initial }: { initial: string[] }) {
   const [urls, setUrls] = useState(initial);
   const [draft, setDraft] = useState("");
   const { uploading, error, upload } = useUpload("productos");
+  const add = (added: string[]) => setUrls((list) => [...list, ...added.filter((url) => !list.includes(url))]);
   const move = (from: number, to: number) =>
     setUrls((list) => {
       const next = [...list];
       [next[from], next[to]] = [next[to], next[from]];
       return next;
     });
+  const makeCover = (i: number) => setUrls((list) => [list[i], ...list.filter((_, j) => j !== i)]);
   const addDraft = () => {
     if (!draft.trim()) return;
-    setUrls((list) => [...list, draft.trim()]);
+    add([draft.trim()]);
     setDraft("");
   };
 
   return (
     <div>
       <input name="gallery" type="hidden" value={urls.join("\n")} />
+      <p className="text-body-sm text-on-surface-variant mb-4">
+        Sube todas las fotos del producto y marca con la estrella la <strong className="text-on-surface">foto de portada</strong>: es la que se ve en el
+        catálogo, en el carrusel de inicio y al abrir la ficha. Las demás se muestran en la galería de la ficha
+      </p>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-        {urls.map((url, i) => (
-          <div className="relative rounded-xl border border-outline-variant bg-surface-container-low overflow-hidden" key={`${url}-${i}`}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img alt={`Foto ${i + 1}`} className="w-full h-28 object-cover" src={url} />
-            {i === 0 && <span className="absolute top-1.5 left-1.5 text-[10px] font-extrabold uppercase bg-primary-container text-white px-2 py-0.5 rounded-full">Principal</span>}
-            <div className="flex justify-between bg-white border-t border-outline-variant">
-              <button aria-label="Mover a la izquierda" className="p-1.5 disabled:opacity-30" disabled={i === 0} onClick={() => move(i, i - 1)} type="button">
-                <span className="material-symbols-outlined text-base">chevron_left</span>
-              </button>
-              <button aria-label="Quitar foto" className="p-1.5 text-error" onClick={() => setUrls((list) => list.filter((_, j) => j !== i))} type="button">
-                <span className="material-symbols-outlined text-base">delete</span>
-              </button>
-              <button aria-label="Mover a la derecha" className="p-1.5 disabled:opacity-30" disabled={i === urls.length - 1} onClick={() => move(i, i + 1)} type="button">
-                <span className="material-symbols-outlined text-base">chevron_right</span>
-              </button>
+        {urls.map((url, i) => {
+          const cover = i === 0;
+          return (
+            <div
+              className={`relative rounded-xl border-2 bg-surface-container-low overflow-hidden ${cover ? "border-primary-container shadow-md" : "border-outline-variant"}`}
+              key={url}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img alt={cover ? "Foto de portada" : `Foto ${i + 1}`} className="w-full h-28 object-cover" src={url} />
+              {cover && (
+                <span className="absolute top-1.5 left-1.5 inline-flex items-center gap-1 text-[10px] font-extrabold uppercase bg-primary-container text-white px-2 py-0.5 rounded-full">
+                  <span className="material-symbols-outlined text-xs" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
+                  Portada
+                </span>
+              )}
+              <div className="flex justify-between bg-white border-t border-outline-variant">
+                <button aria-label="Mover a la izquierda" className="p-1.5 disabled:opacity-30" disabled={i <= 1} onClick={() => move(i, i - 1)} title="Mover a la izquierda" type="button">
+                  <span className="material-symbols-outlined text-base">chevron_left</span>
+                </button>
+                <button
+                  aria-label={cover ? "Es la foto de portada" : "Usar como foto de portada"}
+                  aria-pressed={cover}
+                  className={`p-1.5 ${cover ? "text-primary-container" : "text-on-surface-variant hover:text-primary-container"}`}
+                  disabled={cover}
+                  onClick={() => makeCover(i)}
+                  title={cover ? "Foto de portada" : "Usar como foto de portada"}
+                  type="button"
+                >
+                  <span className="material-symbols-outlined text-base" style={cover ? { fontVariationSettings: "'FILL' 1" } : undefined}>star</span>
+                </button>
+                <button aria-label="Quitar foto" className="p-1.5 text-error" onClick={() => setUrls((list) => list.filter((_, j) => j !== i))} title="Quitar foto" type="button">
+                  <span className="material-symbols-outlined text-base">delete</span>
+                </button>
+                <button aria-label="Mover a la derecha" className="p-1.5 disabled:opacity-30" disabled={cover || i === urls.length - 1} onClick={() => move(i, i + 1)} title="Mover a la derecha" type="button">
+                  <span className="material-symbols-outlined text-base">chevron_right</span>
+                </button>
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
       <div className="flex flex-col sm:flex-row gap-2 mt-3">
         <input
@@ -351,10 +383,10 @@ function GalleryInput({ initial }: { initial: string[] }) {
         <button className="shrink-0 rounded-full bg-surface-container px-4 py-2 text-sm font-bold hover:bg-surface-container-high" onClick={addDraft} type="button">
           Agregar
         </button>
-        <UploadButton multiple onFiles={(files) => upload(files, (added) => setUrls((list) => [...list, ...added]))} uploading={uploading} />
+        <UploadButton multiple onFiles={(files) => upload(files, add)} uploading={uploading} />
       </div>
       {error && <p className="text-xs font-bold text-error mt-2">{error}</p>}
-      <p className={hint}>La primera foto es la que se ve al abrir la ficha. Sin fotos se usan las originales</p>
+      <p className={hint}>Hasta 12 fotos, JPG, PNG o WebP de hasta 8 MB. Si quitas todas, se usan las fotos originales</p>
     </div>
   );
 }
@@ -397,8 +429,6 @@ function ProductFormView({ product }: { product: ProductForm }) {
   const { pending, result, onSubmit } = useSave(saveProduct);
   const [price, setPrice] = useState(String(product.price));
   const [discount, setDiscount] = useState(String(product.discount_percent || ""));
-  const [image, setImage] = useState(product.image_url);
-  const [homeImage, setHomeImage] = useState(product.home_image_url);
 
   const priceValue = Number(price.replace(/[^\d]/g, ""));
   const discountValue = Number(discount) || 0;
@@ -485,18 +515,7 @@ function ProductFormView({ product }: { product: ProductForm }) {
       </Card>
 
       <Card title="Fotos">
-        <div>
-          <p className={label}>Foto del catálogo</p>
-          <ImageInput folder="productos" id="image_url" name="image_url" onChange={setImage} value={image} />
-        </div>
-        <div>
-          <p className={label}>Foto del carrusel de inicio</p>
-          <ImageInput folder="productos" id="home_image_url" name="home_image_url" onChange={setHomeImage} value={homeImage} />
-        </div>
-        <div>
-          <p className={label}>Galería de la ficha</p>
-          <GalleryInput initial={product.gallery} />
-        </div>
+        <PhotosInput initial={product.gallery} />
       </Card>
 
       <SaveBar pending={pending} result={result}>

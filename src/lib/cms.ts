@@ -22,8 +22,7 @@ export type ProductOverride = {
   offer_ends_at: string | null;
   in_stock: boolean | null;
   mercado_pago_url: string | null;
-  image_url: string | null;
-  home_image_url: string | null;
+  /** Fotos del producto; la primera es la portada */
   gallery: string[] | null;
 };
 
@@ -53,8 +52,6 @@ export function applyOverride(product: Product, row: ProductOverride | undefined
     inStock: row.in_stock ?? product.inStock,
     // An empty string turns the Mercado Pago button off (purchase via WhatsApp)
     mercadoPagoUrl: row.mercado_pago_url === null ? product.mercadoPagoUrl : row.mercado_pago_url || undefined,
-    image: row.image_url ? { ...product.image, src: row.image_url } : product.image,
-    homeImage: row.home_image_url ? { ...product.homeImage, src: row.home_image_url } : product.homeImage,
     gallery: row.gallery?.length ? row.gallery.map((src) => ({ src, alt: name })) : product.gallery,
   };
 }

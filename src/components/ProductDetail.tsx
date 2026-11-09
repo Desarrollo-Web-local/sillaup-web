@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { formatPrice, productHref, salePrice } from "@/lib/products";
+import { coverImage, formatPrice, productHref, salePrice } from "@/lib/products";
 import { CardPrice, OfferBadge } from "@/components/Price";
 import { useProduct, useProducts } from "@/components/SiteData";
 import { site } from "@/lib/site";
@@ -538,7 +538,7 @@ export default function ProductDetail({ slug }: { slug: string }) {
                     <CardPrice product={other} />
                   </span>
                   <OfferBadge className="absolute top-2 left-2" product={other} />
-                  <img alt="" className="max-h-36 object-contain group-hover:scale-105 transition-transform" data-alt={other.image.alt} src={other.image.src} />
+                  <img alt="" className="max-h-36 object-contain group-hover:scale-105 transition-transform" data-alt={coverImage(other).alt} src={coverImage(other).src} />
                 </div>
                 <span className="text-xs text-secondary font-bold uppercase tracking-wider">{other.card.category}</span>
                 <h3 className="text-label-lg font-label-lg text-on-surface mt-1 mb-2">{other.name}</h3>

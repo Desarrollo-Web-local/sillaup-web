@@ -24,13 +24,12 @@ export type Product = {
   offer?: Offer;
   /** Link de pago de Mercado Pago. Sin él, la compra se coordina por WhatsApp. */
   mercadoPagoUrl?: string;
-  /** Foto del catálogo y de "Otros productos del catálogo" */
-  image: Image;
-  /** Foto del carrusel de la página de inicio */
-  homeImage: Image;
   homeTags: [string, string];
   homeSummary: string;
-  /** Fotos de la ficha del producto */
+  /**
+   * Fotos del producto. La primera es la foto de portada: se usa en el catálogo, el carrusel de
+   * inicio, "Otros productos del catálogo" y como foto inicial de la ficha.
+   */
   gallery: Image[];
   quickSpecs: { icon: Icon; label: string; value: string }[];
   detail: {
@@ -71,17 +70,13 @@ export const products: Product[] = [
     summary: "Traslada personas con seguridad y comodidad gracias a su elevación eléctrica, reduciendo el esfuerzo del cuidador",
     price: 390000,
     mercadoPagoUrl: "https://mpago.la/2Gquygz",
-    image: {
-      alt: "Heavy-duty clinical electric patient transfer crane in white powder-coated steel with battery actuator, ergonomic push handles, spreader bar, and high-stability base. Modern medical clinic aesthetic with soft natural daylight.",
-      src: "https://lh3.googleusercontent.com/aida-public/AB6AXuDtLuGtnkXlzWFAWHy4rdQW-FR7-pfcvbaw_blcKx4QzsV3y6ykm_zSC9hEkETSrDc7V7iYSKRpvEAEpbiJbl7vOhRiACGh9DhLfOIycuSrXG7syMipQ9Co2zw2PJVIt0oOurTDqZZOeykAWEw9HoS9wdMvuWVuNYKXFXGDiVKezD0YaI1RP6yWe0IACRs2hqC6Y0Ilu1U8wtjvNSV9d0t6fchdW7Zi6f9y39ZoHcaTEoiIzT0cv10"
-    },
-    homeImage: {
-      alt: "Professional medical equipment photography of an advanced battery-powered electric patient lifting crane. Sleek white frame with remote control wand, emergency stop module, dual battery pack, and reinforced patient sling. Set in a luminous, sterile yet welcoming contemporary rehabilitation suite with light oak flooring and soft ambient highlights.",
-      src: "https://lh3.googleusercontent.com/aida-public/AB6AXuDS7k-zTobK5wOL5LeI2e3SpVf3aruEp6gSmS6AMCf5Lbtp9s2uRJ5UwE2-MK0HwfmzLgNPKFJVE_jJIVYDqWWwmMARXgB5QhIVIk3PV6UzqD8RCf3x_9dN3LUAC0mzl35lWBho4WnFDewSunONysdxKC6OkApqIKlQHL00g4S_VXxGFzqxQb1yUg-oCH3BtGLzOPYpy9dBNWZ6Gpt-H_m5qNwaWtCYzZ-MQ7_k5ly6TWotXgJvrBQ"
-    },
     homeTags: ["Eléctrica 24V", "SWL 110 kg"],
     homeSummary: "Traslada con seguridad mediante elevación eléctrica asistida con pulsar un solo botón en el mando remoto",
     gallery: [
+      {
+        alt: "Heavy-duty clinical electric patient transfer crane in white powder-coated steel with battery actuator, ergonomic push handles, spreader bar, and high-stability base. Modern medical clinic aesthetic with soft natural daylight.",
+        src: "https://lh3.googleusercontent.com/aida-public/AB6AXuDtLuGtnkXlzWFAWHy4rdQW-FR7-pfcvbaw_blcKx4QzsV3y6ykm_zSC9hEkETSrDc7V7iYSKRpvEAEpbiJbl7vOhRiACGh9DhLfOIycuSrXG7syMipQ9Co2zw2PJVIt0oOurTDqZZOeykAWEw9HoS9wdMvuWVuNYKXFXGDiVKezD0YaI1RP6yWe0IACRs2hqC6Y0Ilu1U8wtjvNSV9d0t6fchdW7Zi6f9y39ZoHcaTEoiIzT0cv10"
+      },
       {
         alt: "Side profile view of the white SillaUp electric patient lifter crane showing the dual mast structure, robust locking castor wheels, and hydraulic electric actuator piston against a bright neutral light backdrop.",
         src: "https://lh3.googleusercontent.com/aida-public/AB6AXuDj5dYnBxfp-3ArLJZWq5oe2OtOKqEpPK0NVvsZjeQwp7vAQ9cgDDydzBUdKU9GZDinN0dR64I3KzM3B-jNQYJ9MVyw6x12_x7CbJAdsydOPnaJbrRLxQA3pO76OW_rozfaoo-GPPW45K0-xn2jK7tetHXvVPp2LWehzBNJgJiBgIiLOW3Q5-gZL_asBy7eN9dnJ0UQilbNkEE4TOv6Prk3roXiANkqM48mQ2V_0uGgeLgjxug5rZs"
@@ -97,6 +92,10 @@ export const products: Product[] = [
       {
         alt: "Electric patient lift crane situated in a modern accessible bathroom next to a walk-in shower and toilet demonstrating clearance and transfer versatility in domestic environments.",
         src: "https://lh3.googleusercontent.com/aida-public/AB6AXuDFwQdJrnRtExOwQFEksK0xT2JAlTszsRcI7qBfhGwIU-wTPxKJeqnNZ6Csll22Ba7vLwbg80sVeI0vozzvpsRhInW-FmGDRiZKj8LcSEYEXeWBbxzx4swVDkFikU2NXTjxbaYYY7bD9U9bUvMqGoaWcQgseJHVmAaASjdAUvawga2tNikC4T3cYSD_g8lgcHxikBsef3-bTMJ3B3uzyWCTMg3yr5AKE5b2GFds7pxaJBW2cQ2dBL0"
+      },
+      {
+        alt: "Professional medical equipment photography of an advanced battery-powered electric patient lifting crane. Sleek white frame with remote control wand, emergency stop module, dual battery pack, and reinforced patient sling. Set in a luminous, sterile yet welcoming contemporary rehabilitation suite with light oak flooring and soft ambient highlights.",
+        src: "https://lh3.googleusercontent.com/aida-public/AB6AXuDS7k-zTobK5wOL5LeI2e3SpVf3aruEp6gSmS6AMCf5Lbtp9s2uRJ5UwE2-MK0HwfmzLgNPKFJVE_jJIVYDqWWwmMARXgB5QhIVIk3PV6UzqD8RCf3x_9dN3LUAC0mzl35lWBho4WnFDewSunONysdxKC6OkApqIKlQHL00g4S_VXxGFzqxQb1yUg-oCH3BtGLzOPYpy9dBNWZ6Gpt-H_m5qNwaWtCYzZ-MQ7_k5ly6TWotXgJvrBQ"
       }
     ],
     quickSpecs: [
@@ -304,17 +303,13 @@ export const products: Product[] = [
     tagline: "Siéntate y levántate del inodoro con seguridad y autonomía",
     summary: "Asistencia eléctrica para sentarse y ponerse de pie del inodoro con total seguridad y autonomía, sin exigir tus rodillas ni cadera",
     price: 390000,
-    image: {
-      alt: "Modern medical white steel toilet lifter device designed for senior and assisted hygiene care, placed in a contemporary spotless bathroom with gentle natural daylight. Clean sanitary atmosphere with ergonomic armrests, electric piston mechanism, and sturdy Chilean engineering.",
-      src: "https://lh3.googleusercontent.com/aida-public/AB6AXuDLS1R2uL0WK8P9va3sDBrxTvvG8oiP3wUagyQuT3rtnj199l6fqc5ILsX2EzQLaQfynPw6L1xOia7OyalFyU9GZFcOwmLHHXXdUAqcqiHRaRhXzpdtAFoERyr4ruqikkqKV-sv-4tilHZSQYp-Y-iIu2b4-oOBhkaGa-dRLa9hDJW3buVuYPYD0CS2uUEeCz71yt5gw6WyrlyrHQ5VedKyBXGv0ggAgOQlMTWmG1zMYtMeU2hi4nA"
-    },
-    homeImage: {
-      alt: "Studio catalog product photography of a modern ergonomic toilet lifter assistive chair on a pure high-key white background. Steel white powder-coated structure with soft padded medical armrests and non-slip safety suction footings. Clear ambient lighting highlighting high-precision engineering and domestic warmth in soft blue and white tones.",
-      src: "https://lh3.googleusercontent.com/aida-public/AB6AXuCxLwH6baDMQkdQ3RvRAUEjafYePfP7Gf2H-72wcfyTwOGod2IxvTegAgyLH1T20a8-FZBac5achCJTlYvGUQI0NtFr4SBEoxNP3ur6LSqkfKluHePWLFD3UOtDtYe92f_F0mjEac_Ys_xvp_DREJF9jSIxHzTVcWBlN14sn6yFCHxa5xFz3mltsJzsPQnQBYv9CmQuR06rx0LU3sSbETqCfaHy6E9XowMcyPaACxosmcKrONKshgI"
-    },
     homeTags: ["Baño seguro", "SWL 110 kg"],
     homeSummary: "Siéntate y levántate del inodoro con mayor seguridad y autonomía sin exigir tus rodillas ni cadera",
     gallery: [
+      {
+        alt: "Modern medical white steel toilet lifter device designed for senior and assisted hygiene care, placed in a contemporary spotless bathroom with gentle natural daylight. Clean sanitary atmosphere with ergonomic armrests, electric piston mechanism, and sturdy Chilean engineering.",
+        src: "https://lh3.googleusercontent.com/aida-public/AB6AXuDLS1R2uL0WK8P9va3sDBrxTvvG8oiP3wUagyQuT3rtnj199l6fqc5ILsX2EzQLaQfynPw6L1xOia7OyalFyU9GZFcOwmLHHXXdUAqcqiHRaRhXzpdtAFoERyr4ruqikkqKV-sv-4tilHZSQYp-Y-iIu2b4-oOBhkaGa-dRLa9hDJW3buVuYPYD0CS2uUEeCz71yt5gw6WyrlyrHQ5VedKyBXGv0ggAgOQlMTWmG1zMYtMeU2hi4nA"
+      },
       {
         alt: "Modern medical white steel toilet lifter device designed for senior and assisted hygiene care, placed in a contemporary spotless bathroom with gentle natural daylight. Clean sanitary atmosphere with ergonomic armrests, electric piston mechanism, and sturdy Chilean engineering.",
         src: "https://lh3.googleusercontent.com/aida-public/AB6AXuDLS1R2uL0WK8P9va3sDBrxTvvG8oiP3wUagyQuT3rtnj199l6fqc5ILsX2EzQLaQfynPw6L1xOia7OyalFyU9GZFcOwmLHHXXdUAqcqiHRaRhXzpdtAFoERyr4ruqikkqKV-sv-4tilHZSQYp-Y-iIu2b4-oOBhkaGa-dRLa9hDJW3buVuYPYD0CS2uUEeCz71yt5gw6WyrlyrHQ5VedKyBXGv0ggAgOQlMTWmG1zMYtMeU2hi4nA"
@@ -505,17 +500,13 @@ export const products: Product[] = [
     tagline: "Traslados seguros sin necesidad de electricidad",
     summary: "Traslada personas con seguridad y comodidad gracias a su sistema hidráulico manual, sin cables ni dependencia de la red eléctrica",
     price: 290000,
-    image: {
-      alt: "Manual patient lift crane made of pristine white tubular steel with hydraulic lever and robust medical caster wheels. Clean studio setting with neutral lighting, demonstrating assistive mobility transfer hardware for home care.",
-      src: "https://lh3.googleusercontent.com/aida-public/AB6AXuAQE1EGsuBgnCAwtx593rRSzTcVfIf-YHOrw3podrn6iE4W3gFg5t-S7MJhkGGF3N_44PgvPKf-BwyDlyB0EX_AYXuPkp5giwS8WrUrrtdWGKLH3QC5gqaUIop5I0L6v2FnNV6m5kdlE9COzT66P3Hzt6zkw-JEfXQ82M7ZeQ2U2M4ShON6_Zr_aAlakKbwiUOGlJFTHMRBspRgCFKCbgMNentcJ0TCNz_paQ4UVGJLKQMpIApysnw"
-    },
-    homeImage: {
-      alt: "Clinical product photography of a heavy-duty manual hydraulic patient transfer hoist crane. Powder-coated white steel framework with high-grade dual-caster locking wheels and an ergonomic comfort sling harness. Shot against a crisp bright backdrop with subtle blue reflections, highlighting medical grade precision, durability and dignified care.",
-      src: "https://lh3.googleusercontent.com/aida-public/AB6AXuAMFjiWKuRALQEYhmQgQxvWJfXscssKvHERbvsTtiKpdq0l0sZQE-BA7HcmsYA9hK0b544Ms-ZtlYB2n5n-Z-UUwzr7ovVokkYVV8IXNcJoI2a4HjQ-B6LM_HoU-U3uR6jpqDak5uljKy8QwUD_Eyz3laWZgXB7YmUgfhKL8cWXW1vodxsNdinNg76X6D_dW95MYuAlXLSU1bHqspcd66k2peRYNCciXDa3ROK_eAbCbwK4mh6MFZ0"
-    },
     homeTags: ["Hidráulica", "SWL 110 kg"],
     homeSummary: "Traslados seguros y cómodos con menor esfuerzo del cuidador, protegiendo la columna vertebral",
     gallery: [
+      {
+        alt: "Manual patient lift crane made of pristine white tubular steel with hydraulic lever and robust medical caster wheels. Clean studio setting with neutral lighting, demonstrating assistive mobility transfer hardware for home care.",
+        src: "https://lh3.googleusercontent.com/aida-public/AB6AXuAQE1EGsuBgnCAwtx593rRSzTcVfIf-YHOrw3podrn6iE4W3gFg5t-S7MJhkGGF3N_44PgvPKf-BwyDlyB0EX_AYXuPkp5giwS8WrUrrtdWGKLH3QC5gqaUIop5I0L6v2FnNV6m5kdlE9COzT66P3Hzt6zkw-JEfXQ82M7ZeQ2U2M4ShON6_Zr_aAlakKbwiUOGlJFTHMRBspRgCFKCbgMNentcJ0TCNz_paQ4UVGJLKQMpIApysnw"
+      },
       {
         alt: "Manual patient lift crane made of pristine white tubular steel with hydraulic lever and robust medical caster wheels. Clean studio setting with neutral lighting, demonstrating assistive mobility transfer hardware for home care.",
         src: "https://lh3.googleusercontent.com/aida-public/AB6AXuAQE1EGsuBgnCAwtx593rRSzTcVfIf-YHOrw3podrn6iE4W3gFg5t-S7MJhkGGF3N_44PgvPKf-BwyDlyB0EX_AYXuPkp5giwS8WrUrrtdWGKLH3QC5gqaUIop5I0L6v2FnNV6m5kdlE9COzT66P3Hzt6zkw-JEfXQ82M7ZeQ2U2M4ShON6_Zr_aAlakKbwiUOGlJFTHMRBspRgCFKCbgMNentcJ0TCNz_paQ4UVGJLKQMpIApysnw"
@@ -706,17 +697,13 @@ export const products: Product[] = [
     tagline: "Levántate sin esfuerzo desde cualquier asiento",
     summary: "Levántate suavemente desde sofás, sillas o el borde de la cama con apoyo progresivo, sin requerir la fuerza de otra persona",
     price: 390000,
-    image: {
-      alt: "Multipurpose electric sit-to-stand lifting mechanism integrated with cushioned support and white medical-grade frame. Designed for helping patients stand up easily from sofas, chairs and bed sides. Clean Chilean home environment with soft daylight.",
-      src: "https://lh3.googleusercontent.com/aida-public/AB6AXuBnK0tAF5kF-QUMMMccvlp8wxZHIdMGZcniYun8riNy2qkB_Po4ToWcXE-d6nscNudZKANeijS_jZw0llLRe9Ma-c0gDwbY_A4UOwn8Oj2RrorJmKwP8ZAO5V_gYomcb_zE1i9IXcHCWF3Zzb_5uAfc7GOcxavr4pe2-SgpPLPPZOfz1ObCwcQTbSI8GJf9zH9btFziLBrg5Nle2AFXgS4zNE4wyhkBDnGXrUjaHQQ56HtRNySg95s"
-    },
-    homeImage: {
-      alt: "Crisp studio product shot of a versatile portable multi-use chair lifting mechanism designed for domestic armchairs and dining seats. Clean white structural frame with cushioned support handles and non-slip rubber base. Shot in a bright minimalist room setting with soft natural illumination and calm therapeutic aesthetics.",
-      src: "https://lh3.googleusercontent.com/aida-public/AB6AXuC83eXy5G2pvbM-gKmLB2qScL3pKJEN0rDHzd7ITH4tIwPBXCVQXo8wezCA37mgf8NEVIti4f7XetSfLnPb9Yt3qAVFMrNM3Rk12vR5ziZaGnbE2ZDtjIbjbhGICKEbhTX4fZNF2-nwRcffLlXMTRPid64BW4weWrMGkLLDhFNjZowUb018ToQ1WW7O9ZERFZR4wqnHko-0qG3YAR-to8RuEtcrPEfi8zA-Zc1DmvrNeCVp3BapzVg"
-    },
     homeTags: ["Multisuperficie", "SWL 110 kg"],
     homeSummary: "Levántate con facilidad desde cualquier asiento o superficie sin requerir la fuerza de otra persona",
     gallery: [
+      {
+        alt: "Multipurpose electric sit-to-stand lifting mechanism integrated with cushioned support and white medical-grade frame. Designed for helping patients stand up easily from sofas, chairs and bed sides. Clean Chilean home environment with soft daylight.",
+        src: "https://lh3.googleusercontent.com/aida-public/AB6AXuBnK0tAF5kF-QUMMMccvlp8wxZHIdMGZcniYun8riNy2qkB_Po4ToWcXE-d6nscNudZKANeijS_jZw0llLRe9Ma-c0gDwbY_A4UOwn8Oj2RrorJmKwP8ZAO5V_gYomcb_zE1i9IXcHCWF3Zzb_5uAfc7GOcxavr4pe2-SgpPLPPZOfz1ObCwcQTbSI8GJf9zH9btFziLBrg5Nle2AFXgS4zNE4wyhkBDnGXrUjaHQQ56HtRNySg95s"
+      },
       {
         alt: "Multipurpose electric sit-to-stand lifting mechanism integrated with cushioned support and white medical-grade frame. Designed for helping patients stand up easily from sofas, chairs and bed sides. Clean Chilean home environment with soft daylight.",
         src: "https://lh3.googleusercontent.com/aida-public/AB6AXuBnK0tAF5kF-QUMMMccvlp8wxZHIdMGZcniYun8riNy2qkB_Po4ToWcXE-d6nscNudZKANeijS_jZw0llLRe9Ma-c0gDwbY_A4UOwn8Oj2RrorJmKwP8ZAO5V_gYomcb_zE1i9IXcHCWF3Zzb_5uAfc7GOcxavr4pe2-SgpPLPPZOfz1ObCwcQTbSI8GJf9zH9btFziLBrg5Nle2AFXgS4zNE4wyhkBDnGXrUjaHQQ56HtRNySg95s"
@@ -903,17 +890,13 @@ export const products: Product[] = [
     tagline: "Convierte tu cama en una cama ajustable",
     summary: "Convierte tu cama en una cama ajustable de forma sencilla para incorporarte, comer y descansar mejor, con respaldo regulable a control remoto",
     price: 390000,
-    image: {
-      alt: "Electric adjustable bed backrest lifter mechanism made with clean white steel frame and padded mattress surface. Placed over a modern bedroom bed in a warm and dignified home healthcare environment with morning sunlight.",
-      src: "https://lh3.googleusercontent.com/aida-public/AB6AXuC1xwEn0J2epefI5lcIi41M3fvYLi6xycur2aRCEQ2bHVJDS2f5Dn1RQRv5rSF-UAvpEUj9e95YMkEFt_uY-S0H0wwyjd3XDRZZZ04UgNlU6zVu5CoP1VFoUYJnB7u-F1hFsBy9CWM4cWfVPiA7303-SjT9OjYmyf1fB2JG2qZoNOYKSQF243eKVEBTbvQ9b1V7sRb3C89O0IUuV1V4UqGsVjqzpuc_bFKrwfW7R4AoAkqPO-5JDpQ"
-    },
-    homeImage: {
-      alt: "High-end catalog photography of an adjustable backrest and bed lifter frame installed seamlessly on a residential mattress. Powder-coated steel structure with smooth angle adjustments and padded head support. Pristine white studio lighting with delicate blue undertones, portraying modern domestic elder care technology.",
-      src: "https://lh3.googleusercontent.com/aida-public/AB6AXuCogt2eYljZ3d-EHas-E0n-hMaARqzggVLCksVxd7RGxGZbNmwDBhe3d2K6qZ6eBD3DC99KtvmhE2hkBn9vefS2ZgTt_ReWm5uamzs-BOHeKYdzqiVt_D8O6vo2A8KJxMpbPY0vDWafwl9mn6nkJQMjnAZFASrYBE-3QnDolmGk8MEuwTZxglJY0j8iRqgtAfY1J0PDy0pmLsKATaGKxdWU2Rg_6F0UTSMkwQA_AQdufHXICiaqxVo"
-    },
     homeTags: ["Dormitorio", "Graduable"],
     homeSummary: "Convierte tu cama en una cama ajustable de forma sencilla para incorporarte, comer y descansar mejor",
     gallery: [
+      {
+        alt: "Electric adjustable bed backrest lifter mechanism made with clean white steel frame and padded mattress surface. Placed over a modern bedroom bed in a warm and dignified home healthcare environment with morning sunlight.",
+        src: "https://lh3.googleusercontent.com/aida-public/AB6AXuC1xwEn0J2epefI5lcIi41M3fvYLi6xycur2aRCEQ2bHVJDS2f5Dn1RQRv5rSF-UAvpEUj9e95YMkEFt_uY-S0H0wwyjd3XDRZZZ04UgNlU6zVu5CoP1VFoUYJnB7u-F1hFsBy9CWM4cWfVPiA7303-SjT9OjYmyf1fB2JG2qZoNOYKSQF243eKVEBTbvQ9b1V7sRb3C89O0IUuV1V4UqGsVjqzpuc_bFKrwfW7R4AoAkqPO-5JDpQ"
+      },
       {
         alt: "Electric adjustable bed backrest lifter mechanism made with clean white steel frame and padded mattress surface. Placed over a modern bedroom bed in a warm and dignified home healthcare environment with morning sunlight.",
         src: "https://lh3.googleusercontent.com/aida-public/AB6AXuC1xwEn0J2epefI5lcIi41M3fvYLi6xycur2aRCEQ2bHVJDS2f5Dn1RQRv5rSF-UAvpEUj9e95YMkEFt_uY-S0H0wwyjd3XDRZZZ04UgNlU6zVu5CoP1VFoUYJnB7u-F1hFsBy9CWM4cWfVPiA7303-SjT9OjYmyf1fB2JG2qZoNOYKSQF243eKVEBTbvQ9b1V7sRb3C89O0IUuV1V4UqGsVjqzpuc_bFKrwfW7R4AoAkqPO-5JDpQ"
@@ -1096,6 +1079,9 @@ export const products: Product[] = [
 ];
 
 export const productHref = (slug: string) => `/productos/${slug}`;
+
+/** Foto de portada del producto: la primera de sus fotos. */
+export const coverImage = (product: Product): Image => product.gallery[0];
 
 export function findProduct(list: Product[], slug: string): Product {
   const product = list.find((p) => p.slug === slug);

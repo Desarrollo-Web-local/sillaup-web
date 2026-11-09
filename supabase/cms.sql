@@ -60,9 +60,8 @@ create table if not exists public.product_overrides (
   offer_ends_at date,
   in_stock boolean,
   mercado_pago_url text check (char_length(mercado_pago_url) <= 500),
-  image_url text check (char_length(image_url) <= 1000),
-  home_image_url text check (char_length(home_image_url) <= 1000),
-  gallery jsonb check (gallery is null or jsonb_typeof(gallery) = 'array'),
+  -- Fotos del producto (arreglo de URLs). La primera es la foto de portada: catálogo, carrusel de inicio y ficha
+  gallery jsonb check (gallery is null or (jsonb_typeof(gallery) = 'array' and jsonb_array_length(gallery) <= 12)),
   updated_at timestamptz not null default now()
 );
 alter table public.product_overrides enable row level security;

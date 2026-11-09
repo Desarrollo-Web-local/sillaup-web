@@ -8,7 +8,7 @@ import { CardPrice, OfferBadge } from "@/components/Price";
 import { useProducts, useText } from "@/components/SiteData";
 import StarRating from "@/components/StarRating";
 import { useFormAction } from "@/components/useFormAction";
-import { productHref } from "@/lib/products";
+import { coverImage, productHref } from "@/lib/products";
 
 export default function HomePage() {
   const t = useText();
@@ -221,7 +221,7 @@ export default function HomePage() {
             <div>
               {/* Image Stage with Embedded Price Chip */}
               <div className="relative w-full h-56 rounded-2xl bg-surface-container-low overflow-hidden mb-4">
-                <img alt={`${product.name} SillaUp`} className="w-full h-full object-cover" data-alt={product.homeImage.alt} src={product.homeImage.src} />
+                <img alt={`${product.name} SillaUp`} className="w-full h-full object-cover" data-alt={coverImage(product).alt} src={coverImage(product).src} />
                 <div className="absolute top-3 right-3 bg-[#0D141A] text-white text-label-sm font-label-sm px-3.5 py-1.5 rounded-full font-extrabold shadow-md">
                   <CardPrice product={product} />
                 </div>

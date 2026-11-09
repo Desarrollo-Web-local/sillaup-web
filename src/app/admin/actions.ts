@@ -92,16 +92,19 @@ export async function saveProduct(data: FormData): Promise<ActionResult> {
   const mercadoPago = String(data.get("mercado_pago_url") ?? "").trim();
   if (mercadoPago && !isHttpUrl(mercadoPago)) return { ok: false, error: "El link de Mercado Pago debe comenzar con https://" };
 
-  const imageUrl = text(data, "image_url", 1000);
-  const homeImageUrl = text(data, "home_image_url", 1000);
-  const gallery = String(data.get("gallery") ?? "")
-    .split("\n")
-    .map((line) => line.trim())
-    .filter(Boolean);
-  for (const url of [imageUrl, homeImageUrl, ...gallery]) {
-    if (url && !isHttpUrl(url)) return { ok: false, error: `Dirección de imagen inválida: ${url}` };
+  // One set of photos per product; the first one is the cover (portada)
+  const gallery = [
+    ...new Set(
+      String(data.get("gallery") ?? "")
+        .split("\n")
+        .map((line) => line.trim())
+        .filter(Boolean),
+    ),
+  ];
+  for (const url of gallery) {
+    if (url.length > 1000 || !isHttpUrl(url)) return { ok: false, error: `Dirección de imagen inválida: ${url}` };
   }
-  if (gallery.length > 12) return { ok: false, error: "La galería admite hasta 12 fotos" };
+  if (gallery.length > 12) return { ok: false, error: "Cada producto admite hasta 12 fotos" };
 
   const sameGallery = gallery.join("\n") === base.gallery.map((image) => image.src).join("\n");
 
@@ -118,8 +121,6 @@ export async function saveProduct(data: FormData): Promise<ActionResult> {
     offer_ends_at: offerEndsAt,
     in_stock: changed(data.get("in_stock") === "on", base.inStock),
     mercado_pago_url: changed(mercadoPago, base.mercadoPagoUrl ?? ""),
-    image_url: changed(imageUrl, base.image.src),
-    home_image_url: changed(homeImageUrl, base.homeImage.src),
     gallery: gallery.length && !sameGallery ? gallery : null,
     updated_at: new Date().toISOString(),
   });
