@@ -153,7 +153,7 @@ export default function ImageLightbox({
         onWheel={onWheel}
       >
         <img
-          alt={label}
+          alt={`${label}, foto ${index + 1} de ${images.length}`}
           className="absolute inset-4 w-[calc(100%-2rem)] h-[calc(100%-2rem)] object-contain"
           data-alt={image.alt}
           draggable={false}

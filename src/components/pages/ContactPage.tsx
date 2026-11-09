@@ -15,7 +15,7 @@ export default function ContactPage() {
       {/* 2. HERO DE CONTACTO */}
       <section className="relative overflow-hidden py-20 md:py-28 border-b border-outline-variant flex items-center justify-center">
         <div className="absolute inset-0 z-0">
-          <img className="w-full h-full object-cover" src={t("contact.hero.image")} alt="Showroom y taller de movilidad asistida SillaUp" />
+          <img className="w-full h-full object-cover" src={t("contact.hero.image")} alt="Showroom de movilidad asistida SillaUp en Merced 562, Santiago" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0d141a]/90 via-[#151c23]/80 to-[#174a5a]/70"></div>
         </div>
         <div className="relative z-10 max-w-4xl mx-auto px-6 md:px-12 text-center text-white space-y-6">
@@ -112,7 +112,7 @@ export default function ContactPage() {
                   <span className="material-symbols-outlined text-[14px]">
                     engineering
                   </span>
-                  Taller & Ventas
+                  Showroom & Ventas
                 </span>
               </div>
               <h3 className="text-headline-sm font-headline-sm text-on-surface mb-1">

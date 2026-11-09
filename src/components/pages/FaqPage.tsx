@@ -219,7 +219,7 @@ export default function FaqPage() {
           </div>
         </article>
         {/* Question 4 */}
-        <article className={`faq-item bg-surface-container-lowest border border-[#DADADB] rounded-2xl shadow-[0_4px_20px_-2px_rgba(13,20,26,0.05)] transition-all duration-200 overflow-hidden${openIndex === 3 ? " border-primary shadow-md" : ""}`} data-keywords="garantia respaldo chile repuestos fabrica taller servicio tecnico santiago postventa">
+        <article className={`faq-item bg-surface-container-lowest border border-[#DADADB] rounded-2xl shadow-[0_4px_20px_-2px_rgba(13,20,26,0.05)] transition-all duration-200 overflow-hidden${openIndex === 3 ? " border-primary shadow-md" : ""}`} data-keywords="garantia respaldo chile repuestos fabrica showroom servicio tecnico santiago postventa">
           <button aria-expanded={openIndex === 3} onClick={() => toggle(3)} className="faq-button w-full flex items-center justify-between p-6 text-left cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-primary/20 gap-4" type="button">
             <div className="flex items-center gap-4">
               <div className="w-10 h-10 rounded-full bg-secondary-container/60 text-[#174A5A] flex items-center justify-center shrink-0">
@@ -247,7 +247,7 @@ export default function FaqPage() {
                 location_on
               </span>
               <span>
-                Taller oficial y despacho de refacciones: Merced 562, Santiago Centro
+                Showroom oficial y despacho de repuestos: Merced 562, Santiago Centro
               </span>
             </div>
           </div>
@@ -282,7 +282,7 @@ export default function FaqPage() {
           </div>
         </article>
         {/* Question 6 */}
-        <article className={`faq-item bg-surface-container-lowest border border-[#DADADB] rounded-2xl shadow-[0_4px_20px_-2px_rgba(13,20,26,0.05)] transition-all duration-200 overflow-hidden${openIndex === 5 ? " border-primary shadow-md" : ""}`} data-keywords="ayuda soporte whatsapp santiago taller telefono orientacion asesor postventa">
+        <article className={`faq-item bg-surface-container-lowest border border-[#DADADB] rounded-2xl shadow-[0_4px_20px_-2px_rgba(13,20,26,0.05)] transition-all duration-200 overflow-hidden${openIndex === 5 ? " border-primary shadow-md" : ""}`} data-keywords="ayuda soporte whatsapp santiago showroom telefono orientacion asesor postventa">
           <button aria-expanded={openIndex === 5} onClick={() => toggle(5)} className="faq-button w-full flex items-center justify-between p-6 text-left cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-primary/20 gap-4" type="button">
             <div className="flex items-center gap-4">
               <div className="w-10 h-10 rounded-full bg-secondary-container/60 text-[#174A5A] flex items-center justify-center shrink-0">
@@ -414,7 +414,7 @@ export default function FaqPage() {
                 </div>
               </div>
             </a>
-            {/* Visita a taller */}
+            {/* Visita al showroom */}
             <div className="text-center text-xs text-white/70 pt-1">
               <span>
                 ¿Deseas probar un equipo? Visítanos en Merced 562, Santiago Centro previa coordinación

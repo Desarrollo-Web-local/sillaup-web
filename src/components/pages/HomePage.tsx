@@ -109,7 +109,7 @@ export default function HomePage() {
                 Santiago
               </p>
               <p className="text-xs md:text-sm text-white/80 uppercase font-bold tracking-wider mt-0.5">
-                Taller & Showroom
+                Showroom
               </p>
             </div>
           </div>
@@ -218,19 +218,18 @@ export default function HomePage() {
           </button>
         <div className="product-carousel flex gap-6 overflow-x-auto pt-4 pb-8 snap-x snap-mandatory focus:outline-none" onScroll={updateArrows} ref={trackRef} style={{ marginInline: "calc(50% - 50vw)", paddingInline: "calc(50vw - 50%)" }}>
           {products.map((product) => (
-          <article key={product.slug} className="relative min-w-[300px] sm:min-w-[340px] md:min-w-[370px] bg-white text-on-surface rounded-3xl p-5 shadow-lg flex flex-col justify-between snap-start border border-[#DADADB] hover:shadow-2xl hover:scale-[1.03] transition-all duration-300">
+          <article key={product.slug} className="relative w-[240px] sm:w-[260px] md:w-[280px] shrink-0 bg-white text-on-surface rounded-3xl p-4 shadow-lg flex flex-col justify-between snap-start border border-[#DADADB] hover:shadow-2xl hover:scale-[1.03] transition-all duration-300">
             <div>
-              {/* Image Stage with Embedded Price Chip */}
-              {/* Vertical (3:4) stage: product photos are portrait; object-contain never crops or distorts them */}
-              <div className="relative w-full aspect-[3/4] rounded-2xl bg-surface-container-low overflow-hidden mb-4">
-                <img alt={`${product.name} SillaUp`} className="w-full h-full object-contain" data-alt={coverImage(product).alt} src={coverImage(product).src} />
-                <div className="absolute top-3 right-3 bg-[#0D141A] text-white text-label-sm font-label-sm px-3.5 py-1.5 rounded-full font-extrabold shadow-md">
+              {/* Compact portrait (4:5) stage with price chip; object-contain never crops or distorts the photo */}
+              <div className="relative w-full aspect-[4/5] rounded-2xl bg-surface-container-low overflow-hidden mb-3">
+                <img alt={`${product.name} SillaUp, ${product.homeTags.join(" y ")}`} className="w-full h-full object-contain" data-alt={coverImage(product).alt} src={coverImage(product).src} />
+                <div className="absolute top-2.5 right-2.5 bg-[#0D141A] text-white text-xs px-3 py-1 rounded-full font-extrabold shadow-md">
                   <CardPrice product={product} />
                 </div>
-                <OfferBadge className="absolute top-3 left-3" product={product} />
+                <OfferBadge className="absolute top-2.5 left-2.5" product={product} />
               </div>
               {/* Tags */}
-              <div className="flex items-center gap-2 mb-3">
+              <div className="flex flex-wrap items-center gap-1.5 mb-2">
                 <span className="bg-[#F2F4F7] text-[#174A5A] text-[11px] font-bold px-2.5 py-1 rounded-full uppercase">
                   {product.homeTags[0]}
                 </span>
@@ -238,14 +237,14 @@ export default function HomePage() {
                   {product.homeTags[1]}
                 </span>
               </div>
-              <h3 className="text-headline-sm font-headline-sm text-on-surface font-extrabold mb-2">
+              <h3 className="text-lg leading-snug text-on-surface font-extrabold mb-1">
                 {product.name}
               </h3>
-              <p className="text-body-sm font-body-sm text-on-surface-variant mb-6">
+              <p className="text-sm text-on-surface-variant mb-4 line-clamp-2">
                 {product.homeSummary}
               </p>
             </div>
-            <Link className="w-full inline-flex items-center justify-center rounded-full bg-primary-container text-white text-label-md font-label-md py-3.5 px-6 shadow-sm hover:bg-primary transition-all duration-150 min-h-[48px] after:absolute after:inset-0 after:content-['']" href={productHref(product.slug)}>
+            <Link className="w-full inline-flex items-center justify-center rounded-full bg-primary-container text-white text-label-md font-label-md py-2.5 px-5 shadow-sm hover:bg-primary transition-all duration-150 min-h-[44px] after:absolute after:inset-0 after:content-['']" href={productHref(product.slug)}>
               Ver producto
               <span className="material-symbols-outlined ml-2 text-base">
                 chevron_right
@@ -263,8 +262,15 @@ export default function HomePage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Left: full SillaUp logo with a continuous soft float */}
           <div className="lg:col-span-5 relative order-2 lg:order-1">
-            <div className="relative rounded-3xl border border-outline-variant bg-white shadow-xl animate-float flex items-center justify-center px-8 py-16 md:px-12 md:py-24">
-              <Image alt="SillaUp" className="w-full max-w-md h-auto" height={746} sizes="(min-width: 1024px) 400px, 80vw" src="/logo.png" width={2109} />
+            <div className="flex items-center justify-center py-6">
+              <Image
+                alt="Logo de SillaUp, fabricantes chilenos de elevadores y grúas de movilidad asistida"
+                className="w-full max-w-md h-auto animate-float drop-shadow-[0_18px_24px_rgba(13,20,26,0.14)]"
+                height={746}
+                sizes="(min-width: 1024px) 448px, 80vw"
+                src="/logo.png"
+                width={2109}
+              />
             </div>
           </div>
           {/* Right Content Column */}
@@ -687,7 +693,7 @@ export default function HomePage() {
                 </div>
                 <div>
                   <p className="text-label-sm font-label-sm text-on-surface-variant uppercase">
-                    Dirección Showroom & Taller
+                    Dirección del Showroom
                   </p>
                   <p className="text-label-lg font-label-lg text-on-surface font-bold">
                     Merced 562, Santiago, Chile

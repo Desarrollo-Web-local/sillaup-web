@@ -99,9 +99,9 @@ export default function CatalogPage() {
       {/* 4. Interactive Filters Bar */}
       {/* 5. Products Grid (The 5 Official SillaUp Products) */}
       <section className="max-w-7xl mx-auto px-6 md:px-12 pb-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="products-grid">
+        <div className="grid grid-cols-1 min-[480px]:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5" id="products-grid">
           {products.map((product) => (
-          <article key={product.slug} className={`product-card group bg-surface-container-lowest rounded-[24px] p-6 hover:scale-[1.03] transition-all duration-300 flex flex-col justify-between relative ${product.featured ? "border-2 border-brand-blue/30 shadow-level-2 hover:shadow-level-3" : "border border-brand-border shadow-level-1 hover:shadow-level-2"}`}>
+          <article key={product.slug} className={`product-card group bg-surface-container-lowest rounded-[24px] p-4 hover:scale-[1.03] transition-all duration-300 flex flex-col justify-between relative ${product.featured ? "border-2 border-brand-blue/30 shadow-level-2 hover:shadow-level-3" : "border border-brand-border shadow-level-1 hover:shadow-level-2"}`}>
             {product.featured && (
             <div className="absolute -top-3 left-6 bg-brand-blue text-white text-[11px] font-label-sm uppercase px-3 py-0.5 rounded-full tracking-wide shadow-sm flex items-center gap-1">
               <span className="material-symbols-outlined text-xs">
@@ -112,7 +112,7 @@ export default function CatalogPage() {
             )}
             <div>
               {/* Image Container with Badges */}
-              <div className="relative w-full h-60 bg-surface-container-low rounded-2xl overflow-hidden mb-5 border border-outline-variant/30 flex items-center justify-center p-4">
+              <div className="relative w-full aspect-[4/5] bg-surface-container-low rounded-2xl overflow-hidden mb-3 border border-outline-variant/30 flex items-center justify-center p-2">
                 <div className="absolute top-3 right-3 z-10 bg-brand-night text-white font-label-sm text-xs font-extrabold px-3 py-1.5 rounded-full shadow-md">
                   <CardPrice product={product} />
                 </div>
@@ -126,25 +126,25 @@ export default function CatalogPage() {
                   Fabricación Chilena
                 </div>
                 )}
-                <img alt="" className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300" data-alt={coverImage(product).alt} src={coverImage(product).src} />
+                <img alt={`${product.name} SillaUp: ${product.category}`} className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300" data-alt={coverImage(product).alt} src={coverImage(product).src} />
               </div>
               {/* Category Tag */}
-              <div className="flex items-center gap-2 mb-2">
-                <span className="bg-surface-container-high text-brand-teal rounded-full px-3 py-1 text-xs font-label-sm font-bold">
+              <div className="flex items-center gap-2 mb-1.5">
+                <span className="bg-surface-container-high text-brand-teal rounded-full px-2.5 py-0.5 text-[11px] font-label-sm font-bold">
                   {product.category}
                 </span>
               </div>
               {/* Title & 1-line Value Proposition */}
-              <h2 className="text-headline-sm font-headline-sm text-brand-night font-bold">
+              <h2 className="text-lg leading-snug text-brand-night font-bold">
                 {product.name}
               </h2>
-              <p className="text-body-sm font-body-sm text-on-surface-variant mt-2 mb-6 leading-relaxed">
+              <p className="text-sm text-on-surface-variant mt-1 mb-4 leading-relaxed line-clamp-2">
                 {product.card.summary}
               </p>
             </div>
             {/* Clean Actions */}
-            <div className="flex flex-col gap-2.5 pt-4 border-t border-brand-border/60">
-              <Link className="w-full text-center bg-brand-blue text-white font-label-md py-3 rounded-full hover:bg-primary transition-colors duration-150 font-bold shadow-sm flex items-center justify-center gap-2 after:absolute after:inset-0 after:content-['']" href={productHref(product.slug)}>
+            <div className="flex flex-col gap-2 pt-3 border-t border-brand-border/60">
+              <Link className="w-full text-center bg-brand-blue text-white font-label-md py-2.5 rounded-full hover:bg-primary transition-colors duration-150 font-bold shadow-sm flex items-center justify-center gap-2 after:absolute after:inset-0 after:content-['']" href={productHref(product.slug)}>
                 <span>
                   Ver producto
                 </span>
@@ -153,7 +153,7 @@ export default function CatalogPage() {
                 </span>
               </Link>
               {product.mercadoPagoUrl && (
-              <a className="relative z-10 w-full text-center border-2 border-brand-blue text-brand-blue bg-white font-label-md py-2.5 rounded-full hover:bg-brand-blue/5 transition-colors duration-150 font-bold active:scale-95 flex items-center justify-center gap-2" href={product.mercadoPagoUrl} rel="noopener noreferrer" target="_blank">
+              <a className="relative z-10 w-full text-center border-2 border-brand-blue text-brand-blue bg-white font-label-md py-2 rounded-full hover:bg-brand-blue/5 transition-colors duration-150 font-bold active:scale-95 flex items-center justify-center gap-2" href={product.mercadoPagoUrl} rel="noopener noreferrer" target="_blank">
                 <span className="material-symbols-outlined text-sm">
                   credit_card
                 </span>
@@ -193,7 +193,7 @@ export default function CatalogPage() {
                     location_on
                   </span>
                   <span>
-                    Showroom y taller:{" "}
+                    Showroom:{" "}
                     <strong>
                       Merced 562, Santiago
                     </strong>

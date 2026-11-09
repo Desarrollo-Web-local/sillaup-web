@@ -257,8 +257,8 @@ export const products: Product[] = [
         emphasis: "tertiary"
       },
       {
-        label: "Procedencia y taller",
-        value: "Fabricación chilena en Santiago (Taller y Showroom: Merced 562)"
+        label: "Procedencia y showroom",
+        value: "Fabricación chilena en Santiago (Showroom: Merced 562)"
       }
     ],
     rating: {
@@ -279,7 +279,7 @@ export const products: Product[] = [
         detail: "Kinesiólogo · Viña del Mar"
       },
       {
-        quote: "Excelente atención. Fuimos al taller a verla y nos enseñaron a usarla con mucha paciencia. El despacho a Concepción llegó en 48 horas sin inconvenientes. Cien por ciento recomendados",
+        quote: "Excelente atención. Fuimos al showroom a verla y nos enseñaron a usarla con mucha paciencia. El despacho a Concepción llegó en 48 horas sin inconvenientes. Cien por ciento recomendados",
         name: "Gonzalo Sanhueza",
         initials: "GS",
         detail: "Comprador verificado · Concepción"
@@ -477,8 +477,8 @@ export const products: Product[] = [
         emphasis: "tertiary"
       },
       {
-        label: "Procedencia y taller",
-        value: "Fabricación chilena en Santiago (Taller y Showroom: Merced 562)"
+        label: "Procedencia y showroom",
+        value: "Fabricación chilena en Santiago (Showroom: Merced 562)"
       }
     ],
     reviews: [],
@@ -674,8 +674,8 @@ export const products: Product[] = [
         emphasis: "tertiary"
       },
       {
-        label: "Procedencia y taller",
-        value: "Fabricación chilena en Santiago (Taller y Showroom: Merced 562)"
+        label: "Procedencia y showroom",
+        value: "Fabricación chilena en Santiago (Showroom: Merced 562)"
       }
     ],
     reviews: [],
@@ -867,8 +867,8 @@ export const products: Product[] = [
         emphasis: "tertiary"
       },
       {
-        label: "Procedencia y taller",
-        value: "Fabricación chilena en Santiago (Taller y Showroom: Merced 562)"
+        label: "Procedencia y showroom",
+        value: "Fabricación chilena en Santiago (Showroom: Merced 562)"
       }
     ],
     reviews: [],
@@ -1064,8 +1064,8 @@ export const products: Product[] = [
         emphasis: "tertiary"
       },
       {
-        label: "Procedencia y taller",
-        value: "Fabricación chilena en Santiago (Taller y Showroom: Merced 562)"
+        label: "Procedencia y showroom",
+        value: "Fabricación chilena en Santiago (Showroom: Merced 562)"
       }
     ],
     reviews: [],

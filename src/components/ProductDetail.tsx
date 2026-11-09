@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { coverImage, formatPrice, productHref, salePrice } from "@/lib/products";
 import { CardPrice, OfferBadge } from "@/components/Price";
 import { useProduct, useProducts } from "@/components/SiteData";
@@ -43,9 +43,17 @@ export default function ProductDetail({ slug }: { slug: string }) {
   const [active, setActive] = useState(0);
   const [fading, setFading] = useState(false);
   const [lightboxOpen, setLightboxOpen] = useState(false);
+  const thumbsRef = useRef<HTMLDivElement>(null);
+  const gallery = product.gallery;
+  const photoAlt = (index: number) =>
+    index === 0 ? `${name} SillaUp, foto de portada` : `${name} SillaUp, foto ${index + 1} de ${gallery.length}`;
 
   function showImage(index: number) {
     if (index === active) return;
+    // Keep the selected thumbnail visible in the horizontal strip
+    thumbsRef.current
+      ?.querySelector(`[data-index="${index}"]`)
+      ?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "nearest" });
     setFading(true);
     setTimeout(() => {
       setActive(index);
@@ -73,39 +81,67 @@ export default function ProductDetail({ slug }: { slug: string }) {
         </nav>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           {/* Galería de Fotos */}
-          <div className="lg:col-span-7 flex flex-col gap-4">
-            <button
-              aria-label={`Ampliar imagen de ${name}`}
-              className="relative bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden p-6 flex items-center justify-center min-h-[460px] shadow-sm group cursor-zoom-in focus:outline-none focus-visible:ring-4 focus-visible:ring-primary/30"
-              onClick={() => setLightboxOpen(true)}
-              type="button"
-            >
-              <img
-                alt={`${name} SillaUp`}
-                className="w-full max-h-[420px] object-contain transition-transform duration-300 group-hover:scale-105"
-                data-alt={(product.gallery[active] ?? product.gallery[0]).alt}
-                src={(product.gallery[active] ?? product.gallery[0]).src}
-                style={{ opacity: fading ? 0.4 : 1, transition: "opacity 120ms" }}
-              />
-              <span className="absolute bottom-4 right-4 bg-surface-container-lowest/95 border border-outline-variant text-on-surface px-3 py-1.5 rounded-full text-label-sm font-label-sm flex items-center gap-1.5 shadow-sm opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity">
-                <span className="material-symbols-outlined text-[18px]">zoom_in</span>
-                Ampliar
-              </span>
-            </button>
-            <div className="grid grid-cols-4 gap-3">
-              {product.gallery.map((image, index) => (
-                <button
-                  key={image.src}
-                  aria-label={`Ver imagen ${index + 1}`}
-                  aria-pressed={index === active}
-                  className={`thumbnail-btn ${index === active ? "border-2 border-primary" : "border border-outline-variant hover:border-primary"} rounded-lg overflow-hidden p-2 bg-surface-container-lowest focus:outline-none transition-all`}
-                  onClick={() => showImage(index)}
-                  type="button"
-                >
-                  <img alt="" className="w-full h-20 object-contain rounded" data-alt={image.alt} src={image.src} />
-                </button>
-              ))}
+          <div className="lg:col-span-7 flex flex-col gap-3 w-full max-w-md mx-auto">
+            {/* Foto principal en formato vertical (3:4) */}
+            <div className="relative group">
+              <button
+                aria-label={`Ampliar foto ${active + 1} de ${gallery.length} de ${name}`}
+                className="relative w-full aspect-[3/4] bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden p-4 flex items-center justify-center shadow-sm cursor-zoom-in focus:outline-none focus-visible:ring-4 focus-visible:ring-primary/30"
+                onClick={() => setLightboxOpen(true)}
+                type="button"
+              >
+                <img
+                  alt={photoAlt(active)}
+                  className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
+                  src={(gallery[active] ?? gallery[0]).src}
+                  style={{ opacity: fading ? 0.4 : 1, transition: "opacity 120ms" }}
+                />
+                <span className="absolute bottom-3 right-3 bg-surface-container-lowest/95 border border-outline-variant text-on-surface px-3 py-1.5 rounded-full text-label-sm font-label-sm flex items-center gap-1.5 shadow-sm opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity">
+                  <span className="material-symbols-outlined text-[18px]">zoom_in</span>
+                  Ampliar
+                </span>
+              </button>
+              {gallery.length > 1 && (
+                <>
+                  <span className="absolute top-3 left-3 bg-on-surface/75 text-white text-xs font-bold px-2.5 py-1 rounded-full pointer-events-none">
+                    {active + 1} / {gallery.length}
+                  </span>
+                  {[
+                    { step: -1, icon: "chevron_left", label: "Foto anterior", side: "left-2" },
+                    { step: 1, icon: "chevron_right", label: "Foto siguiente", side: "right-2" },
+                  ].map(({ step, icon, label, side }) => (
+                    <button
+                      aria-label={label}
+                      className={`absolute ${side} top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-surface-container-lowest/90 border border-outline-variant shadow-sm flex items-center justify-center text-on-surface hover:bg-white focus:outline-none focus-visible:ring-4 focus-visible:ring-primary/30`}
+                      key={icon}
+                      onClick={() => showImage((active + step + gallery.length) % gallery.length)}
+                      type="button"
+                    >
+                      <span className="material-symbols-outlined text-[22px]">{icon}</span>
+                    </button>
+                  ))}
+                </>
+              )}
             </div>
+            {/* Miniaturas compactas con desplazamiento lateral */}
+            {gallery.length > 1 && (
+              <div aria-label="Fotos del producto" className="flex gap-2 overflow-x-auto snap-x pb-1 [scrollbar-width:thin]" ref={thumbsRef} role="group">
+                {gallery.map((image, index) => (
+                  <button
+                    aria-current={index === active ? "true" : undefined}
+                    className={`shrink-0 snap-start w-14 h-[70px] rounded-lg overflow-hidden p-1 bg-surface-container-lowest transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+                      index === active ? "border-2 border-primary" : "border border-outline-variant opacity-70 hover:opacity-100 hover:border-primary"
+                    }`}
+                    data-index={index}
+                    key={image.src}
+                    onClick={() => showImage(index)}
+                    type="button"
+                  >
+                    <img alt={`Ver ${photoAlt(index)}`} className="w-full h-full object-contain rounded" loading="lazy" src={image.src} />
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
           {/* Columna de Información y Compra */}
           <div className="lg:col-span-5 bg-surface-container-lowest border border-outline-variant rounded-xl p-6 sm:p-8 shadow-sm flex flex-col justify-between">
@@ -223,7 +259,7 @@ export default function ProductDetail({ slug }: { slug: string }) {
               <p className="text-body-md font-body-md text-on-surface-variant leading-relaxed mb-4">{product.detail.body}</p>
               <div className="p-4 bg-surface-container rounded-lg border-l-4 border-primary text-body-sm text-on-surface flex items-center justify-between">
                 <span>¿Necesitas una prueba presencial antes de comprar? Puedes visitar nuestro showroom en Santiago</span>
-                <a className="text-primary font-bold hover:underline shrink-0 ml-4" href="#contacto-taller">
+                <a className="text-primary font-bold hover:underline shrink-0 ml-4" href="#contacto-showroom">
                   Agendar visita
                 </a>
               </div>
@@ -296,7 +332,7 @@ export default function ProductDetail({ slug }: { slug: string }) {
           {product.video && (
             <p className="text-xs text-on-surface-variant mt-4 flex items-center justify-center gap-1">
               <span className="material-symbols-outlined text-[16px] text-primary">play_circle</span>
-              Video oficial grabado en taller y ambientes reales de transferencia SillaUp
+              Video oficial grabado en nuestro showroom y en ambientes reales de transferencia SillaUp
             </p>
           )}
         </div>
@@ -397,7 +433,7 @@ export default function ProductDetail({ slug }: { slug: string }) {
       </section>
 
       {/* SECCIÓN 9: Dónde nos ubicamos y Asesoría Técnica */}
-      <section className="max-w-7xl mx-auto px-6 md:px-12 py-16 scroll-mt-24" id="contacto-taller">
+      <section className="max-w-7xl mx-auto px-6 md:px-12 py-16 scroll-mt-24" id="contacto-showroom">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-6">
             <span className="text-secondary font-label-sm text-label-sm uppercase tracking-wider block mb-2">Visita Nuestro Showroom</span>
@@ -407,7 +443,7 @@ export default function ProductDetail({ slug }: { slug: string }) {
             </p>
             <div className="space-y-4">
               {[
-                { icon: "location_on", title: "Dirección Showroom y Taller", text: "Merced 562, Santiago Centro, Región Metropolitana (Metro Bellas Artes)" },
+                { icon: "location_on", title: "Dirección del Showroom", text: "Merced 562, Santiago Centro, Región Metropolitana (Metro Bellas Artes)" },
                 { icon: "schedule", title: "Horario de Atención", text: "Lunes a Viernes de 9:00 a 18:00 hrs (Continuado)" },
                 { icon: "support", title: "Teléfono y Asistencia WhatsApp", text: `${site.phone} (Servicio técnico y repuestos inmediatos)` },
               ].map((item) => (
@@ -447,7 +483,7 @@ export default function ProductDetail({ slug }: { slug: string }) {
               <div className="pointer-events-none absolute bottom-4 left-4 bg-surface-container-lowest/95 backdrop-blur-sm p-4 rounded-xl border border-outline-variant shadow-md max-w-xs">
                 <div className="flex items-center gap-2 mb-1">
                   <span className="w-3 h-3 rounded-full bg-primary animate-pulse"></span>
-                  <span className="font-bold text-xs text-on-surface uppercase tracking-wide">Taller SillaUp</span>
+                  <span className="font-bold text-xs text-on-surface uppercase tracking-wide">Showroom SillaUp</span>
                 </div>
                 <p className="text-xs text-on-surface-variant">Merced 562, Santiago · Estacionamiento para clientes disponible</p>
               </div>
@@ -538,7 +574,7 @@ export default function ProductDetail({ slug }: { slug: string }) {
                     <CardPrice product={other} />
                   </span>
                   <OfferBadge className="absolute top-2 left-2" product={other} />
-                  <img alt="" className="max-h-36 object-contain group-hover:scale-105 transition-transform" data-alt={coverImage(other).alt} src={coverImage(other).src} />
+                  <img alt={`${other.name} SillaUp`} className="max-h-36 object-contain group-hover:scale-105 transition-transform" data-alt={coverImage(other).alt} src={coverImage(other).src} />
                 </div>
                 <span className="text-xs text-secondary font-bold uppercase tracking-wider">{other.card.category}</span>
                 <h3 className="text-label-lg font-label-lg text-on-surface mt-1 mb-2">{other.name}</h3>

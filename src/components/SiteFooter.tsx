@@ -9,7 +9,7 @@ export default function SiteFooter({ about }: { about: string }) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-outline-variant">
           {/* Marca */}
           <div className="lg:col-span-4 space-y-4">
-            <Image alt="SillaUp" className="h-10 w-auto" height={746} sizes="115px" src="/logo.png" width={2109} />
+            <Image alt="Logo de SillaUp Movilidad Asistida" className="h-10 w-auto" height={746} sizes="115px" src="/logo.png" width={2109} />
             <p className="text-body-sm font-body-sm text-on-surface-variant max-w-sm">
               {about}
             </p>

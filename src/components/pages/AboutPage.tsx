@@ -37,7 +37,7 @@ export default function AboutPage() {
                 </div>
                 <div>
                   <p className="text-label-sm font-label-sm text-on-surface">
-                    Taller Propio
+                    Showroom Propio
                   </p>
                   <p className="text-xs text-on-surface-variant">
                     Merced 562, Santiago
@@ -65,7 +65,7 @@ export default function AboutPage() {
           <div className="lg:col-span-5 relative">
             <div className="relative rounded-3xl overflow-hidden border border-outline-variant shadow-md bg-surface-container-lowest p-2">
               <div className="relative rounded-2xl overflow-hidden aspect-[4/3] bg-surface-container">
-                <img alt="" className="w-full h-full object-cover" data-alt="A warm and uplifting photograph of a Chilean occupational therapist and family caregiver gently supporting an elderly patient in a bright sunlit modern Santiago living room. The room has warm wooden elements, soft natural indoor plants, and clinical-grade assistive mobility hardware with clean matte blue accents. The lighting is natural, soft, and respectful, emphasizing safety, dignity, and human connection." src={t("about.hero.image")} />
+                <img alt="Terapeuta y cuidador apoyando a un adulto mayor con equipos de movilidad asistida SillaUp en un hogar de Santiago" className="w-full h-full object-cover" data-alt="A warm and uplifting photograph of a Chilean occupational therapist and family caregiver gently supporting an elderly patient in a bright sunlit modern Santiago living room. The room has warm wooden elements, soft natural indoor plants, and clinical-grade assistive mobility hardware with clean matte blue accents. The lighting is natural, soft, and respectful, emphasizing safety, dignity, and human connection." src={t("about.hero.image")} />
               </div>
               <div className="p-4 bg-surface-container-lowest rounded-xl mt-2 flex items-center justify-between">
                 <div className="flex items-center space-x-3">
@@ -189,10 +189,10 @@ export default function AboutPage() {
               </span>
             </div>
             <h4 className="text-headline-sm font-headline-sm text-on-surface mb-2">
-              Taller en Santiago
+              Showroom en Santiago
             </h4>
             <p className="text-body-sm font-body-sm text-on-surface-variant">
-              Fabricación nacional en nuestra maestranza ubicada en Merced 562, Santiago Centro. Control estricto de cada soldadura y ensamble
+              Fabricación nacional con control estricto de cada soldadura y ensamble. Visítanos en nuestro showroom de Merced 562, Santiago Centro
             </p>
           </div>
           {/* Pilar 2 */}
@@ -275,7 +275,7 @@ export default function AboutPage() {
                   calendar_month
                 </span>
                 <span>
-                  Agendar visita a taller
+                  Agendar visita al showroom
                 </span>
               </a>
             </div>
@@ -373,7 +373,7 @@ export default function AboutPage() {
               </div>
             </div>
           </div>
-          {/* Map & Taller Stage */}
+          {/* Map & Showroom Stage */}
           <div className="lg:col-span-6">
             <div className="bg-surface-container-lowest rounded-3xl p-3 border border-outline-variant shadow-md">
               <div className="relative w-full h-80 rounded-2xl overflow-hidden bg-surface-container flex items-center justify-center">

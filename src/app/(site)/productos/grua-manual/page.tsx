@@ -1,14 +1,21 @@
 import type { Metadata } from "next";
+import JsonLd from "@/components/JsonLd";
 import ProductDetail from "@/components/ProductDetail";
 import { getSiteProduct } from "@/lib/cms";
+import { productJsonLd, productMetadata } from "@/lib/seo";
 
 const slug = "grua-manual";
 
-export async function generateMetadata(): Promise<Metadata> {
-  const product = await getSiteProduct(slug);
-  return { title: product.name, description: product.metaDescription };
+export function generateMetadata(): Promise<Metadata> {
+  return productMetadata(slug);
 }
 
-export default function Page() {
-  return <ProductDetail slug={slug} />;
+export default async function Page() {
+  const product = await getSiteProduct(slug);
+  return (
+    <>
+      <JsonLd data={productJsonLd(product)} />
+      <ProductDetail slug={slug} />
+    </>
+  );
 }
