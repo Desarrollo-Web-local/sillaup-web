@@ -1,4 +1,17 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "regions": ["gru1"]
+  "regions": ["gru1"],
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "sillaup.cl" }],
+      "destination": "https://www.sillaup.cl/:path*",
+      "statusCode": 301
+    },
+    {
+      "source": "/kit-elevador-wc-:n(\\d+)",
+      "destination": "/productos",
+      "statusCode": 301
+    }
+  ]
 }
