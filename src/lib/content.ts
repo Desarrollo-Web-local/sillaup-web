@@ -6,7 +6,7 @@
 export const contentDefaults = {
   "global.topbar": "DESCUENTOS ESPECIALES POR TIEMPO LIMITADO",
   "global.footer": "Fabricación chilena de dispositivos de movilidad asistida y traslados seguros. Ingeniería ergonómica al servicio de familias y cuidadores",
-  "home.hero.image": "https://lh3.googleusercontent.com/aida-public/AB6AXuAIrYP9qTRRetDYa6PA8GrSj2Jzcjqgv0kelogfm0WcKB15xO_zaN9HqXctnl0C81Xg2cdYCb20q76_oQPk4X3o3kFpWju9m0DoEl_knK8bsHaehGOGF3kRUNLNkiRq0rslPCE-ORAaHwFN5rYidW9KPDP8ANtCP6sAWw0UeNvEej5E7e7vTCLdlZkyWtN10txl_SY0uTxno2854bB4sW3OcFmg515O46aXkk05V7PdWrmiulwp-WI",
+  "home.hero.image": "/images/hero-sillaup.webp",
   "home.hero.badge": "Fabricación chilena directa de fábrica",
   "home.hero.title": "Elevadores y grúas de traslado para personas con movilidad reducida, fabricados en Chile",
   "home.hero.subtitle": "Ingeniería ergonómica nacional creada para devolver la independencia a adultos mayores y aliviar la carga física de cuidadores y familias en todo Chile",
