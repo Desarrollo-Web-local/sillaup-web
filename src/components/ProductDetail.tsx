@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRef, useState } from "react";
-import { coverImage, formatPrice, productHref, salePrice } from "@/lib/products";
+import { coverImage, formatPrice, isPending, productHref, salePrice } from "@/lib/products";
 import { CardPrice, OfferBadge } from "@/components/Price";
 import { useProduct, useProducts } from "@/components/SiteData";
 import { site } from "@/lib/site";
@@ -27,7 +27,7 @@ function Stars({ size }: { size: "sm" | "lg" }) {
   return (
     <div className="flex text-amber-500">
       {[0, 1, 2, 3, 4].map((i) => (
-        <span key={i} className={`material-symbols-outlined ${size === "lg" ? "text-[24px]" : "text-[20px]"}`} style={filled}>
+        <span aria-hidden="true" key={i} className={`material-symbols-outlined ${size === "lg" ? "text-[24px]" : "text-[20px]"}`} style={filled}>
           star
         </span>
       ))}
@@ -44,6 +44,11 @@ export default function ProductDetail({ slug }: { slug: string }) {
   const [fading, setFading] = useState(false);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const thumbsRef = useRef<HTMLDivElement>(null);
+  // Specs still pending confirmation are not shown publicly
+  const specs = product.specs.filter((spec) => !isPending(spec.value));
+  // "¿Para quién es este elevador?" / "¿Para quién es esta grúa?"
+  const kind = name.split(" ")[0].toLowerCase();
+  const audienceTitle = `¿Para quién es ${article === "la" ? "esta" : "este"} ${kind}?`;
   const gallery = product.gallery;
   const photoAlt = (index: number) =>
     index === 0 ? `${name} SillaUp, foto de portada` : `${name} SillaUp, foto ${index + 1} de ${gallery.length}`;
@@ -97,7 +102,7 @@ export default function ProductDetail({ slug }: { slug: string }) {
                   style={{ opacity: fading ? 0.4 : 1, transition: "opacity 120ms" }}
                 />
                 <span className="absolute bottom-3 right-3 bg-surface-container-lowest/95 border border-outline-variant text-on-surface px-3 py-1.5 rounded-full text-label-sm font-label-sm flex items-center gap-1.5 shadow-sm opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity">
-                  <span className="material-symbols-outlined text-[18px]">zoom_in</span>
+                  <span aria-hidden="true" className="material-symbols-outlined text-[18px]">zoom_in</span>
                   Ampliar
                 </span>
               </button>
@@ -117,7 +122,7 @@ export default function ProductDetail({ slug }: { slug: string }) {
                       onClick={() => showImage((active + step + gallery.length) % gallery.length)}
                       type="button"
                     >
-                      <span className="material-symbols-outlined text-[22px]">{icon}</span>
+                      <span aria-hidden="true" className="material-symbols-outlined text-[22px]">{icon}</span>
                     </button>
                   ))}
                 </>
@@ -151,12 +156,12 @@ export default function ProductDetail({ slug }: { slug: string }) {
                 <span className="w-1.5 h-1.5 rounded-full bg-outline-variant"></span>
                 {product.inStock ? (
                   <span className="text-tertiary font-bold text-label-sm flex items-center gap-1">
-                    <span className="material-symbols-outlined text-[14px]">check_circle</span>
+                    <span aria-hidden="true" className="material-symbols-outlined text-[14px]">check_circle</span>
                     En stock
                   </span>
                 ) : (
                   <span className="text-on-surface-variant font-bold text-label-sm flex items-center gap-1">
-                    <span className="material-symbols-outlined text-[14px]">inventory_2</span>
+                    <span aria-hidden="true" className="material-symbols-outlined text-[14px]">inventory_2</span>
                     Consultar stock
                   </span>
                 )}
@@ -187,42 +192,44 @@ export default function ProductDetail({ slug }: { slug: string }) {
               {/* Opciones de compra */}
               <div className="flex flex-col gap-3 mb-6">
                 <a
-                  className="w-full bg-primary-container hover:bg-primary text-on-primary py-3.5 px-6 rounded-full font-label-lg text-label-lg flex items-center justify-center gap-2 transition-all duration-200 shadow-md hover:shadow-lg active:scale-[0.99] text-center"
-                  href={product.mercadoPagoUrl ?? whatsapp(`Hola, quiero comprar ${article} ${name}`)}
+                  className="w-full bg-brand-whatsapp hover:bg-brand-whatsapp-hover text-white py-3.5 px-6 rounded-full font-label-lg text-label-lg flex items-center justify-center gap-2 transition-all duration-200 shadow-md hover:shadow-lg active:scale-[0.99] text-center"
+                  href={whatsapp(`Hola SillaUp, quiero comprar ${article} ${name} (${formatPrice(salePrice(product))})`)}
                   rel="noopener noreferrer"
                   target="_blank"
                 >
-                  <span className="material-symbols-outlined text-[20px]">shopping_cart_checkout</span>
-                  <span>Comprar ahora</span>
-                </a>
-                <div className="flex items-center justify-center gap-2 text-xs text-on-surface-variant font-medium">
-                  <span className="material-symbols-outlined text-[16px] text-tertiary" style={filled}>
-                    lock
-                  </span>
-                  <span>
-                    {product.mercadoPagoUrl
-                      ? "Pago seguro con Mercado Pago · Hasta 12 cuotas sin interés"
-                      : "Coordinamos contigo el pago y el despacho por WhatsApp"}
-                  </span>
-                </div>
-                <a
-                  className="w-full bg-[#25D366] hover:bg-[#20ba59] text-white py-3.5 px-6 rounded-full font-label-lg text-label-lg flex items-center justify-center gap-2 transition-all duration-200 shadow-sm active:scale-[0.99] text-center mt-1"
-                  href={whatsapp(`Hola, quiero información sobre ${article} ${name}`)}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  <span className="material-symbols-outlined text-[22px]" style={filled}>
+                  <span aria-hidden="true" className="material-symbols-outlined text-[22px]" style={filled}>
                     chat
                   </span>
-                  <span>Consultar por WhatsApp</span>
+                  <span>Comprar por WhatsApp</span>
                 </a>
+                <a
+                  className="w-full border-2 border-primary-container text-primary-container hover:bg-primary-container/5 py-3 px-6 rounded-full font-label-lg text-label-lg flex items-center justify-center gap-2 transition-all duration-200 active:scale-[0.99] text-center"
+                  href={whatsapp(`Hola SillaUp, quiero agendar una prueba ${article === "la" ? "de la" : "del"} ${name} en el showroom de Merced 562`)}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <span aria-hidden="true" className="material-symbols-outlined text-[20px]">event_available</span>
+                  <span>Agendar prueba en el showroom</span>
+                </a>
+                <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-xs text-on-surface-variant font-medium text-center">
+                  <span aria-hidden="true" className="material-symbols-outlined text-[16px] text-tertiary" style={filled}>
+                    lock
+                  </span>
+                  <span>Coordinamos contigo el pago y el despacho a todo Chile</span>
+                  {/* Online payment stays available when the product has a Mercado Pago link */}
+                  {product.mercadoPagoUrl && (
+                    <a className="font-bold text-primary hover:underline" href={product.mercadoPagoUrl} rel="noopener noreferrer" target="_blank">
+                      o paga en línea con Mercado Pago
+                    </a>
+                  )}
+                </div>
               </div>
             </div>
             {/* Badges de Confianza Rápidos */}
             <div className="grid grid-cols-2 gap-3 pt-6 border-t border-outline-variant">
-              {product.quickSpecs.map((spec) => (
+              {product.quickSpecs.filter((spec) => !isPending(spec.value)).map((spec) => (
                 <div key={spec.label} className="flex items-center gap-3 bg-surface-container-low p-2.5 rounded-lg border border-outline-variant">
-                  <span className="material-symbols-outlined text-primary text-[22px]">{spec.icon}</span>
+                  <span aria-hidden="true" className="material-symbols-outlined text-primary text-[22px]">{spec.icon}</span>
                   <div>
                     <span className="text-xs text-on-surface-variant block font-bold">{spec.label}</span>
                     <span className="text-label-sm font-label-sm text-on-surface">{spec.value}</span>
@@ -245,7 +252,7 @@ export default function ProductDetail({ slug }: { slug: string }) {
               <div className="flex flex-col gap-3">
                 {product.detail.points.map((point) => (
                   <div key={point.text} className="flex items-start gap-3">
-                    <span className="material-symbols-outlined text-tertiary-container mt-1">{point.icon}</span>
+                    <span aria-hidden="true" className="material-symbols-outlined text-tertiary-container mt-1">{point.icon}</span>
                     <p className="text-body-sm font-body-sm text-on-surface-variant">{point.text}</p>
                   </div>
                 ))}
@@ -315,15 +322,15 @@ export default function ProductDetail({ slug }: { slug: string }) {
               ></iframe>
             ) : (
               <div className="w-full h-full flex flex-col items-center justify-center gap-4 text-inverse-on-surface px-6">
-                <span className="material-symbols-outlined text-[64px] opacity-80">videocam</span>
+                <span aria-hidden="true" className="material-symbols-outlined text-[64px] opacity-80">videocam</span>
                 <p className="text-body-md font-body-md max-w-md">Video demostrativo en preparación</p>
                 <a
-                  className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#20ba59] text-white px-6 py-3 rounded-full font-label-md text-label-md transition-colors"
+                  className="inline-flex items-center gap-2 bg-brand-whatsapp hover:bg-brand-whatsapp-hover text-white px-6 py-3 rounded-full font-label-md text-label-md transition-colors"
                   href={whatsapp(`Hola, quiero ver una demostración ${article === "la" ? "de la" : "del"} ${name} por videollamada`)}
                   rel="noopener noreferrer"
                   target="_blank"
                 >
-                  <span className="material-symbols-outlined text-[20px]">video_call</span>
+                  <span aria-hidden="true" className="material-symbols-outlined text-[20px]">video_call</span>
                   Solicitar demostración por videollamada
                 </a>
               </div>
@@ -331,7 +338,7 @@ export default function ProductDetail({ slug }: { slug: string }) {
           </div>
           {product.video && (
             <p className="text-xs text-on-surface-variant mt-4 flex items-center justify-center gap-1">
-              <span className="material-symbols-outlined text-[16px] text-primary">play_circle</span>
+              <span aria-hidden="true" className="material-symbols-outlined text-[16px] text-primary">play_circle</span>
               Video oficial grabado en nuestro showroom y en ambientes reales de transferencia SillaUp
             </p>
           )}
@@ -348,7 +355,7 @@ export default function ProductDetail({ slug }: { slug: string }) {
           {product.benefits.map((benefit, index) => (
             <div key={benefit.title} className="p-6 rounded-xl bg-surface-container-lowest border border-outline-variant flex items-start gap-4 shadow-sm hover:border-primary transition-colors">
               <div className={`p-3 ${benefitTones[index % benefitTones.length]} rounded-lg flex items-center justify-center shrink-0`}>
-                <span className="material-symbols-outlined text-[28px]">{benefit.icon}</span>
+                <span aria-hidden="true" className="material-symbols-outlined text-[28px]">{benefit.icon}</span>
               </div>
               <div>
                 <h3 className="text-headline-sm font-headline-sm text-on-surface mb-1">{benefit.title}</h3>
@@ -363,13 +370,13 @@ export default function ProductDetail({ slug }: { slug: string }) {
       <section className="bg-surface-container-low py-16 px-6 md:px-12 border-y border-outline-variant">
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-3xl mx-auto mb-12">
-            <span className="text-secondary font-label-sm text-label-sm uppercase tracking-wider block mb-2">Indicaciones Clínicas</span>
-            <h2 className="text-headline-md font-headline-md text-on-surface">¿Para quién está recomendado este dispositivo?</h2>
+            <span className="text-secondary font-label-sm text-label-sm uppercase tracking-wider block mb-2">Uso recomendado</span>
+            <h2 className="text-headline-md font-headline-md text-on-surface">{audienceTitle}</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
             {product.audience.map((item) => (
               <div key={item.title} className="bg-surface-container-lowest border border-outline-variant rounded-xl p-5 text-center flex flex-col items-center justify-center">
-                <span className="material-symbols-outlined text-primary text-[36px] mb-3">{item.icon}</span>
+                <span aria-hidden="true" className="material-symbols-outlined text-primary text-[36px] mb-3">{item.icon}</span>
                 <h4 className="font-bold text-on-surface text-label-md mb-1">{item.title}</h4>
                 <p className="text-xs text-on-surface-variant">{item.text}</p>
               </div>
@@ -387,10 +394,10 @@ export default function ProductDetail({ slug }: { slug: string }) {
         <div className="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm">
           <table className="w-full text-left border-collapse">
             <tbody>
-              {product.specs.map((spec, index) => (
+              {specs.map((spec, index) => (
                 <tr
                   key={spec.label}
-                  className={`${index < product.specs.length - 1 ? "border-b border-outline-variant " : ""}${index % 2 ? "bg-[#FAFBFB]" : "bg-surface-container-lowest"} hover:bg-surface-container-low transition-colors`}
+                  className={`${index < specs.length - 1 ? "border-b border-outline-variant " : ""}${index % 2 ? "bg-[#FAFBFB]" : "bg-surface-container-lowest"} hover:bg-surface-container-low transition-colors`}
                 >
                   <th className="py-4 px-6 text-label-md font-label-md text-on-surface w-1/3">{spec.label}</th>
                   <td
@@ -419,7 +426,7 @@ export default function ProductDetail({ slug }: { slug: string }) {
         <div className="max-w-5xl mx-auto">
           <div className="bg-surface-container-low rounded-2xl p-8 md:p-12 border border-outline-variant flex flex-col md:flex-row items-center gap-8 shadow-sm">
             <div className="w-20 h-20 rounded-full bg-primary-container text-on-primary flex items-center justify-center shrink-0 shadow-md">
-              <span className="material-symbols-outlined text-[44px]">favorite</span>
+              <span aria-hidden="true" className="material-symbols-outlined text-[44px]">favorite</span>
             </div>
             <div>
               <span className="text-secondary font-label-sm text-label-sm uppercase tracking-wider block mb-1">Propósito &amp; Compromiso Humano</span>
@@ -448,7 +455,7 @@ export default function ProductDetail({ slug }: { slug: string }) {
                 { icon: "support", title: "Teléfono y Asistencia WhatsApp", text: `${site.phone} (Servicio técnico y repuestos inmediatos)` },
               ].map((item) => (
                 <div key={item.title} className="flex items-start gap-3">
-                  <span className="material-symbols-outlined text-primary text-[24px]">{item.icon}</span>
+                  <span aria-hidden="true" className="material-symbols-outlined text-primary text-[24px]">{item.icon}</span>
                   <div>
                     <strong className="text-on-surface text-label-md block">{item.title}</strong>
                     <span className="text-body-sm text-on-surface-variant">{item.text}</span>
@@ -463,7 +470,7 @@ export default function ProductDetail({ slug }: { slug: string }) {
                 rel="noopener noreferrer"
                 target="_blank"
               >
-                <span className="material-symbols-outlined text-[18px]">calendar_month</span>
+                <span aria-hidden="true" className="material-symbols-outlined text-[18px]">calendar_month</span>
                 <span>Agendar demostración</span>
               </a>
               <a
@@ -472,7 +479,7 @@ export default function ProductDetail({ slug }: { slug: string }) {
                 rel="noopener noreferrer"
                 target="_blank"
               >
-                <span className="material-symbols-outlined text-[18px]">directions</span>
+                <span aria-hidden="true" className="material-symbols-outlined text-[18px]">directions</span>
                 <span>Cómo llegar</span>
               </a>
             </div>
@@ -533,7 +540,7 @@ export default function ProductDetail({ slug }: { slug: string }) {
                     <div>
                       <span className="text-on-surface font-bold text-sm block">{review.name}</span>
                       <span className="text-xs text-on-surface-variant flex items-center gap-1">
-                        <span className="material-symbols-outlined text-[14px] text-tertiary">verified</span>
+                        <span aria-hidden="true" className="material-symbols-outlined text-[14px] text-tertiary">verified</span>
                         {review.detail}
                       </span>
                     </div>
@@ -543,7 +550,7 @@ export default function ProductDetail({ slug }: { slug: string }) {
             </div>
           ) : (
             <div className="bg-surface-container-lowest border border-dashed border-outline-variant rounded-xl p-10 text-center">
-              <span className="material-symbols-outlined text-[40px] text-outline mb-3">rate_review</span>
+              <span aria-hidden="true" className="material-symbols-outlined text-[40px] text-outline mb-3">rate_review</span>
               <h3 className="text-headline-sm font-headline-sm text-on-surface mb-2">Sé el primero en compartir tu experiencia</h3>
               <p className="text-body-sm font-body-sm text-on-surface-variant max-w-md mx-auto">
                 ¿Ya utilizas {article} {name.toLowerCase()} en tu hogar? Tu testimonio ayuda a orientar a otras familias en su decisión
@@ -562,7 +569,7 @@ export default function ProductDetail({ slug }: { slug: string }) {
           </div>
           <Link className="text-primary font-bold text-body-md hover:underline flex items-center gap-1 mt-2 md:mt-0" href="/productos">
             <span>Ver catálogo completo</span>
-            <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
+            <span aria-hidden="true" className="material-symbols-outlined text-[18px]">arrow_forward</span>
           </Link>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -584,7 +591,7 @@ export default function ProductDetail({ slug }: { slug: string }) {
                 <span className="text-xs font-bold text-on-surface-variant">{other.card.meta}</span>
                 <Link className="text-primary font-bold text-xs hover:underline flex items-center after:absolute after:inset-0 after:content-['']" href={productHref(other.slug)}>
                   Ver detalle
-                  <span className="material-symbols-outlined text-[14px]">chevron_right</span>
+                  <span aria-hidden="true" className="material-symbols-outlined text-[14px]">chevron_right</span>
                 </Link>
               </div>
             </div>

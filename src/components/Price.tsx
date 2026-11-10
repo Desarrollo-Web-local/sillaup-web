@@ -15,8 +15,8 @@ export function CardPrice({ product }: { product: Product }) {
 export function OfferBadge({ product, className = "" }: { product: Product; className?: string }) {
   if (!product.offer) return null;
   return (
-    <span className={`inline-flex items-center gap-1 bg-error text-on-error text-[11px] font-extrabold uppercase tracking-wide px-2.5 py-1 rounded-full shadow-md ${className}`}>
-      <span className="material-symbols-outlined text-[13px]">sell</span>
+    <span className={`inline-flex items-center gap-1 bg-error text-on-error text-xs font-extrabold uppercase tracking-wide px-2.5 py-1 rounded-full shadow-md ${className}`}>
+      <span aria-hidden="true" className="material-symbols-outlined text-[13px]">sell</span>
       {product.offer.label} -{product.offer.discountPercent}%
     </span>
   );

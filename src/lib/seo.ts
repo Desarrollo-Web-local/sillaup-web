@@ -1,84 +1,120 @@
 import type { Metadata } from "next";
 import { getSiteData, getSiteProduct } from "@/lib/cms";
-import { coverImage, productHref, salePrice, type Product } from "@/lib/products";
+import { coverImage, formatPrice, productHref, salePrice, type Product } from "@/lib/products";
+import type { Landing } from "@/lib/landings";
 import { site } from "@/lib/site";
 
 /**
- * Public URL of the site, used for canonical links, the sitemap and structured data.
- * NEXT_PUBLIC_SITE_URL is set in Vercel (production); previews fall back to Vercel's own URL.
+ * Canonical host of the site: canonical links, og:url, the sitemap and structured data always
+ * point here, also from previews and the *.vercel.app domains.
  */
-export const siteUrl = (
-  process.env.NEXT_PUBLIC_SITE_URL ??
-  (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : "http://localhost:3000")
-).replace(/\/$/, "");
+export const siteUrl = "https://www.sillaup.cl";
 
 export const absoluteUrl = (path: string) => (/^https?:\/\//.test(path) ? path : `${siteUrl}${path.startsWith("/") ? "" : "/"}${path}`);
 
-export const seoKeywords = [
-  "movilidad asistida Chile",
-  "movilidad reducida",
-  "ayudas técnicas Chile",
-  "elevador de inodoro",
-  "elevador de cama",
-  "elevador multiuso",
-  "grúa eléctrica para pacientes",
-  "grúa manual de traslado",
-  "grúa de traslado de pacientes",
-  "traslado de adultos mayores",
-  "cuidado de adultos mayores",
-  "equipos ortopédicos Santiago",
-  "fabricación chilena",
-  "showroom Santiago",
-  "SillaUp",
-];
-
-/** Shared metadata for a public page: canonical URL plus matching Open Graph data. */
-export function pageMetadata({ title, description, path }: { title?: string; description: string; path: string }): Metadata {
+/**
+ * Shared metadata for a public page: canonical URL plus matching Open Graph data. `title` goes
+ * through the "%s | SillaUp" template; `absoluteTitle` is used as is.
+ */
+export function pageMetadata({
+  title,
+  absoluteTitle,
+  description,
+  path,
+}: {
+  title?: string;
+  absoluteTitle?: string;
+  description: string;
+  path: string;
+}): Metadata {
+  const fullTitle = absoluteTitle ?? (title ? `${title} | ${site.name}` : undefined);
   return {
-    ...(title ? { title } : {}),
+    ...(absoluteTitle ? { title: { absolute: absoluteTitle } } : title ? { title } : {}),
     description,
     alternates: { canonical: path },
-    openGraph: { ...(title ? { title: `${title} | ${site.name}` } : {}), description, url: path },
-    twitter: { ...(title ? { title: `${title} | ${site.name}` } : {}), description },
+    openGraph: { ...(fullTitle ? { title: fullTitle } : {}), description, url: path },
+    twitter: { ...(fullTitle ? { title: fullTitle } : {}), description },
   };
+}
+
+/**
+ * Meta description of a product page, following "(producto) + (beneficio principal) + (precio)
+ * + (garantía de 1 año)". The price is the current one (including an active offer).
+ */
+export function productDescription(product: Product) {
+  const tryIt = product.article === "la" ? "Pruébala" : "Pruébalo";
+  return `${product.seo.lead} ${formatPrice(salePrice(product))} IVA incl., garantía 1 año. ${tryIt} en nuestro showroom.`;
 }
 
 export async function productMetadata(slug: string): Promise<Metadata> {
   const product = await getSiteProduct(slug);
   const cover = coverImage(product);
-  const title = `${product.name} | Movilidad asistida en Chile`;
+  const description = productDescription(product);
   return {
-    ...pageMetadata({ title, description: product.metaDescription, path: productHref(slug) }),
+    ...pageMetadata({ absoluteTitle: product.seo.title, description, path: productHref(slug) }),
     openGraph: {
-      title: `${title} | ${site.name}`,
-      description: product.metaDescription,
+      title: product.seo.title,
+      description,
       url: productHref(slug),
       images: [{ url: absoluteUrl(cover.src), alt: `${product.name} SillaUp` }],
     },
-    twitter: { card: "summary_large_image", title: `${title} | ${site.name}`, description: product.metaDescription, images: [absoluteUrl(cover.src)] },
+    twitter: { card: "summary_large_image", title: product.seo.title, description, images: [absoluteUrl(cover.src)] },
   };
 }
 
 // ---------------------------------------------------------------------------------------------
 // Datos estructurados (schema.org, JSON-LD)
 
+const organizationId = `${siteUrl}/#organizacion`;
 const businessId = `${siteUrl}/#negocio`;
+const businessDescription =
+  "Fabricación chilena de dispositivos de movilidad asistida: elevadores de inodoro, de cama y multiuso, y grúas manuales y eléctricas para el traslado de personas con movilidad reducida.";
 
-/** The business behind the site: a physical store (the showroom) that also sells online. */
+/** The company (brand, manufacturer). */
+export function organizationJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": organizationId,
+    name: site.name,
+    alternateName: `${site.name} ${site.tagline}`,
+    description: businessDescription,
+    url: siteUrl,
+    logo: { "@type": "ImageObject", url: absoluteUrl("/logo.png"), width: 2109, height: 746 },
+    email: site.email,
+    telephone: site.phone,
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "customer service",
+      telephone: site.phone,
+      email: site.email,
+      areaServed: "CL",
+      availableLanguage: "es",
+      hoursAvailable: {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        opens: "09:00",
+        closes: "18:00",
+      },
+    },
+  };
+}
+
+/** The showroom in Santiago: a local business that also sells online. */
 export function businessJsonLd() {
   return {
     "@context": "https://schema.org",
-    "@type": "Store",
+    "@type": ["LocalBusiness", "Store"],
     "@id": businessId,
     name: site.name,
-    alternateName: `${site.name} ${site.tagline}`,
-    description:
-      "Fabricación chilena de dispositivos de movilidad asistida: elevadores de inodoro, de cama y multiuso, y grúas manuales y eléctricas para el traslado de personas con movilidad reducida.",
+    description: businessDescription,
+    parentOrganization: { "@id": organizationId },
     url: siteUrl,
     logo: absoluteUrl("/logo.png"),
     image: absoluteUrl("/logo.png"),
     telephone: site.phone,
     email: site.email,
+    priceRange: "$$",
     address: {
       "@type": "PostalAddress",
       streetAddress: "Merced 562",
@@ -108,7 +144,7 @@ export function websiteJsonLd() {
     name: site.name,
     url: siteUrl,
     inLanguage: "es-CL",
-    publisher: { "@id": businessId },
+    publisher: { "@id": organizationId },
   };
 }
 
@@ -125,7 +161,8 @@ export function productJsonLd(product: Product) {
       sku: product.slug,
       category: product.category,
       brand: { "@type": "Brand", name: site.name },
-      manufacturer: { "@id": businessId },
+      manufacturer: { "@id": organizationId },
+      countryOfOrigin: { "@type": "Country", name: "Chile" },
       url,
       offers: {
         "@type": "Offer",
@@ -136,6 +173,14 @@ export function productJsonLd(product: Product) {
         itemCondition: "https://schema.org/NewCondition",
         ...(product.offer?.endsAt ? { priceValidUntil: product.offer.endsAt } : {}),
         seller: { "@id": businessId },
+        warranty: {
+          "@type": "WarrantyPromise",
+          durationOfWarranty: { "@type": "QuantitativeValue", value: 1, unitCode: "ANN" },
+        },
+        shippingDetails: {
+          "@type": "OfferShippingDetails",
+          shippingDestination: { "@type": "DefinedRegion", addressCountry: "CL" },
+        },
       },
     },
     breadcrumbJsonLd([
@@ -163,6 +208,41 @@ export async function catalogJsonLd() {
     name: "Catálogo de productos SillaUp",
     itemListElement: products.map((p, i) => ({ "@type": "ListItem", position: i + 1, url: absoluteUrl(productHref(p.slug)), name: p.name })),
   };
+}
+
+export function faqPageJsonLd(faqs: { question: string; answer: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((q) => ({ "@type": "Question", name: q.question, acceptedAnswer: { "@type": "Answer", text: q.answer } })),
+  };
+}
+
+/** Lowest current price (offers included) of the given products. */
+export function lowestPrice(products: Product[]) {
+  return Math.min(...products.map(salePrice));
+}
+
+/** Metadata of a category page or institutional landing; {precio} gets the current lowest price. */
+export async function landingMetadata(landing: Landing): Promise<Metadata> {
+  const { products } = await getSiteData();
+  const shown = products.filter((p) => landing.productSlugs.includes(p.slug));
+  const description = landing.metaDescription.replace("{precio}", formatPrice(lowestPrice(shown)));
+  return pageMetadata({ absoluteTitle: landing.metaTitle, description, path: landing.path });
+}
+
+/** BreadcrumbList + FAQPage + ItemList of the products shown on a landing. */
+export function landingJsonLd(landing: Landing, shown: Product[]) {
+  return [
+    breadcrumbJsonLd([{ name: "Inicio", path: "/" }, ...landing.breadcrumb]),
+    faqPageJsonLd(landing.faqs),
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      name: landing.productsTitle,
+      itemListElement: shown.map((p, i) => ({ "@type": "ListItem", position: i + 1, url: absoluteUrl(productHref(p.slug)), name: p.name })),
+    },
+  ];
 }
 
 /** FAQ rich result, built from the same (editable) texts the page shows. */

@@ -2,6 +2,17 @@ import Image from "next/image";
 import Link from "next/link";
 import { navLinks, site } from "@/lib/site";
 
+const footerLandings = [
+  { href: "/productos/bano", label: "Baño" },
+  { href: "/productos/traslado-de-pacientes", label: "Traslado de pacientes" },
+  { href: "/productos/bipedestacion", label: "Bipedestación" },
+  { href: "/productos/cuidado-en-cama", label: "Cuidado en cama" },
+  { href: "/para-cuidadores", label: "Para cuidadores" },
+  { href: "/para-kinesiologos-y-centros", label: "Para kinesiólogos y centros" },
+  { href: "/residencias-adulto-mayor", label: "Residencias de adulto mayor" },
+  { href: "/guias", label: "Guías" },
+];
+
 export default function SiteFooter({ about }: { about: string }) {
   return (
     <footer className="bg-surface-container border-t border-outline-variant mt-auto">
@@ -14,7 +25,7 @@ export default function SiteFooter({ about }: { about: string }) {
               {about}
             </p>
             <div className="inline-flex items-center gap-2 bg-brand-teal text-white px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">
-              <span className="material-symbols-outlined text-sm">handshake</span>
+              <span aria-hidden="true" className="material-symbols-outlined text-sm">handshake</span>
               Fabricación Chilena
             </div>
           </div>
@@ -23,21 +34,21 @@ export default function SiteFooter({ about }: { about: string }) {
           <div className="lg:col-span-4 space-y-3">
             <p className="text-label-md font-label-md text-on-surface font-extrabold uppercase tracking-wider mb-2">Contacto Directo</p>
             <p className="text-body-sm font-body-sm text-on-surface-variant flex items-center gap-2">
-              <span className="material-symbols-outlined text-base text-primary">location_on</span>
+              <span aria-hidden="true" className="material-symbols-outlined text-base text-primary">location_on</span>
               <a className="hover:text-primary transition-colors" href={site.mapsUrl} rel="noopener noreferrer" target="_blank">
                 {site.address}
               </a>
             </p>
             <p className="text-body-sm font-body-sm text-on-surface-variant flex items-center gap-2">
-              <span className="material-symbols-outlined text-base text-primary">call</span>
+              <span aria-hidden="true" className="material-symbols-outlined text-base text-primary">call</span>
               <a className="hover:text-primary transition-colors font-semibold" href={site.phoneHref}>{site.phone}</a>
             </p>
             <p className="text-body-sm font-body-sm text-on-surface-variant flex items-center gap-2">
-              <span className="material-symbols-outlined text-base text-primary">mail</span>
+              <span aria-hidden="true" className="material-symbols-outlined text-base text-primary">mail</span>
               <a className="hover:text-primary transition-colors" href={`mailto:${site.email}`}>{site.email}</a>
             </p>
             <p className="text-body-sm font-body-sm text-on-surface-variant flex items-center gap-2">
-              <span className="material-symbols-outlined text-base text-primary">schedule</span>
+              <span aria-hidden="true" className="material-symbols-outlined text-base text-primary">schedule</span>
               {site.hours}
             </p>
           </div>
@@ -45,27 +56,26 @@ export default function SiteFooter({ about }: { about: string }) {
           {/* Enlaces rápidos */}
           <div className="lg:col-span-4 space-y-3">
             <p className="text-label-md font-label-md text-on-surface font-extrabold uppercase tracking-wider mb-2">Enlaces Rápidos</p>
-            <ul className="space-y-2 text-label-sm font-label-sm">
+            <ul className="text-body-sm font-body-sm">
               {[{ href: "/productos", label: "Productos" }, ...navLinks.slice(1)].map((link) => (
                 <li key={link.href}>
-                  <Link className="text-on-surface-variant hover:text-on-surface transition-colors" href={link.href}>
+                  <Link className="inline-flex items-center min-h-[44px] text-on-surface-variant hover:text-on-surface transition-colors" href={link.href}>
                     {link.label}
                   </Link>
                 </li>
               ))}
             </ul>
-            {/* Redes sociales: pendientes de configurar */}
-            <div className="pt-2">
-              <p className="text-[11px] uppercase tracking-wider text-outline font-bold mb-2">Redes Sociales</p>
-              <div className="flex items-center gap-2">
-                <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-surface-container-highest text-[11px] text-outline font-medium">
-                  Instagram <span className="text-[9px] bg-outline-variant/50 px-1 rounded">[POR CONFIGURAR]</span>
-                </span>
-                <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-surface-container-highest text-[11px] text-outline font-medium">
-                  Facebook <span className="text-[9px] bg-outline-variant/50 px-1 rounded">[POR CONFIGURAR]</span>
-                </span>
-              </div>
-            </div>
+            <p className="text-label-md font-label-md text-on-surface font-extrabold uppercase tracking-wider pt-4 mb-2">Categorías y guías</p>
+            <ul className="text-body-sm font-body-sm">
+              {footerLandings.map((link) => (
+                <li key={link.href}>
+                  <Link className="inline-flex items-center min-h-[44px] text-on-surface-variant hover:text-on-surface transition-colors" href={link.href}>
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            {/* Redes sociales: se agregan aquí cuando existan las cuentas de Instagram y Facebook */}
           </div>
         </div>
 

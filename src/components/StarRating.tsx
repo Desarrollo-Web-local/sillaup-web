@@ -39,7 +39,7 @@ export default function StarRating({
           role="radio"
           type="button"
         >
-          <span className={`material-symbols-outlined ${iconClassName}`} style={{ fontVariationSettings: `'FILL' ${value <= rating ? 1 : 0}` }}>
+          <span aria-hidden="true" className={`material-symbols-outlined ${iconClassName}`} style={{ fontVariationSettings: `'FILL' ${value <= rating ? 1 : 0}` }}>
             star
           </span>
         </button>

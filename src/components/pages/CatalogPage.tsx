@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import InstitutionsCta from "@/components/InstitutionsCta";
 import { CardPrice, OfferBadge } from "@/components/Price";
 import { useProducts, useText } from "@/components/SiteData";
 import { coverImage, formatPrice, productHref, salePrice } from "@/lib/products";
@@ -20,7 +21,7 @@ export default function CatalogPage() {
             <Link className="hover:text-brand-blue transition-colors" href="/">
               Inicio
             </Link>
-            <span className="material-symbols-outlined text-xs">
+            <span aria-hidden="true" className="material-symbols-outlined text-xs">
               chevron_right
             </span>
             <span className="text-brand-blue font-bold">
@@ -30,7 +31,7 @@ export default function CatalogPage() {
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-8">
             <div className="max-w-3xl">
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-label-sm uppercase bg-brand-teal text-white mb-3 tracking-wide">
-                <span className="material-symbols-outlined text-[14px]">
+                <span aria-hidden="true" className="material-symbols-outlined text-[14px]">
                   precision_manufacturing
                 </span>
                 {t("catalog.hero.eyebrow")}
@@ -45,7 +46,7 @@ export default function CatalogPage() {
             {/* Direct support badge */}
             <div className="hidden lg:flex items-center gap-3 bg-white p-3.5 rounded-2xl border border-brand-border shadow-level-1">
               <div className="w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center text-brand-teal">
-                <span className="material-symbols-outlined">
+                <span aria-hidden="true" className="material-symbols-outlined">
                   support_agent
                 </span>
               </div>
@@ -62,7 +63,7 @@ export default function CatalogPage() {
           {/* Badges de Garantía y Calidad SillaUp */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 pt-4 border-t border-outline-variant/40">
             <div className="flex items-center gap-3 bg-white/80 p-3 rounded-xl border border-brand-border/60">
-              <span className="material-symbols-outlined text-brand-blue text-2xl">
+              <span aria-hidden="true" className="material-symbols-outlined text-brand-blue text-2xl">
                 verified
               </span>
               <span className="text-xs font-label-md text-brand-night">
@@ -70,7 +71,7 @@ export default function CatalogPage() {
               </span>
             </div>
             <div className="flex items-center gap-3 bg-white/80 p-3 rounded-xl border border-brand-border/60">
-              <span className="material-symbols-outlined text-brand-blue text-2xl">
+              <span aria-hidden="true" className="material-symbols-outlined text-brand-blue text-2xl">
                 shield
               </span>
               <span className="text-xs font-label-md text-brand-night">
@@ -78,7 +79,7 @@ export default function CatalogPage() {
               </span>
             </div>
             <div className="flex items-center gap-3 bg-white/80 p-3 rounded-xl border border-brand-border/60">
-              <span className="material-symbols-outlined text-brand-blue text-2xl">
+              <span aria-hidden="true" className="material-symbols-outlined text-brand-blue text-2xl">
                 local_shipping
               </span>
               <span className="text-xs font-label-md text-brand-night">
@@ -86,7 +87,7 @@ export default function CatalogPage() {
               </span>
             </div>
             <div className="flex items-center gap-3 bg-white/80 p-3 rounded-xl border border-brand-border/60">
-              <span className="material-symbols-outlined text-brand-blue text-2xl">
+              <span aria-hidden="true" className="material-symbols-outlined text-brand-blue text-2xl">
                 build_circle
               </span>
               <span className="text-xs font-label-md text-brand-night">
@@ -103,8 +104,8 @@ export default function CatalogPage() {
           {products.map((product) => (
           <article key={product.slug} className={`product-card group bg-surface-container-lowest rounded-[24px] p-4 hover:scale-[1.03] transition-all duration-300 flex flex-col justify-between relative ${product.featured ? "border-2 border-brand-blue/30 shadow-level-2 hover:shadow-level-3" : "border border-brand-border shadow-level-1 hover:shadow-level-2"}`}>
             {product.featured && (
-            <div className="absolute -top-3 left-6 bg-brand-blue text-white text-[11px] font-label-sm uppercase px-3 py-0.5 rounded-full tracking-wide shadow-sm flex items-center gap-1">
-              <span className="material-symbols-outlined text-xs">
+            <div className="absolute -top-3 left-6 bg-brand-blue text-white text-xs font-label-sm uppercase px-3 py-0.5 rounded-full tracking-wide shadow-sm flex items-center gap-1">
+              <span aria-hidden="true" className="material-symbols-outlined text-xs">
                 star
               </span>
               Más Solicitado
@@ -119,8 +120,8 @@ export default function CatalogPage() {
                 {product.offer ? (
                 <OfferBadge className="absolute top-3 left-3 z-10" product={product} />
                 ) : (
-                <div className="absolute top-3 left-3 z-10 bg-brand-teal/90 text-white font-label-sm text-[10px] uppercase font-bold px-2.5 py-1 rounded-full flex items-center gap-1 shadow-sm">
-                  <span className="material-symbols-outlined text-[12px]">
+                <div className="absolute top-3 left-3 z-10 bg-brand-teal/90 text-white font-label-sm text-xs uppercase font-bold px-2.5 py-1 rounded-full flex items-center gap-1 shadow-sm">
+                  <span aria-hidden="true" className="material-symbols-outlined text-[12px]">
                     verified
                   </span>
                   Fabricación Chilena
@@ -130,7 +131,7 @@ export default function CatalogPage() {
               </div>
               {/* Category Tag */}
               <div className="flex items-center gap-2 mb-1.5">
-                <span className="bg-surface-container-high text-brand-teal rounded-full px-2.5 py-0.5 text-[11px] font-label-sm font-bold">
+                <span className="bg-surface-container-high text-brand-teal rounded-full px-2.5 py-0.5 text-xs font-label-sm font-bold">
                   {product.category}
                 </span>
               </div>
@@ -148,13 +149,13 @@ export default function CatalogPage() {
                 <span>
                   Ver producto
                 </span>
-                <span className="material-symbols-outlined text-base">
+                <span aria-hidden="true" className="material-symbols-outlined text-base">
                   arrow_forward
                 </span>
               </Link>
               {product.mercadoPagoUrl && (
               <a className="relative z-10 w-full text-center border-2 border-brand-blue text-brand-blue bg-white font-label-md py-2 rounded-full hover:bg-brand-blue/5 transition-colors duration-150 font-bold active:scale-95 flex items-center justify-center gap-2" href={product.mercadoPagoUrl} rel="noopener noreferrer" target="_blank">
-                <span className="material-symbols-outlined text-sm">
+                <span aria-hidden="true" className="material-symbols-outlined text-sm">
                   credit_card
                 </span>
                 <span>
@@ -167,6 +168,8 @@ export default function CatalogPage() {
           ))}
         </div>
       </section>
+      {/* CTA institucional: residencias y centros de rehabilitación */}
+      <InstitutionsCta />
       {/* 6. Personalized Advisory Card "¿No sabes cuál elegir?" */}
       <section className="max-w-7xl mx-auto px-6 md:px-12 pb-16">
         <div className="bg-gradient-to-br from-brand-teal to-on-secondary-fixed-variant text-white rounded-[32px] p-8 md:p-12 shadow-level-2 relative overflow-hidden">
@@ -176,7 +179,7 @@ export default function CatalogPage() {
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-8">
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-label-sm uppercase bg-white/10 text-secondary-fixed mb-4 backdrop-blur-sm">
-                <span className="material-symbols-outlined text-[14px]">
+                <span aria-hidden="true" className="material-symbols-outlined text-[14px]">
                   psychology_alt
                 </span>
                 {t("catalog.advice.eyebrow")}
@@ -189,7 +192,7 @@ export default function CatalogPage() {
               </p>
               <div className="flex flex-wrap items-center gap-6 mt-8 text-sm text-white/90">
                 <div className="flex items-center gap-2">
-                  <span className="material-symbols-outlined text-tertiary-fixed">
+                  <span aria-hidden="true" className="material-symbols-outlined text-tertiary-fixed">
                     location_on
                   </span>
                   <span>
@@ -200,7 +203,7 @@ export default function CatalogPage() {
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="material-symbols-outlined text-tertiary-fixed">
+                  <span aria-hidden="true" className="material-symbols-outlined text-tertiary-fixed">
                     schedule
                   </span>
                   <span>
@@ -212,7 +215,7 @@ export default function CatalogPage() {
             {/* Direct CTA button cluster */}
             <div className="lg:col-span-4 flex flex-col gap-3">
               <a className="w-full bg-whatsapp text-white font-label-md py-4 px-6 rounded-full shadow-level-3 hover:brightness-105 transition-all text-center flex items-center justify-center gap-3 font-bold active:scale-95 text-sm md:text-base" href="https://wa.me/56972215907?text=Hola,%20necesito%20asesoría%20para%20elegir%20el%20dispositivo%20adecuado%20para%20mi%20familiar" rel="noopener noreferrer" target="_blank">
-                <span className="material-symbols-outlined text-2xl font-bold">
+                <span aria-hidden="true" className="material-symbols-outlined text-2xl font-bold">
                   chat
                 </span>
                 Asesoría gratis por WhatsApp
@@ -238,7 +241,7 @@ export default function CatalogPage() {
           {/* Pillar 1 */}
           <div className="bg-white p-6 rounded-2xl border border-brand-border shadow-level-1 hover:shadow-level-2 transition-shadow">
             <div className="w-12 h-12 rounded-xl bg-surface-container-low text-brand-blue flex items-center justify-center mb-4">
-              <span className="material-symbols-outlined text-2xl">
+              <span aria-hidden="true" className="material-symbols-outlined text-2xl">
                 precision_manufacturing
               </span>
             </div>
@@ -252,7 +255,7 @@ export default function CatalogPage() {
           {/* Pillar 2 */}
           <div className="bg-white p-6 rounded-2xl border border-brand-border shadow-level-1 hover:shadow-level-2 transition-shadow">
             <div className="w-12 h-12 rounded-xl bg-surface-container-low text-brand-teal flex items-center justify-center mb-4">
-              <span className="material-symbols-outlined text-2xl">
+              <span aria-hidden="true" className="material-symbols-outlined text-2xl">
                 verified_user
               </span>
             </div>
@@ -266,7 +269,7 @@ export default function CatalogPage() {
           {/* Pillar 3 */}
           <div className="bg-white p-6 rounded-2xl border border-brand-border shadow-level-1 hover:shadow-level-2 transition-shadow">
             <div className="w-12 h-12 rounded-xl bg-surface-container-low text-brand-blue flex items-center justify-center mb-4">
-              <span className="material-symbols-outlined text-2xl">
+              <span aria-hidden="true" className="material-symbols-outlined text-2xl">
                 build
               </span>
             </div>
@@ -280,7 +283,7 @@ export default function CatalogPage() {
           {/* Pillar 4 */}
           <div className="bg-white p-6 rounded-2xl border border-brand-border shadow-level-1 hover:shadow-level-2 transition-shadow">
             <div className="w-12 h-12 rounded-xl bg-surface-container-low text-brand-teal flex items-center justify-center mb-4">
-              <span className="material-symbols-outlined text-2xl">
+              <span aria-hidden="true" className="material-symbols-outlined text-2xl">
                 school
               </span>
             </div>

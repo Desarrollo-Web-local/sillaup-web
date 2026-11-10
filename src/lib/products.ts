@@ -51,10 +51,19 @@ export type Product = {
   reviews: { quote: string; name: string; initials: string; detail: string }[];
   /** Tarjeta usada en el catálogo y en "Otros productos del catálogo" */
   card: { category: string; summary: string; meta: string };
-  metaDescription: string;
+  /**
+   * SEO de la ficha. Título: (producto) + (beneficio principal). La meta descripción se arma con
+   * `lead` + precio vigente + garantía de 1 año (ver productDescription en seo.ts).
+   */
+  seo: { title: string; lead: string };
+  /** Última edición desde el panel de administración (para el sitemap) */
+  updatedAt?: string;
 };
 
 export const PENDING = "Por confirmar";
+
+/** A spec value still waiting for SillaUp to confirm it: hidden on the public product page. */
+export const isPending = (value: string) => /por confirmar/i.test(value);
 
 export const products: Product[] = [
   {
@@ -70,7 +79,7 @@ export const products: Product[] = [
     summary: "Traslada personas con seguridad y comodidad gracias a su elevación eléctrica, reduciendo el esfuerzo del cuidador",
     price: 390000,
     mercadoPagoUrl: "https://mpago.la/2Gquygz",
-    homeTags: ["Eléctrica 24V", "SWL 110 kg"],
+    homeTags: ["Eléctrica 24V", "Hasta 110 kg"],
     homeSummary: "Traslada con seguridad mediante elevación eléctrica asistida con pulsar un solo botón en el mando remoto",
     gallery: [
       {
@@ -227,7 +236,7 @@ export const products: Product[] = [
     specs: [
       {
         label: "Dimensiones",
-        value: "Por confirmar (diseñada para puertas estándar chilenas de 70-80 cm)"
+        value: "Diseñada para puertas estándar de 70 a 80 cm"
       },
       {
         label: "Peso máximo soportado",
@@ -290,7 +299,10 @@ export const products: Product[] = [
       summary: "Traslado asistido con motor eléctrico y mando ergonómico para máximo confort y cuidado postural",
       meta: "Capacidad: 110 kg"
     },
-    metaDescription: "Grúa eléctrica SillaUp para traslados seguros de pacientes con control remoto, sin esfuerzo lumbar para el cuidador. Fabricación chilena."
+    seo: {
+      title: "Grúa Eléctrica para Traslado de Pacientes | SillaUp",
+      lead: "Grúa eléctrica hecha en Chile: traslada pacientes con control remoto y sin esfuerzo para el cuidador."
+    }
   },
   {
     slug: "elevador-de-inodoro",
@@ -303,7 +315,7 @@ export const products: Product[] = [
     tagline: "Siéntate y levántate del inodoro con seguridad y autonomía",
     summary: "Asistencia eléctrica para sentarse y ponerse de pie del inodoro con total seguridad y autonomía, sin exigir tus rodillas ni cadera",
     price: 390000,
-    homeTags: ["Baño seguro", "SWL 110 kg"],
+    homeTags: ["Baño seguro", "Hasta 110 kg"],
     homeSummary: "Siéntate y levántate del inodoro con mayor seguridad y autonomía sin exigir tus rodillas ni cadera",
     gallery: [
       {
@@ -326,8 +338,8 @@ export const products: Product[] = [
     quickSpecs: [
       {
         icon: "fitness_center",
-        label: "Capacidad",
-        value: "Por confirmar"
+        label: "Capacidad de carga",
+        value: "Hasta 110 kg"
       },
       {
         icon: "bolt",
@@ -451,8 +463,8 @@ export const products: Product[] = [
         value: "Por confirmar"
       },
       {
-        label: "Peso máximo soportado",
-        value: "Por confirmar",
+        label: "Capacidad de carga",
+        value: "Hasta 110 kg",
         emphasis: "primary"
       },
       {
@@ -469,7 +481,7 @@ export const products: Product[] = [
       },
       {
         label: "Alimentación",
-        value: "Batería recargable (autonomía por confirmar)"
+        value: "Batería recargable"
       },
       {
         label: "Garantía",
@@ -485,9 +497,12 @@ export const products: Product[] = [
     card: {
       category: "Higiene y Baño",
       summary: "Asistencia eléctrica para sentarse y ponerse de pie del inodoro con total seguridad y autonomía",
-      meta: "Accionamiento eléctrico"
+      meta: "Capacidad de carga: hasta 110 kg"
     },
-    metaDescription: "Elevador de inodoro SillaUp: asistencia eléctrica para sentarse y levantarse del inodoro con seguridad y autonomía. Fabricación chilena."
+    seo: {
+      title: "Elevador de Inodoro Eléctrico para Adultos Mayores | SillaUp",
+      lead: "Elevador de inodoro eléctrico hecho en Chile: ayuda a sentarse y levantarse sin esfuerzo."
+    }
   },
   {
     slug: "grua-manual",
@@ -500,7 +515,7 @@ export const products: Product[] = [
     tagline: "Traslados seguros sin necesidad de electricidad",
     summary: "Traslada personas con seguridad y comodidad gracias a su sistema hidráulico manual, sin cables ni dependencia de la red eléctrica",
     price: 290000,
-    homeTags: ["Hidráulica", "SWL 110 kg"],
+    homeTags: ["Hidráulica", "Hasta 110 kg"],
     homeSummary: "Traslados seguros y cómodos con menor esfuerzo del cuidador, protegiendo la columna vertebral",
     gallery: [
       {
@@ -684,7 +699,10 @@ export const products: Product[] = [
       summary: "Traslados confortables sin esfuerzo físico del cuidador ni requerimiento de cables o energía",
       meta: "Capacidad: 110 kg"
     },
-    metaDescription: "Grúa manual SillaUp: traslados seguros de pacientes con sistema hidráulico, sin necesidad de electricidad. Fabricación chilena."
+    seo: {
+      title: "Grúa Manual Hidráulica para Traslado de Pacientes | SillaUp",
+      lead: "Grúa manual hidráulica hecha en Chile: traslados seguros de pacientes sin necesidad de electricidad."
+    }
   },
   {
     slug: "elevador-multiuso",
@@ -697,7 +715,7 @@ export const products: Product[] = [
     tagline: "Levántate sin esfuerzo desde cualquier asiento",
     summary: "Levántate suavemente desde sofás, sillas o el borde de la cama con apoyo progresivo, sin requerir la fuerza de otra persona",
     price: 390000,
-    homeTags: ["Multisuperficie", "SWL 110 kg"],
+    homeTags: ["Multisuperficie", "Hasta 110 kg"],
     homeSummary: "Levántate con facilidad desde cualquier asiento o superficie sin requerir la fuerza de otra persona",
     gallery: [
       {
@@ -716,8 +734,8 @@ export const products: Product[] = [
     quickSpecs: [
       {
         icon: "fitness_center",
-        label: "Capacidad",
-        value: "Por confirmar"
+        label: "Capacidad de carga",
+        value: "Hasta 110 kg"
       },
       {
         icon: "bolt",
@@ -841,8 +859,8 @@ export const products: Product[] = [
         value: "Por confirmar"
       },
       {
-        label: "Peso máximo soportado",
-        value: "Por confirmar",
+        label: "Capacidad de carga",
+        value: "Hasta 110 kg",
         emphasis: "primary"
       },
       {
@@ -859,7 +877,7 @@ export const products: Product[] = [
       },
       {
         label: "Alimentación",
-        value: "Batería recargable (autonomía por confirmar)"
+        value: "Batería recargable"
       },
       {
         label: "Garantía",
@@ -877,7 +895,10 @@ export const products: Product[] = [
       summary: "Levántate suavemente y sin esfuerzo desde cualquier sofá, silla o cama con apoyo progresivo",
       meta: "Accionamiento eléctrico"
     },
-    metaDescription: "Elevador multiuso SillaUp: ponte de pie sin esfuerzo desde sofás, sillas o la cama con asistencia eléctrica. Fabricación chilena."
+    seo: {
+      title: "Elevador Multiuso para Levantarse de Sillas y Sofás | SillaUp",
+      lead: "Elevador multiuso eléctrico hecho en Chile: ponte de pie sin esfuerzo desde sillas, sofás o la cama."
+    }
   },
   {
     slug: "elevador-de-cama",
@@ -1056,7 +1077,7 @@ export const products: Product[] = [
       },
       {
         label: "Alimentación",
-        value: "Batería recargable (autonomía por confirmar)"
+        value: "Batería recargable"
       },
       {
         label: "Garantía",
@@ -1074,7 +1095,10 @@ export const products: Product[] = [
       summary: "Convierte tu cama en ajustable clínica con respaldo ergonómico de 0° a 75° a control remoto",
       meta: "Respaldo graduable"
     },
-    metaDescription: "Elevador de cama SillaUp: convierte tu cama en ajustable con respaldo eléctrico a control remoto. Fabricación chilena."
+    seo: {
+      title: "Elevador de Cama Eléctrico con Respaldo Ajustable | SillaUp",
+      lead: "Elevador de cama eléctrico hecho en Chile: convierte tu cama en ajustable con control remoto."
+    }
   }
 ];
 

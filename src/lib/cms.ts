@@ -24,6 +24,7 @@ export type ProductOverride = {
   mercado_pago_url: string | null;
   /** Fotos del producto; la primera es la portada */
   gallery: string[] | null;
+  updated_at: string | null;
 };
 
 const smallWords = new Set(["de", "del", "la", "el", "y", "en", "para"]);
@@ -52,6 +53,7 @@ export function applyOverride(product: Product, row: ProductOverride | undefined
     inStock: row.in_stock ?? product.inStock,
     // An empty string turns the Mercado Pago button off (purchase via WhatsApp)
     mercadoPagoUrl: row.mercado_pago_url === null ? product.mercadoPagoUrl : row.mercado_pago_url || undefined,
+    updatedAt: row.updated_at ?? undefined,
     gallery: row.gallery?.length ? row.gallery.map((src) => ({ src, alt: name })) : product.gallery,
   };
 }

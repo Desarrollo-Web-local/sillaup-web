@@ -6,7 +6,7 @@ export default function LoginPage() {
       <div className="w-full max-w-md bg-white rounded-3xl border border-outline-variant shadow-lg p-8 md:p-10">
         <div className="flex items-center gap-3 mb-8">
           <div className="w-10 h-10 rounded-xl bg-primary-container flex items-center justify-center text-white">
-            <span className="material-symbols-outlined text-xl">accessible_forward</span>
+            <span aria-hidden="true" className="material-symbols-outlined text-xl">accessible_forward</span>
           </div>
           <div>
             <p className="text-headline-sm font-headline-sm font-extrabold text-on-surface leading-tight">SillaUp</p>

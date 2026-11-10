@@ -5,10 +5,10 @@ create table if not exists public.contact_messages (
   id uuid primary key default gen_random_uuid(),
   created_at timestamptz not null default now(),
   name text not null check (char_length(name) between 1 and 120),
-  email text not null check (char_length(email) between 3 and 160),
-  phone text check (char_length(phone) <= 40),
+  email text check (char_length(email) between 3 and 160),
+  phone text check (phone is null or char_length(phone) between 6 and 40),
   interest text check (char_length(interest) <= 120),
-  message text not null check (char_length(message) between 1 and 2000),
+  message text check (char_length(message) between 1 and 2000),
   source text check (char_length(source) <= 60)
 );
 

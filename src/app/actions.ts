@@ -22,17 +22,24 @@ async function insert(table: string, row: Record<string, unknown>): Promise<Form
   return { ok: true };
 }
 
+/** Advisory / quote request. Only the name and a phone or WhatsApp number are required. */
 export async function submitContact(data: FormData): Promise<FormResult> {
   const row = {
     name: field(data, "name", 120),
-    email: field(data, "email", 160),
-    phone: field(data, "phone", 40) || null,
+    phone: field(data, "phone", 40),
+    email: field(data, "email", 160) || null,
     interest: field(data, "interest", 120) || null,
-    message: field(data, "message", 2000),
+    message: field(data, "message", 2000) || null,
     source: field(data, "source", 60) || null,
   };
-  if (!row.name || !row.email || !row.message) {
-    return { ok: false, error: "Completa nombre, correo y mensaje." };
+  if (!row.name || !row.phone) {
+    return { ok: false, error: "Completa tu nombre y tu teléfono o WhatsApp." };
+  }
+  if (row.phone.replace(/\D/g, "").length < 8) {
+    return { ok: false, error: "Revisa tu teléfono o WhatsApp: debe tener al menos 8 dígitos." };
+  }
+  if (row.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(row.email)) {
+    return { ok: false, error: "Revisa tu correo electrónico o déjalo en blanco." };
   }
   return insert("contact_messages", row);
 }

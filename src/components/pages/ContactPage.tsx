@@ -20,7 +20,7 @@ export default function ContactPage() {
         </div>
         <div className="relative z-10 max-w-4xl mx-auto px-6 md:px-12 text-center text-white space-y-6">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-label-sm font-label-sm shadow-sm">
-            <span className="material-symbols-outlined text-[16px] text-[#66ff8e]">
+            <span aria-hidden="true" className="material-symbols-outlined text-[16px] text-[#66ff8e]">
               support_agent
             </span>
             <span>
@@ -37,19 +37,19 @@ export default function ContactPage() {
           </div>
           <div className="flex flex-wrap items-center justify-center gap-2.5 pt-2">
             <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-white text-label-sm font-label-sm">
-              <span className="material-symbols-outlined text-[16px] text-[#66ff8e]">
+              <span aria-hidden="true" className="material-symbols-outlined text-[16px] text-[#66ff8e]">
                 check_circle
               </span>
               Atención personalizada
             </span>
             <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-white text-label-sm font-label-sm">
-              <span className="material-symbols-outlined text-[16px] text-[#66ff8e]">
+              <span aria-hidden="true" className="material-symbols-outlined text-[16px] text-[#66ff8e]">
                 storefront
               </span>
               Showroom en Santiago
             </span>
             <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-white text-label-sm font-label-sm">
-              <span className="material-symbols-outlined text-[16px] text-[#66ff8e]">
+              <span aria-hidden="true" className="material-symbols-outlined text-[16px] text-[#66ff8e]">
                 bolt
               </span>
               Respuesta inmediata
@@ -73,7 +73,7 @@ export default function ContactPage() {
             <div>
               <div className="flex items-center justify-between mb-4">
                 <div className="w-12 h-12 rounded-full bg-[#E7F8EE] text-[#128C7E] flex items-center justify-center">
-                  <span className="material-symbols-outlined text-[28px]">
+                  <span aria-hidden="true" className="material-symbols-outlined text-[28px]">
                     chat
                   </span>
                 </div>
@@ -92,8 +92,8 @@ export default function ContactPage() {
                 +56 9 7221 5907
               </p>
             </div>
-            <a className="w-full inline-flex items-center justify-center gap-2 py-3.5 px-4 rounded-full bg-[#25D366] text-white text-label-md font-label-md hover:bg-[#1EBE5D] transition-colors active:scale-95 duration-150 shadow-sm" href="https://wa.me/56972215907?text=Hola%20SillaUp,%20quisiera%20recibir%20informaci%C3%B3n%20sobre%20sus%20dispositivos%20de%20movilidad" rel="noopener noreferrer" target="_blank">
-              <span className="material-symbols-outlined text-[20px]">
+            <a className="w-full inline-flex items-center justify-center gap-2 py-3.5 px-4 rounded-full bg-brand-whatsapp text-white text-label-md font-label-md hover:bg-[#1EBE5D] transition-colors active:scale-95 duration-150 shadow-sm" href="https://wa.me/56972215907?text=Hola%20SillaUp,%20quisiera%20recibir%20informaci%C3%B3n%20sobre%20sus%20dispositivos%20de%20movilidad" rel="noopener noreferrer" target="_blank">
+              <span aria-hidden="true" className="material-symbols-outlined text-[20px]">
                 forum
               </span>
               Iniciar conversación
@@ -104,12 +104,12 @@ export default function ContactPage() {
             <div>
               <div className="flex items-center justify-between mb-4">
                 <div className="w-12 h-12 rounded-full bg-secondary-container text-on-secondary-fixed-variant flex items-center justify-center">
-                  <span className="material-symbols-outlined text-[28px]">
+                  <span aria-hidden="true" className="material-symbols-outlined text-[28px]">
                     call
                   </span>
                 </div>
                 <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-surface-container text-secondary text-label-sm font-label-sm">
-                  <span className="material-symbols-outlined text-[14px]">
+                  <span aria-hidden="true" className="material-symbols-outlined text-[14px]">
                     engineering
                   </span>
                   Showroom & Ventas
@@ -126,7 +126,7 @@ export default function ContactPage() {
               </p>
             </div>
             <a className="w-full inline-flex items-center justify-center gap-2 py-3.5 px-4 rounded-full bg-primary-container text-on-primary text-label-md font-label-md hover:bg-primary transition-colors active:scale-95 duration-150 shadow-sm" href="tel:+56972215907">
-              <span className="material-symbols-outlined text-[20px]">
+              <span aria-hidden="true" className="material-symbols-outlined text-[20px]">
                 phone_in_talk
               </span>
               Llamar ahora
@@ -137,12 +137,12 @@ export default function ContactPage() {
             <div>
               <div className="flex items-center justify-between mb-4">
                 <div className="w-12 h-12 rounded-full bg-surface-container-high text-on-surface flex items-center justify-center">
-                  <span className="material-symbols-outlined text-[28px]">
+                  <span aria-hidden="true" className="material-symbols-outlined text-[28px]">
                     mail
                   </span>
                 </div>
                 <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-surface-container text-on-surface-variant text-label-sm font-label-sm">
-                  <span className="material-symbols-outlined text-[14px]">
+                  <span aria-hidden="true" className="material-symbols-outlined text-[14px]">
                     verified
                   </span>
                   Institucional
@@ -159,7 +159,7 @@ export default function ContactPage() {
               </p>
             </div>
             <a className="w-full inline-flex items-center justify-center gap-2 py-3.5 px-4 rounded-full bg-inverse-surface text-inverse-on-surface text-label-md font-label-md hover:bg-on-surface transition-colors active:scale-95 duration-150 shadow-sm" href="mailto:sillaupventas@gmail.com?subject=Consulta%20sobre%20productos%20SillaUp">
-              <span className="material-symbols-outlined text-[20px]">
+              <span aria-hidden="true" className="material-symbols-outlined text-[20px]">
                 send
               </span>
               Enviar correo
@@ -185,14 +185,14 @@ export default function ContactPage() {
             </div>
             <div className="bg-surface-container-lowest p-6 rounded-lg border border-outline-variant space-y-4 shadow-sm">
               <h3 className="text-headline-sm font-headline-sm text-on-surface flex items-center gap-2">
-                <span className="material-symbols-outlined text-primary">
+                <span aria-hidden="true" className="material-symbols-outlined text-primary">
                   verified_user
                 </span>
                 Compromiso SillaUp
               </h3>
               <ul className="space-y-3 text-body-sm font-body-sm text-on-surface-variant">
                 <li className="flex items-start gap-2.5">
-                  <span className="material-symbols-outlined text-tertiary text-[20px] shrink-0 mt-0.5">
+                  <span aria-hidden="true" className="material-symbols-outlined text-tertiary text-[20px] shrink-0 mt-0.5">
                     check
                   </span>
                   <span>
@@ -203,7 +203,7 @@ export default function ContactPage() {
                   </span>
                 </li>
                 <li className="flex items-start gap-2.5">
-                  <span className="material-symbols-outlined text-tertiary text-[20px] shrink-0 mt-0.5">
+                  <span aria-hidden="true" className="material-symbols-outlined text-tertiary text-[20px] shrink-0 mt-0.5">
                     check
                   </span>
                   <span>
@@ -214,7 +214,7 @@ export default function ContactPage() {
                   </span>
                 </li>
                 <li className="flex items-start gap-2.5">
-                  <span className="material-symbols-outlined text-tertiary text-[20px] shrink-0 mt-0.5">
+                  <span aria-hidden="true" className="material-symbols-outlined text-tertiary text-[20px] shrink-0 mt-0.5">
                     check
                   </span>
                   <span>
@@ -246,17 +246,14 @@ export default function ContactPage() {
                 {/* Email */}
                 <div>
                   <label className="block text-label-md font-label-md text-on-surface mb-2" htmlFor="email">
-                    Correo electrónico
-                    <span className="text-error">
-                      *
-                    </span>
+                    Correo electrónico <span className="font-normal text-on-surface-variant">(opcional)</span>
                   </label>
-                  <input className="w-full h-12 px-4 rounded bg-surface border border-outline-variant text-on-surface placeholder:text-outline focus:border-primary focus:ring-2 focus:ring-primary/20 transition duration-150 outline-none" id="email" name="email" placeholder="ejemplo@correo.cl" required type="email" />
+                  <input className="w-full h-12 px-4 rounded bg-surface border border-outline-variant text-on-surface placeholder:text-outline focus:border-primary focus:ring-2 focus:ring-primary/20 transition duration-150 outline-none" id="email" name="email" placeholder="ejemplo@correo.cl" type="email" />
                 </div>
                 {/* Phone */}
                 <div>
                   <label className="block text-label-md font-label-md text-on-surface mb-2" htmlFor="phone">
-                    Número telefónico
+                    Teléfono / WhatsApp
                     <span className="text-error">
                       *
                     </span>
@@ -290,27 +287,24 @@ export default function ContactPage() {
               {/* Message */}
               <div>
                 <label className="block text-label-md font-label-md text-on-surface mb-2" htmlFor="message">
-                  Mensaje
-                  <span className="text-error">
-                    *
-                  </span>
+                  Mensaje <span className="font-normal text-on-surface-variant">(opcional)</span>
                 </label>
-                <textarea className="w-full p-4 rounded bg-surface border border-outline-variant text-on-surface placeholder:text-outline focus:border-primary focus:ring-2 focus:ring-primary/20 transition duration-150 outline-none resize-none" id="message" name="message" placeholder="Por favor cuéntanos las condiciones de movilidad o el tipo de transferencia que necesitas resolver..." required rows={4} />
+                <textarea className="w-full p-4 rounded bg-surface border border-outline-variant text-on-surface placeholder:text-outline focus:border-primary focus:ring-2 focus:ring-primary/20 transition duration-150 outline-none resize-none" id="message" name="message" placeholder="Por favor cuéntanos las condiciones de movilidad o el tipo de transferencia que necesitas resolver..." rows={4} />
               </div>
               {/* Privacy Note */}
               <p className="text-body-sm font-body-sm text-on-surface-variant flex items-center gap-1.5">
-                <span className="material-symbols-outlined text-[16px] text-tertiary">
+                <span aria-hidden="true" className="material-symbols-outlined text-[16px] text-tertiary">
                   lock
                 </span>
                 Tus datos están protegidos y solo se utilizarán para gestionar tu solicitud
               </p>
-              {/* Submit Button (Píldora Azul Verbatim [Enviar mensaje]) */}
+              {/* Submit Button */}
               <div className="pt-2">
                 <button className="w-full md:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-primary-container text-on-primary text-label-md font-label-md hover:bg-primary transition-all duration-150 shadow-sm active:scale-95 cursor-pointer font-bold disabled:opacity-60" disabled={contact.sending} type="submit">
                   <span>
-                    {contact.sending ? "Enviando..." : "Enviar mensaje"}
+                    {contact.sending ? "Enviando..." : "Solicitar asesoría gratuita"}
                   </span>
-                  <span className="material-symbols-outlined text-[20px]">
+                  <span aria-hidden="true" className="material-symbols-outlined text-[20px]">
                     send
                   </span>
                 </button>
@@ -324,7 +318,7 @@ export default function ContactPage() {
             {contact.status === "success" && (
             <div className="mt-6 p-4 rounded bg-[#D1FADF] border border-[#A6F4C5] text-[#05603A]" role="status">
               <div className="flex items-center gap-3">
-                <span className="material-symbols-outlined text-[28px] text-[#12B76A]">
+                <span aria-hidden="true" className="material-symbols-outlined text-[28px] text-[#12B76A]">
                   task_alt
                 </span>
                 <div>
@@ -348,7 +342,7 @@ export default function ContactPage() {
           <div className="lg:col-span-5 bg-surface-container-lowest rounded-lg border border-outline-variant p-8 flex flex-col justify-between shadow-sm">
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary-container text-on-secondary-fixed-variant text-label-sm font-label-sm mb-4">
-                <span className="material-symbols-outlined text-[16px]">
+                <span aria-hidden="true" className="material-symbols-outlined text-[16px]">
                   location_on
                 </span>
                 {t("contact.location.eyebrow")}
@@ -364,7 +358,7 @@ export default function ContactPage() {
                 {/* Address */}
                 <div className="flex items-start gap-3">
                   <div className="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary shrink-0 mt-0.5">
-                    <span className="material-symbols-outlined text-[22px]">
+                    <span aria-hidden="true" className="material-symbols-outlined text-[22px]">
                       pin_drop
                     </span>
                   </div>
@@ -383,7 +377,7 @@ export default function ContactPage() {
                 {/* Schedule */}
                 <div className="flex items-start gap-3">
                   <div className="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-secondary shrink-0 mt-0.5">
-                    <span className="material-symbols-outlined text-[22px]">
+                    <span aria-hidden="true" className="material-symbols-outlined text-[22px]">
                       schedule
                     </span>
                   </div>
@@ -402,7 +396,7 @@ export default function ContactPage() {
                 {/* Technical Service */}
                 <div className="flex items-start gap-3">
                   <div className="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-tertiary shrink-0 mt-0.5">
-                    <span className="material-symbols-outlined text-[22px]">
+                    <span aria-hidden="true" className="material-symbols-outlined text-[22px]">
                       build
                     </span>
                   </div>
@@ -419,7 +413,7 @@ export default function ContactPage() {
             </div>
             <div className="pt-6 mt-6 border-t border-outline-variant flex flex-wrap gap-3">
               <a className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-surface-container text-on-surface text-label-md font-label-md hover:bg-surface-variant transition-colors active:scale-95 duration-150" href="https://maps.google.com/?q=Merced+562,+Santiago,+Chile" rel="noopener noreferrer" target="_blank">
-                <span className="material-symbols-outlined text-[18px]">
+                <span aria-hidden="true" className="material-symbols-outlined text-[18px]">
                   near_me
                 </span>
                 Abrir en Google Maps
@@ -430,7 +424,7 @@ export default function ContactPage() {
           <div className="lg:col-span-7 bg-surface-container-lowest rounded-lg border border-outline-variant overflow-hidden shadow-sm flex flex-col min-h-[380px]">
             <div className="p-4 bg-surface-container flex items-center justify-between border-b border-outline-variant">
               <div className="flex items-center gap-2">
-                <span className="material-symbols-outlined text-primary text-[20px]">
+                <span aria-hidden="true" className="material-symbols-outlined text-primary text-[20px]">
                   map
                 </span>
                 <span className="text-label-md font-label-md text-on-surface">

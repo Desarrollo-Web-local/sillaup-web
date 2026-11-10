@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Mulish, Plus_Jakarta_Sans } from "next/font/google";
-import { seoKeywords, siteUrl } from "@/lib/seo";
+import { siteUrl } from "@/lib/seo";
 import "./globals.css";
 
 const mulish = Mulish({
@@ -15,16 +15,15 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 const description =
-  "Elevadores de inodoro, de cama y multiuso, y grúas manuales y eléctricas para el traslado de personas con movilidad reducida. Fabricación chilena, garantía de 1 año y despacho a todo Chile. Showroom en Merced 562, Santiago.";
+  "Fabricamos en Chile elevadores de inodoro, cama y multiuso y grúas de traslado. Garantía 1 año, despacho a todo Chile. Asesoría gratis por WhatsApp.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "SillaUp | Movilidad asistida en Chile: elevadores y grúas de traslado",
+    default: "Elevadores de Inodoro y Grúas para Pacientes | SillaUp Chile",
     template: "%s | SillaUp",
   },
   description,
-  keywords: seoKeywords,
   applicationName: "SillaUp",
   authors: [{ name: "SillaUp", url: siteUrl }],
   creator: "SillaUp",

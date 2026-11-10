@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { submitContact, submitTestimonial } from "@/app/actions";
 import Counter from "@/components/Counter";
+import InstitutionsCta from "@/components/InstitutionsCta";
 import { CardPrice, OfferBadge } from "@/components/Price";
 import { useProducts, useText } from "@/components/SiteData";
 import StarRating from "@/components/StarRating";
@@ -64,7 +65,7 @@ export default function HomePage() {
             </span>
           </div>
           {/* Título principal de gran escala */}
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight drop-shadow-sm">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white leading-tight tracking-tight drop-shadow-sm">
             {t("home.hero.title")}
           </h1>
           {/* Subtítulo complementario */}
@@ -73,46 +74,33 @@ export default function HomePage() {
           </p>
           {/* Botones de Acción */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4">
-            <Link className="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-primary-container text-white text-base font-bold px-8 py-4 shadow-lg hover:bg-primary active:scale-95 transition-all duration-150 min-h-[48px] text-center" href="/productos">
-              <span className="material-symbols-outlined mr-2">
+            {/* CTA principal: asesoría gratuita por WhatsApp */}
+            <a className="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-brand-whatsapp text-white text-base font-bold px-8 py-4 shadow-lg hover:brightness-95 active:scale-95 transition-all duration-150 min-h-[48px] text-center" href="https://wa.me/56972215907?text=Hola%20SillaUp,%20quiero%20recibir%20asesor%C3%ADa%20gratis%20para%20elegir%20un%20equipo%20de%20movilidad" rel="noopener noreferrer" target="_blank">
+              <span aria-hidden="true" className="material-symbols-outlined mr-2" style={{ fontVariationSettings: "'FILL' 1" }}>
+                chat
+              </span>
+              Recibir asesoría gratis por WhatsApp
+            </a>
+            <Link className="w-full sm:w-auto inline-flex items-center justify-center rounded-full border-2 border-white text-white text-base font-bold px-8 py-4 hover:bg-white hover:text-[#0D141A] active:scale-95 transition-all duration-150 min-h-[48px] text-center shadow-lg" href="/productos">
+              <span aria-hidden="true" className="material-symbols-outlined mr-2">
                 arrow_downward
               </span>
               Ver productos
             </Link>
-            <a className="w-full sm:w-auto inline-flex items-center justify-center rounded-full border-2 border-white text-white text-base font-bold px-8 py-4 hover:bg-white hover:text-[#0D141A] active:scale-95 transition-all duration-150 min-h-[48px] text-center shadow-lg" href="https://wa.me/56972215907?text=Hola%20SillaUp,%20quisiera%20asesor%C3%ADa%20sobre%20sus%20dispositivos%20de%20movilidad" rel="noopener noreferrer" target="_blank">
-              <span className="material-symbols-outlined mr-2">
-                chat
-              </span>
-              Hablar por WhatsApp
-            </a>
           </div>
           {/* Trust Proof Metrics */}
-          <div className="grid grid-cols-3 gap-6 pt-6 border-t border-white/20 text-white">
-            <div>
-              <p className="text-2xl md:text-3xl font-extrabold text-white">
-                100%
-              </p>
-              <p className="text-xs md:text-sm text-white/80 uppercase font-bold tracking-wider mt-0.5">
-                Acero Estructural
-              </p>
-            </div>
-            <div>
-              <p className="text-2xl md:text-3xl font-extrabold text-white">
-                24/7
-              </p>
-              <p className="text-xs md:text-sm text-white/80 uppercase font-bold tracking-wider mt-0.5">
-                Soporte Técnico
-              </p>
-            </div>
-            <div>
-              <p className="text-2xl md:text-3xl font-extrabold text-white">
-                Santiago
-              </p>
-              <p className="text-xs md:text-sm text-white/80 uppercase font-bold tracking-wider mt-0.5">
-                Showroom
-              </p>
-            </div>
-          </div>
+          <ul className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 pt-6 border-t border-white/20 text-white">
+            {[
+              { icon: "construction", text: "Estructura de acero reforzado de alta durabilidad con pintura electrostática" },
+              { icon: "schedule", text: "Atención telefónica y WhatsApp: Lunes a Viernes de 9:00 a 18:00 hrs" },
+              { icon: "storefront", text: "Showroom en Merced 562, Santiago" },
+            ].map((item) => (
+              <li className="flex items-start gap-3" key={item.icon}>
+                <span aria-hidden="true" className="material-symbols-outlined text-2xl text-secondary-fixed shrink-0">{item.icon}</span>
+                <span className="text-sm text-white/90 font-semibold leading-snug">{item.text}</span>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>
@@ -194,7 +182,7 @@ export default function HomePage() {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div>
             <div className="inline-flex items-center gap-2 bg-white/10 text-secondary-fixed px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-3">
-              <span className="material-symbols-outlined text-sm">
+              <span aria-hidden="true" className="material-symbols-outlined text-sm">
                 precision_manufacturing
               </span>
               {t("home.products.eyebrow")}
@@ -207,12 +195,12 @@ export default function HomePage() {
         {/* Carousel Container (5 Exact Products) with side arrows */}
         <div className="relative">
           <button aria-label="Producto anterior" className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 z-10 w-12 h-12 rounded-full bg-white text-primary shadow-xl border border-white/60 hover:bg-surface-container-low active:scale-95 flex items-center justify-center transition-all duration-150 disabled:opacity-0 disabled:pointer-events-none" disabled={atStart} onClick={() => scrollTrack(-380)} type="button">
-            <span className="material-symbols-outlined">
+            <span aria-hidden="true" className="material-symbols-outlined">
               arrow_back
             </span>
           </button>
           <button aria-label="Producto siguiente" className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 z-10 w-12 h-12 rounded-full bg-white text-primary shadow-xl border border-white/60 hover:bg-surface-container-low active:scale-95 flex items-center justify-center transition-all duration-150 disabled:opacity-0 disabled:pointer-events-none" disabled={atEnd} onClick={() => scrollTrack(380)} type="button">
-            <span className="material-symbols-outlined">
+            <span aria-hidden="true" className="material-symbols-outlined">
               arrow_forward
             </span>
           </button>
@@ -230,10 +218,10 @@ export default function HomePage() {
               </div>
               {/* Tags */}
               <div className="flex flex-wrap items-center gap-1.5 mb-2">
-                <span className="bg-[#F2F4F7] text-[#174A5A] text-[11px] font-bold px-2.5 py-1 rounded-full uppercase">
+                <span className="bg-[#F2F4F7] text-[#174A5A] text-xs font-bold px-2.5 py-1 rounded-full uppercase">
                   {product.homeTags[0]}
                 </span>
-                <span className="bg-[#F2F4F7] text-[#174A5A] text-[11px] font-bold px-2.5 py-1 rounded-full">
+                <span className="bg-[#F2F4F7] text-[#174A5A] text-xs font-bold px-2.5 py-1 rounded-full">
                   {product.homeTags[1]}
                 </span>
               </div>
@@ -246,7 +234,7 @@ export default function HomePage() {
             </div>
             <Link className="w-full inline-flex items-center justify-center rounded-full bg-primary-container text-white text-label-md font-label-md py-2.5 px-5 shadow-sm hover:bg-primary transition-all duration-150 min-h-[44px] after:absolute after:inset-0 after:content-['']" href={productHref(product.slug)}>
               Ver producto
-              <span className="material-symbols-outlined ml-2 text-base">
+              <span aria-hidden="true" className="material-symbols-outlined ml-2 text-base">
                 chevron_right
               </span>
             </Link>
@@ -276,7 +264,7 @@ export default function HomePage() {
           {/* Right Content Column */}
           <div className="lg:col-span-7 space-y-6 order-1 lg:order-2">
             <div className="inline-flex items-center gap-2 bg-surface-container text-secondary px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">
-              <span className="material-symbols-outlined text-sm">
+              <span aria-hidden="true" className="material-symbols-outlined text-sm">
                 groups
               </span>
               {t("home.about.eyebrow")}
@@ -294,7 +282,7 @@ export default function HomePage() {
             <div className="pt-2">
               <Link className="inline-flex items-center justify-center rounded-full bg-[#0D141A] text-white text-label-md font-label-md px-8 py-4 shadow-sm hover:bg-black active:scale-95 transition-all duration-150 min-h-[48px]" href="/nosotros">
                 Ver más sobre nosotros
-                <span className="material-symbols-outlined ml-2 text-base">
+                <span aria-hidden="true" className="material-symbols-outlined ml-2 text-base">
                   arrow_forward
                 </span>
               </Link>
@@ -304,12 +292,20 @@ export default function HomePage() {
       </div>
     </section>
     {/* 7. SECCIÓN CIFRAS CON CONTADORES ANIMADOS (Solo datos verificables) */}
-    <section className="py-16 bg-surface-container-low border-y border-outline-variant">
+    <section aria-labelledby="garantia-titulo" className="py-16 bg-surface-container-low border-y border-outline-variant">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
+        <div className="text-center max-w-2xl mx-auto mb-10">
+          <h2 className="text-headline-lg-mobile md:text-headline-lg font-headline-lg text-on-surface font-extrabold tracking-tight" id="garantia-titulo">
+            Garantía y repuestos en Santiago
+          </h2>
+          <p className="text-body-md font-body-md text-on-surface-variant mt-3">
+            Garantía de 1 año directa de fábrica, repuestos disponibles y servicio técnico coordinado desde nuestro showroom en Merced 562
+          </p>
+        </div>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {/* Cifra 1: 5 equipos */}
           <div className="bg-white p-6 md:p-8 rounded-3xl border border-outline-variant shadow-sm text-center flex flex-col justify-center items-center">
-            <span className="material-symbols-outlined text-primary-container text-3xl mb-2">
+            <span aria-hidden="true" className="material-symbols-outlined text-primary-container text-3xl mb-2">
               devices
             </span>
             <span className="text-display-lg-mobile md:text-display-lg font-extrabold text-on-surface tracking-tight">
@@ -321,7 +317,7 @@ export default function HomePage() {
           </div>
           {/* Cifra 2: 1 año de garantía */}
           <div className="bg-white p-6 md:p-8 rounded-3xl border border-outline-variant shadow-sm text-center flex flex-col justify-center items-center">
-            <span className="material-symbols-outlined text-tertiary text-3xl mb-2">
+            <span aria-hidden="true" className="material-symbols-outlined text-tertiary text-3xl mb-2">
               verified_user
             </span>
             <div className="flex items-baseline justify-center">
@@ -338,7 +334,7 @@ export default function HomePage() {
           </div>
           {/* Cifra 3: Más de 50 ventas realizadas */}
           <div className="bg-white p-6 md:p-8 rounded-3xl border border-outline-variant shadow-sm text-center flex flex-col justify-center items-center">
-            <span className="material-symbols-outlined text-secondary text-3xl mb-2">
+            <span aria-hidden="true" className="material-symbols-outlined text-secondary text-3xl mb-2">
               shopping_bag
             </span>
             <div className="flex items-baseline justify-center">
@@ -355,7 +351,7 @@ export default function HomePage() {
           </div>
           {/* Cifra 4: Fabricación chilena (sin contador) */}
           <div className="bg-brand-teal text-white p-6 md:p-8 rounded-3xl border border-brand-teal shadow-sm text-center flex flex-col justify-center items-center">
-            <span className="material-symbols-outlined text-secondary-fixed text-3xl mb-2">
+            <span aria-hidden="true" className="material-symbols-outlined text-secondary-fixed text-3xl mb-2">
               flag
             </span>
             <p className="text-headline-md md:text-headline-lg font-extrabold tracking-tight leading-tight mt-1">
@@ -373,7 +369,7 @@ export default function HomePage() {
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 bg-surface-container text-secondary px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-3">
-            <span className="material-symbols-outlined text-sm">
+            <span aria-hidden="true" className="material-symbols-outlined text-sm">
               help_center
             </span>
             {t("home.guide.eyebrow")}
@@ -391,7 +387,7 @@ export default function HomePage() {
           <div className="bg-white rounded-3xl p-6 border border-outline-variant hover:border-primary-container hover:shadow-xl transition-all duration-200 flex flex-col justify-between group">
             <div>
               <div className="w-14 h-14 rounded-2xl bg-secondary-container text-on-secondary-container flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <span className="material-symbols-outlined text-3xl">
+                <span aria-hidden="true" className="material-symbols-outlined text-3xl">
                   bathtub
                 </span>
               </div>
@@ -410,7 +406,7 @@ export default function HomePage() {
                 <span>
                   Elevador de inodoro
                 </span>
-                <span className="material-symbols-outlined text-sm">
+                <span aria-hidden="true" className="material-symbols-outlined text-sm">
                   arrow_forward
                 </span>
               </Link>
@@ -420,7 +416,7 @@ export default function HomePage() {
           <div className="bg-white rounded-3xl p-6 border border-outline-variant hover:border-primary-container hover:shadow-xl transition-all duration-200 flex flex-col justify-between group">
             <div>
               <div className="w-14 h-14 rounded-2xl bg-primary-fixed text-primary flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <span className="material-symbols-outlined text-3xl">
+                <span aria-hidden="true" className="material-symbols-outlined text-3xl">
                   bed
                 </span>
               </div>
@@ -439,7 +435,7 @@ export default function HomePage() {
                 <span>
                   Elevador de cama
                 </span>
-                <span className="material-symbols-outlined text-sm">
+                <span aria-hidden="true" className="material-symbols-outlined text-sm">
                   arrow_forward
                 </span>
               </Link>
@@ -449,7 +445,7 @@ export default function HomePage() {
           <div className="bg-white rounded-3xl p-6 border border-outline-variant hover:border-primary-container hover:shadow-xl transition-all duration-200 flex flex-col justify-between group">
             <div>
               <div className="w-14 h-14 rounded-2xl bg-tertiary-container/15 text-tertiary flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <span className="material-symbols-outlined text-3xl">
+                <span aria-hidden="true" className="material-symbols-outlined text-3xl">
                   chair
                 </span>
               </div>
@@ -468,7 +464,7 @@ export default function HomePage() {
                 <span>
                   Elevador multiuso
                 </span>
-                <span className="material-symbols-outlined text-sm">
+                <span aria-hidden="true" className="material-symbols-outlined text-sm">
                   arrow_forward
                 </span>
               </Link>
@@ -478,7 +474,7 @@ export default function HomePage() {
           <div className="bg-white rounded-3xl p-6 border border-outline-variant hover:border-primary-container hover:shadow-xl transition-all duration-200 flex flex-col justify-between group">
             <div>
               <div className="w-14 h-14 rounded-2xl bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <span className="material-symbols-outlined text-3xl">
+                <span aria-hidden="true" className="material-symbols-outlined text-3xl">
                   transfer_within_a_station
                 </span>
               </div>
@@ -497,7 +493,7 @@ export default function HomePage() {
                 <span>
                   Grúa manual / Grúa eléctrica
                 </span>
-                <span className="material-symbols-outlined text-sm">
+                <span aria-hidden="true" className="material-symbols-outlined text-sm">
                   arrow_forward
                 </span>
               </Link>
@@ -506,13 +502,15 @@ export default function HomePage() {
         </div>
       </div>
     </section>
+    {/* CTA institucional: residencias y centros de rehabilitación */}
+    <InstitutionsCta />
     {/* 9. SECCIÓN TESTIMONIOS */}
     <section className="py-20 md:py-28 bg-surface-container-low" id="testimonios">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
           <div>
             <div className="inline-flex items-center gap-2 bg-surface-container text-secondary px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-3">
-              <span className="material-symbols-outlined text-sm">
+              <span aria-hidden="true" className="material-symbols-outlined text-sm">
                 rate_review
               </span>
               {t("home.testimonials.eyebrow")}
@@ -526,7 +524,7 @@ export default function HomePage() {
           </div>
           {/* Botón "Dejar mi opinión" */}
           <button onClick={() => setFeedbackOpen(true)} type="button" className="inline-flex items-center justify-center rounded-full bg-primary-container text-white text-label-md font-label-md px-6 py-3.5 shadow-sm hover:bg-primary active:scale-95 transition-all duration-150 min-h-[48px]">
-            <span className="material-symbols-outlined mr-2 text-base">
+            <span aria-hidden="true" className="material-symbols-outlined mr-2 text-base">
               edit_note
             </span>
             Dejar mi opinión
@@ -538,19 +536,19 @@ export default function HomePage() {
           <div className="bg-white rounded-3xl p-6 border border-outline-variant shadow-sm flex flex-col justify-between">
             <div>
               <div aria-label="5 de 5 estrellas" className="flex text-amber-400 mb-4">
-                <span className="material-symbols-outlined text-xl" style={{ fontVariationSettings: "\"FILL\" 1" }}>
+                <span aria-hidden="true" className="material-symbols-outlined text-xl" style={{ fontVariationSettings: "\"FILL\" 1" }}>
                   star
                 </span>
-                <span className="material-symbols-outlined text-xl" style={{ fontVariationSettings: "\"FILL\" 1" }}>
+                <span aria-hidden="true" className="material-symbols-outlined text-xl" style={{ fontVariationSettings: "\"FILL\" 1" }}>
                   star
                 </span>
-                <span className="material-symbols-outlined text-xl" style={{ fontVariationSettings: "\"FILL\" 1" }}>
+                <span aria-hidden="true" className="material-symbols-outlined text-xl" style={{ fontVariationSettings: "\"FILL\" 1" }}>
                   star
                 </span>
-                <span className="material-symbols-outlined text-xl" style={{ fontVariationSettings: "\"FILL\" 1" }}>
+                <span aria-hidden="true" className="material-symbols-outlined text-xl" style={{ fontVariationSettings: "\"FILL\" 1" }}>
                   star
                 </span>
-                <span className="material-symbols-outlined text-xl" style={{ fontVariationSettings: "\"FILL\" 1" }}>
+                <span aria-hidden="true" className="material-symbols-outlined text-xl" style={{ fontVariationSettings: "\"FILL\" 1" }}>
                   star
                 </span>
               </div>
@@ -576,19 +574,19 @@ export default function HomePage() {
           <div className="bg-white rounded-3xl p-6 border border-outline-variant shadow-sm flex flex-col justify-between">
             <div>
               <div aria-label="5 de 5 estrellas" className="flex text-amber-400 mb-4">
-                <span className="material-symbols-outlined text-xl" style={{ fontVariationSettings: "\"FILL\" 1" }}>
+                <span aria-hidden="true" className="material-symbols-outlined text-xl" style={{ fontVariationSettings: "\"FILL\" 1" }}>
                   star
                 </span>
-                <span className="material-symbols-outlined text-xl" style={{ fontVariationSettings: "\"FILL\" 1" }}>
+                <span aria-hidden="true" className="material-symbols-outlined text-xl" style={{ fontVariationSettings: "\"FILL\" 1" }}>
                   star
                 </span>
-                <span className="material-symbols-outlined text-xl" style={{ fontVariationSettings: "\"FILL\" 1" }}>
+                <span aria-hidden="true" className="material-symbols-outlined text-xl" style={{ fontVariationSettings: "\"FILL\" 1" }}>
                   star
                 </span>
-                <span className="material-symbols-outlined text-xl" style={{ fontVariationSettings: "\"FILL\" 1" }}>
+                <span aria-hidden="true" className="material-symbols-outlined text-xl" style={{ fontVariationSettings: "\"FILL\" 1" }}>
                   star
                 </span>
-                <span className="material-symbols-outlined text-xl" style={{ fontVariationSettings: "\"FILL\" 1" }}>
+                <span aria-hidden="true" className="material-symbols-outlined text-xl" style={{ fontVariationSettings: "\"FILL\" 1" }}>
                   star
                 </span>
               </div>
@@ -614,7 +612,7 @@ export default function HomePage() {
           <div className="bg-gradient-to-br from-surface-container-highest to-surface-container rounded-3xl p-6 border-2 border-dashed border-outline flex flex-col justify-between text-center items-center">
             <div className="my-auto py-6">
               <div className="w-14 h-14 rounded-full bg-primary-container/10 text-primary-container flex items-center justify-center mx-auto mb-4">
-                <span className="material-symbols-outlined text-3xl">
+                <span aria-hidden="true" className="material-symbols-outlined text-3xl">
                   forum
                 </span>
               </div>
@@ -640,7 +638,7 @@ export default function HomePage() {
           <div className="lg:col-span-5 space-y-8">
             <div>
               <div className="inline-flex items-center gap-2 bg-surface-container text-secondary px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-3">
-                <span className="material-symbols-outlined text-sm">
+                <span aria-hidden="true" className="material-symbols-outlined text-sm">
                   support_agent
                 </span>
                 {t("home.contact.eyebrow")}
@@ -657,7 +655,7 @@ export default function HomePage() {
             <div className="space-y-4">
               <a className="flex items-start gap-4 p-4 rounded-2xl bg-surface-container-low hover:bg-surface-container border border-outline-variant transition-colors group" href="tel:+56972215907">
                 <div className="w-12 h-12 rounded-xl bg-primary-container text-white flex items-center justify-center shrink-0">
-                  <span className="material-symbols-outlined text-2xl">
+                  <span aria-hidden="true" className="material-symbols-outlined text-2xl">
                     call
                   </span>
                 </div>
@@ -672,7 +670,7 @@ export default function HomePage() {
               </a>
               <a className="flex items-start gap-4 p-4 rounded-2xl bg-surface-container-low hover:bg-surface-container border border-outline-variant transition-colors group" href="mailto:sillaupventas@gmail.com">
                 <div className="w-12 h-12 rounded-xl bg-brand-teal text-white flex items-center justify-center shrink-0">
-                  <span className="material-symbols-outlined text-2xl">
+                  <span aria-hidden="true" className="material-symbols-outlined text-2xl">
                     email
                   </span>
                 </div>
@@ -687,7 +685,7 @@ export default function HomePage() {
               </a>
               <div className="flex items-start gap-4 p-4 rounded-2xl bg-surface-container-low border border-outline-variant">
                 <div className="w-12 h-12 rounded-xl bg-secondary text-white flex items-center justify-center shrink-0">
-                  <span className="material-symbols-outlined text-2xl">
+                  <span aria-hidden="true" className="material-symbols-outlined text-2xl">
                     location_on
                   </span>
                 </div>
@@ -702,7 +700,7 @@ export default function HomePage() {
               </div>
               <div className="flex items-start gap-4 p-4 rounded-2xl bg-surface-container-low border border-outline-variant">
                 <div className="w-12 h-12 rounded-xl bg-outline text-white flex items-center justify-center shrink-0">
-                  <span className="material-symbols-outlined text-2xl">
+                  <span aria-hidden="true" className="material-symbols-outlined text-2xl">
                     schedule
                   </span>
                 </div>
@@ -740,31 +738,31 @@ export default function HomePage() {
                   {/* Número de teléfono* */}
                   <div>
                     <label className="block text-label-md font-label-md text-on-surface mb-2" htmlFor="phone">
-                      Número de teléfono *
+                      Teléfono / WhatsApp *
                     </label>
                     <input className="w-full h-12 px-4 rounded-2xl border border-outline-variant text-on-surface placeholder:text-outline focus:outline-none focus:border-primary-container focus:ring-4 focus:ring-primary-container/20 transition-all font-body-md" id="phone" name="phone" placeholder="+56 9 1234 5678" required type="tel" />
                   </div>
                   {/* Correo* */}
                   <div>
                     <label className="block text-label-md font-label-md text-on-surface mb-2" htmlFor="email">
-                      Correo electrónico *
+                      Correo electrónico <span className="font-normal text-on-surface-variant">(opcional)</span>
                     </label>
-                    <input className="w-full h-12 px-4 rounded-2xl border border-outline-variant text-on-surface placeholder:text-outline focus:outline-none focus:border-primary-container focus:ring-4 focus:ring-primary-container/20 transition-all font-body-md" id="email" name="email" placeholder="nombre@correo.com" required type="email" />
+                    <input className="w-full h-12 px-4 rounded-2xl border border-outline-variant text-on-surface placeholder:text-outline focus:outline-none focus:border-primary-container focus:ring-4 focus:ring-primary-container/20 transition-all font-body-md" id="email" name="email" placeholder="nombre@correo.com" type="email" />
                   </div>
                 </div>
                 {/* Mensaje* */}
                 <div>
                   <label className="block text-label-md font-label-md text-on-surface mb-2" htmlFor="message">
-                    Mensaje o consulta *
+                    Mensaje o consulta <span className="font-normal text-on-surface-variant">(opcional)</span>
                   </label>
-                  <textarea className="w-full p-4 rounded-2xl border border-outline-variant text-on-surface placeholder:text-outline focus:outline-none focus:border-primary-container focus:ring-4 focus:ring-primary-container/20 transition-all font-body-md" id="message" name="message" placeholder="Indícanos qué producto te interesa o la situación de movilidad de tu familiar..." required rows={4} />
+                  <textarea className="w-full p-4 rounded-2xl border border-outline-variant text-on-surface placeholder:text-outline focus:outline-none focus:border-primary-container focus:ring-4 focus:ring-primary-container/20 transition-all font-body-md" id="message" name="message" placeholder="Indícanos qué producto te interesa o la situación de movilidad de tu familiar..." rows={4} />
                 </div>
                 {/* Botón píldora azul */}
                 <button className="w-full inline-flex items-center justify-center rounded-full bg-primary-container text-white text-label-lg font-label-lg py-4 px-8 shadow-md hover:bg-primary active:scale-95 transition-all duration-150 min-h-[48px] disabled:opacity-60" disabled={contact.sending} type="submit">
-                  <span className="material-symbols-outlined mr-2">
+                  <span aria-hidden="true" className="material-symbols-outlined mr-2">
                     send
                   </span>
-                  {contact.sending ? "Enviando..." : "Enviar mensaje"}
+                  {contact.sending ? "Enviando..." : "Solicitar asesoría gratuita"}
                 </button>
                 {/* Estado de Confirmación */}
                 {contact.status === "error" && (
@@ -774,7 +772,7 @@ export default function HomePage() {
                 )}
                 {contact.status === "success" && (
                 <div className="p-4 rounded-2xl bg-tertiary-container/10 border border-tertiary-container/30 text-tertiary flex items-center gap-3" role="status">
-                  <span className="material-symbols-outlined text-2xl shrink-0">
+                  <span aria-hidden="true" className="material-symbols-outlined text-2xl shrink-0">
                     check_circle
                   </span>
                   <p className="text-body-sm font-body-sm font-bold">
@@ -792,8 +790,8 @@ export default function HomePage() {
     {feedbackOpen && (
     <div aria-labelledby="feedback-title" aria-modal="true" className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4" onClick={(e) => e.target === e.currentTarget && setFeedbackOpen(false)} role="dialog">
       <div className="bg-white rounded-3xl p-8 max-w-lg w-full border border-outline-variant shadow-2xl relative">
-        <button aria-label="Cerrar ventana" className="absolute top-6 right-6 text-on-surface-variant hover:text-on-surface p-2" onClick={() => setFeedbackOpen(false)} type="button">
-          <span className="material-symbols-outlined text-2xl">
+        <button aria-label="Cerrar ventana" className="absolute top-4 right-4 inline-flex items-center justify-center min-w-[44px] min-h-[44px] text-on-surface-variant hover:text-on-surface" onClick={() => setFeedbackOpen(false)} type="button">
+          <span aria-hidden="true" className="material-symbols-outlined text-2xl">
             close
           </span>
         </button>
@@ -805,7 +803,7 @@ export default function HomePage() {
         </p>
         {feedback.status === "success" ? (
         <div className="p-4 rounded-2xl bg-tertiary-container/10 border border-tertiary-container/30 text-tertiary flex items-center gap-3" role="status">
-          <span className="material-symbols-outlined text-2xl shrink-0">check_circle</span>
+          <span aria-hidden="true" className="material-symbols-outlined text-2xl shrink-0">check_circle</span>
           <p className="text-body-sm font-body-sm font-bold">¡Muchas gracias! Tu opinión será revisada y publicada</p>
         </div>
         ) : (

@@ -15,7 +15,7 @@ export default function AboutPage() {
           {/* Text Column */}
           <div className="lg:col-span-7 space-y-6">
             <div className="inline-flex items-center space-x-2 bg-[#174A5A] text-surface-container-lowest px-4 py-1.5 rounded-full text-xs font-label-sm tracking-wide shadow-sm">
-              <span className="material-symbols-outlined text-sm" data-icon="verified">
+              <span aria-hidden="true" className="material-symbols-outlined text-sm" data-icon="verified">
                 verified
               </span>
               <span>
@@ -31,7 +31,7 @@ export default function AboutPage() {
             <div className="pt-2 flex flex-wrap gap-4 items-center">
               <div className="flex items-center space-x-3 bg-surface-container-lowest p-3 pr-5 rounded-2xl border border-outline-variant/60 shadow-sm">
                 <div className="w-10 h-10 rounded-xl bg-secondary-container text-on-secondary-fixed-variant flex items-center justify-center font-bold">
-                  <span className="material-symbols-outlined" data-icon="precision_manufacturing">
+                  <span aria-hidden="true" className="material-symbols-outlined" data-icon="precision_manufacturing">
                     precision_manufacturing
                   </span>
                 </div>
@@ -46,7 +46,7 @@ export default function AboutPage() {
               </div>
               <div className="flex items-center space-x-3 bg-surface-container-lowest p-3 pr-5 rounded-2xl border border-outline-variant/60 shadow-sm">
                 <div className="w-10 h-10 rounded-xl bg-primary-fixed text-primary flex items-center justify-center font-bold">
-                  <span className="material-symbols-outlined" data-icon="shield">
+                  <span aria-hidden="true" className="material-symbols-outlined" data-icon="shield">
                     shield
                   </span>
                 </div>
@@ -103,7 +103,7 @@ export default function AboutPage() {
             <div className="absolute top-0 right-0 w-32 h-32 bg-secondary-fixed/30 rounded-bl-full pointer-events-none transition-transform group-hover:scale-110"></div>
             <div className="space-y-6 relative z-10">
               <div className="w-14 h-14 rounded-2xl bg-[#174A5A] text-surface-container-lowest flex items-center justify-center shadow-sm">
-                <span className="material-symbols-outlined text-3xl" data-icon="visibility">
+                <span aria-hidden="true" className="material-symbols-outlined text-3xl" data-icon="visibility">
                   visibility
                 </span>
               </div>
@@ -120,7 +120,7 @@ export default function AboutPage() {
               </div>
             </div>
             <div className="pt-8 border-t border-outline-variant/30 mt-6 flex items-center text-xs font-label-md text-secondary">
-              <span className="material-symbols-outlined mr-1.5 text-base" data-icon="flag">
+              <span aria-hidden="true" className="material-symbols-outlined mr-1.5 text-base" data-icon="flag">
                 flag
               </span>
               <span>
@@ -133,7 +133,7 @@ export default function AboutPage() {
             <div className="absolute top-0 right-0 w-32 h-32 bg-primary-fixed/40 rounded-bl-full pointer-events-none transition-transform group-hover:scale-110"></div>
             <div className="space-y-6 relative z-10">
               <div className="w-14 h-14 rounded-2xl bg-primary-container text-on-primary flex items-center justify-center shadow-sm">
-                <span className="material-symbols-outlined text-3xl" data-icon="military_tech">
+                <span aria-hidden="true" className="material-symbols-outlined text-3xl" data-icon="military_tech">
                   military_tech
                 </span>
               </div>
@@ -151,7 +151,7 @@ export default function AboutPage() {
             </div>
             <div className="pt-8 border-t border-outline-variant/30 mt-6 flex items-center justify-between">
               <span className="text-xs font-label-md text-primary flex items-center">
-                <span className="material-symbols-outlined mr-1.5 text-base" data-icon="health_and_safety">
+                <span aria-hidden="true" className="material-symbols-outlined mr-1.5 text-base" data-icon="health_and_safety">
                   health_and_safety
                 </span>
                 Seguridad para cuidador y usuario
@@ -184,7 +184,7 @@ export default function AboutPage() {
           {/* Pilar 1 */}
           <div className="bg-surface rounded-2xl p-6 border border-outline-variant/60 hover:border-primary/40 transition-all hover:-translate-y-1 duration-200">
             <div className="w-12 h-12 rounded-xl bg-surface-container-lowest border border-outline-variant text-[#174A5A] flex items-center justify-center mb-5 shadow-xs">
-              <span className="material-symbols-outlined text-2xl" data-icon="location_city">
+              <span aria-hidden="true" className="material-symbols-outlined text-2xl" data-icon="location_city">
                 location_city
               </span>
             </div>
@@ -198,12 +198,12 @@ export default function AboutPage() {
           {/* Pilar 2 */}
           <div className="bg-surface rounded-2xl p-6 border border-outline-variant/60 hover:border-primary/40 transition-all hover:-translate-y-1 duration-200">
             <div className="w-12 h-12 rounded-xl bg-surface-container-lowest border border-outline-variant text-primary flex items-center justify-center mb-5 shadow-xs">
-              <span className="material-symbols-outlined text-2xl" data-icon="construction">
+              <span aria-hidden="true" className="material-symbols-outlined text-2xl" data-icon="construction">
                 construction
               </span>
             </div>
             <h4 className="text-headline-sm font-headline-sm text-on-surface mb-2">
-              Acero Estructural Certificado
+              Acero reforzado de alta durabilidad
             </h4>
             <p className="text-body-sm font-body-sm text-on-surface-variant">
               Chasis robustos construidos con perfiles de acero de alta resistencia y pintura electroestática lavable para uso clínico y domiciliario
@@ -212,7 +212,7 @@ export default function AboutPage() {
           {/* Pilar 3 */}
           <div className="bg-surface rounded-2xl p-6 border border-outline-variant/60 hover:border-primary/40 transition-all hover:-translate-y-1 duration-200">
             <div className="w-12 h-12 rounded-xl bg-surface-container-lowest border border-outline-variant text-tertiary flex items-center justify-center mb-5 shadow-xs">
-              <span className="material-symbols-outlined text-2xl" data-icon="bolt">
+              <span aria-hidden="true" className="material-symbols-outlined text-2xl" data-icon="bolt">
                 bolt
               </span>
             </div>
@@ -226,7 +226,7 @@ export default function AboutPage() {
           {/* Pilar 4 */}
           <div className="bg-surface rounded-2xl p-6 border border-outline-variant/60 hover:border-primary/40 transition-all hover:-translate-y-1 duration-200">
             <div className="w-12 h-12 rounded-xl bg-surface-container-lowest border border-outline-variant text-[#174A5A] flex items-center justify-center mb-5 shadow-xs">
-              <span className="material-symbols-outlined text-2xl" data-icon="vital_signs">
+              <span aria-hidden="true" className="material-symbols-outlined text-2xl" data-icon="vital_signs">
                 vital_signs
               </span>
             </div>
@@ -246,7 +246,7 @@ export default function AboutPage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           <div className="lg:col-span-8 space-y-5">
             <div className="inline-flex items-center space-x-2 bg-secondary-fixed text-[#174A5A] px-3.5 py-1 rounded-full text-xs font-label-sm font-bold">
-              <span className="material-symbols-outlined text-sm" data-icon="local_hospital">
+              <span aria-hidden="true" className="material-symbols-outlined text-sm" data-icon="local_hospital">
                 local_hospital
               </span>
               <span>
@@ -261,8 +261,8 @@ export default function AboutPage() {
             </p>
             <div className="flex flex-wrap gap-4 pt-4">
               {/* WhatsApp Institucional */}
-              <a className="inline-flex items-center justify-center bg-[#25D366] hover:bg-[#20ba59] text-surface-container-lowest px-7 py-3 rounded-full font-label-md transition-all duration-150 shadow-md active:scale-95 space-x-2" href="https://wa.me/56972215907" rel="noopener noreferrer" target="_blank">
-                <span className="material-symbols-outlined text-xl" data-icon="chat">
+              <a className="inline-flex items-center justify-center bg-brand-whatsapp hover:bg-brand-whatsapp-hover text-surface-container-lowest px-7 py-3 rounded-full font-label-md transition-all duration-150 shadow-md active:scale-95 space-x-2" href="https://wa.me/56972215907" rel="noopener noreferrer" target="_blank">
+                <span aria-hidden="true" className="material-symbols-outlined text-xl" data-icon="chat">
                   chat
                 </span>
                 <span>
@@ -271,7 +271,7 @@ export default function AboutPage() {
               </a>
               {/* Botón secundario */}
               <a className="inline-flex items-center justify-center bg-transparent border-2 border-surface-container-lowest text-surface-container-lowest hover:bg-surface-container-lowest hover:text-[#174A5A] px-6 py-3 rounded-full font-label-md transition-all duration-150" href="#showroom">
-                <span className="material-symbols-outlined mr-2 text-base" data-icon="calendar_month">
+                <span aria-hidden="true" className="material-symbols-outlined mr-2 text-base" data-icon="calendar_month">
                   calendar_month
                 </span>
                 <span>
@@ -286,7 +286,7 @@ export default function AboutPage() {
             </h4>
             <ul className="space-y-3 text-body-sm font-body-sm text-surface-container-lowest/90">
               <li className="flex items-start space-x-2">
-                <span className="material-symbols-outlined text-secondary-fixed text-sm mt-0.5" data-icon="check_circle">
+                <span aria-hidden="true" className="material-symbols-outlined text-secondary-fixed text-sm mt-0.5" data-icon="check_circle">
                   check_circle
                 </span>
                 <span>
@@ -294,7 +294,7 @@ export default function AboutPage() {
                 </span>
               </li>
               <li className="flex items-start space-x-2">
-                <span className="material-symbols-outlined text-secondary-fixed text-sm mt-0.5" data-icon="check_circle">
+                <span aria-hidden="true" className="material-symbols-outlined text-secondary-fixed text-sm mt-0.5" data-icon="check_circle">
                   check_circle
                 </span>
                 <span>
@@ -302,7 +302,7 @@ export default function AboutPage() {
                 </span>
               </li>
               <li className="flex items-start space-x-2">
-                <span className="material-symbols-outlined text-secondary-fixed text-sm mt-0.5" data-icon="check_circle">
+                <span aria-hidden="true" className="material-symbols-outlined text-secondary-fixed text-sm mt-0.5" data-icon="check_circle">
                   check_circle
                 </span>
                 <span>
@@ -321,7 +321,7 @@ export default function AboutPage() {
           {/* Info Column */}
           <div className="lg:col-span-6 space-y-6">
             <div className="inline-flex items-center space-x-2 bg-surface-container-high text-on-surface px-3 py-1 rounded-full text-xs font-label-sm">
-              <span className="material-symbols-outlined text-sm" data-icon="pin_drop">
+              <span aria-hidden="true" className="material-symbols-outlined text-sm" data-icon="pin_drop">
                 pin_drop
               </span>
               <span>
@@ -337,7 +337,7 @@ export default function AboutPage() {
             <div className="space-y-4 pt-2">
               <div className="flex items-start space-x-4 p-4 rounded-2xl bg-surface-container-lowest border border-outline-variant/60 shadow-xs">
                 <div className="w-10 h-10 rounded-xl bg-primary-fixed text-primary flex items-center justify-center shrink-0">
-                  <span className="material-symbols-outlined" data-icon="home_pin">
+                  <span aria-hidden="true" className="material-symbols-outlined" data-icon="home_pin">
                     home_pin
                   </span>
                 </div>
@@ -355,7 +355,7 @@ export default function AboutPage() {
               </div>
               <div className="flex items-start space-x-4 p-4 rounded-2xl bg-surface-container-lowest border border-outline-variant/60 shadow-xs">
                 <div className="w-10 h-10 rounded-xl bg-secondary-fixed text-on-secondary-fixed-variant flex items-center justify-center shrink-0">
-                  <span className="material-symbols-outlined" data-icon="schedule">
+                  <span aria-hidden="true" className="material-symbols-outlined" data-icon="schedule">
                     schedule
                   </span>
                 </div>
@@ -389,7 +389,7 @@ export default function AboutPage() {
                     <span>
                       Abrir en Maps
                     </span>
-                    <span className="material-symbols-outlined text-xs ml-0.5" data-icon="open_in_new">
+                    <span aria-hidden="true" className="material-symbols-outlined text-xs ml-0.5" data-icon="open_in_new">
                       open_in_new
                     </span>
                   </a>

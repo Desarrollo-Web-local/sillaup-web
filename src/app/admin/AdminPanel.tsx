@@ -51,7 +51,7 @@ export default function AdminPanel({ email, texts, defaults, customized, pages, 
         <div className="max-w-7xl mx-auto px-4 md:px-8 py-4 flex flex-wrap items-center justify-between gap-3">
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-xl bg-primary-container flex items-center justify-center">
-              <span className="material-symbols-outlined text-xl">accessible_forward</span>
+              <span aria-hidden="true" className="material-symbols-outlined text-xl">accessible_forward</span>
             </div>
             <div>
               <p className="font-extrabold leading-tight">SillaUp · Administración</p>
@@ -60,12 +60,12 @@ export default function AdminPanel({ email, texts, defaults, customized, pages, 
           </div>
           <div className="flex items-center gap-2">
             <a className="inline-flex items-center gap-1.5 rounded-full border border-white/30 px-4 py-2 text-sm font-bold hover:bg-white/10" href="/" rel="noopener noreferrer" target="_blank">
-              <span className="material-symbols-outlined text-base">open_in_new</span>
+              <span aria-hidden="true" className="material-symbols-outlined text-base">open_in_new</span>
               Ver sitio
             </a>
             <form action={signOut}>
               <button className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-4 py-2 text-sm font-bold hover:bg-white/20" type="submit">
-                <span className="material-symbols-outlined text-base">logout</span>
+                <span aria-hidden="true" className="material-symbols-outlined text-base">logout</span>
                 Cerrar sesión
               </button>
             </form>
@@ -113,7 +113,7 @@ function TabButton({ active, icon, onClick, children }: { active: boolean; icon:
       onClick={onClick}
       type="button"
     >
-      <span className="material-symbols-outlined text-lg">{icon}</span>
+      <span aria-hidden="true" className="material-symbols-outlined text-lg">{icon}</span>
       {children}
     </button>
   );
@@ -148,7 +148,7 @@ function SaveBar({ pending, result, children = "Guardar y publicar" }: { pending
         disabled={pending}
         type="submit"
       >
-        <span className="material-symbols-outlined text-lg">publish</span>
+        <span aria-hidden="true" className="material-symbols-outlined text-lg">publish</span>
         {pending ? "Guardando..." : children}
       </button>
     </div>
@@ -209,7 +209,7 @@ function TextField({ field, initial, defaultValue, customized }: { field: Conten
       <div className="flex items-center justify-between gap-3 mb-1.5">
         <label className="text-label-md font-label-md text-on-surface" htmlFor={id}>
           {field.label}
-          {customized && <span className="ml-2 align-middle text-[10px] font-extrabold uppercase bg-secondary-fixed text-on-secondary-fixed px-2 py-0.5 rounded-full">Editado</span>}
+          {customized && <span className="ml-2 align-middle text-xs font-extrabold uppercase bg-secondary-fixed text-on-secondary-fixed px-2 py-0.5 rounded-full">Editado</span>}
         </label>
         {reset}
       </div>
@@ -258,7 +258,7 @@ function useUpload(folder: string) {
 function UploadButton({ uploading, multiple, onFiles }: { uploading: boolean; multiple?: boolean; onFiles: (files: FileList | null) => void }) {
   return (
     <label className={`inline-flex items-center gap-1.5 rounded-full border border-primary-container text-primary font-bold text-sm px-4 py-2 cursor-pointer hover:bg-primary-container/5 ${uploading ? "opacity-60 pointer-events-none" : ""}`}>
-      <span className="material-symbols-outlined text-base">upload</span>
+      <span aria-hidden="true" className="material-symbols-outlined text-base">upload</span>
       {uploading ? "Subiendo..." : multiple ? "Subir fotos" : "Subir foto"}
       <input
         accept="image/jpeg,image/png,image/webp,image/avif,image/gif"
@@ -335,14 +335,14 @@ function PhotosInput({ initial }: { initial: string[] }) {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img alt={cover ? "Foto de portada" : `Foto ${i + 1}`} className="w-full h-28 object-cover" src={url} />
               {cover && (
-                <span className="absolute top-1.5 left-1.5 inline-flex items-center gap-1 text-[10px] font-extrabold uppercase bg-primary-container text-white px-2 py-0.5 rounded-full">
-                  <span className="material-symbols-outlined text-xs" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
+                <span className="absolute top-1.5 left-1.5 inline-flex items-center gap-1 text-xs font-extrabold uppercase bg-primary-container text-white px-2 py-0.5 rounded-full">
+                  <span aria-hidden="true" className="material-symbols-outlined text-xs" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
                   Portada
                 </span>
               )}
               <div className="flex justify-between bg-white border-t border-outline-variant">
                 <button aria-label="Mover a la izquierda" className="p-1.5 disabled:opacity-30" disabled={i <= 1} onClick={() => move(i, i - 1)} title="Mover a la izquierda" type="button">
-                  <span className="material-symbols-outlined text-base">chevron_left</span>
+                  <span aria-hidden="true" className="material-symbols-outlined text-base">chevron_left</span>
                 </button>
                 <button
                   aria-label={cover ? "Es la foto de portada" : "Usar como foto de portada"}
@@ -353,13 +353,13 @@ function PhotosInput({ initial }: { initial: string[] }) {
                   title={cover ? "Foto de portada" : "Usar como foto de portada"}
                   type="button"
                 >
-                  <span className="material-symbols-outlined text-base" style={cover ? { fontVariationSettings: "'FILL' 1" } : undefined}>star</span>
+                  <span aria-hidden="true" className="material-symbols-outlined text-base" style={cover ? { fontVariationSettings: "'FILL' 1" } : undefined}>star</span>
                 </button>
                 <button aria-label="Quitar foto" className="p-1.5 text-error" onClick={() => setUrls((list) => list.filter((_, j) => j !== i))} title="Quitar foto" type="button">
-                  <span className="material-symbols-outlined text-base">delete</span>
+                  <span aria-hidden="true" className="material-symbols-outlined text-base">delete</span>
                 </button>
                 <button aria-label="Mover a la derecha" className="p-1.5 disabled:opacity-30" disabled={cover || i === urls.length - 1} onClick={() => move(i, i + 1)} title="Mover a la derecha" type="button">
-                  <span className="material-symbols-outlined text-base">chevron_right</span>
+                  <span aria-hidden="true" className="material-symbols-outlined text-base">chevron_right</span>
                 </button>
               </div>
             </div>
@@ -415,7 +415,7 @@ function ProductsEditor({ products }: { products: ProductForm[] }) {
             type="button"
           >
             {p.name}
-            {p.discount_percent > 0 && <span className="ml-1.5 text-[10px] font-extrabold bg-error text-white px-1.5 py-0.5 rounded-full">-{p.discount_percent}%</span>}
+            {p.discount_percent > 0 && <span className="ml-1.5 text-xs font-extrabold bg-error text-white px-1.5 py-0.5 rounded-full">-{p.discount_percent}%</span>}
           </button>
         ))}
       </div>

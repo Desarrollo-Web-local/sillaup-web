@@ -14,7 +14,8 @@ const config: Config = {
         "brand-border": "#DADADB",
         "brand-night": "#0D141A",
         "brand-teal": "#174A5A",
-        "brand-whatsapp": "#25D366",
+        "brand-whatsapp": "#0F7A40",
+        "brand-whatsapp-hover": "#0B6233",
         "error": "#ba1a1a",
         "error-container": "#ffdad6",
         "inverse-on-surface": "#ebf1fa",
@@ -37,7 +38,7 @@ const config: Config = {
         "on-tertiary-container": "#dbffdb",
         "on-tertiary-fixed": "#002109",
         "on-tertiary-fixed-variant": "#005322",
-        "outline": "#727785",
+        "outline": "#6A6F7C",
         "outline-variant": "#c2c6d6",
         "primary": "#0054b6",
         "primary-container": "#1a6cde",
@@ -61,7 +62,7 @@ const config: Config = {
         "tertiary-container": "#008239",
         "tertiary-fixed": "#66ff8e",
         "tertiary-fixed-dim": "#3de273",
-        "whatsapp": "#25D366"
+        "whatsapp": "#0F7A40"
       },
       "borderRadius": {
         "DEFAULT": "1rem",
@@ -158,9 +159,9 @@ const config: Config = {
           }
         ],
         "body-sm": [
-          "0.875rem",
+          "1rem",
           {
-            "lineHeight": "1.375rem",
+            "lineHeight": "1.5rem",
             "fontWeight": "500"
           }
         ],

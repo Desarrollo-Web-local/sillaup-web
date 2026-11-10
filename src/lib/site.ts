@@ -24,3 +24,6 @@ export const navLinks = [
 export function isActive(pathname: string, href: string) {
   return href === "/" ? pathname === "/" : pathname.startsWith(href);
 }
+
+/** WhatsApp chat link with a prefilled message. */
+export const whatsappLink = (text: string) => `https://wa.me/56972215907?text=${encodeURIComponent(text)}`;

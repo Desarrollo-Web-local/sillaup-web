@@ -11,8 +11,8 @@ export default function WhatsAppButton() {
       {showBubble && (
         <div className="hidden sm:flex items-center bg-white text-on-surface text-label-md font-label-md px-4 py-2.5 rounded-2xl shadow-xl border border-outline-variant mb-1 animate-bounce">
           <span>¡Hola! ¿En qué podemos ayudarte?</span>
-          <button aria-label="Cerrar mensaje" className="ml-2 text-outline hover:text-on-surface" onClick={() => setShowBubble(false)} type="button">
-            <span className="material-symbols-outlined text-sm">close</span>
+          <button aria-label="Cerrar mensaje" className="ml-1 inline-flex items-center justify-center min-w-[44px] min-h-[44px] text-outline hover:text-on-surface" onClick={() => setShowBubble(false)} type="button">
+            <span aria-hidden="true" className="material-symbols-outlined text-sm">close</span>
           </button>
         </div>
       )}
@@ -23,7 +23,7 @@ export default function WhatsAppButton() {
         rel="noopener noreferrer"
         target="_blank"
       >
-        <span className="material-symbols-outlined text-3xl">chat</span>
+        <span aria-hidden="true" className="material-symbols-outlined text-3xl">chat</span>
       </a>
     </div>
   );

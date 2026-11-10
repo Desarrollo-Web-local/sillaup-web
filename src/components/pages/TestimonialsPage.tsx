@@ -17,7 +17,7 @@ export default function TestimonialsPage() {
       <section className="bg-surface-container-lowest border-b border-outline-variant/60 py-10 md:py-14">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#174A5A]/10 text-[#174A5A] text-xs font-bold tracking-wide uppercase mb-3">
-            <span className="material-symbols-outlined text-sm fill-icon" data-icon="verified" style={{ fontVariationSettings: "'FILL' 1" }}>
+            <span aria-hidden="true" className="material-symbols-outlined text-sm fill-icon" data-icon="verified" style={{ fontVariationSettings: "'FILL' 1" }}>
               verified
             </span>
             {t("testimonials.hero.eyebrow")}
@@ -34,19 +34,19 @@ export default function TestimonialsPage() {
                 5.0
               </span>
               <div className="flex items-center text-amber-500">
-                <span className="material-symbols-outlined text-xl fill-icon" data-icon="star" style={{ fontVariationSettings: "'FILL' 1" }}>
+                <span aria-hidden="true" className="material-symbols-outlined text-xl fill-icon" data-icon="star" style={{ fontVariationSettings: "'FILL' 1" }}>
                   star
                 </span>
-                <span className="material-symbols-outlined text-xl fill-icon" data-icon="star" style={{ fontVariationSettings: "'FILL' 1" }}>
+                <span aria-hidden="true" className="material-symbols-outlined text-xl fill-icon" data-icon="star" style={{ fontVariationSettings: "'FILL' 1" }}>
                   star
                 </span>
-                <span className="material-symbols-outlined text-xl fill-icon" data-icon="star" style={{ fontVariationSettings: "'FILL' 1" }}>
+                <span aria-hidden="true" className="material-symbols-outlined text-xl fill-icon" data-icon="star" style={{ fontVariationSettings: "'FILL' 1" }}>
                   star
                 </span>
-                <span className="material-symbols-outlined text-xl fill-icon" data-icon="star" style={{ fontVariationSettings: "'FILL' 1" }}>
+                <span aria-hidden="true" className="material-symbols-outlined text-xl fill-icon" data-icon="star" style={{ fontVariationSettings: "'FILL' 1" }}>
                   star
                 </span>
-                <span className="material-symbols-outlined text-xl fill-icon" data-icon="star" style={{ fontVariationSettings: "'FILL' 1" }}>
+                <span aria-hidden="true" className="material-symbols-outlined text-xl fill-icon" data-icon="star" style={{ fontVariationSettings: "'FILL' 1" }}>
                   star
                 </span>
               </div>
@@ -55,7 +55,7 @@ export default function TestimonialsPage() {
               </span>
             </div>
             <a href="#formulario-opinion" className="inline-flex items-center gap-1.5 bg-primary-container hover:bg-primary text-white text-xs font-bold px-4 py-2 rounded-full transition-all shadow-sm">
-              <span className="material-symbols-outlined text-base" data-icon="edit">
+              <span aria-hidden="true" className="material-symbols-outlined text-base" data-icon="edit">
                 edit
               </span>
               Escribir una opinión
@@ -70,7 +70,7 @@ export default function TestimonialsPage() {
           <div id="formulario-opinion" className="bg-surface-container-lowest rounded-2xl p-6 md:p-8 border border-outline-variant shadow-sm">
             <div className="flex items-center gap-3 mb-2">
               <div className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
-                <span className="material-symbols-outlined text-2xl" data-icon="rate_review">
+                <span aria-hidden="true" className="material-symbols-outlined text-2xl" data-icon="rate_review">
                   rate_review
                 </span>
               </div>
@@ -101,13 +101,13 @@ export default function TestimonialsPage() {
                   <label htmlFor="nombre_usuario" className="block text-label-md font-bold text-on-surface mb-1">
                     Tu nombre y rol*
                   </label>
-                  <input type="text" id="nombre_usuario" name="name" placeholder="Ej: María González (Cuidadora familiar)" required className="w-full h-11 px-4 rounded-xl border border-outline-variant bg-surface-container-lowest text-body-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary" />
+                  <input type="text" id="nombre_usuario" name="name" placeholder="Ej: María González (Cuidadora familiar)" required className="w-full h-12 px-4 rounded-xl border border-outline-variant bg-surface-container-lowest text-body-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary" />
                 </div>
                 <div>
                   <label htmlFor="equipo_adquirido" className="block text-label-md font-bold text-on-surface mb-1">
                     Equipo o dispositivo adquirido*
                   </label>
-                  <select id="equipo_adquirido" name="product" defaultValue="" required className="w-full h-11 px-4 rounded-xl border border-outline-variant bg-surface-container-lowest text-body-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary">
+                  <select id="equipo_adquirido" name="product" defaultValue="" required className="w-full h-12 px-4 rounded-xl border border-outline-variant bg-surface-container-lowest text-body-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary">
                     <option value="" disabled>
                       Selecciona una opción
                     </option>
@@ -138,13 +138,13 @@ export default function TestimonialsPage() {
               </div>
               <div className="flex flex-wrap items-center justify-between gap-4 pt-1">
                 <p className="text-xs text-on-surface-variant flex items-center gap-1">
-                  <span className="material-symbols-outlined text-sm text-tertiary" data-icon="lock">
+                  <span aria-hidden="true" className="material-symbols-outlined text-sm text-tertiary" data-icon="lock">
                     lock
                   </span>
                   Tu testimonio será publicado respetando tu privacidad
                 </p>
                 <button type="submit" disabled={feedback.sending} className="inline-flex items-center justify-center gap-2 bg-primary-container hover:bg-primary text-white font-bold text-sm px-6 py-2.5 rounded-full transition-all shadow-sm active:scale-95 disabled:opacity-60">
-                  <span className="material-symbols-outlined text-base" data-icon="send">
+                  <span aria-hidden="true" className="material-symbols-outlined text-base" data-icon="send">
                     send
                   </span>
                   {feedback.sending ? "Enviando..." : "Publicar opinión"}
@@ -159,7 +159,7 @@ export default function TestimonialsPage() {
             {/* Mensaje de confirmación */}
             {feedback.status === "success" && (
             <div role="status" className="mt-4 p-4 rounded-xl bg-tertiary-container/10 border border-tertiary text-tertiary text-xs flex items-center gap-2 font-medium">
-              <span className="material-symbols-outlined text-lg" data-icon="check_circle">
+              <span aria-hidden="true" className="material-symbols-outlined text-lg" data-icon="check_circle">
                 check_circle
               </span>
               ¡Gracias! Tu opinión ha sido recibida con éxito y estará visible tras una breve revisión
@@ -193,25 +193,25 @@ export default function TestimonialsPage() {
                   </div>
                 </div>
                 <div className="flex items-center gap-1 text-amber-500">
-                  <span className="material-symbols-outlined text-lg fill-icon" data-icon="star" style={{ fontVariationSettings: "'FILL' 1" }}>
+                  <span aria-hidden="true" className="material-symbols-outlined text-lg fill-icon" data-icon="star" style={{ fontVariationSettings: "'FILL' 1" }}>
                     star
                   </span>
-                  <span className="material-symbols-outlined text-lg fill-icon" data-icon="star" style={{ fontVariationSettings: "'FILL' 1" }}>
+                  <span aria-hidden="true" className="material-symbols-outlined text-lg fill-icon" data-icon="star" style={{ fontVariationSettings: "'FILL' 1" }}>
                     star
                   </span>
-                  <span className="material-symbols-outlined text-lg fill-icon" data-icon="star" style={{ fontVariationSettings: "'FILL' 1" }}>
+                  <span aria-hidden="true" className="material-symbols-outlined text-lg fill-icon" data-icon="star" style={{ fontVariationSettings: "'FILL' 1" }}>
                     star
                   </span>
-                  <span className="material-symbols-outlined text-lg fill-icon" data-icon="star" style={{ fontVariationSettings: "'FILL' 1" }}>
+                  <span aria-hidden="true" className="material-symbols-outlined text-lg fill-icon" data-icon="star" style={{ fontVariationSettings: "'FILL' 1" }}>
                     star
                   </span>
-                  <span className="material-symbols-outlined text-lg fill-icon" data-icon="star" style={{ fontVariationSettings: "'FILL' 1" }}>
+                  <span aria-hidden="true" className="material-symbols-outlined text-lg fill-icon" data-icon="star" style={{ fontVariationSettings: "'FILL' 1" }}>
                     star
                   </span>
                 </div>
               </div>
               <div className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#174A5A]/10 text-[#174A5A] text-xs font-bold mb-3">
-                <span className="material-symbols-outlined text-xs" data-icon="check_circle">
+                <span aria-hidden="true" className="material-symbols-outlined text-xs" data-icon="check_circle">
                   check_circle
                 </span>
                 Compra verificada: Grúa manual
@@ -219,7 +219,7 @@ export default function TestimonialsPage() {
               <p className="text-body-md text-on-surface leading-relaxed">
                 &quot;Mi madre tiene movilidad reducida por un ACV y levantarla entre dos personas nos causaba mucho dolor de espalda. Con la Grúa manual de SillaUp, una sola persona la transfiere suavemente y sin esfuerzo de la cama a la silla de ruedas. La calidad y firmeza se notan de inmediato&quot;
               </p>
-              <span className="text-[11px] text-on-surface-variant block mt-3">
+              <span className="text-xs text-on-surface-variant block mt-3">
                 Publicado hace 3 días
               </span>
             </article>
@@ -240,25 +240,25 @@ export default function TestimonialsPage() {
                   </div>
                 </div>
                 <div className="flex items-center gap-1 text-amber-500">
-                  <span className="material-symbols-outlined text-lg fill-icon" data-icon="star" style={{ fontVariationSettings: "'FILL' 1" }}>
+                  <span aria-hidden="true" className="material-symbols-outlined text-lg fill-icon" data-icon="star" style={{ fontVariationSettings: "'FILL' 1" }}>
                     star
                   </span>
-                  <span className="material-symbols-outlined text-lg fill-icon" data-icon="star" style={{ fontVariationSettings: "'FILL' 1" }}>
+                  <span aria-hidden="true" className="material-symbols-outlined text-lg fill-icon" data-icon="star" style={{ fontVariationSettings: "'FILL' 1" }}>
                     star
                   </span>
-                  <span className="material-symbols-outlined text-lg fill-icon" data-icon="star" style={{ fontVariationSettings: "'FILL' 1" }}>
+                  <span aria-hidden="true" className="material-symbols-outlined text-lg fill-icon" data-icon="star" style={{ fontVariationSettings: "'FILL' 1" }}>
                     star
                   </span>
-                  <span className="material-symbols-outlined text-lg fill-icon" data-icon="star" style={{ fontVariationSettings: "'FILL' 1" }}>
+                  <span aria-hidden="true" className="material-symbols-outlined text-lg fill-icon" data-icon="star" style={{ fontVariationSettings: "'FILL' 1" }}>
                     star
                   </span>
-                  <span className="material-symbols-outlined text-lg fill-icon" data-icon="star" style={{ fontVariationSettings: "'FILL' 1" }}>
+                  <span aria-hidden="true" className="material-symbols-outlined text-lg fill-icon" data-icon="star" style={{ fontVariationSettings: "'FILL' 1" }}>
                     star
                   </span>
                 </div>
               </div>
               <div className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#174A5A]/10 text-[#174A5A] text-xs font-bold mb-3">
-                <span className="material-symbols-outlined text-xs" data-icon="check_circle">
+                <span aria-hidden="true" className="material-symbols-outlined text-xs" data-icon="check_circle">
                   check_circle
                 </span>
                 Compra verificada: Elevador de inodoro
@@ -266,7 +266,7 @@ export default function TestimonialsPage() {
               <p className="text-body-md text-on-surface leading-relaxed">
                 &quot;Como profesional recomiendo ampliamente el Elevador de inodoro. Le devuelve total intimidad al paciente en el baño y otorga una estabilidad sobresaliente gracias a sus apoyabrazos abatibles. El despacho a regiones fue rápido y el armado muy sencillo&quot;
               </p>
-              <span className="text-[11px] text-on-surface-variant block mt-3">
+              <span className="text-xs text-on-surface-variant block mt-3">
                 Publicado hace 1 semana
               </span>
             </article>
@@ -287,25 +287,25 @@ export default function TestimonialsPage() {
                   </div>
                 </div>
                 <div className="flex items-center gap-1 text-amber-500">
-                  <span className="material-symbols-outlined text-lg fill-icon" data-icon="star" style={{ fontVariationSettings: "'FILL' 1" }}>
+                  <span aria-hidden="true" className="material-symbols-outlined text-lg fill-icon" data-icon="star" style={{ fontVariationSettings: "'FILL' 1" }}>
                     star
                   </span>
-                  <span className="material-symbols-outlined text-lg fill-icon" data-icon="star" style={{ fontVariationSettings: "'FILL' 1" }}>
+                  <span aria-hidden="true" className="material-symbols-outlined text-lg fill-icon" data-icon="star" style={{ fontVariationSettings: "'FILL' 1" }}>
                     star
                   </span>
-                  <span className="material-symbols-outlined text-lg fill-icon" data-icon="star" style={{ fontVariationSettings: "'FILL' 1" }}>
+                  <span aria-hidden="true" className="material-symbols-outlined text-lg fill-icon" data-icon="star" style={{ fontVariationSettings: "'FILL' 1" }}>
                     star
                   </span>
-                  <span className="material-symbols-outlined text-lg fill-icon" data-icon="star" style={{ fontVariationSettings: "'FILL' 1" }}>
+                  <span aria-hidden="true" className="material-symbols-outlined text-lg fill-icon" data-icon="star" style={{ fontVariationSettings: "'FILL' 1" }}>
                     star
                   </span>
-                  <span className="material-symbols-outlined text-lg fill-icon" data-icon="star" style={{ fontVariationSettings: "'FILL' 1" }}>
+                  <span aria-hidden="true" className="material-symbols-outlined text-lg fill-icon" data-icon="star" style={{ fontVariationSettings: "'FILL' 1" }}>
                     star
                   </span>
                 </div>
               </div>
               <div className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#174A5A]/10 text-[#174A5A] text-xs font-bold mb-3">
-                <span className="material-symbols-outlined text-xs" data-icon="check_circle">
+                <span aria-hidden="true" className="material-symbols-outlined text-xs" data-icon="check_circle">
                   check_circle
                 </span>
                 Compra verificada: Grúa eléctrica
@@ -313,7 +313,7 @@ export default function TestimonialsPage() {
               <p className="text-body-md text-on-surface leading-relaxed">
                 &quot;Excelente atención y orientación telefónica para elegir el arnés adecuado para mi papá. La grúa eléctrica funciona de manera impecable y silenciosa. Da mucha tranquilidad contar con servicio técnico directo en Chile&quot;
               </p>
-              <span className="text-[11px] text-on-surface-variant block mt-3">
+              <span className="text-xs text-on-surface-variant block mt-3">
                 Publicado hace 2 semanas
               </span>
             </article>
@@ -334,25 +334,25 @@ export default function TestimonialsPage() {
                   </div>
                 </div>
                 <div className="flex items-center gap-1 text-amber-500">
-                  <span className="material-symbols-outlined text-lg fill-icon" data-icon="star" style={{ fontVariationSettings: "'FILL' 1" }}>
+                  <span aria-hidden="true" className="material-symbols-outlined text-lg fill-icon" data-icon="star" style={{ fontVariationSettings: "'FILL' 1" }}>
                     star
                   </span>
-                  <span className="material-symbols-outlined text-lg fill-icon" data-icon="star" style={{ fontVariationSettings: "'FILL' 1" }}>
+                  <span aria-hidden="true" className="material-symbols-outlined text-lg fill-icon" data-icon="star" style={{ fontVariationSettings: "'FILL' 1" }}>
                     star
                   </span>
-                  <span className="material-symbols-outlined text-lg fill-icon" data-icon="star" style={{ fontVariationSettings: "'FILL' 1" }}>
+                  <span aria-hidden="true" className="material-symbols-outlined text-lg fill-icon" data-icon="star" style={{ fontVariationSettings: "'FILL' 1" }}>
                     star
                   </span>
-                  <span className="material-symbols-outlined text-lg fill-icon" data-icon="star" style={{ fontVariationSettings: "'FILL' 1" }}>
+                  <span aria-hidden="true" className="material-symbols-outlined text-lg fill-icon" data-icon="star" style={{ fontVariationSettings: "'FILL' 1" }}>
                     star
                   </span>
-                  <span className="material-symbols-outlined text-lg fill-icon" data-icon="star" style={{ fontVariationSettings: "'FILL' 1" }}>
+                  <span aria-hidden="true" className="material-symbols-outlined text-lg fill-icon" data-icon="star" style={{ fontVariationSettings: "'FILL' 1" }}>
                     star
                   </span>
                 </div>
               </div>
               <div className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#174A5A]/10 text-[#174A5A] text-xs font-bold mb-3">
-                <span className="material-symbols-outlined text-xs" data-icon="check_circle">
+                <span aria-hidden="true" className="material-symbols-outlined text-xs" data-icon="check_circle">
                   check_circle
                 </span>
                 Compra verificada: Elevador multiuso
@@ -360,7 +360,7 @@ export default function TestimonialsPage() {
               <p className="text-body-md text-on-surface leading-relaxed">
                 &quot;El elevador multiuso cabe sin problemas por puertas y pasillos de 70 cm. Para los turnos nocturnos ha sido un descanso enorme, fácil de desinfectar y con materiales muy resistentes&quot;
               </p>
-              <span className="text-[11px] text-on-surface-variant block mt-3">
+              <span className="text-xs text-on-surface-variant block mt-3">
                 Publicado hace 3 semanas
               </span>
             </article>
@@ -373,8 +373,8 @@ export default function TestimonialsPage() {
             <p className="text-body-md text-on-surface-variant max-w-xl mx-auto mb-6">
               {t("testimonials.cta.description")}
             </p>
-            <a href="https://wa.me/56972215907" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#1ebc59] text-white px-7 py-3 rounded-full font-bold text-sm shadow-md transition-all active:scale-95">
-              <span className="material-symbols-outlined text-xl" data-icon="chat">
+            <a href="https://wa.me/56972215907" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-brand-whatsapp hover:bg-[#1ebc59] text-white px-7 py-3 rounded-full font-bold text-sm shadow-md transition-all active:scale-95">
+              <span aria-hidden="true" className="material-symbols-outlined text-xl" data-icon="chat">
                 chat
               </span>
               Consultar por WhatsApp con Kinesiólogo

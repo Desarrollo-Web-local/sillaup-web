@@ -125,14 +125,14 @@ export default function ImageLightbox({
         </span>
         <div className="flex items-center gap-2">
           <button aria-label="Alejar" className={controlButton} disabled={zoom <= MIN_ZOOM} onClick={() => setZoomLevel(zoom - 0.5)} type="button">
-            <span className="material-symbols-outlined">zoom_out</span>
+            <span aria-hidden="true" className="material-symbols-outlined">zoom_out</span>
           </button>
           <span className="w-12 text-center text-label-sm font-label-sm tabular-nums">{Math.round(zoom * 100)}%</span>
           <button aria-label="Acercar" className={controlButton} disabled={zoom >= MAX_ZOOM} onClick={() => setZoomLevel(zoom + 0.5)} type="button">
-            <span className="material-symbols-outlined">zoom_in</span>
+            <span aria-hidden="true" className="material-symbols-outlined">zoom_in</span>
           </button>
           <button aria-label="Cerrar vista ampliada" className={`${controlButton} ml-2`} onClick={onClose} ref={closeRef} type="button">
-            <span className="material-symbols-outlined">close</span>
+            <span aria-hidden="true" className="material-symbols-outlined">close</span>
           </button>
         </div>
       </div>
@@ -166,10 +166,10 @@ export default function ImageLightbox({
         {many && (
           <>
             <button aria-label="Imagen anterior" className={`${overlayButton} absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 w-12 h-12`} onClick={() => go(-1)} type="button">
-              <span className="material-symbols-outlined">arrow_back</span>
+              <span aria-hidden="true" className="material-symbols-outlined">arrow_back</span>
             </button>
             <button aria-label="Imagen siguiente" className={`${overlayButton} absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 w-12 h-12`} onClick={() => go(1)} type="button">
-              <span className="material-symbols-outlined">arrow_forward</span>
+              <span aria-hidden="true" className="material-symbols-outlined">arrow_forward</span>
             </button>
           </>
         )}

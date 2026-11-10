@@ -65,7 +65,7 @@ export default function SiteHeader() {
             className="hidden sm:inline-flex items-center justify-center rounded-full bg-primary-container text-white font-label-md text-label-md px-6 py-3 shadow-sm hover:bg-primary active:scale-95 transition-all duration-150 min-h-[48px]"
             href="/productos"
           >
-            <span className="material-symbols-outlined mr-2 text-base">widgets</span>
+            <span aria-hidden="true" className="material-symbols-outlined mr-2 text-base">widgets</span>
             Productos
           </Link>
           <button
@@ -75,7 +75,7 @@ export default function SiteHeader() {
             onClick={() => setMenuOpen((open) => !open)}
             type="button"
           >
-            <span className="material-symbols-outlined text-2xl">{menuOpen ? "close" : "menu"}</span>
+            <span aria-hidden="true" className="material-symbols-outlined text-2xl">{menuOpen ? "close" : "menu"}</span>
           </button>
         </div>
       </div>

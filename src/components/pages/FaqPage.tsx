@@ -42,7 +42,7 @@ export default function FaqPage() {
         <div className="max-w-3xl mx-auto text-center">
           {/* Fabricación Chilena Badge */}
           <div className="inline-flex items-center gap-2 bg-[#174A5A] text-white px-4 py-1.5 rounded-full text-xs font-label-sm tracking-wide mb-6 shadow-sm">
-            <span className="material-symbols-outlined text-[16px] text-tertiary-fixed">
+            <span aria-hidden="true" className="material-symbols-outlined text-[16px] text-tertiary-fixed">
               verified
             </span>
             <span>
@@ -58,12 +58,12 @@ export default function FaqPage() {
           {/* Search Bar with Live Filter Input */}
           <div className="relative max-w-2xl mx-auto">
             <div className="relative flex items-center bg-surface-container-lowest rounded-full shadow-[0_4px_20px_-2px_rgba(13,20,26,0.08)] border border-outline-variant focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/20 transition-all p-2 pl-6">
-              <span className="material-symbols-outlined text-outline text-2xl mr-3 select-none">
+              <span aria-hidden="true" className="material-symbols-outlined text-outline text-2xl mr-3 select-none">
                 search
               </span>
               <input aria-label="Buscar preguntas frecuentes" className="w-full bg-transparent border-none text-on-surface font-body-md focus:outline-none focus:ring-0 placeholder:text-outline text-sm md:text-base py-2.5 pr-4" onChange={(e) => search(e.target.value)} ref={searchRef} value={query} placeholder="Escribe tu consulta (ej. seguridad, electricidad, garantía, peso...)" type="text" />
               <button className={`${query ? "" : "hidden "}text-outline hover:text-on-surface p-2 rounded-full focus:outline-none transition-colors`} onClick={() => { search(""); searchRef.current?.focus(); }} title="Borrar búsqueda" type="button">
-                <span className="material-symbols-outlined text-lg">
+                <span aria-hidden="true" className="material-symbols-outlined text-lg">
                   close
                 </span>
               </button>
@@ -94,7 +94,7 @@ export default function FaqPage() {
     <main className="max-w-4xl mx-auto px-6 md:px-12 py-12 md:py-16">
       {/* Helper info badge for elderly / accessibility */}
       <div className="flex items-center gap-3 p-4 mb-8 bg-surface-container-low border border-secondary-container rounded-2xl text-secondary">
-        <span className="material-symbols-outlined text-2xl text-primary">
+        <span aria-hidden="true" className="material-symbols-outlined text-2xl text-primary">
           info
         </span>
         <p className="text-body-sm font-body-sm text-on-surface-variant">
@@ -108,7 +108,7 @@ export default function FaqPage() {
           <button aria-expanded={openIndex === 0} onClick={() => toggle(0)} className="faq-button w-full flex items-center justify-between p-6 text-left cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-primary/20 gap-4" type="button">
             <div className="flex items-center gap-4">
               <div className="w-10 h-10 rounded-full bg-secondary-container/60 text-[#174A5A] flex items-center justify-center shrink-0">
-                <span className="material-symbols-outlined text-xl">
+                <span aria-hidden="true" className="material-symbols-outlined text-xl">
                   verified_user
                 </span>
               </div>
@@ -116,7 +116,7 @@ export default function FaqPage() {
                 {t("faq.q1.question")}
               </h2>
             </div>
-            <span className="faq-icon material-symbols-outlined text-primary text-2xl transition-transform duration-300" style={{ transform: openIndex === 0 ? "rotate(180deg)" : "rotate(0deg)" }}>
+            <span aria-hidden="true" className="faq-icon material-symbols-outlined text-primary text-2xl transition-transform duration-300" style={{ transform: openIndex === 0 ? "rotate(180deg)" : "rotate(0deg)" }}>
               keyboard_arrow_down
             </span>
           </button>
@@ -145,7 +145,7 @@ export default function FaqPage() {
           <button aria-expanded={openIndex === 1} onClick={() => toggle(1)} className="faq-button w-full flex items-center justify-between p-6 text-left cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-primary/20 gap-4" type="button">
             <div className="flex items-center gap-4">
               <div className="w-10 h-10 rounded-full bg-secondary-container/60 text-[#174A5A] flex items-center justify-center shrink-0">
-                <span className="material-symbols-outlined text-xl">
+                <span aria-hidden="true" className="material-symbols-outlined text-xl">
                   build
                 </span>
               </div>
@@ -153,7 +153,7 @@ export default function FaqPage() {
                 {t("faq.q2.question")}
               </h2>
             </div>
-            <span className="faq-icon material-symbols-outlined text-primary text-2xl transition-transform duration-300" style={{ transform: openIndex === 1 ? "rotate(180deg)" : "rotate(0deg)" }}>
+            <span aria-hidden="true" className="faq-icon material-symbols-outlined text-primary text-2xl transition-transform duration-300" style={{ transform: openIndex === 1 ? "rotate(180deg)" : "rotate(0deg)" }}>
               keyboard_arrow_down
             </span>
           </button>
@@ -165,7 +165,7 @@ export default function FaqPage() {
               {t("faq.q2.body")}
             </p>
             <div className="p-3 bg-surface-container rounded-xl flex items-center gap-3">
-              <span className="material-symbols-outlined text-[#174A5A]">
+              <span aria-hidden="true" className="material-symbols-outlined text-[#174A5A]">
                 videocam
               </span>
               <span className="text-body-sm text-on-surface">
@@ -179,7 +179,7 @@ export default function FaqPage() {
           <button aria-expanded={openIndex === 2} onClick={() => toggle(2)} className="faq-button w-full flex items-center justify-between p-6 text-left cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-primary/20 gap-4" type="button">
             <div className="flex items-center gap-4">
               <div className="w-10 h-10 rounded-full bg-secondary-container/60 text-[#174A5A] flex items-center justify-center shrink-0">
-                <span className="material-symbols-outlined text-xl">
+                <span aria-hidden="true" className="material-symbols-outlined text-xl">
                   power
                 </span>
               </div>
@@ -187,7 +187,7 @@ export default function FaqPage() {
                 {t("faq.q3.question")}
               </h2>
             </div>
-            <span className="faq-icon material-symbols-outlined text-primary text-2xl transition-transform duration-300" style={{ transform: openIndex === 2 ? "rotate(180deg)" : "rotate(0deg)" }}>
+            <span aria-hidden="true" className="faq-icon material-symbols-outlined text-primary text-2xl transition-transform duration-300" style={{ transform: openIndex === 2 ? "rotate(180deg)" : "rotate(0deg)" }}>
               keyboard_arrow_down
             </span>
           </button>
@@ -223,7 +223,7 @@ export default function FaqPage() {
           <button aria-expanded={openIndex === 3} onClick={() => toggle(3)} className="faq-button w-full flex items-center justify-between p-6 text-left cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-primary/20 gap-4" type="button">
             <div className="flex items-center gap-4">
               <div className="w-10 h-10 rounded-full bg-secondary-container/60 text-[#174A5A] flex items-center justify-center shrink-0">
-                <span className="material-symbols-outlined text-xl">
+                <span aria-hidden="true" className="material-symbols-outlined text-xl">
                   workspace_premium
                 </span>
               </div>
@@ -231,7 +231,7 @@ export default function FaqPage() {
                 {t("faq.q4.question")}
               </h2>
             </div>
-            <span className="faq-icon material-symbols-outlined text-primary text-2xl transition-transform duration-300" style={{ transform: openIndex === 3 ? "rotate(180deg)" : "rotate(0deg)" }}>
+            <span aria-hidden="true" className="faq-icon material-symbols-outlined text-primary text-2xl transition-transform duration-300" style={{ transform: openIndex === 3 ? "rotate(180deg)" : "rotate(0deg)" }}>
               keyboard_arrow_down
             </span>
           </button>
@@ -243,7 +243,7 @@ export default function FaqPage() {
               {t("faq.q4.body")}
             </p>
             <div className="flex items-center gap-2 text-xs font-bold text-[#174A5A] bg-[#F2F4F7] p-2.5 rounded-lg">
-              <span className="material-symbols-outlined text-base">
+              <span aria-hidden="true" className="material-symbols-outlined text-base">
                 location_on
               </span>
               <span>
@@ -257,7 +257,7 @@ export default function FaqPage() {
           <button aria-expanded={openIndex === 4} onClick={() => toggle(4)} className="faq-button w-full flex items-center justify-between p-6 text-left cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-primary/20 gap-4" type="button">
             <div className="flex items-center gap-4">
               <div className="w-10 h-10 rounded-full bg-secondary-container/60 text-[#174A5A] flex items-center justify-center shrink-0">
-                <span className="material-symbols-outlined text-xl">
+                <span aria-hidden="true" className="material-symbols-outlined text-xl">
                   person
                 </span>
               </div>
@@ -265,7 +265,7 @@ export default function FaqPage() {
                 {t("faq.q5.question")}
               </h2>
             </div>
-            <span className="faq-icon material-symbols-outlined text-primary text-2xl transition-transform duration-300" style={{ transform: openIndex === 4 ? "rotate(180deg)" : "rotate(0deg)" }}>
+            <span aria-hidden="true" className="faq-icon material-symbols-outlined text-primary text-2xl transition-transform duration-300" style={{ transform: openIndex === 4 ? "rotate(180deg)" : "rotate(0deg)" }}>
               keyboard_arrow_down
             </span>
           </button>
@@ -286,7 +286,7 @@ export default function FaqPage() {
           <button aria-expanded={openIndex === 5} onClick={() => toggle(5)} className="faq-button w-full flex items-center justify-between p-6 text-left cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-primary/20 gap-4" type="button">
             <div className="flex items-center gap-4">
               <div className="w-10 h-10 rounded-full bg-secondary-container/60 text-[#174A5A] flex items-center justify-center shrink-0">
-                <span className="material-symbols-outlined text-xl">
+                <span aria-hidden="true" className="material-symbols-outlined text-xl">
                   contact_support
                 </span>
               </div>
@@ -294,7 +294,7 @@ export default function FaqPage() {
                 {t("faq.q6.question")}
               </h2>
             </div>
-            <span className="faq-icon material-symbols-outlined text-primary text-2xl transition-transform duration-300" style={{ transform: openIndex === 5 ? "rotate(180deg)" : "rotate(0deg)" }}>
+            <span aria-hidden="true" className="faq-icon material-symbols-outlined text-primary text-2xl transition-transform duration-300" style={{ transform: openIndex === 5 ? "rotate(180deg)" : "rotate(0deg)" }}>
               keyboard_arrow_down
             </span>
           </button>
@@ -310,14 +310,14 @@ export default function FaqPage() {
               , enviarnos un mensaje con fotos o videos para orientarte en tiempo real, o coordinar una visita a nuestro centro en Merced 562, Santiago para revisar tu equipo o probar las alternativas disponibles antes de decidir
             </p>
             <div className="flex flex-wrap gap-3">
-              <a className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#20ba59] text-white px-4 py-2 rounded-full font-label-md text-xs transition-colors" href="https://wa.me/56972215907?text=Hola%20SillaUp,%20necesito%20ayuda%20con%20un%20dispositivo" rel="noopener noreferrer" target="_blank">
-                <span className="material-symbols-outlined text-sm">
+              <a className="inline-flex items-center gap-2 bg-brand-whatsapp hover:bg-brand-whatsapp-hover text-white px-4 py-2 rounded-full font-label-md text-xs transition-colors" href="https://wa.me/56972215907?text=Hola%20SillaUp,%20necesito%20ayuda%20con%20un%20dispositivo" rel="noopener noreferrer" target="_blank">
+                <span aria-hidden="true" className="material-symbols-outlined text-sm">
                   chat
                 </span>
                 Contactar por WhatsApp (+56 9 7221 5907)
               </a>
               <a className="inline-flex items-center gap-2 bg-on-surface hover:bg-black text-white px-4 py-2 rounded-full font-label-md text-xs transition-colors" href="tel:+56972215907">
-                <span className="material-symbols-outlined text-sm">
+                <span aria-hidden="true" className="material-symbols-outlined text-sm">
                   call
                 </span>
                 Llamar ahora
@@ -328,7 +328,7 @@ export default function FaqPage() {
       </div>
       {/* Empty state message for search */}
       <div className={`${noResults ? "" : "hidden "}text-center py-12 px-4 bg-surface-container-low rounded-2xl border border-outline-variant mt-4`}>
-        <span className="material-symbols-outlined text-5xl text-outline mb-2">
+        <span aria-hidden="true" className="material-symbols-outlined text-5xl text-outline mb-2">
           search_off
         </span>
         <h3 className="text-headline-sm font-headline-sm text-on-surface mb-1">
@@ -337,8 +337,8 @@ export default function FaqPage() {
         <p className="text-body-sm font-body-sm text-on-surface-variant max-w-md mx-auto mb-6">
           No te preocupes. Nuestros kinesiólogos y asesores técnicos pueden responder tu consulta específica por teléfono o WhatsApp de inmediato
         </p>
-        <a className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#20ba59] text-white px-6 py-3 rounded-full font-label-md text-sm shadow-md transition-all" href="https://wa.me/56972215907" rel="noopener noreferrer" target="_blank">
-          <span className="material-symbols-outlined">
+        <a className="inline-flex items-center gap-2 bg-brand-whatsapp hover:bg-brand-whatsapp-hover text-white px-6 py-3 rounded-full font-label-md text-sm shadow-md transition-all" href="https://wa.me/56972215907" rel="noopener noreferrer" target="_blank">
+          <span aria-hidden="true" className="material-symbols-outlined">
             chat
           </span>
           Consultar directamente por WhatsApp
@@ -354,7 +354,7 @@ export default function FaqPage() {
         <div className="relative z-10 grid md:grid-cols-12 gap-8 items-center">
           <div className="md:col-span-7">
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-3.5 py-1 rounded-full text-xs font-label-sm text-secondary-fixed mb-4">
-              <span className="material-symbols-outlined text-sm">
+              <span aria-hidden="true" className="material-symbols-outlined text-sm">
                 headset_mic
               </span>
               <span>
@@ -369,7 +369,7 @@ export default function FaqPage() {
             </p>
             <div className="flex items-center gap-3 text-xs text-white/80">
               <span className="flex items-center gap-1">
-                <span className="material-symbols-outlined text-sm text-[#25D366]">
+                <span aria-hidden="true" className="material-symbols-outlined text-sm text-brand-whatsapp">
                   check_circle
                 </span>
                 Sin compromiso de compra
@@ -378,7 +378,7 @@ export default function FaqPage() {
                 •
               </span>
               <span className="flex items-center gap-1">
-                <span className="material-symbols-outlined text-sm text-[#25D366]">
+                <span aria-hidden="true" className="material-symbols-outlined text-sm text-brand-whatsapp">
                   check_circle
                 </span>
                 Respuesta en menos de 10 min
@@ -387,8 +387,8 @@ export default function FaqPage() {
           </div>
           <div className="md:col-span-5 flex flex-col gap-4">
             {/* WhatsApp Primary Action */}
-            <a className="flex items-center justify-center gap-3 bg-[#25D366] hover:bg-[#20ba59] text-white font-label-lg text-label-lg px-6 py-4 rounded-full shadow-lg transition-transform duration-150 hover:scale-[1.02] active:scale-95 text-center" href="https://wa.me/56972215907?text=Hola%20SillaUp,%20estoy%20viendo%20la%20secci%C3%B3n%20de%20Preguntas%20Frecuentes%20y%20me%20gustar%C3%ADa%20hacer%20una%20consulta" rel="noopener noreferrer" target="_blank">
-              <span className="material-symbols-outlined text-2xl">
+            <a className="flex items-center justify-center gap-3 bg-brand-whatsapp hover:bg-brand-whatsapp-hover text-white font-label-lg text-label-lg px-6 py-4 rounded-full shadow-lg transition-transform duration-150 hover:scale-[1.02] active:scale-95 text-center" href="https://wa.me/56972215907?text=Hola%20SillaUp,%20estoy%20viendo%20la%20secci%C3%B3n%20de%20Preguntas%20Frecuentes%20y%20me%20gustar%C3%ADa%20hacer%20una%20consulta" rel="noopener noreferrer" target="_blank">
+              <span aria-hidden="true" className="material-symbols-outlined text-2xl">
                 chat
               </span>
               <div className="text-left">
@@ -402,7 +402,7 @@ export default function FaqPage() {
             </a>
             {/* Direct Phone Call Action */}
             <a className="flex items-center justify-center gap-3 bg-surface-container-lowest text-on-surface hover:bg-surface-bright font-label-lg text-label-lg px-6 py-4 rounded-full transition-transform duration-150 hover:scale-[1.02] active:scale-95 shadow-md text-center" href="tel:+56972215907">
-              <span className="material-symbols-outlined text-primary text-2xl">
+              <span aria-hidden="true" className="material-symbols-outlined text-primary text-2xl">
                 call
               </span>
               <div className="text-left">
@@ -438,7 +438,7 @@ export default function FaqPage() {
         {/* Card 1 */}
         <div className="bg-surface-container-lowest border border-[#DADADB] rounded-3xl p-6 shadow-[0_4px_20px_-2px_rgba(13,20,26,0.05)]">
           <div className="w-12 h-12 rounded-2xl bg-secondary-container/50 text-[#174A5A] flex items-center justify-center mb-4">
-            <span className="material-symbols-outlined text-2xl">
+            <span aria-hidden="true" className="material-symbols-outlined text-2xl">
               shield
             </span>
           </div>
@@ -452,7 +452,7 @@ export default function FaqPage() {
         {/* Card 2 */}
         <div className="bg-surface-container-lowest border border-[#DADADB] rounded-3xl p-6 shadow-[0_4px_20px_-2px_rgba(13,20,26,0.05)]">
           <div className="w-12 h-12 rounded-2xl bg-secondary-container/50 text-[#174A5A] flex items-center justify-center mb-4">
-            <span className="material-symbols-outlined text-2xl">
+            <span aria-hidden="true" className="material-symbols-outlined text-2xl">
               precision_manufacturing
             </span>
           </div>
@@ -466,7 +466,7 @@ export default function FaqPage() {
         {/* Card 3 */}
         <div className="bg-surface-container-lowest border border-[#DADADB] rounded-3xl p-6 shadow-[0_4px_20px_-2px_rgba(13,20,26,0.05)] sm:col-span-2 lg:col-span-1">
           <div className="w-12 h-12 rounded-2xl bg-secondary-container/50 text-[#174A5A] flex items-center justify-center mb-4">
-            <span className="material-symbols-outlined text-2xl">
+            <span aria-hidden="true" className="material-symbols-outlined text-2xl">
               health_and_safety
             </span>
           </div>
