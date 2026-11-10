@@ -12,6 +12,16 @@
       "source": "/kit-elevador-wc-:n(\\d+)",
       "destination": "/productos",
       "statusCode": 301
+    },
+    {
+      "source": "/grua-manual",
+      "destination": "/productos/traslado-de-pacientes",
+      "statusCode": 301
+    },
+    {
+      "source": "/elevador-de-cama",
+      "destination": "/productos/cuidado-en-cama",
+      "statusCode": 301
     }
   ]
 }
