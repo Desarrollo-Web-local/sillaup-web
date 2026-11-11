@@ -104,9 +104,9 @@ export default function CatalogPage() {
       <section className="max-w-7xl mx-auto px-6 md:px-12 pb-16">
         <div className="grid grid-cols-1 min-[480px]:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5" id="products-grid">
           {products.map((product) => (
-          <article key={product.slug} className={`product-card group bg-surface-container-lowest rounded-[24px] p-4 hover:scale-[1.03] transition-all duration-300 flex flex-col justify-between relative ${product.featured ? "border-2 border-brand-blue/30 shadow-level-2 hover:shadow-level-3" : "border border-brand-border shadow-level-1 hover:shadow-level-2"}`}>
+          <article key={product.slug} className={`product-card group bg-surface-container-lowest rounded-[24px] hover:scale-[1.03] transition-all duration-300 flex flex-col justify-between relative ${product.featured ? "border-2 border-brand-blue/30 shadow-level-2 hover:shadow-level-3" : "border border-brand-border shadow-level-1 hover:shadow-level-2"}`}>
             {product.featured && (
-            <div className="absolute -top-3 left-6 bg-brand-blue text-white text-xs font-label-sm uppercase px-3 py-0.5 rounded-full tracking-wide shadow-sm flex items-center gap-1">
+            <div className="absolute -top-3 left-6 z-20 bg-brand-blue text-white text-xs font-label-sm uppercase px-3 py-0.5 rounded-full tracking-wide shadow-sm flex items-center gap-1">
               <span aria-hidden="true" className="material-symbols-outlined text-xs">
                 star
               </span>
@@ -114,11 +114,13 @@ export default function CatalogPage() {
             </div>
             )}
             <div>
-              {/* Image Container with Badges */}
-              <div className="relative w-full aspect-[4/5] bg-surface-container-low rounded-2xl overflow-hidden mb-3 border border-outline-variant/30 flex items-center justify-center p-2">
+              {/* Imagen a todo el ancho de la tarjeta, sin márgenes; solo se redondean las esquinas superiores */}
+              <div className={`relative w-full aspect-[4/5] bg-white overflow-hidden ${product.featured ? "rounded-t-[22px]" : "rounded-t-[23px]"}`}>
                 <OfferBadge className="absolute top-3 left-3 z-10" product={product} />
-                <img alt={`${product.name} SillaUp: ${product.category}`} className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300" data-alt={coverImage(product).alt} src={coverImage(product).src} />
+                <img alt={`${product.name} SillaUp: ${product.category}`} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt={coverImage(product).alt} src={coverImage(product).src} />
               </div>
+            </div>
+            <div className="flex-1 px-4 pt-4">
               {/* Category Tag */}
               <div className="flex items-center gap-2 mb-1.5">
                 <span className="bg-surface-container-high text-brand-teal rounded-full px-2.5 py-0.5 text-xs font-label-sm font-bold">
@@ -138,7 +140,7 @@ export default function CatalogPage() {
               </p>
             </div>
             {/* Clean Actions */}
-            <div className="flex flex-col gap-2 pt-3 border-t border-brand-border/60">
+            <div className="flex flex-col gap-2 mx-4 mb-4 pt-3 border-t border-brand-border/60">
               <Link className="w-full text-center bg-brand-blue text-white font-label-md py-2.5 rounded-full hover:bg-primary transition-colors duration-150 font-bold shadow-sm flex items-center justify-center gap-2 after:absolute after:inset-0 after:content-['']" href={productHref(product.slug)}>
                 <span>
                   Ver producto

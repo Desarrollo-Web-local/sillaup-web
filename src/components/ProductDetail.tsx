@@ -608,20 +608,21 @@ export default function ProductDetail({ slug }: { slug: string }) {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {others.map((other) => (
-            <div key={other.slug} className="relative bg-surface-container-lowest border border-outline-variant rounded-xl p-5 shadow-sm hover:shadow-md hover:scale-[1.03] transition-all duration-300 flex flex-col justify-between group">
-              <div>
-                <div className="relative w-full aspect-[4/3] bg-white rounded-xl border border-outline-variant/60 mb-4 overflow-hidden">
-                  <span className="absolute top-2 right-2 z-10 bg-on-surface text-surface-container-lowest text-label-sm font-label-sm px-2.5 py-1 rounded-full">
-                    <CardPrice product={other} />
-                  </span>
-                  <OfferBadge className="absolute top-2 left-2 z-10" product={other} />
-                  <img alt={`${other.name} SillaUp`} className="absolute inset-0 w-full h-full object-contain p-3 pt-10 group-hover:scale-105 transition-transform duration-300" loading="lazy" data-alt={coverImage(other).alt} src={coverImage(other).src} />
-                </div>
+            <div key={other.slug} className="relative bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm hover:shadow-md hover:scale-[1.03] transition-all duration-300 flex flex-col justify-between group">
+              {/* Imagen a todo el ancho de la tarjeta, sin márgenes; solo se redondean las esquinas superiores */}
+              <div className="relative w-full aspect-[4/5] bg-white rounded-t-xl overflow-hidden">
+                <span className="absolute top-2 right-2 z-10 bg-on-surface text-surface-container-lowest text-label-sm font-label-sm px-2.5 py-1 rounded-full shadow-md">
+                  <CardPrice product={other} />
+                </span>
+                <OfferBadge className="absolute top-2 left-2 z-10" product={other} />
+                <img alt={`${other.name} SillaUp`} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" data-alt={coverImage(other).alt} src={coverImage(other).src} />
+              </div>
+              <div className="flex-1 px-5 pt-4">
                 <span className="text-xs text-secondary font-bold uppercase tracking-wider">{other.card.category}</span>
                 <h3 className="text-label-lg font-label-lg text-on-surface mt-1 mb-2">{other.name}</h3>
                 <p className="text-body-sm font-body-sm text-on-surface-variant line-clamp-2">{other.card.summary}</p>
               </div>
-              <div className="pt-4 mt-4 border-t border-outline-variant flex items-center justify-between">
+              <div className="mx-5 mb-5 pt-4 mt-4 border-t border-outline-variant flex items-center justify-between">
                 <span className="text-xs font-bold text-on-surface-variant">{other.card.meta}</span>
                 <Link className="text-primary font-bold text-xs hover:underline flex items-center after:absolute after:inset-0 after:content-['']" href={productHref(other.slug)}>
                   Ver detalle
