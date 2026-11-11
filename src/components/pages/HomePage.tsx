@@ -8,12 +8,16 @@ import Counter from "@/components/Counter";
 import InstitutionsCta from "@/components/InstitutionsCta";
 import { CardPrice, OfferBadge } from "@/components/Price";
 import { useProducts, useText } from "@/components/SiteData";
+import ReviewVideos from "@/components/ReviewVideos";
 import StarRating from "@/components/StarRating";
 import { useFormAction } from "@/components/useFormAction";
 import { coverImage, productHref } from "@/lib/products";
+import { sentence } from "@/lib/text";
+import { videoList } from "@/lib/video";
 
 export default function HomePage() {
   const t = useText();
+  const s = (key: Parameters<typeof t>[0]) => sentence(t(key));
   const products = useProducts();
   const trackRef = useRef<HTMLDivElement>(null);
   const [feedbackOpen, setFeedbackOpen] = useState(false);
@@ -45,7 +49,7 @@ export default function HomePage() {
   }, []);
 
   return (
-    <>
+    <div className="justify-text">
     {/* 3. HERO A PANTALLA COMPLETA */}
     <section className="relative overflow-hidden w-full min-h-[90vh] flex items-center justify-center" id="inicio">
       {/* Imagen de fondo a sangre completa con animación sutil Ken Burns */}
@@ -70,7 +74,7 @@ export default function HomePage() {
           </h1>
           {/* Subtítulo complementario */}
           <p className="text-base md:text-xl text-white/90 font-normal leading-relaxed max-w-2xl">
-            {t("home.hero.subtitle")}
+            {s("home.hero.subtitle")}
           </p>
           {/* Botones de Acción */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4">
@@ -229,7 +233,7 @@ export default function HomePage() {
                 {product.name}
               </h3>
               <p className="text-sm text-on-surface-variant mb-4 line-clamp-2">
-                {product.homeSummary}
+                {sentence(product.homeSummary)}
               </p>
             </div>
             <Link className="w-full inline-flex items-center justify-center rounded-full bg-primary-container text-white text-label-md font-label-md py-2.5 px-5 shadow-sm hover:bg-primary transition-all duration-150 min-h-[44px] after:absolute after:inset-0 after:content-['']" href={productHref(product.slug)}>
@@ -274,10 +278,10 @@ export default function HomePage() {
             </h2>
             {/* Exact verbatim statement required by prompt */}
             <p className="text-headline-sm md:text-headline-md font-headline-md text-brand-teal font-bold leading-snug">
-              “{t("home.about.quote")}”
+              “{s("home.about.quote")}”
             </p>
             <p className="text-body-md font-body-md text-on-surface-variant leading-relaxed">
-              {t("home.about.body")}
+              {s("home.about.body")}
             </p>
             <div className="pt-2">
               <Link className="inline-flex items-center justify-center rounded-full bg-[#0D141A] text-white text-label-md font-label-md px-8 py-4 shadow-sm hover:bg-black active:scale-95 transition-all duration-150 min-h-[48px]" href="/nosotros">
@@ -299,7 +303,7 @@ export default function HomePage() {
             Garantía y repuestos en Santiago
           </h2>
           <p className="text-body-md font-body-md text-on-surface-variant mt-3">
-            Garantía de 1 año directa de fábrica, repuestos disponibles y servicio técnico coordinado desde nuestro showroom en Merced 562
+            Garantía de 1 año directa de fábrica, repuestos disponibles y servicio técnico coordinado desde nuestro showroom en Merced 562.
           </p>
         </div>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
@@ -378,7 +382,7 @@ export default function HomePage() {
             {t("home.guide.title")}
           </h2>
           <p className="text-body-md font-body-md text-on-surface-variant mt-3">
-            {t("home.guide.description")}
+            {s("home.guide.description")}
           </p>
         </div>
         {/* 4 Cards Grid Layout */}
@@ -395,7 +399,7 @@ export default function HomePage() {
                 {t("home.guide.bath.title")}
               </h3>
               <p className="text-body-sm font-body-sm text-on-surface-variant mb-6 leading-relaxed">
-                {t("home.guide.bath.text")}
+                {s("home.guide.bath.text")}
               </p>
             </div>
             <div className="pt-4 border-t border-outline-variant">
@@ -424,7 +428,7 @@ export default function HomePage() {
                 {t("home.guide.bed.title")}
               </h3>
               <p className="text-body-sm font-body-sm text-on-surface-variant mb-6 leading-relaxed">
-                {t("home.guide.bed.text")}
+                {s("home.guide.bed.text")}
               </p>
             </div>
             <div className="pt-4 border-t border-outline-variant">
@@ -453,7 +457,7 @@ export default function HomePage() {
                 {t("home.guide.chair.title")}
               </h3>
               <p className="text-body-sm font-body-sm text-on-surface-variant mb-6 leading-relaxed">
-                {t("home.guide.chair.text")}
+                {s("home.guide.chair.text")}
               </p>
             </div>
             <div className="pt-4 border-t border-outline-variant">
@@ -482,7 +486,7 @@ export default function HomePage() {
                 {t("home.guide.transfer.title")}
               </h3>
               <p className="text-body-sm font-body-sm text-on-surface-variant mb-6 leading-relaxed">
-                {t("home.guide.transfer.text")}
+                {s("home.guide.transfer.text")}
               </p>
             </div>
             <div className="pt-4 border-t border-outline-variant">
@@ -519,7 +523,7 @@ export default function HomePage() {
               {t("home.testimonials.title")}
             </h2>
             <p className="text-body-md font-body-md text-on-surface-variant mt-2 max-w-xl">
-              {t("home.testimonials.description")}
+              {s("home.testimonials.description")}
             </p>
           </div>
           {/* Botón "Dejar mi opinión" */}
@@ -530,6 +534,8 @@ export default function HomePage() {
             Dejar mi opinión
           </button>
         </div>
+        {/* Videos de reseñas de clientes (se administran en /admin > Testimonios) */}
+        <ReviewVideos className="mb-8" urls={videoList(t("testimonials.videos"))} />
         {/* Testimonial Cards Wall */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Testimonio 1 */}
@@ -553,7 +559,7 @@ export default function HomePage() {
                 </span>
               </div>
               <p className="text-body-md font-body-md text-on-surface italic mb-6">
-                &quot;El Elevador de inodoro le devolvió la dignidad y la autonomía a mi padre de 82 años. Ya no requiere pedir auxilio cada vez que necesita ir al baño y la estructura es sumamente firme&quot;
+                &quot;El Elevador de inodoro le devolvió la dignidad y la autonomía a mi padre de 82 años. Ya no requiere pedir auxilio cada vez que necesita ir al baño y la estructura es sumamente firme.&quot;
               </p>
             </div>
             <div className="flex items-center gap-3 pt-4 border-t border-outline-variant">
@@ -591,7 +597,7 @@ export default function HomePage() {
                 </span>
               </div>
               <p className="text-body-md font-body-md text-on-surface italic mb-6">
-                &quot;Como enfermera cuidadora, la Grúa manual salvó mi columna. Es suave para la paciente, cabe perfectamente por las puertas del departamento y el servicio técnico en Santiago respondió de inmediato&quot;
+                &quot;Como enfermera cuidadora, la Grúa manual salvó mi columna. Es suave para la paciente, cabe perfectamente por las puertas del departamento y el servicio técnico en Santiago respondió de inmediato.&quot;
               </p>
             </div>
             <div className="flex items-center gap-3 pt-4 border-t border-outline-variant">
@@ -620,7 +626,7 @@ export default function HomePage() {
                 Sé el primero en compartir tu experiencia
               </h3>
               <p className="text-body-sm font-body-sm text-on-surface-variant max-w-xs mx-auto mb-4">
-                ¿Ya utilizas un equipo SillaUp en tu hogar? Tu testimonio ayuda a orientar a otras familias en su decisión
+                ¿Ya utilizas un equipo SillaUp en tu hogar? Tu testimonio ayuda a orientar a otras familias en su decisión.
               </p>
             </div>
             <button onClick={() => setFeedbackOpen(true)} type="button" className="w-full inline-flex items-center justify-center rounded-full bg-[#0D141A] text-white text-label-md font-label-md py-3.5 px-6 hover:bg-black active:scale-95 transition-all duration-150 min-h-[48px]">
@@ -648,7 +654,7 @@ export default function HomePage() {
               </h2>
               {/* Exact verbatim text required by prompt */}
               <p className="text-body-md font-body-md text-on-surface-variant mt-4 leading-relaxed">
-                {t("home.contact.description")}
+                {s("home.contact.description")}
               </p>
             </div>
             {/* Canales Directos */}
@@ -722,7 +728,7 @@ export default function HomePage() {
                 {t("home.contact.formTitle")}
               </h3>
               <p className="text-body-sm font-body-sm text-on-surface-variant mb-8">
-                {t("home.contact.formDescription")}
+                {s("home.contact.formDescription")}
               </p>
               <form className="space-y-6" onSubmit={contact.onSubmit}>
                 <input name="source" type="hidden" value="inicio" />
@@ -776,7 +782,7 @@ export default function HomePage() {
                     check_circle
                   </span>
                   <p className="text-body-sm font-body-sm font-bold">
-                    ¡Mensaje enviado con éxito! Nos comunicaremos contigo en menos de 24 horas hábiles
+                    ¡Mensaje enviado con éxito! Nos comunicaremos contigo en menos de 24 horas hábiles.
                   </p>
                 </div>
                 )}
@@ -799,12 +805,12 @@ export default function HomePage() {
           Compartir mi experiencia
         </h3>
         <p className="text-body-sm font-body-sm text-on-surface-variant mb-6">
-          Tu valoración ayuda a familias y cuidadores a tomar decisiones informadas con seguridad
+          Tu valoración ayuda a familias y cuidadores a tomar decisiones informadas con seguridad.
         </p>
         {feedback.status === "success" ? (
         <div className="p-4 rounded-2xl bg-tertiary-container/10 border border-tertiary-container/30 text-tertiary flex items-center gap-3" role="status">
           <span aria-hidden="true" className="material-symbols-outlined text-2xl shrink-0">check_circle</span>
-          <p className="text-body-sm font-body-sm font-bold">¡Muchas gracias! Tu opinión será revisada y publicada</p>
+          <p className="text-body-sm font-body-sm font-bold">¡Muchas gracias! Tu opinión será revisada y publicada.</p>
         </div>
         ) : (
         <form className="space-y-4" onSubmit={feedback.onSubmit}>
@@ -864,6 +870,6 @@ export default function HomePage() {
       </div>
     </div>
     )}
-    </>
+    </div>
   );
 }

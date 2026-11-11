@@ -27,6 +27,18 @@ export type ProductOverride = {
   updated_at: string | null;
 };
 
+/**
+ * Real photos of each product live in site_content (one row per product, URLs one per line),
+ * so they need no extra column in product_overrides.
+ */
+export const REAL_PHOTOS_PREFIX = "product.realPhotos.";
+export const realPhotosKey = (slug: string) => `${REAL_PHOTOS_PREFIX}${slug}`;
+export const parseUrlList = (value: string | null | undefined) =>
+  (value ?? "")
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter(Boolean);
+
 const smallWords = new Set(["de", "del", "la", "el", "y", "en", "para"]);
 const titleCase = (name: string) =>
   name
@@ -82,9 +94,22 @@ export async function getSiteData(): Promise<SiteData> {
   for (const { key, value } of content.data ?? []) {
     if (isContentKey(key) && value.trim()) texts[key] = value;
   }
+  const realPhotos = new Map<string, string[]>();
+  for (const { key, value } of content.data ?? []) {
+    if (key.startsWith(REAL_PHOTOS_PREFIX)) realPhotos.set(key.slice(REAL_PHOTOS_PREFIX.length), parseUrlList(value));
+  }
   const rows = new Map((overrides.data as ProductOverride[] | null)?.map((row) => [row.slug, row]));
   const now = new Date();
-  return { texts, products: defaultProducts.map((p) => applyOverride(p, rows.get(p.slug), now)) };
+  return {
+    texts,
+    products: defaultProducts.map((p) => {
+      const product = applyOverride(p, rows.get(p.slug), now);
+      const photos = realPhotos.get(p.slug);
+      return photos?.length
+        ? { ...product, realPhotos: photos.map((src, i) => ({ src, alt: `${product.name} SillaUp, foto real ${i + 1}` })) }
+        : product;
+    }),
+  };
 }
 
 export async function getSiteProduct(slug: string): Promise<Product> {

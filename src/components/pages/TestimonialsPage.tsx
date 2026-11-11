@@ -4,10 +4,13 @@ import { submitTestimonial } from "@/app/actions";
 import StarRating from "@/components/StarRating";
 import { useFormAction } from "@/components/useFormAction";
 import { useText } from "@/components/SiteData";
+import ReviewVideos from "@/components/ReviewVideos";
+import { videoList } from "@/lib/video";
 
 export default function TestimonialsPage() {
   const t = useText();
   const feedback = useFormAction(submitTestimonial);
+  const videos = videoList(t("testimonials.videos"));
 
   return (
     <>
@@ -166,6 +169,21 @@ export default function TestimonialsPage() {
             </div>
             )}
           </div>
+          {/* VIDEOS DE RESEÑAS (se administran en /admin > Testimonios) */}
+          {videos.length > 0 && (
+          <div className="space-y-4" id="videos-resenas">
+            <div className="pb-2 border-b border-outline-variant/60">
+              <h2 className="text-headline-sm font-bold text-on-surface flex items-center gap-2">
+                <span aria-hidden="true" className="material-symbols-outlined text-primary">smart_display</span>
+                {t("testimonials.videos.title")}
+              </h2>
+              <p className="text-body-sm text-on-surface-variant mt-1">
+                {t("testimonials.videos.description")}
+              </p>
+            </div>
+            <ReviewVideos urls={videos} />
+          </div>
+          )}
           {/* LISTADO DE TESTIMONIOS SENCILLO Y ORDENADO */}
           <div className="space-y-4">
             <div className="flex items-center justify-between pb-2 border-b border-outline-variant/60">

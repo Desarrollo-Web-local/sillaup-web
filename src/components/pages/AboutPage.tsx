@@ -3,11 +3,13 @@
 import Link from "next/link";
 import ShowroomMap from "@/components/ShowroomMap";
 import { useText } from "@/components/SiteData";
+import { sentence } from "@/lib/text";
 
 export default function AboutPage() {
   const t = useText();
+  const s = (key: Parameters<typeof t>[0]) => sentence(t(key));
   return (
-    <>
+    <div className="justify-text">
     {/* Hero Section */}
     <section className="relative overflow-hidden pt-12 pb-20 md:py-24 bg-gradient-to-b from-surface to-surface-container-lowest">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
@@ -26,7 +28,7 @@ export default function AboutPage() {
               {t("about.hero.title")}
             </h1>
             <p className="text-body-lg text-on-surface-variant font-body-lg max-w-2xl leading-relaxed">
-              {t("about.hero.description")}
+              {s("about.hero.description")}
             </p>
             <div className="pt-2 flex flex-wrap gap-4 items-center">
               <div className="flex items-center space-x-3 bg-surface-container-lowest p-3 pr-5 rounded-2xl border border-outline-variant/60 shadow-sm">
@@ -94,7 +96,7 @@ export default function AboutPage() {
             {t("about.strategy.title")}
           </h2>
           <p className="text-body-md text-on-surface-variant">
-            {t("about.strategy.description")}
+            {s("about.strategy.description")}
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
@@ -115,7 +117,7 @@ export default function AboutPage() {
                   Nuestra Visión
                 </h3>
                 <p className="text-body-md text-on-surface-variant leading-relaxed">
-                  &quot;{t("about.strategy.vision")}&quot;
+                  &quot;{s("about.strategy.vision")}&quot;
                 </p>
               </div>
             </div>
@@ -145,7 +147,7 @@ export default function AboutPage() {
                   Nuestra Misión
                 </h3>
                 <p className="text-body-md text-on-surface-variant leading-relaxed">
-                  &quot;{t("about.strategy.mission")}&quot;
+                  &quot;{s("about.strategy.mission")}&quot;
                 </p>
               </div>
             </div>
@@ -177,7 +179,7 @@ export default function AboutPage() {
             {t("about.pillars.title")}
           </h2>
           <p className="text-body-md text-on-surface-variant">
-            {t("about.pillars.description")}
+            {s("about.pillars.description")}
           </p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -192,7 +194,7 @@ export default function AboutPage() {
               Showroom en Santiago
             </h4>
             <p className="text-body-sm font-body-sm text-on-surface-variant">
-              Fabricación nacional con control estricto de cada soldadura y ensamble. Visítanos en nuestro showroom de Merced 562, Santiago Centro
+              Fabricación nacional con control estricto de cada soldadura y ensamble. Visítanos en nuestro showroom de Merced 562, Santiago Centro.
             </p>
           </div>
           {/* Pilar 2 */}
@@ -206,7 +208,7 @@ export default function AboutPage() {
               Acero reforzado de alta durabilidad
             </h4>
             <p className="text-body-sm font-body-sm text-on-surface-variant">
-              Chasis robustos construidos con perfiles de acero de alta resistencia y pintura electroestática lavable para uso clínico y domiciliario
+              Chasis robustos construidos con perfiles de acero de alta resistencia y pintura electroestática lavable para uso clínico y domiciliario.
             </p>
           </div>
           {/* Pilar 3 */}
@@ -220,7 +222,7 @@ export default function AboutPage() {
               Soporte Inmediato
             </h4>
             <p className="text-body-sm font-body-sm text-on-surface-variant">
-              Repuestos en stock y mantención preventiva sin depender de prolongadas demoras aduaneras o de importaciones extranjeras
+              Repuestos en stock y mantención preventiva sin depender de prolongadas demoras aduaneras o de importaciones extranjeras.
             </p>
           </div>
           {/* Pilar 4 */}
@@ -234,7 +236,7 @@ export default function AboutPage() {
               Kinesiología Preventiva
             </h4>
             <p className="text-body-sm font-body-sm text-on-surface-variant">
-              Diseño guiado por la prevención de lesiones lumbares en cuidadores y la dignidad en cada proceso de transferencia física
+              Diseño guiado por la prevención de lesiones lumbares en cuidadores y la dignidad en cada proceso de transferencia física.
             </p>
           </div>
         </div>
@@ -257,7 +259,7 @@ export default function AboutPage() {
               {t("about.institutions.title")}
             </h2>
             <p className="text-body-lg text-surface-container-lowest/90 font-body-lg max-w-2xl leading-relaxed">
-              {t("about.institutions.description")}
+              {s("about.institutions.description")}
             </p>
             <div className="flex flex-wrap gap-4 pt-4">
               {/* WhatsApp Institucional */}
@@ -290,7 +292,7 @@ export default function AboutPage() {
                   check_circle
                 </span>
                 <span>
-                  Facturación inmediata y orden de compra centralizada
+                  Facturación inmediata y orden de compra centralizada.
                 </span>
               </li>
               <li className="flex items-start space-x-2">
@@ -298,7 +300,7 @@ export default function AboutPage() {
                   check_circle
                 </span>
                 <span>
-                  Capacitación in situ para equipos de enfermería y TENS
+                  Capacitación in situ para equipos de enfermería y TENS.
                 </span>
               </li>
               <li className="flex items-start space-x-2">
@@ -306,7 +308,7 @@ export default function AboutPage() {
                   check_circle
                 </span>
                 <span>
-                  Inspección de seguridad y certificado de carga operativa
+                  Inspección de seguridad y certificado de carga operativa.
                 </span>
               </li>
             </ul>
@@ -332,7 +334,7 @@ export default function AboutPage() {
               {t("about.showroom.title")}
             </h2>
             <p className="text-body-md text-on-surface-variant">
-              {t("about.showroom.description")}
+              {s("about.showroom.description")}
             </p>
             <div className="space-y-4 pt-2">
               <div className="flex items-start space-x-4 p-4 rounded-2xl bg-surface-container-lowest border border-outline-variant/60 shadow-xs">
@@ -349,7 +351,7 @@ export default function AboutPage() {
                     Merced 562, Santiago Centro, Región Metropolitana
                   </p>
                   <p className="text-xs text-primary font-medium mt-0.5">
-                    A pasos de Metro Bellas Artes y Metro Santa Lucía
+                    A pasos de Metro Bellas Artes y Metro Santa Lucía.
                   </p>
                 </div>
               </div>
@@ -367,7 +369,7 @@ export default function AboutPage() {
                     Lunes a Viernes: 9:00 a 18:00 hrs continuado
                   </p>
                   <p className="text-xs text-on-surface-variant">
-                    Atención telefónica y WhatsApp disponible fines de semana para urgencias
+                    Atención telefónica y WhatsApp disponible fines de semana para urgencias.
                   </p>
                 </div>
               </div>
@@ -400,6 +402,6 @@ export default function AboutPage() {
         </div>
       </div>
     </section>
-    </>
+    </div>
   );
 }

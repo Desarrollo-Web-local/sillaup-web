@@ -2,7 +2,7 @@
 
 import { updateTag } from "next/cache";
 import { redirect } from "next/navigation";
-import { CMS_TAG } from "@/lib/cms";
+import { CMS_TAG, parseUrlList, realPhotosKey } from "@/lib/cms";
 import { contentDefaults, isContentKey } from "@/lib/content";
 import { products } from "@/lib/products";
 import { createServerSupabase, requireAdmin } from "@/lib/supabase-server";
@@ -45,6 +45,10 @@ export async function saveTexts(data: FormData): Promise<ActionResult> {
   for (const [key, raw] of data.entries()) {
     if (!isContentKey(key) || typeof raw !== "string") continue;
     const value = raw.trim().slice(0, 5000);
+    if (key === "testimonials.videos") {
+      const invalid = parseUrlList(value).find((url) => url.length > 1000 || !isHttpUrl(url));
+      if (invalid) return { ok: false, error: `Dirección de video inválida: ${invalid}` };
+    }
     if (!value || value === contentDefaults[key]) resets.push(key);
     else upserts.push({ key, value, updated_at: now });
   }
@@ -108,6 +112,13 @@ export async function saveProduct(data: FormData): Promise<ActionResult> {
 
   const sameGallery = gallery.join("\n") === base.gallery.map((image) => image.src).join("\n");
 
+  // Real photos of the product in use, shown under the technical specifications
+  const realPhotos = [...new Set(parseUrlList(String(data.get("real_photos") ?? "")))];
+  for (const url of realPhotos) {
+    if (url.length > 1000 || !isHttpUrl(url)) return { ok: false, error: `Dirección de foto real inválida: ${url}` };
+  }
+  if (realPhotos.length > 24) return { ok: false, error: "Cada producto admite hasta 24 fotos reales" };
+
   const { error } = await supabase.from("product_overrides").upsert({
     slug,
     name: changed(text(data, "name", 120), base.name),
@@ -125,6 +136,12 @@ export async function saveProduct(data: FormData): Promise<ActionResult> {
     updated_at: new Date().toISOString(),
   });
   if (error) return { ok: false, error: `No se pudo guardar el producto: ${error.message}` };
+
+  const photosKey = realPhotosKey(slug);
+  const photosResult = realPhotos.length
+    ? await supabase.from("site_content").upsert({ key: photosKey, value: realPhotos.join("\n"), updated_at: new Date().toISOString() })
+    : await supabase.from("site_content").delete().eq("key", photosKey);
+  if (photosResult.error) return { ok: false, error: `No se pudieron guardar las fotos reales: ${photosResult.error.message}` };
 
   updateTag(CMS_TAG);
   return { ok: true, message: "Producto guardado y publicado" };

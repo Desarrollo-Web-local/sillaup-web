@@ -31,6 +31,8 @@ export type Product = {
    * inicio, "Otros productos del catálogo" y como foto inicial de la ficha.
    */
   gallery: Image[];
+  /** Fotos reales del producto en uso, subidas desde /admin; se muestran bajo las especificaciones */
+  realPhotos?: Image[];
   quickSpecs: { icon: Icon; label: string; value: string }[];
   detail: {
     eyebrow: string;

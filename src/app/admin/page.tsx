@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import type { ProductOverride } from "@/lib/cms";
+import { parseUrlList, realPhotosKey, type ProductOverride } from "@/lib/cms";
 import { contentDefaults, contentPages, isContentKey, type Texts } from "@/lib/content";
 import { products } from "@/lib/products";
 import { requireAdmin } from "@/lib/supabase-server";
@@ -28,6 +28,7 @@ async function Dashboard() {
 
   const texts: Texts = { ...contentDefaults };
   const customized: string[] = [];
+  const stored = new Map((content.data ?? []).map(({ key, value }) => [key, value]));
   for (const { key, value } of content.data ?? []) {
     if (isContentKey(key)) {
       texts[key] = value;
@@ -53,6 +54,7 @@ async function Dashboard() {
       in_stock: row?.in_stock ?? p.inStock,
       mercado_pago_url: row?.mercado_pago_url ?? p.mercadoPagoUrl ?? "",
       gallery: row?.gallery?.length ? row.gallery : p.gallery.map((image) => image.src),
+      real_photos: parseUrlList(stored.get(realPhotosKey(p.slug))),
     };
   });
 

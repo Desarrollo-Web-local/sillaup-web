@@ -5,14 +5,16 @@ import InstitutionsCta from "@/components/InstitutionsCta";
 import { CardPrice, OfferBadge } from "@/components/Price";
 import { useProducts, useText } from "@/components/SiteData";
 import { coverImage, formatPrice, productHref, salePrice } from "@/lib/products";
+import { sentence } from "@/lib/text";
 
 export default function CatalogPage() {
   const t = useText();
+  const s = (key: Parameters<typeof t>[0]) => sentence(t(key));
   const products = useProducts();
   return (
     <>
     {/* Main Canvas */}
-    <main className="w-full">
+    <main className="w-full justify-text">
       {/* 3. Hero Section: Catálogo de Productos */}
       <section className="bg-gradient-to-b from-surface-container-low via-surface to-background pt-12 pb-8 border-b border-outline-variant/60">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
@@ -40,7 +42,7 @@ export default function CatalogPage() {
                 {t("catalog.hero.title")}
               </h1>
               <p className="text-body-lg font-body-lg text-on-surface-variant mt-3 max-w-2xl leading-relaxed">
-                {t("catalog.hero.description")}
+                {s("catalog.hero.description")}
               </p>
             </div>
             {/* Direct support badge */}
@@ -114,19 +116,7 @@ export default function CatalogPage() {
             <div>
               {/* Image Container with Badges */}
               <div className="relative w-full aspect-[4/5] bg-surface-container-low rounded-2xl overflow-hidden mb-3 border border-outline-variant/30 flex items-center justify-center p-2">
-                <div className="absolute top-3 right-3 z-10 bg-brand-night text-white font-label-sm text-xs font-extrabold px-3 py-1.5 rounded-full shadow-md">
-                  <CardPrice product={product} />
-                </div>
-                {product.offer ? (
                 <OfferBadge className="absolute top-3 left-3 z-10" product={product} />
-                ) : (
-                <div className="absolute top-3 left-3 z-10 bg-brand-teal/90 text-white font-label-sm text-xs uppercase font-bold px-2.5 py-1 rounded-full flex items-center gap-1 shadow-sm">
-                  <span aria-hidden="true" className="material-symbols-outlined text-[12px]">
-                    verified
-                  </span>
-                  Fabricación Chilena
-                </div>
-                )}
                 <img alt={`${product.name} SillaUp: ${product.category}`} className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300" data-alt={coverImage(product).alt} src={coverImage(product).src} />
               </div>
               {/* Category Tag */}
@@ -139,8 +129,12 @@ export default function CatalogPage() {
               <h2 className="text-lg leading-snug text-brand-night font-bold">
                 {product.name}
               </h2>
-              <p className="text-sm text-on-surface-variant mt-1 mb-4 leading-relaxed line-clamp-2">
-                {product.card.summary}
+              <p className="text-sm text-on-surface-variant mt-1 leading-relaxed">
+                {sentence(product.card.summary)}
+              </p>
+              {/* Precio, debajo de la descripción */}
+              <p className="mt-3 mb-4 text-xl font-extrabold text-brand-night">
+                <CardPrice product={product} />
               </p>
             </div>
             {/* Clean Actions */}
@@ -188,7 +182,7 @@ export default function CatalogPage() {
                 {t("catalog.advice.title")}
               </h2>
               <p className="text-body-lg font-body-lg text-white/80 mt-4 max-w-2xl leading-relaxed">
-                {t("catalog.advice.description")}
+                {s("catalog.advice.description")}
               </p>
               <div className="flex flex-wrap items-center gap-6 mt-8 text-sm text-white/90">
                 <div className="flex items-center gap-2">
@@ -221,7 +215,7 @@ export default function CatalogPage() {
                 Asesoría gratis por WhatsApp
               </a>
               <p className="text-center text-xs text-white/70">
-                Respuesta habitual en menos de 15 minutos en horario hábil
+                Respuesta habitual en menos de 15 minutos en horario hábil.
               </p>
             </div>
           </div>
@@ -234,7 +228,7 @@ export default function CatalogPage() {
             {t("catalog.trust.title")}
           </h2>
           <p className="text-body-md font-body-md text-on-surface-variant mt-2">
-            {t("catalog.trust.description")}
+            {s("catalog.trust.description")}
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -249,7 +243,7 @@ export default function CatalogPage() {
               {t("catalog.trust.1.title")}
             </h3>
             <p className="text-body-sm text-on-surface-variant">
-              {t("catalog.trust.1.text")}
+              {s("catalog.trust.1.text")}
             </p>
           </div>
           {/* Pillar 2 */}
@@ -263,7 +257,7 @@ export default function CatalogPage() {
               {t("catalog.trust.2.title")}
             </h3>
             <p className="text-body-sm text-on-surface-variant">
-              {t("catalog.trust.2.text")}
+              {s("catalog.trust.2.text")}
             </p>
           </div>
           {/* Pillar 3 */}
@@ -277,7 +271,7 @@ export default function CatalogPage() {
               {t("catalog.trust.3.title")}
             </h3>
             <p className="text-body-sm text-on-surface-variant">
-              {t("catalog.trust.3.text")}
+              {s("catalog.trust.3.text")}
             </p>
           </div>
           {/* Pillar 4 */}
@@ -291,7 +285,7 @@ export default function CatalogPage() {
               {t("catalog.trust.4.title")}
             </h3>
             <p className="text-body-sm text-on-surface-variant">
-              {t("catalog.trust.4.text")}
+              {s("catalog.trust.4.text")}
             </p>
           </div>
         </div>

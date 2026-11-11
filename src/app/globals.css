@@ -170,3 +170,15 @@ body {
 body {
   overflow-x: clip;
 }
+
+/* Texto justificado (inicio, catálogo y nosotros). Los bloques centrados mantienen su última
+   línea centrada, así los párrafos cortos y los encabezados centrados no cambian de lugar. */
+.justify-text p {
+  text-align: justify;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
+.justify-text .text-center p,
+.justify-text p.text-center {
+  text-align-last: center;
+}

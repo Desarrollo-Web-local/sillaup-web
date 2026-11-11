@@ -106,6 +106,10 @@ export const contentDefaults = {
   "testimonials.hero.eyebrow": "Opiniones de Familias y Cuidadores",
   "testimonials.hero.title": "Testimonios y Opiniones",
   "testimonials.hero.description": "Conoce las experiencias reales de quienes ya utilizan nuestros equipos de movilidad asistida en todo Chile",
+  "testimonials.videos.title": "Videos de reseñas de clientes",
+  "testimonials.videos.description": "Familias y cuidadores nos cuentan en primera persona cómo cambió su rutina con su equipo SillaUp",
+  /** Videos de reseñas (uno por línea): archivos subidos desde el panel o links de YouTube/Vimeo */
+  "testimonials.videos": "",
   "testimonials.cta.title": "¿Tienes dudas sobre qué equipo necesitas?",
   "testimonials.cta.description": "Nuestro equipo kinesiológico evalúa sin costo la condición de tu paciente y las medidas de tu hogar"
 } as const;
@@ -113,7 +117,7 @@ export const contentDefaults = {
 export type ContentKey = keyof typeof contentDefaults;
 export type Texts = Record<ContentKey, string>;
 
-export type ContentField = { key: ContentKey; label: string; kind: "text" | "textarea" | "image" };
+export type ContentField = { key: ContentKey; label: string; kind: "text" | "textarea" | "image" | "videos" };
 export type ContentPage = { id: string; label: string; sections: { label: string; fields: ContentField[] }[] };
 
 export const contentPages: ContentPage[] = [
@@ -430,8 +434,13 @@ export const contentPages: ContentPage[] = [
     "label": "Nosotros",
     "sections": [
       {
-        "label": "Portada",
+        "label": "Imagen principal y portada",
         "fields": [
+          {
+            "key": "about.hero.image",
+            "label": "Imagen principal de «Nosotros»",
+            "kind": "image"
+          },
           {
             "key": "about.hero.eyebrow",
             "label": "Etiqueta",
@@ -446,11 +455,6 @@ export const contentPages: ContentPage[] = [
             "key": "about.hero.description",
             "label": "Descripción",
             "kind": "textarea"
-          },
-          {
-            "key": "about.hero.image",
-            "label": "Imagen de portada",
-            "kind": "image"
           }
         ]
       },
@@ -551,11 +555,11 @@ export const contentPages: ContentPage[] = [
     "label": "Contacto",
     "sections": [
       {
-        "label": "Portada",
+        "label": "Imagen principal y portada",
         "fields": [
           {
             "key": "contact.hero.image",
-            "label": "Imagen de portada",
+            "label": "Imagen principal de «Contáctanos»",
             "kind": "image"
           },
           {
@@ -784,6 +788,26 @@ export const contentPages: ContentPage[] = [
             "key": "testimonials.hero.description",
             "label": "Descripción",
             "kind": "textarea"
+          }
+        ]
+      },
+      {
+        "label": "Videos de reseñas",
+        "fields": [
+          {
+            "key": "testimonials.videos.title",
+            "label": "Título",
+            "kind": "text"
+          },
+          {
+            "key": "testimonials.videos.description",
+            "label": "Descripción",
+            "kind": "textarea"
+          },
+          {
+            "key": "testimonials.videos",
+            "label": "Videos",
+            "kind": "videos"
           }
         ]
       },

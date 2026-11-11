@@ -43,6 +43,8 @@ export default function ProductDetail({ slug }: { slug: string }) {
   const [active, setActive] = useState(0);
   const [fading, setFading] = useState(false);
   const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [realPhotoIndex, setRealPhotoIndex] = useState<number | null>(null);
+  const realPhotos = product.realPhotos ?? [];
   const thumbsRef = useRef<HTMLDivElement>(null);
   // Specs still pending confirmation are not shown publicly
   const specs = product.specs.filter((spec) => !isPending(spec.value));
@@ -373,12 +375,17 @@ export default function ProductDetail({ slug }: { slug: string }) {
             <span className="text-secondary font-label-sm text-label-sm uppercase tracking-wider block mb-2">Uso recomendado</span>
             <h2 className="text-headline-md font-headline-md text-on-surface">{audienceTitle}</h2>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          <div className="flex flex-wrap justify-center gap-6">
             {product.audience.map((item) => (
-              <div key={item.title} className="bg-surface-container-lowest border border-outline-variant rounded-xl p-5 text-center flex flex-col items-center justify-center">
-                <span aria-hidden="true" className="material-symbols-outlined text-primary text-[36px] mb-3">{item.icon}</span>
-                <h4 className="font-bold text-on-surface text-label-md mb-1">{item.title}</h4>
-                <p className="text-xs text-on-surface-variant">{item.text}</p>
+              <div
+                key={item.title}
+                className="w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] bg-surface-container-lowest border border-outline-variant rounded-2xl p-7 md:p-8 text-center flex flex-col items-center shadow-sm hover:shadow-md hover:border-primary/40 transition-all"
+              >
+                <span className="w-16 h-16 rounded-2xl bg-primary-fixed text-primary flex items-center justify-center mb-5">
+                  <span aria-hidden="true" className="material-symbols-outlined text-[40px]">{item.icon}</span>
+                </span>
+                <h3 className="font-extrabold text-on-surface text-headline-sm font-headline-sm mb-2 text-balance">{item.title}</h3>
+                <p className="text-body-md font-body-md text-on-surface-variant leading-relaxed">{item.text}</p>
               </div>
             ))}
           </div>
@@ -420,6 +427,33 @@ export default function ProductDetail({ slug }: { slug: string }) {
           </table>
         </div>
       </section>
+
+      {/* SECCIÓN 7b: Fotos reales del producto (se suben desde /admin) */}
+      {realPhotos.length > 0 && (
+        <section className="max-w-7xl mx-auto px-6 md:px-12 pb-16" id="fotos-reales">
+          <div className="text-center mb-10">
+            <span className="text-secondary font-label-sm text-label-sm uppercase tracking-wider block mb-2">Así se ve en uso</span>
+            <h2 className="text-headline-md font-headline-md text-on-surface">Fotos reales {article === "la" ? "de la" : "del"} {name.toLowerCase()}</h2>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {realPhotos.map((photo, index) => (
+              <button
+                aria-label={`Ampliar ${photo.alt}`}
+                className="group relative aspect-square rounded-2xl overflow-hidden border border-outline-variant bg-surface-container-low shadow-sm hover:shadow-md focus:outline-none focus-visible:ring-4 focus-visible:ring-primary/30"
+                key={photo.src}
+                onClick={() => setRealPhotoIndex(index)}
+                type="button"
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img alt={photo.alt} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" src={photo.src} />
+                <span aria-hidden="true" className="absolute bottom-2 right-2 w-8 h-8 rounded-full bg-white/90 text-on-surface flex items-center justify-center shadow opacity-0 group-hover:opacity-100 transition-opacity">
+                  <span className="material-symbols-outlined text-[18px]">zoom_in</span>
+                </span>
+              </button>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* SECCIÓN 8: ¿Por qué elegir SillaUp? */}
       <section className="bg-surface-container-lowest py-16 px-6 md:px-12 border-y border-outline-variant">
@@ -576,12 +610,12 @@ export default function ProductDetail({ slug }: { slug: string }) {
           {others.map((other) => (
             <div key={other.slug} className="relative bg-surface-container-lowest border border-outline-variant rounded-xl p-5 shadow-sm hover:shadow-md hover:scale-[1.03] transition-all duration-300 flex flex-col justify-between group">
               <div>
-                <div className="relative bg-surface-container-low rounded-lg p-4 mb-4 flex items-center justify-center h-48 overflow-hidden">
-                  <span className="absolute top-2 right-2 bg-on-surface text-surface-container-lowest text-label-sm font-label-sm px-2.5 py-1 rounded-full">
+                <div className="relative w-full aspect-[4/3] bg-white rounded-xl border border-outline-variant/60 mb-4 overflow-hidden">
+                  <span className="absolute top-2 right-2 z-10 bg-on-surface text-surface-container-lowest text-label-sm font-label-sm px-2.5 py-1 rounded-full">
                     <CardPrice product={other} />
                   </span>
-                  <OfferBadge className="absolute top-2 left-2" product={other} />
-                  <img alt={`${other.name} SillaUp`} className="max-h-36 object-contain group-hover:scale-105 transition-transform" data-alt={coverImage(other).alt} src={coverImage(other).src} />
+                  <OfferBadge className="absolute top-2 left-2 z-10" product={other} />
+                  <img alt={`${other.name} SillaUp`} className="absolute inset-0 w-full h-full object-contain p-3 pt-10 group-hover:scale-105 transition-transform duration-300" loading="lazy" data-alt={coverImage(other).alt} src={coverImage(other).src} />
                 </div>
                 <span className="text-xs text-secondary font-bold uppercase tracking-wider">{other.card.category}</span>
                 <h3 className="text-label-lg font-label-lg text-on-surface mt-1 mb-2">{other.name}</h3>
@@ -598,6 +632,16 @@ export default function ProductDetail({ slug }: { slug: string }) {
           ))}
         </div>
       </section>
+
+      {realPhotoIndex !== null && realPhotos.length > 0 && (
+        <ImageLightbox
+          images={realPhotos}
+          index={realPhotoIndex}
+          label={`Fotos reales: ${name}`}
+          onClose={() => setRealPhotoIndex(null)}
+          onIndexChange={setRealPhotoIndex}
+        />
+      )}
 
       {lightboxOpen && (
         <ImageLightbox

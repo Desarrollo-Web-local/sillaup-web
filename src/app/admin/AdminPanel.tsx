@@ -5,6 +5,8 @@ import { useState, useTransition, type FormEvent, type ReactNode } from "react";
 import type { ContentField, ContentPage, Texts } from "@/lib/content";
 import { formatPrice } from "@/lib/products";
 import { createBrowserSupabase } from "@/lib/supabase-browser";
+import { VIDEO_MIME_TYPES, videoList } from "@/lib/video";
+import { ReviewVideo } from "@/components/ReviewVideos";
 import { saveProduct, saveTexts, signOut, type ActionResult } from "./actions";
 
 /** Current values of a product's editable fields (defaults merged with the database row). */
@@ -24,6 +26,8 @@ export type ProductForm = {
   mercado_pago_url: string;
   /** Fotos del producto; la primera es la portada */
   gallery: string[];
+  /** Fotos reales del producto en uso (bajo «Especificaciones técnicas») */
+  real_photos: string[];
 };
 
 type Props = {
@@ -215,6 +219,8 @@ function TextField({ field, initial, defaultValue, customized }: { field: Conten
       </div>
       {field.kind === "image" ? (
         <ImageInput folder="paginas" id={id} name={field.key} onChange={setValue} value={value} />
+      ) : field.kind === "videos" ? (
+        <VideosInput name={field.key} onChange={setValue} value={value} />
       ) : field.kind === "textarea" ? (
         <textarea className={input} id={id} name={field.key} onChange={(e) => setValue(e.target.value)} rows={Math.min(8, Math.max(2, Math.ceil(value.length / 90)))} value={value} />
       ) : (
@@ -237,17 +243,31 @@ async function uploadImage(file: File, folder: string): Promise<string> {
   return supabase.storage.from("site-images").getPublicUrl(path).data.publicUrl;
 }
 
-function useUpload(folder: string) {
+const IMAGE_MAX_BYTES = 8 * 1024 * 1024;
+const VIDEO_MAX_BYTES = 50 * 1024 * 1024;
+
+function useUpload(folder: string, what: "imagen" | "video" = "imagen") {
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState("");
   const upload = async (files: FileList | null, onDone: (urls: string[]) => void) => {
     if (!files?.length) return;
+    const max = what === "video" ? VIDEO_MAX_BYTES : IMAGE_MAX_BYTES;
+    const tooBig = [...files].find((file) => file.size > max);
+    if (tooBig) {
+      setError(`«${tooBig.name}» pesa más de ${max / 1024 / 1024} MB`);
+      return;
+    }
     setUploading(true);
     setError("");
     try {
       onDone(await Promise.all([...files].map((file) => uploadImage(file, folder))));
     } catch (e) {
-      setError(`No se pudo subir la imagen: ${e instanceof Error ? e.message : "error desconocido"}`);
+      const detail = e instanceof Error ? e.message : "error desconocido";
+      setError(
+        what === "video" && /mime|type|size|large/i.test(detail)
+          ? `No se pudo subir el video (${detail}). Revisa que el almacenamiento acepte videos (ver supabase/migrations) o pega un link de YouTube`
+          : `No se pudo subir ${what === "video" ? "el video" : "la imagen"}: ${detail}`,
+      );
     } finally {
       setUploading(false);
     }
@@ -255,13 +275,25 @@ function useUpload(folder: string) {
   return { uploading, error, upload };
 }
 
-function UploadButton({ uploading, multiple, onFiles }: { uploading: boolean; multiple?: boolean; onFiles: (files: FileList | null) => void }) {
+function UploadButton({
+  uploading,
+  multiple,
+  onFiles,
+  accept = "image/jpeg,image/png,image/webp,image/avif,image/gif",
+  text,
+}: {
+  uploading: boolean;
+  multiple?: boolean;
+  onFiles: (files: FileList | null) => void;
+  accept?: string;
+  text?: string;
+}) {
   return (
     <label className={`inline-flex items-center gap-1.5 rounded-full border border-primary-container text-primary font-bold text-sm px-4 py-2 cursor-pointer hover:bg-primary-container/5 ${uploading ? "opacity-60 pointer-events-none" : ""}`}>
       <span aria-hidden="true" className="material-symbols-outlined text-base">upload</span>
-      {uploading ? "Subiendo..." : multiple ? "Subir fotos" : "Subir foto"}
+      {uploading ? "Subiendo..." : text ?? (multiple ? "Subir fotos" : "Subir foto")}
       <input
-        accept="image/jpeg,image/png,image/webp,image/avif,image/gif"
+        accept={accept}
         className="sr-only"
         multiple={multiple}
         onChange={(e) => {
@@ -391,6 +423,153 @@ function PhotosInput({ initial }: { initial: string[] }) {
   );
 }
 
+/** Real photos of the product in use, shown on the product page under «Especificaciones técnicas». */
+function RealPhotosInput({ initial }: { initial: string[] }) {
+  const [urls, setUrls] = useState(initial);
+  const [draft, setDraft] = useState("");
+  const { uploading, error, upload } = useUpload("productos-reales");
+  const add = (added: string[]) => setUrls((list) => [...list, ...added.filter((url) => !list.includes(url))]);
+  const move = (from: number, to: number) =>
+    setUrls((list) => {
+      const next = [...list];
+      [next[from], next[to]] = [next[to], next[from]];
+      return next;
+    });
+  const addDraft = () => {
+    if (!draft.trim()) return;
+    add([draft.trim()]);
+    setDraft("");
+  };
+
+  return (
+    <div>
+      <input name="real_photos" type="hidden" value={urls.join("\n")} />
+      <p className="text-body-sm text-on-surface-variant mb-4">
+        Fotos reales del equipo instalado o en uso, tomadas en hogares o en el showroom. Se muestran en la ficha del producto, justo debajo de las
+        «Especificaciones técnicas». Si no hay fotos, la sección no aparece
+      </p>
+      {urls.length > 0 ? (
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+          {urls.map((url, i) => (
+            <div className="relative rounded-xl border-2 border-outline-variant bg-surface-container-low overflow-hidden" key={url}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img alt={`Foto real ${i + 1}`} className="w-full h-28 object-cover" src={url} />
+              <div className="flex justify-between bg-white border-t border-outline-variant">
+                <button aria-label="Mover a la izquierda" className="p-1.5 disabled:opacity-30" disabled={i === 0} onClick={() => move(i, i - 1)} title="Mover a la izquierda" type="button">
+                  <span aria-hidden="true" className="material-symbols-outlined text-base">chevron_left</span>
+                </button>
+                <button aria-label="Quitar foto" className="p-1.5 text-error" onClick={() => setUrls((list) => list.filter((_, j) => j !== i))} title="Quitar foto" type="button">
+                  <span aria-hidden="true" className="material-symbols-outlined text-base">delete</span>
+                </button>
+                <button aria-label="Mover a la derecha" className="p-1.5 disabled:opacity-30" disabled={i === urls.length - 1} onClick={() => move(i, i + 1)} title="Mover a la derecha" type="button">
+                  <span aria-hidden="true" className="material-symbols-outlined text-base">chevron_right</span>
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <p className="rounded-xl border-2 border-dashed border-outline-variant p-6 text-center text-sm text-on-surface-variant">Aún no hay fotos reales de este producto</p>
+      )}
+      <div className="flex flex-col sm:flex-row gap-2 mt-3">
+        <input
+          className={input}
+          onChange={(e) => setDraft(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              e.preventDefault();
+              addDraft();
+            }
+          }}
+          placeholder="Pega la dirección de una foto y presiona Agregar"
+          type="url"
+          value={draft}
+        />
+        <button className="shrink-0 rounded-full bg-surface-container px-4 py-2 text-sm font-bold hover:bg-surface-container-high" onClick={addDraft} type="button">
+          Agregar
+        </button>
+        <UploadButton multiple onFiles={(files) => upload(files, add)} text="Subir fotos reales" uploading={uploading} />
+      </div>
+      {error && <p className="text-xs font-bold text-error mt-2">{error}</p>}
+      <p className={hint}>Hasta 24 fotos, JPG, PNG o WebP de hasta 8 MB</p>
+    </div>
+  );
+}
+
+/**
+ * Customer review videos for «Testimonios» (and the testimonials block on the home page):
+ * uploaded files or YouTube/Vimeo links, stored one per line.
+ */
+function VideosInput({ name, value, onChange }: { name: string; value: string; onChange: (value: string) => void }) {
+  const urls = videoList(value);
+  const [draft, setDraft] = useState("");
+  const { uploading, error, upload } = useUpload("videos", "video");
+  const set = (list: string[]) => onChange(list.join("\n"));
+  const add = (added: string[]) => set([...urls, ...added.filter((url) => !urls.includes(url))]);
+  const move = (from: number, to: number) => {
+    const next = [...urls];
+    [next[from], next[to]] = [next[to], next[from]];
+    set(next);
+  };
+  const addDraft = () => {
+    if (!draft.trim()) return;
+    add([draft.trim()]);
+    setDraft("");
+  };
+
+  return (
+    <div>
+      <input name={name} type="hidden" value={urls.join("\n")} />
+      <p className="text-body-sm text-on-surface-variant mb-4">
+        Sube videos de clientes contando su experiencia o pega un link de YouTube o Vimeo. Se muestran junto a los comentarios en «Testimonios» y en
+        la sección de opiniones del inicio. Sin videos, la sección no aparece
+      </p>
+      {urls.length > 0 && (
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {urls.map((url, i) => (
+            <div className="rounded-xl border-2 border-outline-variant bg-white overflow-hidden" key={url}>
+              <ReviewVideo title={`Video ${i + 1}`} url={url} />
+              <div className="flex items-center justify-between gap-2 px-2 py-1.5 border-t border-outline-variant">
+                <button aria-label="Mover antes" className="p-1.5 disabled:opacity-30" disabled={i === 0} onClick={() => move(i, i - 1)} title="Mover antes" type="button">
+                  <span aria-hidden="true" className="material-symbols-outlined text-base">chevron_left</span>
+                </button>
+                <span className="min-w-0 flex-1 truncate text-xs text-on-surface-variant" title={url}>{url}</span>
+                <button aria-label="Quitar video" className="p-1.5 text-error" onClick={() => set(urls.filter((_, j) => j !== i))} title="Quitar video" type="button">
+                  <span aria-hidden="true" className="material-symbols-outlined text-base">delete</span>
+                </button>
+                <button aria-label="Mover después" className="p-1.5 disabled:opacity-30" disabled={i === urls.length - 1} onClick={() => move(i, i + 1)} title="Mover después" type="button">
+                  <span aria-hidden="true" className="material-symbols-outlined text-base">chevron_right</span>
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+      <div className="flex flex-col sm:flex-row gap-2 mt-3">
+        <input
+          className={input}
+          onChange={(e) => setDraft(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              e.preventDefault();
+              addDraft();
+            }
+          }}
+          placeholder="https://www.youtube.com/watch?v=... o link de Vimeo"
+          type="url"
+          value={draft}
+        />
+        <button className="shrink-0 rounded-full bg-surface-container px-4 py-2 text-sm font-bold hover:bg-surface-container-high" onClick={addDraft} type="button">
+          Agregar
+        </button>
+        <UploadButton accept={VIDEO_MIME_TYPES.join(",")} multiple onFiles={(files) => upload(files, add)} text="Subir video" uploading={uploading} />
+      </div>
+      {error && <p className="text-xs font-bold text-error mt-2">{error}</p>}
+      <p className={hint}>Videos MP4, WebM o MOV de hasta 50 MB. Para videos más largos, súbelos a YouTube y pega el link</p>
+    </div>
+  );
+}
+
 // ---------------------------------------------------------------------------------------------
 // Productos
 
@@ -516,6 +695,10 @@ function ProductFormView({ product }: { product: ProductForm }) {
 
       <Card title="Fotos">
         <PhotosInput initial={product.gallery} />
+      </Card>
+
+      <Card title="Fotos reales del producto">
+        <RealPhotosInput initial={product.real_photos} />
       </Card>
 
       <SaveBar pending={pending} result={result}>
